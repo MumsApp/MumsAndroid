@@ -10,6 +10,7 @@ import com.mumsapp.android.di.components.DaggerAppComponent
 import com.mumsapp.android.di.modules.ActivityModule
 import com.mumsapp.android.di.modules.AppModule
 import io.fabric.sdk.android.Fabric
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig
 
 class MainApplication : MultiDexApplication() {
 
@@ -43,5 +44,13 @@ class MainApplication : MultiDexApplication() {
         if (BuildConfig.USE_CRASHLYTICS) {
             Fabric.with(this, Crashlytics())
         }
+    }
+
+    private fun setupDefaultFont() {
+        CalligraphyConfig.initDefault(CalligraphyConfig.Builder()
+                .setDefaultFontPath("fonts/Poppins-Regular.ttf")
+                .setFontAttrId(R.attr.fontPath)
+                .build()
+        )
     }
 }

@@ -87,6 +87,9 @@ dependencies {
         transitive = true
     }
 
+    //https://github.com/chrisjenx/Calligraphy Library for adding custom fonts to all views
+    implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
+
     // Testing
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
