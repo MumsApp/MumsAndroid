@@ -75,4 +75,6 @@ abstract class BaseActivity: AppCompatActivity(), HasComponent<ActivityComponent
     fun showToast(text: String) = showToast(text, Toast.LENGTH_SHORT)
 
     fun showToast(text: String, length: Int) = Toast.makeText(this, text, length).show()
+
+    fun showError(error: String) = showSnackbar(error)
 }

@@ -21,7 +21,7 @@ abstract class BasePresenter<View: BaseView>: LifecycleObserver {
         stop()
     }
 
-    protected fun stop() {
+    protected open fun stop() {
         resetDisposables()
     }
 
@@ -31,7 +31,7 @@ abstract class BasePresenter<View: BaseView>: LifecycleObserver {
         detachView()
     }
 
-    protected fun destroy() {
+    protected open fun destroy() {
 
     }
 
@@ -41,7 +41,7 @@ abstract class BasePresenter<View: BaseView>: LifecycleObserver {
     }
 
 
-    protected fun pause() {}
+    protected open fun pause() {}
 
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
@@ -49,7 +49,7 @@ abstract class BasePresenter<View: BaseView>: LifecycleObserver {
         resume()
     }
 
-    protected fun resume() {}
+    protected open fun resume() {}
 
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
@@ -57,14 +57,14 @@ abstract class BasePresenter<View: BaseView>: LifecycleObserver {
         start()
     }
 
-    protected fun start() {}
+    protected open fun start() {}
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun onCreate() {
         create()
     }
 
-    protected fun create() {}
+    protected open fun create() {}
 
     fun detachView() {
         view?.getLifecycle()?.removeObserver(this)

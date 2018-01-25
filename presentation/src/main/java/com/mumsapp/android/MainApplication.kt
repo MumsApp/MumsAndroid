@@ -21,6 +21,7 @@ class MainApplication : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
         setupFabric()
+        setupDefaultFont()
     }
 
     companion object {

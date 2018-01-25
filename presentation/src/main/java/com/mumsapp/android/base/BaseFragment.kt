@@ -33,4 +33,6 @@ abstract class BaseFragment: Fragment(), BaseView {
     override fun showSnackbarSticky(message: String, text: CharSequence, clickListener: View.OnClickListener) {
         (activity as BaseActivity).showSnackbarSticky(message, text, clickListener)
     }
+
+    override fun showError(error: String) = (activity as BaseActivity).showError(error)
 }

@@ -23,12 +23,7 @@ class AuthActivity : BaseFragmentActivity(), AuthView {
 
     override fun makeInject() = activityComponent.inject(this)
 
-    override fun <T: BasePresenter<BaseView>> getPresenter(): T {
-        return presenter as T
-    }
-
-    override fun showError(error: String) {
-    }
+    override fun <T: BasePresenter<BaseView>> getPresenter(): T = presenter as T
 
     override fun getFragmentContainerId(): Int {
         return R.id.main_frame_layout
