@@ -30,14 +30,14 @@
     <com.mumsapp.android.ui.views.BaseButton
         android:id="@+id/auth_menu_sign_in"
         style="@style/button_grey"
-        android:layout_marginTop="@dimen/padding_default"
+        android:layout_marginTop="@dimen/button_margin_between_buttons"
         android:text="@string/sign_in"
         app:layout_constraintTop_toBottomOf="@id/auth_menu_sign_up"
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <com.mumsapp.android.ui.views.BaseTextView
         android:id="@+id/auth_menu_create_page"
-        style="@style/text_big_blue_light"
+        style="@style/text_normal_blue_light"
         android:text="@string/create_official_page"
         app:layout_constraintTop_toBottomOf="@id/auth_menu_sign_in"
         app:layout_constraintLeft_toLeftOf="parent"

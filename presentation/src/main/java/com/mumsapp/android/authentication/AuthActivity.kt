@@ -32,4 +32,10 @@ class AuthActivity : BaseFragmentActivity(), AuthView {
     override fun getProperFragmentManager(): FragmentManager {
         return supportFragmentManager
     }
+
+    override fun onBackPressed() {
+        if(presenter.handleBackOrDelegateToSystem()) {
+            super.onBackPressed()
+        }
+    }
 }

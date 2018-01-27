@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import butterknife.ButterKnife
+import butterknife.OnClick
 import com.mumsapp.android.R
 import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.base.BasePresenter
@@ -39,5 +40,20 @@ class AuthMenuFragment: BaseFragment(), AuthMenuView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter.attachViewWithLifecycle(this)
+    }
+
+    @OnClick(R.id.auth_menu_sign_up)
+    fun onSignUpClick() {
+        presenter.onSignUpClick()
+    }
+
+    @OnClick(R.id.auth_menu_sign_in)
+    fun onSignInClick() {
+        presenter.onSignInClick()
+    }
+
+    @OnClick(R.id.auth_menu_create_page)
+    fun onCreatePageClick() {
+        presenter.onCreatePageClick()
     }
 }

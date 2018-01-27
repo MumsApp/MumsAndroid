@@ -35,4 +35,6 @@ abstract class BaseFragment: Fragment(), BaseView {
     }
 
     override fun showError(error: String) = (activity as BaseActivity).showError(error)
+
+    fun goingBack(): Boolean = getPresenter<BasePresenter<BaseView>>() != null || getPresenter<BasePresenter<BaseView>>().onGoingBack()
 }

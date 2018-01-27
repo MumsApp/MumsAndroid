@@ -17,13 +17,25 @@ class FragmentsNavigationService {
         this.containerId = containerId
     }
 
-    fun openAuthMenuFragment() {
+    fun openAuthMenuFragment(addToBackStack: Boolean) {
         var fragment = createAuthMenuFragment()
-        openFragment(fragment, true)
+        openFragment(fragment, addToBackStack)
     }
 
     fun createAuthMenuFragment(): AuthMenuFragment {
         return AuthMenuFragment.getInstance()
+    }
+
+    fun openSignUpFragment(addToBackStack: Boolean) {
+
+    }
+
+    fun openSignInFragment(addToBackStack: Boolean) {
+
+    }
+
+    fun openCreatePageFragment(addToBackStack: Boolean) {
+
     }
 
     fun popFragment() {

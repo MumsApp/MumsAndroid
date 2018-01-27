@@ -76,4 +76,8 @@ abstract class BasePresenter<View: BaseView>: LifecycleObserver {
         compositeDisposable = null
         compositeDisposable = CompositeDisposable()
     }
+
+    fun onGoingBack(): Boolean {
+        return true
+    }
 }

@@ -13,6 +13,12 @@ class ActivityModule(private val activity: BaseActivity) {
 
     @Provides
     @ActivityScope
+    internal fun provideBaseActivity(): BaseActivity {
+        return activity
+    }
+
+    @Provides
+    @ActivityScope
     internal fun provideFragmentManager(): FragmentManager {
         return activity.supportFragmentManager
     }
