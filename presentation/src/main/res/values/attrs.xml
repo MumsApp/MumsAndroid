@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="TopBar">
+        <attr name="topBarTitle" format="string"/>
+        <attr name="topBarBackVisible" format="boolean"/>
+        <attr name="topBarRightButtonVisible" format="boolean"/>
+        <attr name="topBarRightIcon" format="reference"/>
+    </declare-styleable>
+</resources>

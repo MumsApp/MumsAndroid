@@ -4,28 +4,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import butterknife.BindView
 import butterknife.ButterKnife
-import butterknife.OnClick
 import com.mumsapp.android.R
 import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.base.BasePresenter
 import com.mumsapp.android.base.BaseView
 import com.mumsapp.android.di.components.ActivityComponent
-import com.mumsapp.android.ui.views.BaseButton
 import javax.inject.Inject
 
-class AuthMenuFragment: BaseFragment(), AuthMenuView {
+class SignUpFragment: BaseFragment(), SignUpView {
 
     @Inject
-    lateinit var presenter: AuthMenuPresenter
-
-    @BindView(R.id.auth_menu_sign_up)
-    lateinit var button: BaseButton
+    lateinit var presenter: SignUpPresenter
 
     companion object {
-        fun getInstance(): AuthMenuFragment {
-            return AuthMenuFragment()
+        fun getInstance(): SignUpFragment {
+            return SignUpFragment()
         }
     }
 
@@ -37,7 +31,7 @@ class AuthMenuFragment: BaseFragment(), AuthMenuView {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val v = inflater.inflate(R.layout.fragment_auth_menu, container, false)
+        val v = inflater.inflate(R.layout.fragment_sign_up, container, false)
         setUnbinder(ButterKnife.bind(this, v))
         return v
     }
@@ -45,20 +39,5 @@ class AuthMenuFragment: BaseFragment(), AuthMenuView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter.attachViewWithLifecycle(this)
-    }
-
-    @OnClick(R.id.auth_menu_sign_up)
-    fun onSignUpClick() {
-        presenter.onSignUpClick()
-    }
-
-    @OnClick(R.id.auth_menu_sign_in)
-    fun onSignInClick() {
-        presenter.onSignInClick()
-    }
-
-    @OnClick(R.id.auth_menu_create_page)
-    fun onCreatePageClick() {
-        presenter.onCreatePageClick()
     }
 }

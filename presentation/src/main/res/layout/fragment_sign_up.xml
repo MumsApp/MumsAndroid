@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/default_layout">
+
+    <com.mumsapp.android.ui.views.TopBar
+        android:id="@+id/sign_up_top_bar"
+        style="@style/top_bar_back"
+        app:topBarTitle="@string/sign_up"/>
+
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/sign_up_google"
+        style="@style/text_google_plus"
+        android:layout_marginTop="@dimen/sign_up_social_buttons_margin_top"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_top_bar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="@string/sign_up_google"/>
+
+    <View
+        android:id="@+id/sign_up_divider"
+        style="@style/divider_horizontal"
+        android:layout_marginTop="@dimen/padding_default"
+        android:layout_marginStart="@dimen/content_padding_horizontal"
+        android:layout_marginEnd="@dimen/content_padding_horizontal"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_google"/>
+
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/sign_up_facebook"
+        style="@style/text_facebook"
+        android:layout_marginTop="@dimen/padding_default"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_divider"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="@string/sign_up_facebook"/>
+</android.support.constraint.ConstraintLayout>

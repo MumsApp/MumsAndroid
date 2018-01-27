@@ -6,10 +6,23 @@
 
     <color name="main_background">#FBFDFF</color>
 
+    <color name="black">#000000</color>
     <color name="white">#ffffff</color>
     <color name="blue_light">#92abc8</color>
+
+    <color name="google_plus">#DA5950</color>
+    <color name="facebook">#4767AA</color>
+
 
     <!-- Buttons -->
     <color name="button_green_background">#20DCC8</color>
     <color name="button_grey_background">#c8d6e6</color>
+
+
+    <!-- Dividers -->
+    <color name="default_divider">#E7EBEF</color>
+
+
+    <!-- Top Bar -->
+    <color name="top_bar_background">#ffffff</color>
 </resources>

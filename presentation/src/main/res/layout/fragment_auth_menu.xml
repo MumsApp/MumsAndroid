@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/default_layout"
     android:background="@color/main_background"
-    android:paddingLeft="@dimen/padding_default"
-    android:paddingRight="@dimen/padding_default">
+    android:paddingLeft="@dimen/content_padding_horizontal"
+    android:paddingRight="@dimen/content_padding_horizontal">
 
     <com.mumsapp.android.ui.views.BaseImageView
         android:id="@+id/auth_menu_logo"

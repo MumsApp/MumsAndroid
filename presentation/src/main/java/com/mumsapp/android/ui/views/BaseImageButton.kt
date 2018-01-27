@@ -2,9 +2,9 @@ package com.mumsapp.android.ui.views
 
 import android.content.Context
 import android.util.AttributeSet
-import android.widget.ImageView
+import android.widget.ImageButton
 
-class BaseImageView : ImageView {
+class BaseImageButton: ImageButton {
 
     constructor(context: Context) : super(context)
 
