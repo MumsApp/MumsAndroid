@@ -2,6 +2,7 @@ package com.mumsapp.android.di.components
 
 import com.mumsapp.android.authentication.AuthActivity
 import com.mumsapp.android.authentication.AuthMenuFragment
+import com.mumsapp.android.authentication.SignInFragment
 import com.mumsapp.android.authentication.SignUpFragment
 import com.mumsapp.android.di.modules.ActivityModule
 import com.mumsapp.android.di.scopes.ActivityScope
@@ -16,4 +17,6 @@ interface ActivityComponent {
     fun inject(fragment: AuthMenuFragment)
 
     fun inject(fragment: SignUpFragment)
+
+    fun inject(fragment: SignInFragment)
 }

@@ -2,6 +2,7 @@ package com.mumsapp.android.navigation
 
 import android.support.v4.app.FragmentManager
 import com.mumsapp.android.authentication.AuthMenuFragment
+import com.mumsapp.android.authentication.SignInFragment
 import com.mumsapp.android.authentication.SignUpFragment
 import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.di.qualifiers.FragmentContainerId
@@ -23,22 +24,21 @@ class FragmentsNavigationService {
         openFragment(fragment, addToBackStack)
     }
 
-    fun createAuthMenuFragment(): AuthMenuFragment {
-        return AuthMenuFragment.getInstance()
-    }
+    fun createAuthMenuFragment(): AuthMenuFragment = AuthMenuFragment.getInstance()
 
     fun openSignUpFragment(addToBackStack: Boolean) {
         val fragment = createSignUpFragment()
         openFragment(fragment, addToBackStack)
     }
 
-    fun createSignUpFragment(): SignUpFragment {
-        return SignUpFragment.getInstance()
-    }
+    fun createSignUpFragment(): SignUpFragment = SignUpFragment.getInstance()
 
     fun openSignInFragment(addToBackStack: Boolean) {
-
+        val fragment = createSignInFragment()
+        openFragment(fragment, addToBackStack)
     }
+
+    fun createSignInFragment(): SignInFragment = SignInFragment.getInstance()
 
     fun openCreatePageFragment(addToBackStack: Boolean) {
 
