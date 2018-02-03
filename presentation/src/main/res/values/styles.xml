@@ -14,6 +14,16 @@
         <item name="android:background">@color/main_background</item>
     </style>
 
+    <style name="default_scroll">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:fillViewport">true</item>
+    </style>
+
+    <style name="default_scroll_layout" parent="default_layout">
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
     <!-- Buttons -->
     <style name="button_default">
         <item name="android:layout_width">match_parent</item>
@@ -62,16 +72,22 @@
         <item name="android:textColor">@color/blue_light</item>
     </style>
 
+    <style name="text_normal_grey_light" parent="text_normal">
+        <item name="android:textColor">@color/grey_light</item>
+    </style>
+
     <style name="text_google_plus" parent="text_normal">
         <item name="android:drawablePadding">@dimen/padding_medium</item>
         <item name="android:textColor">@color/google_plus</item>
         <item name="android:drawableLeft">@drawable/ic_google_plus</item>
+        <item name="android:text">@string/sign_up_google</item>
     </style>
 
     <style name="text_facebook" parent="text_normal">
         <item name="android:drawablePadding">@dimen/padding_medium</item>
         <item name="android:textColor">@color/facebook</item>
         <item name="android:drawableLeft">@drawable/ic_facebook</item>
+        <item name="android:text">@string/sign_up_facebook</item>
     </style>
 
 
@@ -95,5 +111,26 @@
     <style name="top_bar_back" parent="top_bar_default">
         <item name="topBarBackVisible">true</item>
         <item name="topBarRightButtonVisible">false</item>
+    </style>
+
+
+    <!--Forms -->
+    <style name="default_form_theme">
+        <item name="colorAccent">@color/default_divider</item>
+        <item name="colorControlNormal">@color/default_divider</item>
+        <item name="colorControlActivated">@color/black_light</item>
+        <item name="colorControlHighlight">@color/black_light</item>
+    </style>
+
+    <style name="default_form">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/form_padding_vertical</item>
+        <item name="android:layout_marginStart">@dimen/content_padding_horizontal</item>
+        <item name="android:layout_marginEnd">@dimen/content_padding_horizontal</item>
+        <item name="android:textColor">@color/black_light</item>
+        <item name="android:textColorHint">@color/black_light</item>
+        <item name="android:textSize">@dimen/text_size_normal</item>
+        <item name="android:theme">@style/default_form_theme</item>
     </style>
 </resources>

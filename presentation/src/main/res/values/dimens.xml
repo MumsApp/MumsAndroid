@@ -8,6 +8,8 @@
     <dimen name="padding_small">4dp</dimen>
 
     <dimen name="content_padding_horizontal">30dp</dimen>
+
+    <dimen name="form_padding_vertical">4dp</dimen>
     
     
     <!-- Texts -->
@@ -24,7 +26,7 @@
 
 
     <!-- Top bar -->
-    <dimen name="top_bar_height">90dp</dimen>
+    <dimen name="top_bar_height">80dp</dimen>
 
 
     <!-- Dividers -->
@@ -32,5 +34,8 @@
 
 
     <!-- Sign Up Fragment -->
-    <dimen name="sign_up_social_buttons_margin_top">30dp</dimen>
+    <dimen name="sign_up_social_buttons_margin_top">20dp</dimen>
+
+    <!-- Sign In Fragment -->
+    <dimen name="sign_in_social_buttons_margin_top">20dp</dimen>
 </resources>

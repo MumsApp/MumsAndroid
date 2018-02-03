@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#ffffff</color>
-    <color name="colorPrimaryDark">#9E9E9E</color>
+    <color name="colorPrimaryDark">#9AA5B9</color>
     <color name="colorAccent">#20DCC8</color>
 
     <color name="main_background">#FBFDFF</color>
 
     <color name="black">#000000</color>
+    <color name="black_light">#111111</color>
     <color name="white">#ffffff</color>
     <color name="blue_light">#92abc8</color>
+    <color name="grey_light">#989FB9</color>
 
     <color name="google_plus">#DA5950</color>
     <color name="facebook">#4767AA</color>

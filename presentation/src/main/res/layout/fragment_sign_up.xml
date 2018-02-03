@@ -1,36 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/default_layout">
+    style="@style/default_layout"
+    android:orientation="vertical">
 
     <com.mumsapp.android.ui.views.TopBar
         android:id="@+id/sign_up_top_bar"
         style="@style/top_bar_back"
-        app:topBarTitle="@string/sign_up"/>
+        app:topBarTitle="@string/sign_up" />
 
-    <com.mumsapp.android.ui.views.BaseTextView
-        android:id="@+id/sign_up_google"
-        style="@style/text_google_plus"
-        android:layout_marginTop="@dimen/sign_up_social_buttons_margin_top"
-        app:layout_constraintTop_toBottomOf="@id/sign_up_top_bar"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:text="@string/sign_up_google"/>
+    <ScrollView
+        style="@style/default_scroll">
 
-    <View
-        android:id="@+id/sign_up_divider"
-        style="@style/divider_horizontal"
-        android:layout_marginTop="@dimen/padding_default"
-        android:layout_marginStart="@dimen/content_padding_horizontal"
-        android:layout_marginEnd="@dimen/content_padding_horizontal"
-        app:layout_constraintTop_toBottomOf="@id/sign_up_google"/>
+        <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            style="@style/default_scroll_layout"
+            android:paddingBottom="@dimen/padding_default">
 
-    <com.mumsapp.android.ui.views.BaseTextView
-        android:id="@+id/sign_up_facebook"
-        style="@style/text_facebook"
-        android:layout_marginTop="@dimen/padding_default"
-        app:layout_constraintTop_toBottomOf="@id/sign_up_divider"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:text="@string/sign_up_facebook"/>
-</android.support.constraint.ConstraintLayout>
+            <com.mumsapp.android.ui.views.BaseTextView
+                android:id="@+id/sign_up_google"
+                style="@style/text_google_plus"
+                android:layout_marginTop="@dimen/sign_up_social_buttons_margin_top"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <View
+                android:id="@+id/sign_up_divider"
+                style="@style/divider_horizontal"
+                android:layout_marginEnd="@dimen/content_padding_horizontal"
+                android:layout_marginStart="@dimen/content_padding_horizontal"
+                android:layout_marginTop="@dimen/padding_default"
+                app:layout_constraintTop_toBottomOf="@id/sign_up_google" />
+
+            <com.mumsapp.android.ui.views.BaseTextView
+                android:id="@+id/sign_up_facebook"
+                style="@style/text_facebook"
+                android:layout_marginTop="@dimen/padding_default"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/sign_up_divider" />
+
+            <com.mumsapp.android.ui.views.BaseTextView
+                android:id="@+id/sign_up_or"
+                style="@style/text_normal_grey_light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_default"
+                android:text="@string/or"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/sign_up_facebook" />
+
+            <com.mumsapp.android.ui.views.BaseInput
+                android:id="@+id/sign_up_first_name"
+                style="@style/default_form"
+                android:hint="@string/first_name"
+                android:inputType="textPersonName"
+                app:layout_constraintTop_toBottomOf="@id/sign_up_or" />
+
+            <com.mumsapp.android.ui.views.BaseInput
+                android:id="@+id/sign_up_last_name"
+                style="@style/default_form"
+                android:hint="@string/last_name"
+                android:inputType="textPersonName"
+                app:layout_constraintTop_toBottomOf="@id/sign_up_first_name" />
+
+            <com.mumsapp.android.ui.views.BaseInput
+                android:id="@+id/sign_up_email"
+                style="@style/default_form"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                app:layout_constraintTop_toBottomOf="@id/sign_up_last_name" />
+
+            <com.mumsapp.android.ui.views.BaseInput
+                android:id="@+id/sign_up_password"
+                style="@style/default_form"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                app:layout_constraintTop_toBottomOf="@id/sign_up_email" />
+
+            <com.mumsapp.android.ui.views.BaseInput
+                android:id="@+id/sign_up_confirmation"
+                style="@style/default_form"
+                android:hint="@string/repeat_password"
+                android:inputType="textPassword"
+                app:layout_constraintTop_toBottomOf="@id/sign_up_password" />
+
+            <com.mumsapp.android.ui.views.BaseButton
+                android:id="@+id/sign_up_button"
+                style="@style/button_green"
+                android:layout_marginTop="@dimen/padding_default"
+                android:layout_marginEnd="@dimen/content_padding_horizontal"
+                android:layout_marginStart="@dimen/content_padding_horizontal"
+                android:text="@string/sign_up"
+                app:layout_constraintTop_toBottomOf="@id/sign_up_confirmation" />
+
+            <com.mumsapp.android.ui.views.BaseTextView
+                android:id="@+id/sign_up_already_have_account"
+                style="@style/text_normal_blue_light"
+                android:layout_marginTop="@dimen/padding_default"
+                android:text="@string/already_account"
+                app:layout_constraintTop_toBottomOf="@id/sign_up_button"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"/>
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+</LinearLayout>
