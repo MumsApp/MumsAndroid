@@ -16,7 +16,7 @@
     <dimen name="text_size_small">13sp</dimen>
     <dimen name="text_size_normal">15sp</dimen>
     <dimen name="text_size_big">19sp</dimen>
-    <dimen name="text_size_huge">24sp</dimen>
+    <dimen name="text_size_huge">22sp</dimen>
 
 
     <!-- Buttons -->
@@ -48,4 +48,9 @@
     <!-- Sign In Fragment -->
     <dimen name="sign_in_social_buttons_margin_top">20dp</dimen>
     <dimen name="sign_in_sign_up_text_margin_top">80dp</dimen>
+
+
+    <!-- Create Page Fragment -->
+    <dimen name="create_page_title_text_size">31sp</dimen>
+    <dimen name="create_page_items_space_between_items">40dp</dimen>
 </resources>

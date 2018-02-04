@@ -1,6 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/default_layout">
 
+    <com.mumsapp.android.ui.views.TopBar
+        android:id="@+id/create_page_top_bar"
+        style="@style/top_bar_back"
+        app:layout_constraintTop_toTopOf="parent"
+        app:topBarTitle="@string/create_school_service_page" />
+
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/create_page_title"
+        style="@style/text_view_default"
+        android:text="@string/create_new"
+        android:textSize="@dimen/create_page_title_text_size"
+        app:layout_constraintBottom_toTopOf="@+id/create_page_advertise"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/create_page_top_bar"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <com.mumsapp.android.ui.views.SquareButton
+        android:id="@+id/create_page_advertise"
+        style="@style/square_button_default"
+        android:layout_marginEnd="@dimen/padding_medium"
+        android:layout_marginTop="@dimen/create_page_items_space_between_items"
+        app:image="@drawable/ic_advertisers"
+        app:layout_constraintBottom_toTopOf="@id/create_page_description"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/create_page_school"
+        app:layout_constraintTop_toBottomOf="@id/create_page_title"
+        app:text="@string/advertise" />
+
+    <com.mumsapp.android.ui.views.SquareButton
+        android:id="@+id/create_page_school"
+        style="@style/square_button_default"
+        android:layout_marginStart="@dimen/padding_medium"
+        app:image="@drawable/ic_school"
+        app:layout_constraintLeft_toRightOf="@id/create_page_advertise"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/create_page_advertise"
+        app:text="@string/school" />
+
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/create_page_description"
+        style="@style/text_normal_grey_light"
+        android:layout_marginTop="@dimen/create_page_items_space_between_items"
+        android:gravity="center"
+        android:paddingLeft="@dimen/content_padding_horizontal"
+        android:paddingRight="@dimen/content_padding_horizontal"
+        android:text="@string/template_long_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/create_page_advertise" />
 </android.support.constraint.ConstraintLayout>

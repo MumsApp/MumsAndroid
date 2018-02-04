@@ -3,6 +3,8 @@
 
     <string name="or">or</string>
 
+    <string name="template_long_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec risus mi, tempor vel feugiat eget, suscipit sed metus. Aliquam dapibus imperdiet iaculis. Aliquam mollis accumsan leo ac luctus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</string>
+
     <!-- Authentication -->
     <string name="sign_up">Sign Up</string>
     <string name="sign_in">Sign In</string>
@@ -18,4 +20,6 @@
     <string name="forget_password">Forget password?</string>
     <string name="advertise">Advertise</string>
     <string name="school">School</string>
+    <string name="create_school_service_page">Create School/Service page</string>
+    <string name="create_new">Create New</string>
 </resources>
