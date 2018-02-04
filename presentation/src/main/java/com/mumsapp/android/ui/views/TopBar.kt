@@ -52,6 +52,8 @@ class TopBar: ConstraintLayout {
 
         val rightButtonDrawable = array.getDrawable(R.styleable.TopBar_topBarRightIcon)
         setRightButtonDrawable(rightButtonDrawable)
+
+        array.recycle()
     }
 
     fun setBackVisibility(visible: Boolean) {

@@ -24,6 +24,7 @@ buildscript {
     ext.retrofitVersion = '2.3.0'
     ext.okHttpVersion = '3.9.1'
     ext.retrofitRxAdapter = '1.0.0'
+    ext.compatVersion = '27.0.2'
 
     repositories {
         google()

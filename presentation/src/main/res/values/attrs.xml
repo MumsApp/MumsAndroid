@@ -7,4 +7,12 @@
         <attr name="topBarRightButtonVisible" format="boolean"/>
         <attr name="topBarRightIcon" format="reference"/>
     </declare-styleable>
+
+    <declare-styleable name="TextAttributes">
+        <attr name="text" format="string"/>
+    </declare-styleable>
+    
+    <declare-styleable name="SquareButton">
+        <attr name="image" format="reference"/>
+    </declare-styleable>
 </resources>
