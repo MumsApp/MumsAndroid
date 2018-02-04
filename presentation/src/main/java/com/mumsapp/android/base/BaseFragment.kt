@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment
 import android.view.View
 import butterknife.Unbinder
 import com.mumsapp.android.common.features.HasComponent
+import com.mumsapp.android.common.features.HasProgress
 
 abstract class BaseFragment: Fragment(), BaseView {
 
@@ -37,4 +38,22 @@ abstract class BaseFragment: Fragment(), BaseView {
     override fun showError(error: String) = (activity as BaseActivity).showError(error)
 
     fun goingBack(): Boolean = getPresenter<BasePresenter<BaseView>>() != null || getPresenter<BasePresenter<BaseView>>().onGoingBack()
+
+    protected fun showProgress() {
+        if(activity is HasProgress) {
+            (activity as HasProgress).showProgress()
+            return
+        }
+
+        throw IllegalStateException("Activity must be HasProgress")
+    }
+
+    protected fun hideProgress() {
+        if(activity is HasProgress) {
+            (activity as HasProgress).hideProgress()
+            return
+        }
+
+        throw IllegalStateException("Activity must be HasProgress")
+    }
 }

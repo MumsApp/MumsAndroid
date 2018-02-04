@@ -96,7 +96,7 @@ dependencies {
     implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
 
     //TextInputLayout and TextEditText merged into one class https://github.com/rafakob/FloatingEditText
-    compile 'com.rafakob:floatingedittext:1.0.5'
+    implementation 'com.rafakob:floatingedittext:1.0.5'
 
     // Testing
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
