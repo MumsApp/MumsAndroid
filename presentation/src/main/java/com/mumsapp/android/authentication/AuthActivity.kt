@@ -2,7 +2,6 @@ package com.mumsapp.android.authentication
 
 import android.os.Bundle
 import android.support.v4.app.FragmentManager
-import android.support.v4.widget.ContentLoadingProgressBar
 import android.view.View
 import butterknife.BindView
 import butterknife.ButterKnife
@@ -10,16 +9,19 @@ import com.mumsapp.android.R
 import com.mumsapp.android.base.BaseFragmentActivity
 import com.mumsapp.android.base.BasePresenter
 import com.mumsapp.android.base.BaseView
-import com.mumsapp.android.common.features.HasProgress
+import com.mumsapp.android.common.features.HasOverlays
+import com.mumsapp.android.ui.views.NonCLickableFrameLayout
 import javax.inject.Inject
 
-class AuthActivity : BaseFragmentActivity(), AuthView, HasProgress {
+class AuthActivity : BaseFragmentActivity(), AuthView, HasOverlays {
 
     @Inject
     lateinit var presenter: AuthPresenter
 
-    @BindView(R.id.auth_progress)
-    lateinit var progressBar: ContentLoadingProgressBar
+    @BindView(R.id.main_progress_layout)
+    lateinit var progressLayout: NonCLickableFrameLayout
+
+    private var loadingPresented = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,11 +48,16 @@ class AuthActivity : BaseFragmentActivity(), AuthView, HasProgress {
         }
     }
 
-    override fun showProgress() {
-        progressBar.visibility = View.VISIBLE
+    override fun showLoading() {
+        progressLayout.visibility = View.VISIBLE
+        keyboardHelper.hideKeyboard(progressLayout)
+        loadingPresented = true
     }
 
-    override fun hideProgress() {
-        progressBar.visibility = View.GONE
+    override fun hideOverlays() {
+        progressLayout.visibility = View.GONE
+        loadingPresented = false
     }
+
+    override fun isLoadingPresented(): Boolean = loadingPresented
 }

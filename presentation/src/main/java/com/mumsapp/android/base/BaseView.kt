@@ -2,8 +2,9 @@ package com.mumsapp.android.base
 
 import android.arch.lifecycle.LifecycleOwner
 import android.view.View
+import com.mumsapp.android.common.features.HasOverlays
 
-interface BaseView: LifecycleOwner {
+interface BaseView: LifecycleOwner, HasOverlays {
 
     fun <T: BasePresenter<BaseView>> getPresenter(): T
 

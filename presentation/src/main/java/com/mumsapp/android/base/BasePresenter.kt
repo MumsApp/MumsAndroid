@@ -3,6 +3,9 @@ package com.mumsapp.android.base
 import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.LifecycleObserver
 import android.arch.lifecycle.OnLifecycleEvent
+import com.mumsapp.domain.exceptions.InvalidRefreshTokenException
+import io.reactivex.Observable
+import io.reactivex.ObservableTransformer
 import io.reactivex.disposables.CompositeDisposable
 
 abstract class BasePresenter<View: BaseView>: LifecycleObserver {
@@ -78,6 +81,52 @@ abstract class BasePresenter<View: BaseView>: LifecycleObserver {
     }
 
     fun onGoingBack(): Boolean {
+        if(view == null) {
+            return true
+        }
+
+        if(isViewAvailable() && view!!.isLoadingPresented()) {
+            return false
+        }
+
         return true
+    }
+
+    protected fun isViewAvailable(): Boolean {
+        if (view == null || view?.lifecycle == null) {
+            return false
+        }
+
+        val state = view?.getLifecycle()?.currentState
+
+        return state!!.isAtLeast(Lifecycle.State.STARTED) && state != Lifecycle.State.DESTROYED
+    }
+
+    protected fun <T> applyOverlaysToObservable(): ObservableTransformer<T, T> {
+        return ObservableTransformer {
+            it.doOnSubscribe({ tryShowLoading() })
+                    .doOnComplete({ tryHideOverlays() })
+                    .onErrorResumeNext({ throwable: Throwable ->
+                        if(throwable is InvalidRefreshTokenException) {
+                            //view.showSessionExpired()
+                            Observable.empty<T>()
+                        }
+
+                        Observable.error<T>(throwable)
+
+                    }).doOnError({ tryHideOverlays() })
+        }
+    }
+
+    private fun tryShowLoading() {
+        if (isViewAvailable()) {
+            view?.showLoading()
+        }
+    }
+
+    private fun tryHideOverlays() {
+        if (isViewAvailable()) {
+            view?.hideOverlays()
+        }
     }
 }

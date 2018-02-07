@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment
 import android.view.View
 import butterknife.Unbinder
 import com.mumsapp.android.common.features.HasComponent
-import com.mumsapp.android.common.features.HasProgress
+import com.mumsapp.android.common.features.HasOverlays
 
 abstract class BaseFragment: Fragment(), BaseView {
 
@@ -39,21 +39,29 @@ abstract class BaseFragment: Fragment(), BaseView {
 
     fun goingBack(): Boolean = getPresenter<BasePresenter<BaseView>>() != null || getPresenter<BasePresenter<BaseView>>().onGoingBack()
 
-    protected fun showProgress() {
-        if(activity is HasProgress) {
-            (activity as HasProgress).showProgress()
+    override fun showLoading() {
+        if(activity is HasOverlays) {
+            (activity as HasOverlays).showLoading()
             return
         }
 
-        throw IllegalStateException("Activity must be HasProgress")
+        throw IllegalStateException("Activity must be HasOverlays")
     }
 
-    protected fun hideProgress() {
-        if(activity is HasProgress) {
-            (activity as HasProgress).hideProgress()
+    override fun hideOverlays() {
+        if(activity is HasOverlays) {
+            (activity as HasOverlays).hideOverlays()
             return
         }
 
-        throw IllegalStateException("Activity must be HasProgress")
+        throw IllegalStateException("Activity must be HasOverlays")
+    }
+
+    override fun isLoadingPresented(): Boolean {
+        if(activity is HasOverlays) {
+            return (activity as HasOverlays).isLoadingPresented()
+        }
+
+        throw IllegalStateException("Activity must be HasOverlays")
     }
 }

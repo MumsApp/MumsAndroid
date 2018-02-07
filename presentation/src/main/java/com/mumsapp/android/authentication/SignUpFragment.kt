@@ -49,6 +49,6 @@ class SignUpFragment: BaseFragment(), SignUpView {
 
     @OnClick(R.id.sign_up_button)
     fun onSaveClick() {
-        showProgress()
+        showLoading()
     }
 }
