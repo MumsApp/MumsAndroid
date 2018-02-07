@@ -7,6 +7,7 @@ import com.mumsapp.domain.exceptions.InvalidRefreshTokenException
 import io.reactivex.Observable
 import io.reactivex.ObservableTransformer
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 
 abstract class BasePresenter<View: BaseView>: LifecycleObserver {
 
@@ -72,6 +73,10 @@ abstract class BasePresenter<View: BaseView>: LifecycleObserver {
     fun detachView() {
         view?.getLifecycle()?.removeObserver(this)
         view = null
+    }
+
+    protected fun addDisposable(disposable: Disposable) {
+        compositeDisposable?.add(disposable)
     }
 
     protected fun resetDisposables() {

@@ -22,4 +22,10 @@
     <string name="school">School</string>
     <string name="create_school_service_page">Create School/Service page</string>
     <string name="create_new">Create New</string>
+    <string name="first_name_error">Please enter your first name</string>
+    <string name="last_name_error">Please enter your last name</string>
+    <string name="email_error">Please enter a valid email address</string>
+    <string name="empty_password_error">Please enter your password</string>
+    <string name="weak_password_error">The password must contain a minimum of 4 characters.</string>
+    <string name="password_confirmation_error">The entered passwords are different.</string>
 </resources>
