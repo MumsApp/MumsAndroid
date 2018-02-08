@@ -1,5 +1,7 @@
 apply plugin: 'com.android.library'
 
+apply plugin: 'kotlin-android'
+
 apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
@@ -35,12 +37,18 @@ android {
     }
 }
 
+kapt {
+    generateStubs = true
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    //https://github.com/google/dagger A fast dependency injector for Android and Java.
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    // Dagger 2 https://github.com/google/dagger
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
     implementation "com.google.dagger:dagger:$daggerVersion"
-    annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
 
     //https://github.com/JakeWharton/RxRelay RxJava types that are both an Observable and a Consumer.
     implementation 'com.jakewharton.rxrelay2:rxrelay:2.0.0'

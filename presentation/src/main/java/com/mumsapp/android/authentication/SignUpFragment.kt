@@ -62,11 +62,11 @@ class SignUpFragment: BaseFragment(), SignUpView {
 
     @OnClick(R.id.sign_up_button)
     fun onSaveClick() {
-        var firstName = firstNameInput.text
-        var lastName = lastNameInput.text
-        var email = emailInput.text
-        var password = passwordInput.text
-        var passwordConfirmation = passwordConfirmationInput.text
+        val firstName = firstNameInput.text
+        val lastName = lastNameInput.text
+        val email = emailInput.text
+        val password = passwordInput.text
+        val passwordConfirmation = passwordConfirmationInput.text
 
         presenter.onSignUpClick(firstName, lastName, email, password, passwordConfirmation)
     }
@@ -89,5 +89,13 @@ class SignUpFragment: BaseFragment(), SignUpView {
 
     override fun showPasswordConfirmationError(error: String) {
         passwordConfirmationInput.error = error
+    }
+
+    override fun clearErrors() {
+        firstNameInput.clearError()
+        lastNameInput.clearError()
+        emailInput.clearError()
+        passwordInput.clearError()
+        passwordConfirmationInput.clearError()
     }
 }

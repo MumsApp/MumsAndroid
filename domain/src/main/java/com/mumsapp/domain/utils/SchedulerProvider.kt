@@ -1,4 +1,4 @@
-package com.mumsapp.domain.executor
+package com.mumsapp.domain.utils
 
 import io.reactivex.Scheduler
 

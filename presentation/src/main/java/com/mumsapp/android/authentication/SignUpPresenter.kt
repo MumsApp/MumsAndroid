@@ -1,5 +1,6 @@
 package com.mumsapp.android.authentication
 
+import android.util.Log
 import com.mumsapp.android.R
 import com.mumsapp.android.base.BasePresenter
 import com.mumsapp.android.navigation.FragmentsNavigationService
@@ -29,9 +30,10 @@ class SignUpPresenter: BasePresenter<SignUpView> {
 
     fun onSignUpClick(firstName: String, lastName: String, email: String, password: String,
                       passwordConfirmation: String) {
+        view?.clearErrors()
 
         if(validateFields(firstName, lastName, email, password, passwordConfirmation)) {
-            var request = SignUpRequest(firstName, lastName, email, password)
+            val request = SignUpRequest(firstName, lastName, email, password)
 
             signUp(request)
         }
@@ -56,7 +58,7 @@ class SignUpPresenter: BasePresenter<SignUpView> {
             isValid = false
         }
 
-        if(!validationHelper.checkIsEmpty(password)) {
+        if(!validationHelper.checkIsNotEmpty(password)) {
             view?.showPasswordError(resourceRepository.getString(R.string.empty_password_error))
             isValid = false
         }
@@ -83,10 +85,10 @@ class SignUpPresenter: BasePresenter<SignUpView> {
     }
 
     private fun handleRegisterSuccess(response: EmptyResponse) {
-
+        Log.e("signUp", "success")
     }
 
     private fun handleRegisterError(throwable: Throwable) {
-
+        Log.e("signUp", "error")
     }
 }

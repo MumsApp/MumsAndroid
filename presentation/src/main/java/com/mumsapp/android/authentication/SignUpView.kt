@@ -13,4 +13,6 @@ interface SignUpView: BaseView {
     fun showPasswordError(error: String)
 
     fun showPasswordConfirmationError(error: String)
+
+    fun clearErrors()
 }

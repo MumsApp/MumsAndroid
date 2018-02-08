@@ -1,6 +1,6 @@
 package com.mumsapp.domain.interactor
 
-import com.mumsapp.domain.executor.SchedulerProvider
+import com.mumsapp.domain.utils.SchedulerProvider
 import com.mumsapp.domain.interactor.transformers.UseCaseTransformerProvider
 import com.mumsapp.domain.model.BaseRequest
 import com.mumsapp.domain.model.BaseResponse
@@ -14,7 +14,7 @@ abstract class BaseUseCase<Request : BaseRequest, Response : BaseResponse> {
 
     var cacheObservable = false
     private val schedulerProvider: SchedulerProvider
-    private lateinit var useCaseTransformerProvider: UseCaseTransformerProvider
+    private var useCaseTransformerProvider: UseCaseTransformerProvider? = null
 
     constructor(schedulerProvider: SchedulerProvider) {
         this.schedulerProvider = schedulerProvider
