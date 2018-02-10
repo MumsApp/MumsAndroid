@@ -9,17 +9,14 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-open class BaseRetrofitApiProvider<A> {
+open class BaseRetrofitApiProvider<A>(endpoint: String, timeout: Long, apiClass: Class<A>, gson: Gson) {
 
     private val api: A
 
-
-    constructor(enpdpoint: String, timeout: Long, apiClass: Class<A>, gson: Gson) {
-
+    init {
         val gsonConverter: GsonConverterFactory = GsonConverterFactory.create(gson)
-
         api = Retrofit.Builder()
-                .baseUrl(enpdpoint)
+                .baseUrl(endpoint)
                 .addConverterFactory(gsonConverter)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(buildClient(timeout))

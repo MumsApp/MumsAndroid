@@ -9,13 +9,17 @@ import com.mumsapp.android.util.KeyboardHelper
 import com.mumsapp.data.net.PublicRestApiProviderImpl
 import com.mumsapp.data.repository.ResourceRepositoryImpl
 import com.mumsapp.data.repository.UserRepositoryImpl
+import com.mumsapp.data.utils.ExceptionDispatcherImpl
 import com.mumsapp.data.utils.SchedulerProviderImpl
+import com.mumsapp.data.utils.SerializationHelperImpl
 import com.mumsapp.data.utils.ValidationHelperImpl
 import com.mumsapp.domain.net.PublicRestApi
 import com.mumsapp.domain.net.PublicRestApiProvider
 import com.mumsapp.domain.repository.ResourceRepository
 import com.mumsapp.domain.repository.UserRepository
+import com.mumsapp.domain.utils.ExceptionDispatcher
 import com.mumsapp.domain.utils.SchedulerProvider
+import com.mumsapp.domain.utils.SerializationHelper
 import com.mumsapp.domain.utils.ValidationHelper
 import dagger.Module
 import dagger.Provides
@@ -77,4 +81,16 @@ class AppModule(private val context: MainApplication) {
     @Provides
     @Singleton
     fun providesRestApi(restApiProvider: PublicRestApiProvider) = restApiProvider.provideRestApi()
+
+    @Provides
+    @Singleton
+    fun providesExceptionDispatcher(exceptionDispatcherImpl: ExceptionDispatcherImpl): ExceptionDispatcher {
+        return exceptionDispatcherImpl
+    }
+
+    @Provides
+    @Singleton
+    fun providesSerializationHelper(serializationHelperImpl: SerializationHelperImpl): SerializationHelper {
+        return serializationHelperImpl
+    }
 }

@@ -89,6 +89,6 @@ class SignUpPresenter: BasePresenter<SignUpView> {
     }
 
     private fun handleRegisterError(throwable: Throwable) {
-        Log.e("signUp", "error")
+        view?.showSnackbar(throwable.localizedMessage)
     }
 }
