@@ -1,4 +1,4 @@
-package com.mumsapp.domain.interactor.user.signUp
+package com.mumsapp.domain.interactor.user
 
 import com.mumsapp.domain.utils.SchedulerProvider
 import com.mumsapp.domain.interactor.BaseUseCase
@@ -9,7 +9,7 @@ import io.reactivex.Observable
 import javax.inject.Singleton
 
 @Singleton
-class SignUpUseCase(val repository: UserRepository, val schedulerProvider: SchedulerProvider) :
+class SignUpUseCase(val repository: UserRepository, schedulerProvider: SchedulerProvider) :
         BaseUseCase<SignUpRequest, EmptyResponse>(schedulerProvider) {
 
 

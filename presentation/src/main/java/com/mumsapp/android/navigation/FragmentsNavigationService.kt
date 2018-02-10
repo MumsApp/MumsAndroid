@@ -48,6 +48,10 @@ class FragmentsNavigationService {
 
     fun createCreatePageFragment(): CreatePageFragment = CreatePageFragment.getInstance()
 
+    fun openForgetPasswordFragment(addToBackStack: Boolean) {
+
+    }
+
     fun popFragment() {
         fragmentManager.popBackStack()
     }

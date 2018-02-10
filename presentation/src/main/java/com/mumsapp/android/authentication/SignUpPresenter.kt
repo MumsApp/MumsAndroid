@@ -3,7 +3,7 @@ package com.mumsapp.android.authentication
 import com.mumsapp.android.R
 import com.mumsapp.android.base.BasePresenter
 import com.mumsapp.android.navigation.FragmentsNavigationService
-import com.mumsapp.domain.interactor.user.signUp.SignUpUseCase
+import com.mumsapp.domain.interactor.user.SignUpUseCase
 import com.mumsapp.domain.model.EmptyResponse
 import com.mumsapp.domain.model.user.SignUpRequest
 import com.mumsapp.domain.repository.ResourceRepository
@@ -80,7 +80,7 @@ class SignUpPresenter: BasePresenter<SignUpView> {
             isValid = false
         }
 
-        if(!termsAccepted) {
+        if(isValid && !termsAccepted) {
             view?.showTermsAndConditionsError(resourceRepository.getString(R.string.terms_and_conditions_error))
             isValid = false
         }
@@ -103,7 +103,7 @@ class SignUpPresenter: BasePresenter<SignUpView> {
     }
 
     private fun handleRegisterError(throwable: Throwable) {
-        view?.showSnackbar(throwable.localizedMessage)
+        view?.showSnackbar(throwable.message!!)
     }
 
     fun onSignInClick() {

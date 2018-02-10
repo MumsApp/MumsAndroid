@@ -29,13 +29,13 @@
                 style="@style/divider_horizontal"
                 android:layout_marginEnd="@dimen/content_padding_horizontal"
                 android:layout_marginStart="@dimen/content_padding_horizontal"
-                android:layout_marginTop="@dimen/padding_default"
+                android:layout_marginTop="@dimen/padding_medium"
                 app:layout_constraintTop_toBottomOf="@id/sign_in_google" />
 
             <com.mumsapp.android.ui.views.BaseTextView
                 android:id="@+id/sign_in_facebook"
                 style="@style/text_facebook"
-                android:layout_marginTop="@dimen/padding_default"
+                android:layout_marginTop="@dimen/padding_medium"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/sign_in_divider" />
@@ -75,10 +75,10 @@
                 app:layout_constraintTop_toBottomOf="@id/sign_in_password" />
 
             <com.mumsapp.android.ui.views.BaseTextView
-                android:id="@+id/sign_in_already_have_account"
+                android:id="@+id/sign_in_no_account"
                 style="@style/text_normal_blue_light"
                 android:layout_marginTop="@dimen/sign_in_sign_up_text_margin_top"
-                android:text="@string/already_account"
+                android:text="@string/no_account"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/sign_in_button" />
@@ -90,7 +90,7 @@
                 android:text="@string/forget_password"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/sign_in_already_have_account" />
+                app:layout_constraintTop_toBottomOf="@id/sign_in_no_account" />
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
 </LinearLayout>

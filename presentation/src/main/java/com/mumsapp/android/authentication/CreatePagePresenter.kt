@@ -12,4 +12,8 @@ class CreatePagePresenter: BasePresenter<CreatePageView> {
     constructor(fragmentsNavigationService: FragmentsNavigationService) {
         this.fragmentsNavigationService = fragmentsNavigationService
     }
+
+    fun onBackClick() {
+        fragmentsNavigationService.popFragment()
+    }
 }

@@ -4,18 +4,31 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import butterknife.BindView
 import butterknife.ButterKnife
+import butterknife.OnClick
 import com.mumsapp.android.R
 import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.base.BasePresenter
 import com.mumsapp.android.base.BaseView
 import com.mumsapp.android.di.components.ActivityComponent
+import com.mumsapp.android.ui.views.BaseInput
+import com.mumsapp.android.ui.views.TopBar
 import javax.inject.Inject
 
 class SignInFragment: BaseFragment(), SignInView {
 
     @Inject
     lateinit var presenter: SignInPresenter
+
+    @BindView(R.id.sign_in_top_bar)
+    lateinit var topBar: TopBar
+
+    @BindView(R.id.sign_in_email)
+    lateinit var emailInput: BaseInput
+
+    @BindView(R.id.sign_in_password)
+    lateinit var passwordInput: BaseInput
 
     companion object {
         fun getInstance(): SignInFragment {
@@ -39,5 +52,37 @@ class SignInFragment: BaseFragment(), SignInView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter.attachViewWithLifecycle(this)
+        topBar.setBackClickListener(View.OnClickListener { presenter.onBackClick() })
+    }
+
+    @OnClick(R.id.sign_in_button)
+    fun onButtonClick() {
+        val email = emailInput.text
+        val password = passwordInput.text
+
+        presenter.onSignInClick(email, password)
+    }
+
+    @OnClick(R.id.sign_in_no_account)
+    fun onSignUpClick() {
+        presenter.onSignUpClick()
+    }
+
+    @OnClick(R.id.sign_in_forget_password)
+    fun onForgetPasswordClick() {
+        presenter.onForgetPasswordClick()
+    }
+
+    override fun showEmailError(error: String) {
+        emailInput.error = error
+    }
+
+    override fun showPasswordError(error: String) {
+        passwordInput.error = error
+    }
+
+    override fun clearErrors() {
+        emailInput.clearError()
+        passwordInput.clearError()
     }
 }
