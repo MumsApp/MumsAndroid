@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/top_bar_height"
+    android:layout_height="?attr/actionBarSize"
     android:background="@color/top_bar_background">
 
     <com.mumsapp.android.ui.views.BaseTextView
         android:id="@+id/top_bar_title"
-        style="@style/text_huge"
+        style="@style/text_top_bar_title"
         app:layout_constraintStart_toStartOf="@+id/top_bar_back"
         app:layout_constraintEnd_toEndOf="@+id/top_bar_right_button"
         app:layout_constraintTop_toTopOf="parent"
@@ -18,8 +18,9 @@
     <com.mumsapp.android.ui.views.BaseImageButton
         android:id="@+id/top_bar_back"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/padding_default"
+        android:layout_height="match_parent"
+        android:paddingStart="@dimen/padding_default"
+        android:paddingEnd="@dimen/padding_default"
         android:background="@android:color/transparent"
         android:src="@drawable/ic_back"
         app:layout_constraintTop_toTopOf="parent"
@@ -29,8 +30,9 @@
     <com.mumsapp.android.ui.views.BaseImageButton
         android:id="@+id/top_bar_right_button"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/padding_default"
+        android:layout_height="match_parent"
+        android:paddingStart="@dimen/padding_default"
+        android:paddingEnd="@dimen/padding_default"
         android:background="@android:color/transparent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

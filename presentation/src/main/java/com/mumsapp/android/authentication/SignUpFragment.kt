@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
@@ -14,12 +15,16 @@ import com.mumsapp.android.base.BaseView
 import com.mumsapp.android.di.components.ActivityComponent
 import com.mumsapp.android.ui.views.BaseButton
 import com.mumsapp.android.ui.views.BaseInput
+import com.mumsapp.android.ui.views.TopBar
 import javax.inject.Inject
 
 class SignUpFragment: BaseFragment(), SignUpView {
 
     @Inject
     lateinit var presenter: SignUpPresenter
+
+    @BindView(R.id.sign_up_top_bar)
+    lateinit var topBar: TopBar
 
     @BindView(R.id.sign_up_first_name)
     lateinit var firstNameInput: BaseInput
@@ -35,6 +40,9 @@ class SignUpFragment: BaseFragment(), SignUpView {
 
     @BindView(R.id.sign_up_confirmation)
     lateinit var passwordConfirmationInput: BaseInput
+
+    @BindView(R.id.sign_up_terms_checkbox)
+    lateinit var termsCheckbox: CheckBox
 
     companion object {
         fun getInstance(): SignUpFragment {
@@ -58,6 +66,12 @@ class SignUpFragment: BaseFragment(), SignUpView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter.attachViewWithLifecycle(this)
+        topBar.setBackClickListener(View.OnClickListener { presenter.onBackClick() })
+    }
+
+    @OnClick(R.id.sign_up_terms_label)
+    fun onTermsLinkClick() {
+        presenter.onTermsLinkClick()
     }
 
     @OnClick(R.id.sign_up_button)
@@ -67,8 +81,14 @@ class SignUpFragment: BaseFragment(), SignUpView {
         val email = emailInput.text
         val password = passwordInput.text
         val passwordConfirmation = passwordConfirmationInput.text
+        val termsChecked = termsCheckbox.isChecked
 
-        presenter.onSignUpClick(firstName, lastName, email, password, passwordConfirmation)
+        presenter.onSignUpClick(firstName, lastName, email, password, passwordConfirmation, termsChecked)
+    }
+
+    @OnClick(R.id.sign_up_already_have_account)
+    fun onSignInClick() {
+        presenter.onSignInClick()
     }
 
     override fun showFirstNameError(error: String) {
@@ -89,6 +109,10 @@ class SignUpFragment: BaseFragment(), SignUpView {
 
     override fun showPasswordConfirmationError(error: String) {
         passwordConfirmationInput.error = error
+    }
+
+    override fun showTermsAndConditionsError(error: String) {
+        showSnackbar(error)
     }
 
     override fun clearErrors() {

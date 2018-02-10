@@ -64,28 +64,24 @@ class FragmentsNavigationService {
     }
 
     private fun openFragment(fragment: BaseFragment, addToBackStack: Boolean) {
-        fragmentManager.executePendingTransactions()
         val transaction = fragmentManager.beginTransaction()
         transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
 
-        val tag = fragment.javaClass.getSimpleName()
+        val tag = fragment.javaClass.simpleName
         transaction.replace(containerId, fragment, tag)
 
         if (addToBackStack) {
             transaction.addToBackStack(tag)
         }
         transaction.commitAllowingStateLoss()
+        fragmentManager.executePendingTransactions()
     }
 
     @Throws(UnsupportedOperationException::class)
     fun findTopFragment(): BaseFragment? {
         val f = fragmentManager.findFragmentById(containerId)
         return if (f != null) {
-            if (f is BaseFragment) {
-                f as BaseFragment
-            } else {
-                throw UnsupportedOperationException("Invalid fragment in fragment manager: Every fragment on the stack should be a child of BaseFragment!")
-            }
+            f as? BaseFragment ?: throw UnsupportedOperationException("Invalid fragment in fragment manager: Every fragment on the stack should be a child of BaseFragment!")
         } else null
 
     }

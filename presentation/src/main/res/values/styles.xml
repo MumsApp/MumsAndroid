@@ -53,6 +53,10 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="text_top_bar_title" parent="text_view_default">
+        <item name="android:textSize">@dimen/text_size_top_bar</item>
+    </style>
+
     <style name="text_small" parent="text_view_default">
         <item name="android:textSize">@dimen/text_size_small</item>
     </style>
@@ -79,6 +83,10 @@
 
     <style name="text_normal_grey_light" parent="text_normal">
         <item name="android:textColor">@color/grey_light</item>
+    </style>
+
+    <style name="text_normal_green_light" parent="text_normal">
+        <item name="android:textColor">@color/green_light</item>
     </style>
 
     <style name="text_google_plus" parent="text_normal">
@@ -110,7 +118,7 @@
     <!-- Top bar -->
     <style name="top_bar_default">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
     </style>
 
     <style name="top_bar_back" parent="top_bar_default">

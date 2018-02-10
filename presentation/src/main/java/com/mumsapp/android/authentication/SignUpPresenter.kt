@@ -1,6 +1,5 @@
 package com.mumsapp.android.authentication
 
-import android.util.Log
 import com.mumsapp.android.R
 import com.mumsapp.android.base.BasePresenter
 import com.mumsapp.android.navigation.FragmentsNavigationService
@@ -28,11 +27,19 @@ class SignUpPresenter: BasePresenter<SignUpView> {
         this.resourceRepository = resourceRepository
     }
 
+    fun onBackClick() {
+        fragmentsNavigationService.popFragment()
+    }
+
+    fun onTermsLinkClick() {
+
+    }
+
     fun onSignUpClick(firstName: String, lastName: String, email: String, password: String,
-                      passwordConfirmation: String) {
+                      passwordConfirmation: String, termsAccepted: Boolean) {
         view?.clearErrors()
 
-        if(validateFields(firstName, lastName, email, password, passwordConfirmation)) {
+        if(validateFields(firstName, lastName, email, password, passwordConfirmation, termsAccepted)) {
             val request = SignUpRequest(firstName, lastName, email, password)
 
             signUp(request)
@@ -40,7 +47,7 @@ class SignUpPresenter: BasePresenter<SignUpView> {
     }
 
     private fun validateFields(firstName: String, lastName: String, email: String, password: String,
-                               passwordConfirmation: String): Boolean {
+                               passwordConfirmation: String, termsAccepted: Boolean): Boolean {
         var isValid = true
 
         if(!validationHelper.checkNameValid(firstName)) {
@@ -73,6 +80,11 @@ class SignUpPresenter: BasePresenter<SignUpView> {
             isValid = false
         }
 
+        if(!termsAccepted) {
+            view?.showTermsAndConditionsError(resourceRepository.getString(R.string.terms_and_conditions_error))
+            isValid = false
+        }
+
         return isValid
     }
 
@@ -85,10 +97,21 @@ class SignUpPresenter: BasePresenter<SignUpView> {
     }
 
     private fun handleRegisterSuccess(response: EmptyResponse) {
-        Log.e("signUp", "success")
+        view?.showSnackbar(resourceRepository.getString(R.string.account_created))
+        view?.hideOverlays()
+        openSignInFragment()
     }
 
     private fun handleRegisterError(throwable: Throwable) {
         view?.showSnackbar(throwable.localizedMessage)
+    }
+
+    fun onSignInClick() {
+        openSignInFragment()
+    }
+
+    private fun openSignInFragment() {
+        fragmentsNavigationService.popFragment()
+        fragmentsNavigationService.openSignInFragment(true)
     }
 }

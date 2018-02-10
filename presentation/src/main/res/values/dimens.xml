@@ -17,6 +17,7 @@
     <dimen name="text_size_normal">15sp</dimen>
     <dimen name="text_size_big">19sp</dimen>
     <dimen name="text_size_huge">22sp</dimen>
+    <dimen name="text_size_top_bar">17sp</dimen>
 
 
     <!-- Buttons -->
@@ -26,10 +27,6 @@
     
     <dimen name="square_button_width">150dp</dimen>
     <dimen name="square_button_height">150dp</dimen>
-
-
-    <!-- Top bar -->
-    <dimen name="top_bar_height">80dp</dimen>
 
 
     <!-- Dividers -->

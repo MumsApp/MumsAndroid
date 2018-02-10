@@ -14,5 +14,7 @@ interface SignUpView: BaseView {
 
     fun showPasswordConfirmationError(error: String)
 
+    fun showTermsAndConditionsError(error: String)
+
     fun clearErrors()
 }

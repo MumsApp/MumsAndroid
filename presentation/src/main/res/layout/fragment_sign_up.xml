@@ -29,13 +29,13 @@
                 style="@style/divider_horizontal"
                 android:layout_marginEnd="@dimen/content_padding_horizontal"
                 android:layout_marginStart="@dimen/content_padding_horizontal"
-                android:layout_marginTop="@dimen/padding_default"
+                android:layout_marginTop="@dimen/padding_medium"
                 app:layout_constraintTop_toBottomOf="@id/sign_up_google" />
 
             <com.mumsapp.android.ui.views.BaseTextView
                 android:id="@+id/sign_up_facebook"
                 style="@style/text_facebook"
-                android:layout_marginTop="@dimen/padding_default"
+                android:layout_marginTop="@dimen/padding_medium"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/sign_up_divider" />
@@ -54,6 +54,7 @@
             <com.mumsapp.android.ui.views.BaseInput
                 android:id="@+id/sign_up_first_name"
                 style="@style/default_form"
+                android:layout_marginTop="0dp"
                 android:hint="@string/first_name"
                 android:inputType="textPersonName"
                 app:layout_constraintTop_toBottomOf="@id/sign_up_or" />
@@ -84,7 +85,33 @@
                 style="@style/default_form"
                 android:hint="@string/repeat_password"
                 android:inputType="textPassword"
-                app:layout_constraintTop_toBottomOf="@id/sign_up_password" />
+                app:layout_constraintTop_toBottomOf="@id/sign_up_password"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"/>
+
+            <CheckBox
+                android:id="@+id/sign_up_terms_checkbox"
+                style="@style/text_normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_small"
+                android:text="@string/i_agree_the"
+                app:layout_constraintTop_toBottomOf="@id/sign_up_confirmation"
+                app:layout_constraintLeft_toLeftOf="@id/sign_up_confirmation"
+                app:layout_constraintRight_toLeftOf="@+id/sign_up_terms_label"
+                app:layout_constraintHorizontal_chainStyle="packed"/>
+
+            <com.mumsapp.android.ui.views.BaseTextView
+                android:id="@+id/sign_up_terms_label"
+                style="@style/text_normal_green_light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_small"
+                android:text="@string/terms_and_conditions"
+                app:layout_constraintTop_toTopOf="@id/sign_up_terms_checkbox"
+                app:layout_constraintBottom_toBottomOf="@id/sign_up_terms_checkbox"
+                app:layout_constraintLeft_toRightOf="@id/sign_up_terms_checkbox"
+                app:layout_constraintRight_toRightOf="@id/sign_up_confirmation"/>
 
             <com.mumsapp.android.ui.views.BaseButton
                 android:id="@+id/sign_up_button"
@@ -93,7 +120,7 @@
                 android:layout_marginStart="@dimen/content_padding_horizontal"
                 android:layout_marginTop="@dimen/padding_default"
                 android:text="@string/sign_up"
-                app:layout_constraintTop_toBottomOf="@id/sign_up_confirmation" />
+                app:layout_constraintTop_toBottomOf="@id/sign_up_terms_checkbox" />
 
             <com.mumsapp.android.ui.views.BaseTextView
                 android:id="@+id/sign_up_already_have_account"
