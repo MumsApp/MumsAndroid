@@ -1,6 +1,8 @@
 package com.mumsapp.android.di.modules
 
 import android.content.Context
+import android.content.SharedPreferences
+import android.preference.PreferenceManager
 import android.view.inputmethod.InputMethodManager
 import com.google.gson.Gson
 import com.mumsapp.android.BuildConfig
@@ -9,18 +11,12 @@ import com.mumsapp.android.util.KeyboardHelper
 import com.mumsapp.data.net.PublicRestApiProviderImpl
 import com.mumsapp.data.repository.ResourceRepositoryImpl
 import com.mumsapp.data.repository.UserRepositoryImpl
-import com.mumsapp.data.utils.ExceptionDispatcherImpl
-import com.mumsapp.data.utils.SchedulerProviderImpl
-import com.mumsapp.data.utils.SerializationHelperImpl
-import com.mumsapp.data.utils.ValidationHelperImpl
+import com.mumsapp.data.utils.*
 import com.mumsapp.domain.net.PublicRestApi
 import com.mumsapp.domain.net.PublicRestApiProvider
 import com.mumsapp.domain.repository.ResourceRepository
 import com.mumsapp.domain.repository.UserRepository
-import com.mumsapp.domain.utils.ExceptionDispatcher
-import com.mumsapp.domain.utils.SchedulerProvider
-import com.mumsapp.domain.utils.SerializationHelper
-import com.mumsapp.domain.utils.ValidationHelper
+import com.mumsapp.domain.utils.*
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -74,8 +70,8 @@ class AppModule(private val context: MainApplication) {
 
     @Provides
     @Singleton
-    fun providesRestApiProvider(gson: Gson) : PublicRestApiProvider {
-        return PublicRestApiProviderImpl(BuildConfig.API_PUBLIC_URL, gson)
+    fun providesRestApiProvider(tokenPersistenceService: TokenPersistenceService, gson: Gson) : PublicRestApiProvider {
+        return PublicRestApiProviderImpl(tokenPersistenceService, BuildConfig.API_PUBLIC_URL, gson)
     }
 
     @Provides
@@ -92,5 +88,29 @@ class AppModule(private val context: MainApplication) {
     @Singleton
     fun providesSerializationHelper(serializationHelperImpl: SerializationHelperImpl): SerializationHelper {
         return serializationHelperImpl
+    }
+
+    @Provides
+    @Singleton
+    fun providesSessionManager(sessionManagerImpl: SessionManagerImpl): SessionManager {
+        return sessionManagerImpl
+    }
+
+    @Provides
+    @Singleton
+    fun providesSharedPreferencesManager(sharedPreferencesManagerImpl: SharedPreferencesManagerImpl): SharedPreferencesManager {
+        return sharedPreferencesManagerImpl
+    }
+
+    @Provides
+    @Singleton
+    fun providesTokenPersistenceService(tokenPersitenceServiceImpl: TokenPersitenceServiceImpl): TokenPersistenceService {
+        return tokenPersitenceServiceImpl
+    }
+
+    @Provides
+    @Singleton
+    internal fun providesSharedPreferences(): SharedPreferences {
+        return PreferenceManager.getDefaultSharedPreferences(context)
     }
 }

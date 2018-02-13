@@ -42,7 +42,7 @@ open class BaseRetrofitApiProvider<A>(endpoint: String, timeout: Long, apiClass:
         return builder.build()
     }
 
-    protected fun createNetworkInterceptor(): Interceptor? = null
+    protected open fun createNetworkInterceptor(): Interceptor? = null
 
     fun getApi(): A = api
 }

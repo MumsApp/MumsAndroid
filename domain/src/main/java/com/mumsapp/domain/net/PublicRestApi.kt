@@ -1,6 +1,8 @@
 package com.mumsapp.domain.net
 
 import com.mumsapp.domain.model.EmptyResponse
+import com.mumsapp.domain.model.identity.Token
+import com.mumsapp.domain.model.user.SignInRequest
 import com.mumsapp.domain.model.user.SignUpRequest
 import io.reactivex.Observable
 import okhttp3.ResponseBody
@@ -12,4 +14,7 @@ interface PublicRestApi {
 
     @POST("user/create")
     fun createUser(@Body params: SignUpRequest): Observable<Response<EmptyResponse>>
+
+    @POST("login_check")
+    fun loginCheck(@Body param: SignInRequest): Observable<Response<Token>>
 }
