@@ -1,7 +1,10 @@
 package com.mumsapp.android.authentication
 
+import android.util.Log
+import com.facebook.login.LoginResult
 import com.mumsapp.android.R
 import com.mumsapp.android.base.BasePresenter
+import com.mumsapp.android.facebook.FacebookLoginObservable
 import com.mumsapp.android.navigation.ActivitiesNavigationService
 import com.mumsapp.android.navigation.FragmentsNavigationService
 import com.mumsapp.domain.interactor.user.SignInUseCase
@@ -21,22 +24,40 @@ class SignInPresenter : BasePresenter<SignInView> {
     private val signInUseCase: SignInUseCase
     private val sessionManager: SessionManager
     private val activitiesNavigationService: ActivitiesNavigationService
+    private val facebookLoginObservable: FacebookLoginObservable
 
     @Inject
     constructor(fragmentsNavigationService: FragmentsNavigationService,
                 validationHelper: ValidationHelper,
                 resourceRepository: ResourceRepository, sessionManager: SessionManager,
-                signInUseCase: SignInUseCase, activitiesNavigationService: ActivitiesNavigationService) {
+                signInUseCase: SignInUseCase, activitiesNavigationService: ActivitiesNavigationService, facebookLoginObservable: FacebookLoginObservable) {
         this.fragmentsNavigationService = fragmentsNavigationService
         this.validationHelper = validationHelper
         this.resourceRepository = resourceRepository
         this.signInUseCase = signInUseCase
         this.sessionManager = sessionManager
         this.activitiesNavigationService = activitiesNavigationService
+        this.facebookLoginObservable = facebookLoginObservable
     }
 
     fun onBackClick() {
         fragmentsNavigationService.popFragment()
+    }
+
+    fun onFacebookClick() {
+        facebookLoginObservable.subscribe(this::handleFacebookResult, this::handleFacebookError)
+    }
+
+    private fun handleFacebookResult(loginResult: LoginResult) {
+        Log.e("sign in presenter", loginResult.accessToken.token)
+    }
+
+    private fun handleFacebookError(throwable: Throwable) {
+        Log.e("sign in presenter", throwable.message)
+    }
+
+    fun onGoogleClick() {
+
     }
 
     fun onSignInClick(email: String, password: String) {

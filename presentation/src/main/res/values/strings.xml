@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">MumsApp</string>
 
+    <string name="facebook_app_id">189221238331319</string>
+    <string name="fb_login_protocol_scheme">fb189221238331319</string>
+
     <string name="or">or</string>
 
     <string name="template_long_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec risus mi, tempor vel feugiat eget, suscipit sed metus. Aliquam dapibus imperdiet iaculis. Aliquam mollis accumsan leo ac luctus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</string>

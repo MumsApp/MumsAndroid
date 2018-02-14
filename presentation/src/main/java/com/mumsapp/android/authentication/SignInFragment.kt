@@ -55,6 +55,16 @@ class SignInFragment: BaseFragment(), SignInView {
         topBar.setBackClickListener(View.OnClickListener { presenter.onBackClick() })
     }
 
+    @OnClick(R.id.sign_in_facebook)
+    fun onFacebookClick() {
+        presenter.onFacebookClick()
+    }
+
+    @OnClick(R.id.sign_in_google)
+    fun onGoogleClick() {
+        presenter.onGoogleClick()
+    }
+
     @OnClick(R.id.sign_in_button)
     fun onButtonClick() {
         val email = emailInput.text

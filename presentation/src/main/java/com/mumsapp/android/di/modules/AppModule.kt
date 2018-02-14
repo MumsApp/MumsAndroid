@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import android.view.inputmethod.InputMethodManager
+import com.facebook.CallbackManager
 import com.google.gson.Gson
 import com.mumsapp.android.BuildConfig
 import com.mumsapp.android.MainApplication
@@ -113,4 +114,8 @@ class AppModule(private val context: MainApplication) {
     internal fun providesSharedPreferences(): SharedPreferences {
         return PreferenceManager.getDefaultSharedPreferences(context)
     }
+
+    @Provides
+    @Singleton
+    fun provideCallbackManager() = CallbackManager.Factory.create()
 }

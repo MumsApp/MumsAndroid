@@ -1,10 +1,12 @@
 package com.mumsapp.android.authentication
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.FragmentManager
 import android.view.View
 import butterknife.BindView
 import butterknife.ButterKnife
+import com.facebook.CallbackManager
 import com.mumsapp.android.R
 import com.mumsapp.android.base.BaseFragmentActivity
 import com.mumsapp.android.base.BasePresenter
@@ -18,6 +20,9 @@ class AuthActivity : BaseFragmentActivity(), AuthView, HasOverlays {
     @Inject
     lateinit var presenter: AuthPresenter
 
+    @Inject
+    lateinit var callbackManager: CallbackManager
+
     @BindView(R.id.auth_progress_layout)
     lateinit var progressLayout: NonCLickableFrameLayout
 
@@ -28,6 +33,11 @@ class AuthActivity : BaseFragmentActivity(), AuthView, HasOverlays {
         setContentView(R.layout.activity_auth)
         ButterKnife.bind(this)
         presenter.attachViewWithLifecycle(this)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+        callbackManager.onActivityResult(requestCode, resultCode, data)
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
     override fun makeInject() = activityComponent.inject(this)
