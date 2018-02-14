@@ -2,11 +2,13 @@ package com.mumsapp.android.authentication
 
 import com.mumsapp.android.R
 import com.mumsapp.android.base.BasePresenter
+import com.mumsapp.android.navigation.ActivitiesNavigationService
 import com.mumsapp.android.navigation.FragmentsNavigationService
 import com.mumsapp.domain.interactor.user.SignUpUseCase
-import com.mumsapp.domain.model.EmptyResponse
 import com.mumsapp.domain.model.user.SignUpRequest
+import com.mumsapp.domain.model.user.UserResponse
 import com.mumsapp.domain.repository.ResourceRepository
+import com.mumsapp.domain.utils.SessionManager
 import com.mumsapp.domain.utils.ValidationHelper
 import javax.inject.Inject
 
@@ -16,15 +18,21 @@ class SignUpPresenter: BasePresenter<SignUpView> {
     private val signUpUseCase: SignUpUseCase
     private val validationHelper: ValidationHelper
     private val resourceRepository: ResourceRepository
+    private val sessionManager: SessionManager
+    private val activitiesNavigationService: ActivitiesNavigationService
 
     @Inject
     constructor(fragmentsNavigationService: FragmentsNavigationService,
                 signUpUseCase: SignUpUseCase, validationHelper: ValidationHelper,
-                resourceRepository: ResourceRepository) {
+                resourceRepository: ResourceRepository,
+                sessionManager: SessionManager,
+                activitiesNavigationService: ActivitiesNavigationService) {
         this.fragmentsNavigationService = fragmentsNavigationService
         this.signUpUseCase = signUpUseCase
         this.validationHelper = validationHelper
         this.resourceRepository = resourceRepository
+        this.sessionManager = sessionManager
+        this.activitiesNavigationService = activitiesNavigationService
     }
 
     fun onBackClick() {
@@ -96,10 +104,9 @@ class SignUpPresenter: BasePresenter<SignUpView> {
         )
     }
 
-    private fun handleRegisterSuccess(response: EmptyResponse) {
-        view?.showSnackbar(resourceRepository.getString(R.string.account_created))
-        view?.hideOverlays()
-        openSignInFragment()
+    private fun handleRegisterSuccess(user: UserResponse) {
+        sessionManager.saveLoggedUser(user)
+        openMainActivity()
     }
 
     private fun handleRegisterError(throwable: Throwable) {
@@ -107,11 +114,11 @@ class SignUpPresenter: BasePresenter<SignUpView> {
     }
 
     fun onSignInClick() {
-        openSignInFragment()
+        openMainActivity()
     }
 
-    private fun openSignInFragment() {
-        fragmentsNavigationService.popFragment()
-        fragmentsNavigationService.openSignInFragment(true)
+    private fun openMainActivity() {
+        activitiesNavigationService.openMainActivity()
+        activitiesNavigationService.finishCurrentActivity()
     }
 }

@@ -7,12 +7,12 @@
     tools:context="com.mumsapp.android.authentication.AuthActivity">
 
     <FrameLayout
-        android:id="@+id/auth_frame_layout"
+        android:id="@+id/main_frame_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
     <com.mumsapp.android.ui.views.NonCLickableFrameLayout
-        android:id="@+id/auth_progress_layout"
+        android:id="@+id/main_progress_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/progress_overlay_background"
@@ -20,7 +20,7 @@
         tools:visibility="visible">
 
         <ProgressBar
-            android:id="@+id/auth_progress"
+            android:id="@+id/main_progress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

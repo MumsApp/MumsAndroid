@@ -1,4 +1,4 @@
-package com.mumsapp.android.authentication
+package com.mumsapp.android.main
 
 import android.os.Bundle
 import android.support.v4.app.FragmentManager
@@ -13,40 +13,37 @@ import com.mumsapp.android.common.features.HasOverlays
 import com.mumsapp.android.ui.views.NonCLickableFrameLayout
 import javax.inject.Inject
 
-class AuthActivity : BaseFragmentActivity(), AuthView, HasOverlays {
+class MainActivity : BaseFragmentActivity(), MainView, HasOverlays {
 
     @Inject
-    lateinit var presenter: AuthPresenter
+    lateinit var presenter: MainPresenter
 
-    @BindView(R.id.auth_progress_layout)
+    @BindView(R.id.main_progress_layout)
     lateinit var progressLayout: NonCLickableFrameLayout
 
     private var loadingPresented = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_auth)
+        setContentView(R.layout.activity_main)
         ButterKnife.bind(this)
         presenter.attachViewWithLifecycle(this)
     }
 
+    override fun getFragmentContainerId(): Int = R.id.main_frame_layout
+
+    override fun getProperFragmentManager(): FragmentManager = supportFragmentManager
+
+    override fun <T : BasePresenter<BaseView>> getPresenter(): T = presenter as T
+
     override fun makeInject() = activityComponent.inject(this)
-
-    override fun <T: BasePresenter<BaseView>> getPresenter(): T = presenter as T
-
-    override fun getFragmentContainerId(): Int {
-        return R.id.auth_frame_layout
-    }
-
-    override fun getProperFragmentManager(): FragmentManager {
-        return supportFragmentManager
-    }
 
     override fun onBackPressed() {
         if(presenter.handleBackOrDelegateToSystem()) {
             super.onBackPressed()
         }
     }
+
 
     override fun showLoading() {
         progressLayout.visibility = View.VISIBLE

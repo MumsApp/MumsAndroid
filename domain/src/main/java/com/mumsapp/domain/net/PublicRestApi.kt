@@ -12,7 +12,7 @@ import retrofit2.http.POST
 
 interface PublicRestApi {
 
-    @POST("user/create")
+    @POST("public/user/create")
     fun createUser(@Body params: SignUpRequest): Observable<Response<EmptyResponse>>
 
     @POST("login_check")

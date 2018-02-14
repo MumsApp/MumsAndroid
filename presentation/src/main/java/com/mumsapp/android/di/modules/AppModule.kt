@@ -71,7 +71,7 @@ class AppModule(private val context: MainApplication) {
     @Provides
     @Singleton
     fun providesRestApiProvider(tokenPersistenceService: TokenPersistenceService, gson: Gson) : PublicRestApiProvider {
-        return PublicRestApiProviderImpl(tokenPersistenceService, BuildConfig.API_PUBLIC_URL, gson)
+        return PublicRestApiProviderImpl(tokenPersistenceService, BuildConfig.API_URL, gson)
     }
 
     @Provides

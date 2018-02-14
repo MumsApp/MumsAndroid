@@ -15,8 +15,9 @@ class UseCaseModule {
 
     @Provides
     @Singleton
-    fun providesSignUpUseCase(userRepository: UserRepository, schedulerProvider: SchedulerProvider): SignUpUseCase {
-        return SignUpUseCase(userRepository, schedulerProvider)
+    fun providesSignUpUseCase(userRepository: UserRepository, signInUseCase: SignInUseCase,
+                              schedulerProvider: SchedulerProvider): SignUpUseCase {
+        return SignUpUseCase(userRepository, signInUseCase, schedulerProvider)
     }
 
     @Provides

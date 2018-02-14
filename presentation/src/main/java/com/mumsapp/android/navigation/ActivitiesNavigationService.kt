@@ -3,6 +3,7 @@ package com.mumsapp.android.navigation
 import android.content.Intent
 import android.net.Uri
 import com.mumsapp.android.base.BaseActivity
+import com.mumsapp.android.main.MainActivity
 import javax.inject.Inject
 
 class ActivitiesNavigationService {
@@ -12,6 +13,11 @@ class ActivitiesNavigationService {
     @Inject
     constructor(activity: BaseActivity) {
         this.activity = activity
+    }
+
+    fun openMainActivity() {
+        val intent = Intent(activity, MainActivity::class.java)
+        activity.startActivity(intent)
     }
 
     fun openWebsiteActivity(url: String) {

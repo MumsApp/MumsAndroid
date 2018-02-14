@@ -4,6 +4,7 @@ import com.google.gson.JsonSyntaxException
 import com.mumsapp.android.data.R
 import com.mumsapp.domain.model.error.BaseServerError
 import com.mumsapp.domain.model.error.ServerErrorException
+import com.mumsapp.domain.model.error.UnauthorizedException
 import com.mumsapp.domain.repository.ResourceRepository
 import com.mumsapp.domain.utils.ExceptionDispatcher
 import com.mumsapp.domain.utils.SerializationHelper
@@ -26,6 +27,8 @@ open class BaseRestRepository(val exceptionDispatcher: ExceptionDispatcher,
                         val responseBody: ResponseBody? = it.errorBody()
 
                         throw createBadRequestException(responseBody)
+                    } else if(exceptionDispatcher.isUnAuthorized(it.code())) {
+                        throw UnauthorizedException("unauthorized")
                     }
 
                     throw throwServerError(resourceRepository.getString(R.string.error_unexpected))

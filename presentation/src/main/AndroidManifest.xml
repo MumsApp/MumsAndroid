@@ -24,6 +24,10 @@
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="1fed371669f3f72a3927eb5123052d0ca4dbba7c" />
+
+        <activity android:name=".main.MainActivity"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

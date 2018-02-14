@@ -29,8 +29,8 @@
     <string name="empty_password_error">Please enter your password</string>
     <string name="weak_password_error">The password must contain a minimum of 4 characters.</string>
     <string name="password_confirmation_error">The entered passwords are different.</string>
-    <string name="account_created">Your account was created, you can sign in now</string>
     <string name="i_agree_the">I agree the</string>
     <string name="terms_and_conditions"><u>terms&amp;conditions</u></string>
     <string name="terms_and_conditions_error">Please accept terms &amp; conditions</string>
+    <string name="invalid_credentials">Invalid email or password</string>
 </resources>

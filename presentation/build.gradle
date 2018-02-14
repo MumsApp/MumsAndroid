@@ -24,7 +24,6 @@ android {
         debug {
             buildConfigField 'boolean', 'USE_CRASHLYTICS', 'true'
             buildConfigField 'String', 'API_URL', '\"https://devmumsapp.atomdev.eu/api/\"'
-            buildConfigField 'String', 'API_PUBLIC_URL', '\"https://devmumsapp.atomdev.eu/api/public/\"'
 
             signingConfig signingConfigs.debug
         }
