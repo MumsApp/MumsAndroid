@@ -107,7 +107,7 @@ dependencies {
     implementation 'com.rafakob:floatingedittext:1.0.5'
 
     //https://developers.facebook.com/docs/facebook-login/android?sdk=maven facebook sdk
-    implementation 'com.facebook.android:facebook-login:[4,5)'
+    implementation "com.facebook.android:facebook-login:[$facebookSdkVersion]"
 
     // Testing
     androidTestImplementation 'com.android.support.test:runner:1.0.1'

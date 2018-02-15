@@ -4,7 +4,9 @@ import com.mumsapp.android.R
 import com.mumsapp.android.base.BasePresenter
 import com.mumsapp.android.navigation.ActivitiesNavigationService
 import com.mumsapp.android.navigation.FragmentsNavigationService
+import com.mumsapp.domain.interactor.user.FacebookSignUpUseCase
 import com.mumsapp.domain.interactor.user.SignUpUseCase
+import com.mumsapp.domain.model.EmptyRequest
 import com.mumsapp.domain.model.user.SignUpRequest
 import com.mumsapp.domain.model.user.UserResponse
 import com.mumsapp.domain.repository.ResourceRepository
@@ -20,23 +22,38 @@ class SignUpPresenter: BasePresenter<SignUpView> {
     private val resourceRepository: ResourceRepository
     private val sessionManager: SessionManager
     private val activitiesNavigationService: ActivitiesNavigationService
+    private val facebookSignUpUseCase: FacebookSignUpUseCase
 
     @Inject
     constructor(fragmentsNavigationService: FragmentsNavigationService,
                 signUpUseCase: SignUpUseCase, validationHelper: ValidationHelper,
                 resourceRepository: ResourceRepository,
                 sessionManager: SessionManager,
-                activitiesNavigationService: ActivitiesNavigationService) {
+                activitiesNavigationService: ActivitiesNavigationService,
+                facebookSignUpUseCase: FacebookSignUpUseCase) {
         this.fragmentsNavigationService = fragmentsNavigationService
         this.signUpUseCase = signUpUseCase
         this.validationHelper = validationHelper
         this.resourceRepository = resourceRepository
         this.sessionManager = sessionManager
         this.activitiesNavigationService = activitiesNavigationService
+        this.facebookSignUpUseCase = facebookSignUpUseCase
     }
 
     fun onBackClick() {
         fragmentsNavigationService.popFragment()
+    }
+
+    fun onFacebookClick() {
+        addDisposable(
+                facebookSignUpUseCase.execute(EmptyRequest())
+//                        .compose(applyOverlaysToObservable())
+                        .subscribe(this::handleRegisterSuccess, this::handleRegisterError)
+        )
+    }
+
+    fun onGoogleClick() {
+
     }
 
     fun onTermsLinkClick() {

@@ -6,12 +6,13 @@ import com.facebook.FacebookException
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.mumsapp.android.base.BaseActivity
-import io.reactivex.Observable
+import com.mumsapp.data.facebook.AbstractFacebookLoginObservable
+import com.mumsapp.domain.model.user.FacebookUserResponse
 import io.reactivex.Observer
 import java.util.*
 import javax.inject.Inject
 
-class FacebookLoginObservable : Observable<LoginResult> {
+class FacebookLoginObservable : AbstractFacebookLoginObservable {
 
     private val callbackManager: CallbackManager
     private val activity: BaseActivity
@@ -43,6 +44,6 @@ class FacebookLoginObservable : Observable<LoginResult> {
     private fun requestLogin(callbackManager: CallbackManager, callback: FacebookCallback<LoginResult>) {
         val manager = LoginManager.getInstance()
         manager.registerCallback(callbackManager, callback)
-        manager.logInWithReadPermissions(activity, Arrays.asList("email"))
+        manager.logInWithReadPermissions(activity, Arrays.asList("public_profile", "email"))
     }
 }

@@ -1,13 +1,12 @@
 package com.mumsapp.android.authentication
 
-import android.util.Log
-import com.facebook.login.LoginResult
 import com.mumsapp.android.R
 import com.mumsapp.android.base.BasePresenter
-import com.mumsapp.android.facebook.FacebookLoginObservable
 import com.mumsapp.android.navigation.ActivitiesNavigationService
 import com.mumsapp.android.navigation.FragmentsNavigationService
+import com.mumsapp.domain.interactor.user.FacebookSignInUseCase
 import com.mumsapp.domain.interactor.user.SignInUseCase
+import com.mumsapp.domain.model.EmptyRequest
 import com.mumsapp.domain.model.error.UnauthorizedException
 import com.mumsapp.domain.model.user.SignInRequest
 import com.mumsapp.domain.model.user.UserResponse
@@ -24,20 +23,21 @@ class SignInPresenter : BasePresenter<SignInView> {
     private val signInUseCase: SignInUseCase
     private val sessionManager: SessionManager
     private val activitiesNavigationService: ActivitiesNavigationService
-    private val facebookLoginObservable: FacebookLoginObservable
+    private val facebookSignInUseCase: FacebookSignInUseCase
 
     @Inject
     constructor(fragmentsNavigationService: FragmentsNavigationService,
                 validationHelper: ValidationHelper,
                 resourceRepository: ResourceRepository, sessionManager: SessionManager,
-                signInUseCase: SignInUseCase, activitiesNavigationService: ActivitiesNavigationService, facebookLoginObservable: FacebookLoginObservable) {
+                signInUseCase: SignInUseCase, activitiesNavigationService: ActivitiesNavigationService,
+                facebookSignInUseCase: FacebookSignInUseCase) {
         this.fragmentsNavigationService = fragmentsNavigationService
         this.validationHelper = validationHelper
         this.resourceRepository = resourceRepository
         this.signInUseCase = signInUseCase
         this.sessionManager = sessionManager
         this.activitiesNavigationService = activitiesNavigationService
-        this.facebookLoginObservable = facebookLoginObservable
+        this.facebookSignInUseCase = facebookSignInUseCase
     }
 
     fun onBackClick() {
@@ -45,15 +45,9 @@ class SignInPresenter : BasePresenter<SignInView> {
     }
 
     fun onFacebookClick() {
-        facebookLoginObservable.subscribe(this::handleFacebookResult, this::handleFacebookError)
-    }
-
-    private fun handleFacebookResult(loginResult: LoginResult) {
-        Log.e("sign in presenter", loginResult.accessToken.token)
-    }
-
-    private fun handleFacebookError(throwable: Throwable) {
-        Log.e("sign in presenter", throwable.message)
+        addDisposable(facebookSignInUseCase.execute(EmptyRequest())
+                .compose(applyOverlaysToObservable())
+                .subscribe(this::handleSignInSuccess, this::handleSignInError))
     }
 
     fun onGoogleClick() {

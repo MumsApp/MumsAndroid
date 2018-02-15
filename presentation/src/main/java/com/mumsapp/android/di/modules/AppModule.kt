@@ -13,7 +13,6 @@ import com.mumsapp.data.net.PublicRestApiProviderImpl
 import com.mumsapp.data.repository.ResourceRepositoryImpl
 import com.mumsapp.data.repository.UserRepositoryImpl
 import com.mumsapp.data.utils.*
-import com.mumsapp.domain.net.PublicRestApi
 import com.mumsapp.domain.net.PublicRestApiProvider
 import com.mumsapp.domain.repository.ResourceRepository
 import com.mumsapp.domain.repository.UserRepository

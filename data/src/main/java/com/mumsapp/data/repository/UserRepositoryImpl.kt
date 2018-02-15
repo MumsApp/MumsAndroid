@@ -2,9 +2,7 @@ package com.mumsapp.data.repository
 
 import com.mumsapp.domain.model.EmptyResponse
 import com.mumsapp.domain.model.identity.Token
-import com.mumsapp.domain.model.user.SignInRequest
-import com.mumsapp.domain.model.user.SignUpRequest
-import com.mumsapp.domain.model.user.UserResponse
+import com.mumsapp.domain.model.user.*
 import com.mumsapp.domain.net.PublicRestApi
 import com.mumsapp.domain.repository.ResourceRepository
 import com.mumsapp.domain.repository.UserRepository
@@ -30,5 +28,13 @@ class UserRepositoryImpl : BaseRestRepository, UserRepository {
 
     override fun requestToken(request: SignInRequest): Observable<Token> {
         return requestWithErrorMapping(restApi.loginCheck(request))
+    }
+
+    override fun signUpFacebook(request: FacebookSignUpRequest): Observable<EmptyResponse> {
+        return requestWithErrorMapping(restApi.facebookCreate(request))
+    }
+
+    override fun signInFacebook(request: FacebookSignInRequest): Observable<Token> {
+        return requestWithErrorMapping(restApi.facebookLogin(request))
     }
 }

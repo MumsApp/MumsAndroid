@@ -69,6 +69,16 @@ class SignUpFragment: BaseFragment(), SignUpView {
         topBar.setBackClickListener(View.OnClickListener { presenter.onBackClick() })
     }
 
+    @OnClick(R.id.sign_up_facebook)
+    fun onFacebookClick() {
+        presenter.onFacebookClick()
+    }
+
+    @OnClick(R.id.sign_up_google)
+    fun onGoogleClick() {
+        presenter.onGoogleClick()
+    }
+
     @OnClick(R.id.sign_up_terms_label)
     fun onTermsLinkClick() {
         presenter.onTermsLinkClick()
