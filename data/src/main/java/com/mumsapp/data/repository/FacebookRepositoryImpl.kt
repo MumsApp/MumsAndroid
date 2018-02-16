@@ -18,11 +18,11 @@ class FacebookRepositoryImpl : FacebookRepository {
     }
 
     override fun getFacebookUser(): Observable<FacebookUserResponse> {
-        return facebookLoginObservable
+        return Observable.create(facebookLoginObservable)
                 .flatMap { executeGraphResponse(it.accessToken) }
     }
 
     private fun executeGraphResponse(accessToken: AccessToken): Observable<FacebookUserResponse> {
-        return FacebookProfileObservable(accessToken)
+        return Observable.create(FacebookProfileObservable(accessToken))
     }
 }
