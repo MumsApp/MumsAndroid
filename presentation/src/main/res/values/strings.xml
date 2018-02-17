@@ -14,6 +14,8 @@
     <string name="create_official_page">Create Official Page</string>
     <string name="sign_up_google">Sign Up with Google</string>
     <string name="sign_up_facebook">Sign Up with Facebook</string>
+    <string name="sign_in_google">Sign in with Google</string>
+    <string name="sign_in_facebook">Sign in with Facebook</string>
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
     <string name="email">Email</string>

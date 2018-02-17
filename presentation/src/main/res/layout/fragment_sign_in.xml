@@ -22,7 +22,8 @@
                 android:layout_marginTop="@dimen/sign_in_social_buttons_margin_top"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="@string/sign_in_google"/>
 
             <View
                 android:id="@+id/sign_in_divider"
@@ -38,7 +39,8 @@
                 android:layout_marginTop="@dimen/padding_medium"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/sign_in_divider" />
+                app:layout_constraintTop_toBottomOf="@id/sign_in_divider"
+                android:text="@string/sign_in_facebook"/>
 
             <com.mumsapp.android.ui.views.BaseTextView
                 android:id="@+id/sign_in_or"
