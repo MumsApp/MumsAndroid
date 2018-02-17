@@ -7,12 +7,14 @@ import android.view.View
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.facebook.CallbackManager
+import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.mumsapp.android.R
 import com.mumsapp.android.base.BaseFragmentActivity
 import com.mumsapp.android.base.BasePresenter
 import com.mumsapp.android.base.BaseView
 import com.mumsapp.android.common.features.HasOverlays
 import com.mumsapp.android.ui.views.NonCLickableFrameLayout
+import com.mumsapp.data.google.GoogleCallbackHandler
 import javax.inject.Inject
 
 class AuthActivity : BaseFragmentActivity(), AuthView, HasOverlays {
@@ -22,6 +24,9 @@ class AuthActivity : BaseFragmentActivity(), AuthView, HasOverlays {
 
     @Inject
     lateinit var callbackManager: CallbackManager
+
+    @Inject
+    lateinit var googleCallbackHandler: GoogleCallbackHandler
 
     @BindView(R.id.auth_progress_layout)
     lateinit var progressLayout: NonCLickableFrameLayout
@@ -37,6 +42,11 @@ class AuthActivity : BaseFragmentActivity(), AuthView, HasOverlays {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
         callbackManager.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == GoogleCallbackHandler.GOOGLE_SIGN_IN_REQUEST_CODE) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            googleCallbackHandler.sendResult(task)
+        }
         super.onActivityResult(requestCode, resultCode, data)
     }
 

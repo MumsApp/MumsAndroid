@@ -15,4 +15,8 @@ interface UserRepository {
     fun signUpFacebook(request: FacebookSignUpRequest): Observable<EmptyResponse>
 
     fun signInFacebook(request: FacebookSignInRequest): Observable<Token>
+
+    fun signUpGoogle(request: GoogleSignUpRequest): Observable<EmptyResponse>
+
+    fun signInGoogle(request: GoogleSignInRequest): Observable<Token>
 }

@@ -37,4 +37,12 @@ class UserRepositoryImpl : BaseRestRepository, UserRepository {
     override fun signInFacebook(request: FacebookSignInRequest): Observable<Token> {
         return requestWithErrorMapping(restApi.facebookLogin(request))
     }
+
+    override fun signUpGoogle(request: GoogleSignUpRequest): Observable<EmptyResponse> {
+        return requestWithErrorMapping(restApi.googleCreate(request))
+    }
+
+    override fun signInGoogle(request: GoogleSignInRequest): Observable<Token> {
+        return requestWithErrorMapping(restApi.googleLogin(request))
+    }
 }

@@ -1,7 +1,9 @@
 package com.mumsapp.data.repository
 
+import android.app.Activity
 import com.facebook.AccessToken
-import com.mumsapp.data.facebook.AbstractFacebookLoginObservable
+import com.facebook.CallbackManager
+import com.mumsapp.data.facebook.FacebookLoginObservable
 import com.mumsapp.data.facebook.FacebookProfileObservable
 import com.mumsapp.domain.model.user.FacebookUserResponse
 import com.mumsapp.domain.repository.FacebookRepository
@@ -10,15 +12,17 @@ import javax.inject.Inject
 
 class FacebookRepositoryImpl : FacebookRepository {
 
-    private val facebookLoginObservable: AbstractFacebookLoginObservable
+    private val callbackManager: CallbackManager
+    private val activity: Activity
 
     @Inject
-    constructor(facebookLoginObservable: AbstractFacebookLoginObservable) {
-        this.facebookLoginObservable = facebookLoginObservable
+    constructor(callbackManager: CallbackManager, activity: Activity) {
+        this.callbackManager = callbackManager
+        this.activity = activity
     }
 
     override fun getFacebookUser(): Observable<FacebookUserResponse> {
-        return Observable.create(facebookLoginObservable)
+        return Observable.create(FacebookLoginObservable(callbackManager, activity))
                 .flatMap { executeGraphResponse(it.accessToken) }
     }
 

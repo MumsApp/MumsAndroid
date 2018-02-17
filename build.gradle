@@ -26,6 +26,7 @@ buildscript {
     ext.retrofitRxAdapter = '1.0.0'
     ext.compatVersion = '27.0.2'
     ext.facebookSdkVersion = '4,30'
+    ext.googleAuthVersion = '11.8.0'
 
     repositories {
         google()

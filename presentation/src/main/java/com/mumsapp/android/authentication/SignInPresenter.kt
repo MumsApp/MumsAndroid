@@ -5,6 +5,7 @@ import com.mumsapp.android.base.BasePresenter
 import com.mumsapp.android.navigation.ActivitiesNavigationService
 import com.mumsapp.android.navigation.FragmentsNavigationService
 import com.mumsapp.domain.interactor.user.FacebookSignInUseCase
+import com.mumsapp.domain.interactor.user.GoogleSignUpUseCase
 import com.mumsapp.domain.interactor.user.SignInUseCase
 import com.mumsapp.domain.model.EmptyRequest
 import com.mumsapp.domain.model.error.UnauthorizedException
@@ -24,13 +25,15 @@ class SignInPresenter : BasePresenter<SignInView> {
     private val sessionManager: SessionManager
     private val activitiesNavigationService: ActivitiesNavigationService
     private val facebookSignInUseCase: FacebookSignInUseCase
+    private val googleSignInUseCase: GoogleSignUpUseCase
 
     @Inject
     constructor(fragmentsNavigationService: FragmentsNavigationService,
                 validationHelper: ValidationHelper,
                 resourceRepository: ResourceRepository, sessionManager: SessionManager,
                 signInUseCase: SignInUseCase, activitiesNavigationService: ActivitiesNavigationService,
-                facebookSignInUseCase: FacebookSignInUseCase) {
+                facebookSignInUseCase: FacebookSignInUseCase,
+                googleSignInUseCase: GoogleSignUpUseCase) {
         this.fragmentsNavigationService = fragmentsNavigationService
         this.validationHelper = validationHelper
         this.resourceRepository = resourceRepository
@@ -38,6 +41,7 @@ class SignInPresenter : BasePresenter<SignInView> {
         this.sessionManager = sessionManager
         this.activitiesNavigationService = activitiesNavigationService
         this.facebookSignInUseCase = facebookSignInUseCase
+        this.googleSignInUseCase = googleSignInUseCase
     }
 
     fun onBackClick() {
@@ -51,7 +55,9 @@ class SignInPresenter : BasePresenter<SignInView> {
     }
 
     fun onGoogleClick() {
-
+        addDisposable(googleSignInUseCase.execute(EmptyRequest())
+                .compose(applyOverlaysToObservable())
+                .subscribe(this::handleSignInSuccess, this::handleSignInError))
     }
 
     fun onSignInClick(email: String, password: String) {

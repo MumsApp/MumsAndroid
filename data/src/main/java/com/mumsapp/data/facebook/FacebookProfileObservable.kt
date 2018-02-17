@@ -5,10 +5,8 @@ import com.facebook.AccessToken
 import com.facebook.GraphRequest
 import com.facebook.GraphResponse
 import com.mumsapp.domain.model.user.FacebookUserResponse
-import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
 import io.reactivex.ObservableOnSubscribe
-import io.reactivex.Observer
 import org.json.JSONObject
 
 class FacebookProfileObservable(private val accessToken: AccessToken) : ObservableOnSubscribe<FacebookUserResponse> {

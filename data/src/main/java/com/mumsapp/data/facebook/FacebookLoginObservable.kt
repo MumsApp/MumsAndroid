@@ -1,25 +1,21 @@
-package com.mumsapp.android.facebook
+package com.mumsapp.data.facebook
 
+import android.app.Activity
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
-import com.mumsapp.android.base.BaseActivity
-import com.mumsapp.data.facebook.AbstractFacebookLoginObservable
-import com.mumsapp.domain.model.user.FacebookUserResponse
 import io.reactivex.ObservableEmitter
-import io.reactivex.Observer
+import io.reactivex.ObservableOnSubscribe
 import java.util.*
-import javax.inject.Inject
 
-class FacebookLoginObservable : AbstractFacebookLoginObservable {
-
+class FacebookLoginObservable : ObservableOnSubscribe<LoginResult> {
     private val callbackManager: CallbackManager
-    private val activity: BaseActivity
+    private val activity: Activity
 
-    @Inject
-    constructor(callbackManager: CallbackManager, activity: BaseActivity) {
+
+    constructor(callbackManager: CallbackManager, activity: Activity) {
         this.callbackManager = callbackManager
         this.activity = activity
     }

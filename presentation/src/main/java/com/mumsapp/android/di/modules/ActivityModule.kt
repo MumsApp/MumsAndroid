@@ -1,23 +1,22 @@
 package com.mumsapp.android.di.modules
 
+import android.app.Activity
 import android.support.v4.app.FragmentManager
 import com.mumsapp.android.base.BaseActivity
 import com.mumsapp.android.base.BaseFragmentActivity
 import com.mumsapp.android.di.qualifiers.FragmentContainerId
 import com.mumsapp.android.di.scopes.ActivityScope
-import com.mumsapp.android.facebook.FacebookLoginObservable
-import com.mumsapp.data.facebook.AbstractFacebookLoginObservable
+import com.mumsapp.data.facebook.FacebookLoginObservable
 import com.mumsapp.data.repository.FacebookRepositoryImpl
-import com.mumsapp.domain.interactor.user.FacebookSignInUseCase
-import com.mumsapp.domain.interactor.user.FacebookSignUpUseCase
-import com.mumsapp.domain.interactor.user.GetUserProfileUseCase
+import com.mumsapp.data.repository.GoogleRepositoryImpl
+import com.mumsapp.domain.interactor.user.*
 import com.mumsapp.domain.repository.FacebookRepository
+import com.mumsapp.domain.repository.GoogleRepository
 import com.mumsapp.domain.repository.UserRepository
 import com.mumsapp.domain.utils.SchedulerProvider
 import com.mumsapp.domain.utils.TokenPersistenceService
 import dagger.Module
 import dagger.Provides
-import javax.inject.Singleton
 
 @Module
 class ActivityModule(private val activity: BaseActivity) {
@@ -25,6 +24,12 @@ class ActivityModule(private val activity: BaseActivity) {
     @Provides
     @ActivityScope
     internal fun provideBaseActivity(): BaseActivity {
+        return activity
+    }
+
+    @Provides
+    @ActivityScope
+    internal fun providesActivity(activity: BaseActivity) : Activity {
         return activity
     }
 
@@ -53,7 +58,7 @@ class ActivityModule(private val activity: BaseActivity) {
 
     @Provides
     @ActivityScope
-    fun provideFacebookObservable(facebookLoginObservable: FacebookLoginObservable): AbstractFacebookLoginObservable {
+    fun provideFacebookObservable(facebookLoginObservable: FacebookLoginObservable): FacebookLoginObservable {
         return facebookLoginObservable
     }
 
@@ -69,5 +74,25 @@ class ActivityModule(private val activity: BaseActivity) {
     fun providesFacebookSignUpUseCase(facebookRepository: FacebookRepository, userRepository: UserRepository,
                                       tokenPersistenceService: TokenPersistenceService, getUserProfileUseCase: GetUserProfileUseCase, schedulerProvider: SchedulerProvider): FacebookSignUpUseCase {
         return FacebookSignUpUseCase(facebookRepository, userRepository, tokenPersistenceService, getUserProfileUseCase, schedulerProvider)
+    }
+
+    @Provides
+    @ActivityScope
+    fun providesGoogleRepository(googleRepositoryImpl: GoogleRepositoryImpl): GoogleRepository {
+        return googleRepositoryImpl
+    }
+
+    @Provides
+    @ActivityScope
+    fun providesGoogleSignInUseCase(googleRepository: GoogleRepository, userRepository: UserRepository,
+                                      tokenPersistenceService: TokenPersistenceService, getUserProfileUseCase: GetUserProfileUseCase, schedulerProvider: SchedulerProvider): GoogleSignInUseCase {
+        return GoogleSignInUseCase(googleRepository, userRepository, tokenPersistenceService, getUserProfileUseCase, schedulerProvider)
+    }
+
+    @Provides
+    @ActivityScope
+    fun providesGoogleSignUpUseCase(googleRepository: GoogleRepository, userRepository: UserRepository,
+                                      tokenPersistenceService: TokenPersistenceService, getUserProfileUseCase: GetUserProfileUseCase, schedulerProvider: SchedulerProvider): GoogleSignUpUseCase {
+        return GoogleSignUpUseCase(googleRepository, userRepository, tokenPersistenceService, getUserProfileUseCase, schedulerProvider)
     }
 }

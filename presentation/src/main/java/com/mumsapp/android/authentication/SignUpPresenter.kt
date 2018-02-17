@@ -5,6 +5,7 @@ import com.mumsapp.android.base.BasePresenter
 import com.mumsapp.android.navigation.ActivitiesNavigationService
 import com.mumsapp.android.navigation.FragmentsNavigationService
 import com.mumsapp.domain.interactor.user.FacebookSignUpUseCase
+import com.mumsapp.domain.interactor.user.GoogleSignUpUseCase
 import com.mumsapp.domain.interactor.user.SignUpUseCase
 import com.mumsapp.domain.model.EmptyRequest
 import com.mumsapp.domain.model.user.SignUpRequest
@@ -23,6 +24,7 @@ class SignUpPresenter: BasePresenter<SignUpView> {
     private val sessionManager: SessionManager
     private val activitiesNavigationService: ActivitiesNavigationService
     private val facebookSignUpUseCase: FacebookSignUpUseCase
+    private val googleSignUpUseCase: GoogleSignUpUseCase
 
     @Inject
     constructor(fragmentsNavigationService: FragmentsNavigationService,
@@ -30,7 +32,8 @@ class SignUpPresenter: BasePresenter<SignUpView> {
                 resourceRepository: ResourceRepository,
                 sessionManager: SessionManager,
                 activitiesNavigationService: ActivitiesNavigationService,
-                facebookSignUpUseCase: FacebookSignUpUseCase) {
+                facebookSignUpUseCase: FacebookSignUpUseCase,
+                googleSignUpUseCase: GoogleSignUpUseCase) {
         this.fragmentsNavigationService = fragmentsNavigationService
         this.signUpUseCase = signUpUseCase
         this.validationHelper = validationHelper
@@ -38,6 +41,7 @@ class SignUpPresenter: BasePresenter<SignUpView> {
         this.sessionManager = sessionManager
         this.activitiesNavigationService = activitiesNavigationService
         this.facebookSignUpUseCase = facebookSignUpUseCase
+        this.googleSignUpUseCase = googleSignUpUseCase
     }
 
     fun onBackClick() {
@@ -47,13 +51,17 @@ class SignUpPresenter: BasePresenter<SignUpView> {
     fun onFacebookClick() {
         addDisposable(
                 facebookSignUpUseCase.execute(EmptyRequest())
-//                        .compose(applyOverlaysToObservable())
+                        .compose(applyOverlaysToObservable())
                         .subscribe(this::handleRegisterSuccess, this::handleRegisterError)
         )
     }
 
     fun onGoogleClick() {
-
+        addDisposable(
+                googleSignUpUseCase.execute(EmptyRequest())
+                        .compose(applyOverlaysToObservable())
+                        .subscribe(this::handleRegisterSuccess, this::handleRegisterError)
+        )
     }
 
     fun onTermsLinkClick() {
