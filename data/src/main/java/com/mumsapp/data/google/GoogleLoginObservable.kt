@@ -5,7 +5,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.tasks.Task
+import com.mumsapp.android.data.BuildConfig
 import com.mumsapp.domain.model.user.GoogleUserResponse
 import io.reactivex.ObservableEmitter
 import io.reactivex.ObservableOnSubscribe
@@ -22,6 +24,7 @@ class GoogleLoginObservable(private val callbackHandler: GoogleCallbackHandler,
                 .requestEmail()
                 .requestId()
                 .requestProfile()
+                .requestIdToken(BuildConfig.GOOGLE_SIGN_IN_KEY)
                 .build()
 
         val client = GoogleSignIn.getClient(context, options)
