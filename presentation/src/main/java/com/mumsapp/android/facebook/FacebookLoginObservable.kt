@@ -8,6 +8,7 @@ import com.facebook.login.LoginResult
 import com.mumsapp.android.base.BaseActivity
 import com.mumsapp.data.facebook.AbstractFacebookLoginObservable
 import com.mumsapp.domain.model.user.FacebookUserResponse
+import io.reactivex.ObservableEmitter
 import io.reactivex.Observer
 import java.util.*
 import javax.inject.Inject
@@ -23,20 +24,19 @@ class FacebookLoginObservable : AbstractFacebookLoginObservable {
         this.activity = activity
     }
 
-
-    override fun subscribeActual(observer: Observer<in LoginResult>?) {
-
+    override fun subscribe(emitter: ObservableEmitter<LoginResult>) {
         requestLogin(callbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(loginResult: LoginResult) {
-                observer?.onNext(loginResult)
+                emitter.onNext(loginResult)
+                emitter.onComplete()
             }
 
             override fun onCancel() {
-                observer?.onComplete()
+                emitter.onComplete()
             }
 
             override fun onError(error: FacebookException) {
-                observer?.onError(error)
+                emitter.onError(error)
             }
         })
     }

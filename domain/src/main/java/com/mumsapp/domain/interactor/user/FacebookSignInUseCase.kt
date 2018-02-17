@@ -14,12 +14,13 @@ import io.reactivex.Observable
 class FacebookSignInUseCase(val facebookRepository: FacebookRepository, val userRepository: UserRepository,
                             val tokenService: TokenPersistenceService,
                             val getUserProfileUseCase: GetUserProfileUseCase,
-                            schedulerProvider: SchedulerProvider)
+                            val schedulerProvider: SchedulerProvider)
     : BaseUseCase<EmptyRequest, UserResponse>(schedulerProvider) {
 
 
     override fun createUseCaseObservable(param: EmptyRequest): Observable<UserResponse> {
         return facebookRepository.getFacebookUser()
+                .observeOn(schedulerProvider.provideIOScheduler())
                 .flatMap {
                     val request = FacebookSignInRequest(it.email, it.authToken)
                     userRepository.signInFacebook(request)
