@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/overlay_background">
+
+
+    <com.mumsapp.android.ui.views.BaseImageButton
+        android:id="@+id/menu_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/close_menu"
+        android:background="@null"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <com.mumsapp.android.ui.views.BaseImageButton
+        android:id="@+id/menu_me"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/menu_me"
+        android:background="@null"
+        app:layout_constraintCircle="@id/menu_close"
+        app:layout_constraintCircleRadius="140dp"
+        app:layout_constraintCircleAngle="275"/>
+
+    <com.mumsapp.android.ui.views.BaseImageButton
+        android:id="@+id/menu_lobby"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/menu_me"
+        android:background="@null"
+        app:layout_constraintCircle="@id/menu_close"
+        app:layout_constraintCircleRadius="140dp"
+        app:layout_constraintCircleAngle="315"/>
+
+    <com.mumsapp.android.ui.views.BaseImageButton
+        android:id="@+id/menu_talk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/menu_me"
+        android:background="@null"
+        app:layout_constraintCircle="@id/menu_close"
+        app:layout_constraintCircleRadius="140dp"
+        app:layout_constraintCircleAngle="0"/>
+
+    <com.mumsapp.android.ui.views.BaseImageButton
+        android:id="@+id/menu_shop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/menu_me"
+        android:background="@null"
+        app:layout_constraintCircle="@id/menu_close"
+        app:layout_constraintCircleRadius="140dp"
+        app:layout_constraintCircleAngle="45"/>
+
+    <com.mumsapp.android.ui.views.BaseImageButton
+        android:id="@+id/menu_offers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/menu_me"
+        android:background="@null"
+        app:layout_constraintCircle="@id/menu_close"
+        app:layout_constraintCircleRadius="140dp"
+        app:layout_constraintCircleAngle="85"/>
+</android.support.constraint.ConstraintLayout>

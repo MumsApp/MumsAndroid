@@ -17,7 +17,7 @@
     <color name="facebook">#4767AA</color>
 
 
-    <color name="progress_overlay_background">#ccFFFFFF</color>
+    <color name="overlay_background">#ccFFFFFF</color>
 
 
     <!-- Buttons -->

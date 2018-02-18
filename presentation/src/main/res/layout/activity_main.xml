@@ -9,15 +9,21 @@
     <FrameLayout
         android:id="@+id/main_frame_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="@drawable/splash"/>
+
+    <include
+        android:id="@+id/main_menu"
+        layout="@layout/item_menu"
+        android:visibility="visible"
+        tools:visibility="visible"/>
 
     <com.mumsapp.android.ui.views.NonCLickableFrameLayout
         android:id="@+id/main_progress_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/progress_overlay_background"
-        android:visibility="gone"
-        tools:visibility="visible">
+        android:background="@color/overlay_background"
+        android:visibility="gone">
 
         <ProgressBar
             android:id="@+id/main_progress"
