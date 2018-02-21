@@ -33,4 +33,12 @@ class MainPresenter : BasePresenter<MainView> {
 
         return false
     }
+
+    fun onOpenMenuClick() {
+        view?.showMenu()
+    }
+
+    fun onCloseMenuClick() {
+        view?.hideMenu()
+    }
 }

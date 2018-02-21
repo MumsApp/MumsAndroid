@@ -1,17 +1,18 @@
 package com.mumsapp.android.main
 
-import android.graphics.drawable.ClipDrawable
+import android.animation.Animator
 import android.os.Bundle
+import android.support.constraint.ConstraintLayout
 import android.support.v4.app.FragmentManager
 import android.view.View
 import butterknife.BindView
 import butterknife.ButterKnife
+import butterknife.OnClick
 import com.mumsapp.android.R
 import com.mumsapp.android.base.BaseFragmentActivity
 import com.mumsapp.android.base.BasePresenter
 import com.mumsapp.android.base.BaseView
 import com.mumsapp.android.common.features.HasOverlays
-import com.mumsapp.android.ui.views.BaseImageButton
 import com.mumsapp.android.ui.views.NonCLickableFrameLayout
 import javax.inject.Inject
 
@@ -20,8 +21,8 @@ class MainActivity : BaseFragmentActivity(), MainView, HasOverlays {
     @Inject
     lateinit var presenter: MainPresenter
 
-    @BindView(R.id.menu_close)
-    lateinit var closeButton: BaseImageButton
+    @BindView(R.id.main_menu)
+    lateinit var menuLayout: ConstraintLayout
 
     @BindView(R.id.main_progress_layout)
     lateinit var progressLayout: NonCLickableFrameLayout
@@ -33,6 +34,7 @@ class MainActivity : BaseFragmentActivity(), MainView, HasOverlays {
         setContentView(R.layout.activity_main)
         ButterKnife.bind(this)
         presenter.attachViewWithLifecycle(this)
+        showMenu()
     }
 
     override fun getFragmentContainerId(): Int = R.id.main_frame_layout
@@ -62,4 +64,28 @@ class MainActivity : BaseFragmentActivity(), MainView, HasOverlays {
     }
 
     override fun isLoadingPresented(): Boolean = loadingPresented
+
+    override fun showMenu() {
+        menuLayout.translationY = menuLayout.height.toFloat()
+        menuLayout.visibility = View.VISIBLE
+        menuLayout.animate().translationY(0f).withEndAction({
+            menuLayout.translationY = 0f
+        })
+    }
+
+    override fun hideMenu() {
+        menuLayout.animate().translationY(menuLayout.height.toFloat()).withEndAction({
+            menuLayout.visibility = View.GONE
+        })
+    }
+
+    @OnClick(R.id.menu_open)
+    fun onOpenMenuClick() {
+        presenter.onOpenMenuClick()
+    }
+
+    @OnClick(R.id.menu_close)
+    fun onCloseMenuClick() {
+        presenter.onCloseMenuClick()
+    }
 }
