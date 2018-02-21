@@ -17,7 +17,7 @@
     <color name="facebook">#4767AA</color>
 
 
-    <color name="overlay_background">#ccFFFFFF</color>
+    <color name="overlay_background">#efffffff</color>
 
 
     <!-- Buttons -->
@@ -31,4 +31,8 @@
 
     <!-- Top Bar -->
     <color name="top_bar_background">#ffffff</color>
+
+
+    <!-- Main Menu -->
+    <color name="menu_text">#B2B9CD</color>
 </resources>

@@ -1,5 +1,6 @@
 package com.mumsapp.android.main
 
+import android.graphics.drawable.ClipDrawable
 import android.os.Bundle
 import android.support.v4.app.FragmentManager
 import android.view.View
@@ -10,6 +11,7 @@ import com.mumsapp.android.base.BaseFragmentActivity
 import com.mumsapp.android.base.BasePresenter
 import com.mumsapp.android.base.BaseView
 import com.mumsapp.android.common.features.HasOverlays
+import com.mumsapp.android.ui.views.BaseImageButton
 import com.mumsapp.android.ui.views.NonCLickableFrameLayout
 import javax.inject.Inject
 
@@ -17,6 +19,9 @@ class MainActivity : BaseFragmentActivity(), MainView, HasOverlays {
 
     @Inject
     lateinit var presenter: MainPresenter
+
+    @BindView(R.id.menu_close)
+    lateinit var closeButton: BaseImageButton
 
     @BindView(R.id.main_progress_layout)
     lateinit var progressLayout: NonCLickableFrameLayout

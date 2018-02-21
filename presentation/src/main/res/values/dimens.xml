@@ -50,4 +50,9 @@
     <!-- Create Page Fragment -->
     <dimen name="create_page_title_text_size">31sp</dimen>
     <dimen name="create_page_items_space_between_items">40dp</dimen>
+
+
+    <!-- Main Menu -->
+    <dimen name="menu_radius">140dp</dimen>
+    <dimen name="menu_labels_text_size">12sp</dimen>
 </resources>

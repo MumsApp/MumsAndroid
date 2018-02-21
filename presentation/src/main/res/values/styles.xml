@@ -103,6 +103,11 @@
         <item name="android:text">@string/sign_up_facebook</item>
     </style>
 
+    <style name="main_menu_button_text" parent="text_small">
+        <item name="android:textColor">@color/menu_text</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">@dimen/menu_labels_text_size</item>
+    </style>
 
     <!-- Dividers -->
     <style name="divider_default">
@@ -158,4 +163,14 @@
         <item name="cardCornerRadius">@dimen/card_view_corner_radius</item>
     </style>
 
+    <!-- Image Button -->
+    <style name="base_image_button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@null</item>
+    </style>
+
+    <style name="main_menu_button" parent="base_image_button">
+        <item name="layout_constraintCircleRadius">@dimen/menu_radius</item>
+    </style>
 </resources>

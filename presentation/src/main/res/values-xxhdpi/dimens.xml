@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Main Menu -->
+    <dimen name="menu_radius">140dp</dimen>
+    <dimen name="menu_labels_text_size">12sp</dimen>
+</resources>
