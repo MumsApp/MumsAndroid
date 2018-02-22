@@ -46,4 +46,8 @@
     <string name="shop">Shop</string>
     <string name="where_can_i_find">Where can i find?</string>
     <string name="mumsapp_offers">Mumsapp Offers</string>
+
+    <string name="my_profile">My Profile</string>
+    <string name="change">Change</string>
+    <string name="first_and_last_name_pattern">%1$s %2$s</string>
 </resources>

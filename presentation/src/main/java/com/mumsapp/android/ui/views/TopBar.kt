@@ -11,7 +11,7 @@ import com.mumsapp.android.R
 
 class TopBar: ConstraintLayout {
 
-    @BindView(R.id.top_bar_back)
+    @BindView(R.id.top_bar_left_button)
     lateinit var backButton: BaseImageButton
 
     @BindView(R.id.top_bar_title)
@@ -41,8 +41,11 @@ class TopBar: ConstraintLayout {
     private fun setupAttributes(context: Context, attrs: AttributeSet?) {
         val array = context.obtainStyledAttributes(attrs, R.styleable.TopBar)
 
-        val backVisibility = array.getBoolean(R.styleable.TopBar_topBarBackVisible, false)
-        setBackVisibility(backVisibility)
+        val leftButtonVisibility = array.getBoolean(R.styleable.TopBar_topBarLeftButtonVisible, false)
+        setLeftButtonVisibility(leftButtonVisibility)
+
+        val leftButtonDrawable = array.getDrawable(R.styleable.TopBar_topBarLeftIcon)
+        setLeftButtonDrawable(leftButtonDrawable)
 
         val title = array.getString(R.styleable.TopBar_topBarTitle)
         setTitleText(title)
@@ -56,11 +59,15 @@ class TopBar: ConstraintLayout {
         array.recycle()
     }
 
-    fun setBackVisibility(visible: Boolean) {
+    fun setLeftButtonVisibility(visible: Boolean) {
         setVisibilityFromBoolean(visible, backButton)
     }
 
-    fun setBackClickListener(listener: View.OnClickListener) {
+    fun setLeftButtonDrawable(drawable: Drawable?) {
+        rightButton.setImageDrawable(drawable)
+    }
+
+    fun setLeftButtonClickListener(listener: View.OnClickListener) {
         backButton.setOnClickListener(listener)
     }
 

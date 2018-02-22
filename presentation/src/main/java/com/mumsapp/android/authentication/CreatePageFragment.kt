@@ -44,6 +44,6 @@ class CreatePageFragment: BaseFragment(), CreatePageView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter.attachViewWithLifecycle(this)
-        topBar.setBackClickListener(View.OnClickListener { presenter.onBackClick() })
+        topBar.setLeftButtonClickListener(View.OnClickListener { presenter.onBackClick() })
     }
 }

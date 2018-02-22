@@ -19,4 +19,6 @@ interface UserRepository {
     fun signUpGoogle(request: GoogleSignUpRequest): Observable<EmptyResponse>
 
     fun signInGoogle(request: GoogleSignInRequest): Observable<Token>
+
+    fun getUserData(id: Int, level: Int): Observable<UserResponse>
 }

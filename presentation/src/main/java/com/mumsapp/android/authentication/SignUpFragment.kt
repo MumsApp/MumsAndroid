@@ -13,7 +13,6 @@ import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.base.BasePresenter
 import com.mumsapp.android.base.BaseView
 import com.mumsapp.android.di.components.ActivityComponent
-import com.mumsapp.android.ui.views.BaseButton
 import com.mumsapp.android.ui.views.BaseInput
 import com.mumsapp.android.ui.views.TopBar
 import javax.inject.Inject
@@ -66,7 +65,7 @@ class SignUpFragment: BaseFragment(), SignUpView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter.attachViewWithLifecycle(this)
-        topBar.setBackClickListener(View.OnClickListener { presenter.onBackClick() })
+        topBar.setLeftButtonClickListener(View.OnClickListener { presenter.onBackClick() })
     }
 
     @OnClick(R.id.sign_up_facebook)

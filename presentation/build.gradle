@@ -113,6 +113,12 @@ dependencies {
     //https://developers.google.com/identity/sign-in/android/sign-in Google sign in
     implementation "com.google.android.gms:play-services-auth:$googleAuthVersion"
 
+    //https://github.com/hdodenhof/CircleImageView Circle image view
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+
+    //https://github.com/square/picasso Image loader
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+
     // Testing
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'

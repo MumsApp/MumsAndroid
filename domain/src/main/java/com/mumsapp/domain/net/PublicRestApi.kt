@@ -7,7 +7,9 @@ import io.reactivex.Observable
 import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface PublicRestApi {
 
@@ -28,4 +30,7 @@ interface PublicRestApi {
 
     @POST("public/google/login")
     fun googleLogin(@Body param: GoogleSignInRequest): Observable<Response<Token>>
+
+    @GET("user/{id}/{level}")
+    fun getUserData(@Path("id") id: Int, @Path("level") level: Int): Observable<Response<UserResponse>>
 }

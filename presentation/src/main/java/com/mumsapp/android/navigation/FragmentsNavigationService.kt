@@ -7,6 +7,7 @@ import com.mumsapp.android.authentication.SignInFragment
 import com.mumsapp.android.authentication.SignUpFragment
 import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.di.qualifiers.FragmentContainerId
+import com.mumsapp.android.profile.MyProfileFragment
 import javax.inject.Inject
 
 class FragmentsNavigationService {
@@ -25,32 +26,39 @@ class FragmentsNavigationService {
         openFragment(fragment, addToBackStack)
     }
 
-    fun createAuthMenuFragment(): AuthMenuFragment = AuthMenuFragment.getInstance()
+    fun createAuthMenuFragment() = AuthMenuFragment.getInstance()
 
     fun openSignUpFragment(addToBackStack: Boolean) {
         val fragment = createSignUpFragment()
         openFragment(fragment, addToBackStack)
     }
 
-    fun createSignUpFragment(): SignUpFragment = SignUpFragment.getInstance()
+    fun createSignUpFragment() = SignUpFragment.getInstance()
 
     fun openSignInFragment(addToBackStack: Boolean) {
         val fragment = createSignInFragment()
         openFragment(fragment, addToBackStack)
     }
 
-    fun createSignInFragment(): SignInFragment = SignInFragment.getInstance()
+    fun createSignInFragment() = SignInFragment.getInstance()
 
     fun openCreatePageFragment(addToBackStack: Boolean) {
         val fragment = createCreatePageFragment()
         openFragment(fragment, addToBackStack)
     }
 
-    fun createCreatePageFragment(): CreatePageFragment = CreatePageFragment.getInstance()
+    fun createCreatePageFragment() = CreatePageFragment.getInstance()
 
     fun openForgetPasswordFragment(addToBackStack: Boolean) {
 
     }
+
+    fun openMyProfileFragment(addToBackStack: Boolean) {
+        val fragment = createMyProfileFragment()
+        openFragment(fragment, addToBackStack)
+    }
+
+    fun createMyProfileFragment() = MyProfileFragment.getInstance()
 
     fun popFragment() {
         fragmentManager.popBackStack()

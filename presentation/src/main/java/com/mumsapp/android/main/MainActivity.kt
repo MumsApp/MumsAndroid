@@ -1,6 +1,5 @@
 package com.mumsapp.android.main
 
-import android.animation.Animator
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.v4.app.FragmentManager
@@ -46,7 +45,7 @@ class MainActivity : BaseFragmentActivity(), MainView, HasOverlays {
     override fun makeInject() = activityComponent.inject(this)
 
     override fun onBackPressed() {
-        if(presenter.handleBackOrDelegateToSystem()) {
+        if (presenter.handleBackOrDelegateToSystem()) {
             super.onBackPressed()
         }
     }
@@ -87,5 +86,35 @@ class MainActivity : BaseFragmentActivity(), MainView, HasOverlays {
     @OnClick(R.id.menu_close)
     fun onCloseMenuClick() {
         presenter.onCloseMenuClick()
+    }
+
+    @OnClick(R.id.menu_where_find, R.id.menu_where_find_text)
+    fun onWhereFindClick() {
+        presenter.onWhereFindClick()
+    }
+
+    @OnClick(R.id.menu_lobby, R.id.menu_lobby_text)
+    fun onLobbyClick() {
+        presenter.onLobbyClick()
+    }
+
+    @OnClick(R.id.menu_talk, R.id.menu_talk_text)
+    fun onTalkClick() {
+        presenter.onTalkClick()
+    }
+
+    @OnClick(R.id.menu_me, R.id.menu_me_text)
+    fun onMeClick() {
+        presenter.onMeClick()
+    }
+
+    @OnClick(R.id.menu_shop, R.id.menu_shop_text)
+    fun onShopClick() {
+        presenter.onShopClick()
+    }
+
+    @OnClick(R.id.menu_offers, R.id.menu_offers_text)
+    fun onOffersClick() {
+        presenter.onOffersClick()
     }
 }

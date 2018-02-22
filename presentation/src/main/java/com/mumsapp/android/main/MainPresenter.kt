@@ -41,4 +41,30 @@ class MainPresenter : BasePresenter<MainView> {
     fun onCloseMenuClick() {
         view?.hideMenu()
     }
+
+    fun onWhereFindClick() {
+
+    }
+
+    fun onLobbyClick() {
+
+    }
+
+    fun onTalkClick() {
+
+    }
+
+    fun onMeClick() {
+        fragmentsNavigationService.popFragmentsToRoot()
+        fragmentsNavigationService.openMyProfileFragment(true)
+        view?.hideMenu()
+    }
+
+    fun onShopClick() {
+
+    }
+
+    fun onOffersClick() {
+
+    }
 }

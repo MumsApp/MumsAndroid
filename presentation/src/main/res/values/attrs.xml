@@ -3,7 +3,8 @@
 
     <declare-styleable name="TopBar">
         <attr name="topBarTitle" format="string"/>
-        <attr name="topBarBackVisible" format="boolean"/>
+        <attr name="topBarLeftButtonVisible" format="boolean"/>
+        <attr name="topBarLeftIcon" format="reference"/>
         <attr name="topBarRightButtonVisible" format="boolean"/>
         <attr name="topBarRightIcon" format="reference"/>
     </declare-styleable>

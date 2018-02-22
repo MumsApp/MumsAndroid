@@ -45,4 +45,8 @@ class UserRepositoryImpl : BaseRestRepository, UserRepository {
     override fun signInGoogle(request: GoogleSignInRequest): Observable<Token> {
         return requestWithErrorMapping(restApi.googleLogin(request))
     }
+
+    override fun getUserData(id: Int, level: Int): Observable<UserResponse> {
+        return requestWithErrorMapping(restApi.getUserData(id, level))
+    }
 }

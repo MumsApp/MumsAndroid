@@ -2,11 +2,11 @@ package com.mumsapp.domain.interactor.user
 
 import com.mumsapp.domain.interactor.BaseUseCase
 import com.mumsapp.domain.model.BaseRequest
-import com.mumsapp.domain.model.EmptyRequest
 import com.mumsapp.domain.model.identity.Token
 import com.mumsapp.domain.model.user.UserResponse
 import com.mumsapp.domain.utils.SchedulerProvider
 import com.mumsapp.domain.utils.TokenPersistenceService
+import com.mumsapp.domain.interactor.user.GetUserProfileUseCase.Params
 import io.reactivex.Observable
 
 abstract class BaseSignInUseCase<Request : BaseRequest>(val getUserProfileUseCase: GetUserProfileUseCase,
@@ -23,6 +23,7 @@ abstract class BaseSignInUseCase<Request : BaseRequest>(val getUserProfileUseCas
 
     private fun saveTokenAndGetUserProfile(token: Token): Observable<UserResponse> {
         tokenService.saveToken(token)
-        return getUserProfileUseCase.execute(EmptyRequest())
+        return getUserProfileUseCase.execute(Params(token.id,
+                Params.LEVEL_FULL))
     }
 }
