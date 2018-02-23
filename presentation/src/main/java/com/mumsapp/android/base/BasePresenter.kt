@@ -104,7 +104,7 @@ abstract class BasePresenter<View: BaseView>: LifecycleObserver {
 
         val state = view?.getLifecycle()?.currentState
 
-        return state!!.isAtLeast(Lifecycle.State.STARTED) && state != Lifecycle.State.DESTROYED
+        return state!!.isAtLeast(Lifecycle.State.CREATED) && state != Lifecycle.State.DESTROYED
     }
 
     protected fun <T> applyOverlaysToObservable(): ObservableTransformer<T, T> {

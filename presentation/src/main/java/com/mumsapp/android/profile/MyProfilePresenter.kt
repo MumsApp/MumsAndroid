@@ -60,8 +60,8 @@ class MyProfilePresenter: BasePresenter<MyProfileView> {
 
         view?.showProfileInfo(name, user.description)
 
-        if(user.photo != null) {
-            val url = imagesRepository.getApiImageUrl(user.photo!!.src)
+        if(user.photo.src != null) {
+            val url = imagesRepository.getApiImageUrl(user.photo.src!!)
             view?.loadAvatar(url)
         }
     }

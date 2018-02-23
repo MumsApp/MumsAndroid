@@ -11,18 +11,18 @@ data class UserResponse(@SerializedName("status") var status: String,
                     @SerializedName("surname") var lastName: String,
                     @SerializedName("description") var description: String,
                     @SerializedName("children") var children: Children,
-                    @SerializedName("photo") var photo: Photo?,
-                    @SerializedName("location") var location: Location?) : BaseResponse()
+                    @SerializedName("photo") var photo: Photo,
+                    @SerializedName("location") var location: Location) : BaseResponse()
 
-    data class Children(@SerializedName("number") var number: Int,
-                        @SerializedName("ageRangeFrom") var ageRangeFrom: Int,
-                        @SerializedName("ageRangeTo") var ageRangeTo: Int) : BaseResponse()
+    data class Children(@SerializedName("number") var number: Int?,
+                        @SerializedName("ageRangeFrom") var ageRangeFrom: Int?,
+                        @SerializedName("ageRangeTo") var ageRangeTo: Int?) : BaseResponse()
 
-    data class Photo(@SerializedName("src") var src: String) : BaseResponse()
+    data class Photo(@SerializedName("src") var src: String?) : BaseResponse()
 
-    data class Location(@SerializedName("name") var name: String,
-                        @SerializedName("placeID") var placeId: String,
-                        @SerializedName("lat") var latitude: String,
-                        @SerializedName("lon") var longitude: String,
-                        @SerializedName("formattedAddress") var formattedAddress: String)
+    data class Location(@SerializedName("name") var name: String?,
+                        @SerializedName("placeID") var placeId: String?,
+                        @SerializedName("lat") var latitude: String?,
+                        @SerializedName("lon") var longitude: String?,
+                        @SerializedName("formattedAddress") var formattedAddress: String?)
 }
