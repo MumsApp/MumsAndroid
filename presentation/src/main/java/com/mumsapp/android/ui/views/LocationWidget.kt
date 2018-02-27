@@ -13,6 +13,8 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.MapStyleOptions
 import com.mumsapp.android.MainApplication
 import com.mumsapp.android.R
+import com.mumsapp.android.common.features.HasComponent
+import com.mumsapp.android.di.components.ActivityComponent
 import javax.inject.Inject
 
 class LocationWidget : CardView {
@@ -54,7 +56,9 @@ class LocationWidget : CardView {
 
     private fun setup(context: Context, attrs: AttributeSet?) {
         val view = View.inflate(context, R.layout.item_location_widget, this)
-        MainApplication.getApplication(context).
+        if(context is HasComponent<*>) {
+            (context as HasComponent<ActivityComponent>).getComponent().inject(this)
+        }
         ButterKnife.bind(view)
         mapFragment = fragmentManager.findFragmentById(R.id.location_widget_map) as SupportMapFragment
         setupAttributes(context, attrs)
@@ -63,7 +67,7 @@ class LocationWidget : CardView {
     private fun setupAttributes(context: Context, attrs: AttributeSet?) {
         val array = context.obtainStyledAttributes(attrs, R.styleable.LocationWidget)
 
-        val locationName = array.getString(R.styleable.LocationWidget_locationName)
+        val locationName: String? = array.getString(R.styleable.LocationWidget_locationName)
         setLocationName(locationName)
 
         val switchVisible = array.getBoolean(R.styleable.LocationWidget_switchVisible, false)
@@ -81,14 +85,14 @@ class LocationWidget : CardView {
         val mapVisible = array.getBoolean(R.styleable.LocationWidget_mapVisible, false)
         setMapVisibility(mapVisible)
 
-        val mapLatitude = array.getString(R.styleable.LocationWidget_mapLatitude)
-        val mapLongitude = array.getString(R.styleable.LocationWidget_mapLongitude)
+        val mapLatitude: String? = array.getString(R.styleable.LocationWidget_mapLatitude)
+        val mapLongitude: String? = array.getString(R.styleable.LocationWidget_mapLongitude)
         setMapCoordinates(mapLatitude, mapLongitude)
 
         array.recycle()
     }
 
-    fun setLocationName(name: String) {
+    fun setLocationName(name: String?) {
         locationNameView.text = name
     }
 
@@ -115,7 +119,7 @@ class LocationWidget : CardView {
         }
     }
 
-    fun setMapCoordinates(latitude: String, longitude: String) {
+    fun setMapCoordinates(latitude: String?, longitude: String?) {
         if(map != null) {
 //            map.cameraPosition = CameraPosition()
         }
