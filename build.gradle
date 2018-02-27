@@ -27,6 +27,7 @@ buildscript {
     ext.compatVersion = '27.0.2'
     ext.facebookSdkVersion = '4,30'
     ext.googleAuthVersion = '11.8.0'
+    ext.googleMapsVersion = '11.8.0'
 
     repositories {
         google()

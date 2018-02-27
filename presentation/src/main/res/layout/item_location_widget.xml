@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    style="@style/card_squared">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.mumsapp.android.ui.views.BaseTextView
+            android:id="@+id/location_widget_title"
+            style="@style/text_normal_bold"
+            android:layout_marginTop="@dimen/padding_default"
+            android:layout_marginStart="@dimen/padding_default"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/location"/>
+
+        <com.mumsapp.android.ui.views.BaseTextView
+            android:id="@+id/location_widget_name"
+            style="@style/text_tiny_grey_light"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="@id/location_widget_title"
+            app:layout_constraintRight_toLeftOf="@+id/location_widget_button"
+            app:layout_constraintTop_toBottomOf="@id/location_widget_title"
+            tools:text="Lavender Hill, SWll 1JW, London"/>
+
+        <com.mumsapp.android.ui.views.BaseSwitch
+            android:id="@+id/location_widget_switch"
+            style="@style/switch_green"
+            android:layout_marginEnd="@dimen/padding_default"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/location_widget_title"
+            app:layout_constraintBottom_toBottomOf="@id/location_widget_name"/>
+
+        <com.mumsapp.android.ui.views.BaseTextView
+            android:id="@+id/location_widget_button"
+            style="@style/text_small_green_light"
+            android:layout_marginEnd="@dimen/padding_medium"
+            app:layout_constraintRight_toLeftOf="@id/location_widget_switch"
+            app:layout_constraintTop_toTopOf="@id/location_widget_switch"
+            app:layout_constraintBottom_toBottomOf="@id/location_widget_switch"
+            tools:text="@string/edit" />
+
+        <!--<com.google.android.gms.maps.MapView-->
+            <!--android:id="@+id/location_widget_map"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="@dimen/location_widget_map_height"-->
+            <!--android:layout_marginTop="@dimen/padding_default"-->
+            <!--app:layout_constraintTop_toBottomOf="@id/location_widget_content"/>-->
+
+        <FrameLayout
+            android:id="@+id/location_widget_map_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/location_widget_map_height"
+            android:layout_marginTop="@dimen/padding_default"
+            app:layout_constraintTop_toBottomOf="@id/location_widget_name">
+
+            <fragment
+                android:id="@+id/location_widget_map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </FrameLayout>
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>

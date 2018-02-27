@@ -57,6 +57,10 @@
         <item name="android:textSize">@dimen/text_size_top_bar</item>
     </style>
 
+    <style name="text_tiny" parent="text_view_default">
+        <item name="android:textSize">@dimen/text_size_tiny</item>
+    </style>
+
     <style name="text_small" parent="text_view_default">
         <item name="android:textSize">@dimen/text_size_small</item>
     </style>
@@ -89,11 +93,19 @@
         <item name="android:textColor">@color/green_light</item>
     </style>
 
+    <style name="text_normal_bold" parent="text_normal">
+        <item name="fontPath">fonts/Poppins-Bold.ttf</item>
+    </style>
+
     <style name="text_small_green_light" parent="text_small">
         <item name="android:textColor">@color/green_light</item>
     </style>
 
     <style name="text_small_grey_light" parent="text_small">
+        <item name="android:textColor">@color/grey_light</item>
+    </style>
+
+    <style name="text_tiny_grey_light" parent="text_tiny">
         <item name="android:textColor">@color/grey_light</item>
     </style>
 
@@ -179,17 +191,17 @@
     </style>
 
     <!-- Image Button -->
-    <style name="base_image_button">
+    <style name="default_image_button">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@null</item>
     </style>
 
-    <style name="main_menu_button" parent="base_image_button">
+    <style name="main_menu_button" parent="default_image_button">
         <item name="layout_constraintCircleRadius">@dimen/menu_radius</item>
     </style>
 
-    <style name="topbar_button" parent="base_image_button">
+    <style name="topbar_button" parent="default_image_button">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:paddingStart">@dimen/padding_default</item>
@@ -198,15 +210,42 @@
 
 
     <!-- Image View -->
-    <style name="base_image_view">
+    <style name="default_image_view">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@null</item>
     </style>
 
-    <style name="avatar_image_view" parent="base_image_view">
+    <style name="avatar_image_view" parent="default_image_view">
         <item name="android:layout_width">@dimen/my_profile_avatar_size</item>
         <item name="android:layout_height">@dimen/my_profile_avatar_size</item>
         <item name="android:src">@drawable/menu_me</item>
+    </style>
+
+
+    <!-- Switch -->
+    <style name="default_switch">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="switch_green" parent="default_switch">
+        <item name="colorAccent">@color/green_light</item>
+        <item name="colorSwitchThumbNormal">@color/grey_light</item>
+    </style>
+
+    <!-- Location Widget -->
+    <style name="default_location_widget">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/padding_medium</item>
+        <item name="android:layout_marginEnd">@dimen/padding_medium</item>
+    </style>
+
+    <style name="my_profile_location_widget" parent="default_location_widget">
+        <item name="switchVisible">true</item>
+        <item name="buttonVisible">true</item>
+        <item name="buttonText">@string/edit</item>
+        <item name="mapVisible">true</item>
     </style>
 </resources>

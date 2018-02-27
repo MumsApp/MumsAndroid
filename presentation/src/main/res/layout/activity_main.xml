@@ -14,7 +14,7 @@
 
     <com.mumsapp.android.ui.views.BaseImageButton
         android:id="@+id/menu_open"
-        style="@style/base_image_button"
+        style="@style/default_image_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/open_menu"

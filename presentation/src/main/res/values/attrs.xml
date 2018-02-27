@@ -16,4 +16,15 @@
     <declare-styleable name="SquareButton">
         <attr name="image" format="reference"/>
     </declare-styleable>
+
+    <declare-styleable name="LocationWidget">
+        <attr name="locationName" format="string"/>
+        <attr name="switchVisible" format="boolean"/>
+        <attr name="switchDefaultValue" format="boolean"/>
+        <attr name="buttonVisible" format="boolean"/>
+        <attr name="buttonText" format="string"/>
+        <attr name="mapVisible" format="boolean"/>
+        <attr name="mapLatitude" format="string"/>
+        <attr name="mapLongitude" format="string"/>
+    </declare-styleable>
 </resources>

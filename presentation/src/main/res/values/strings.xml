@@ -50,4 +50,7 @@
     <string name="my_profile">My Profile</string>
     <string name="change">Change</string>
     <string name="first_and_last_name_pattern">%1$s %2$s</string>
+
+    <string name="location">Location</string>
+    <string name="edit">Edit</string>
 </resources>

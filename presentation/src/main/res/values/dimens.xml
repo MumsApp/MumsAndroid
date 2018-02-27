@@ -14,6 +14,7 @@
     
     
     <!-- Texts -->
+    <dimen name="text_size_tiny">11sp</dimen>
     <dimen name="text_size_small">13sp</dimen>
     <dimen name="text_size_normal">15sp</dimen>
     <dimen name="text_size_big">19sp</dimen>
@@ -60,4 +61,8 @@
 
     <!-- My Profile -->
     <dimen name="my_profile_avatar_size">54dp</dimen>
+
+
+    <!-- Location Widget -->
+    <dimen name="location_widget_map_height">200dp</dimen>
 </resources>
