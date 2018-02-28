@@ -53,4 +53,8 @@
 
     <string name="location">Location</string>
     <string name="edit">Edit</string>
+    <string name="children">Children</string>
+
+    <string name="plus">+</string>
+    <string name="minus">-</string>
 </resources>

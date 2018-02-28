@@ -30,6 +30,10 @@
     <dimen name="square_button_width">150dp</dimen>
     <dimen name="square_button_height">150dp</dimen>
 
+    <dimen name="square_button_small_size">24dp</dimen>
+    <dimen name="square_button_small_corner_radius">4dp</dimen>
+    <dimen name="square_button_small_text_size">17dp</dimen>
+
 
     <!-- Dividers -->
     <dimen name="divider_horizontal_height">1dp</dimen>

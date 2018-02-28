@@ -62,9 +62,18 @@
                 tools:text="@string/template_long_text" />
 
             <com.mumsapp.android.ui.views.LocationWidget
+                android:id="@+id/my_profile_location_widget"
                 style="@style/my_profile_location_widget"
                 android:layout_marginTop="@dimen/padding_default"
                 app:layout_constraintTop_toBottomOf="@id/my_profile_description"/>
+
+            <com.mumsapp.android.ui.views.ChildrenSelectionWidget
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_medium"
+                android:layout_marginStart="@dimen/padding_medium"
+                android:layout_marginEnd="@dimen/padding_medium"
+                app:layout_constraintTop_toBottomOf="@id/my_profile_location_widget"/>
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>

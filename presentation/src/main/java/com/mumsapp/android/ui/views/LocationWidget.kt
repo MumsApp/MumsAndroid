@@ -8,10 +8,11 @@ import android.view.View
 import android.widget.FrameLayout
 import butterknife.BindView
 import butterknife.ButterKnife
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MapStyleOptions
-import com.mumsapp.android.MainApplication
 import com.mumsapp.android.R
 import com.mumsapp.android.common.features.HasComponent
 import com.mumsapp.android.di.components.ActivityComponent
@@ -36,8 +37,8 @@ class LocationWidget : CardView {
     @BindView(R.id.location_widget_map_layout)
     lateinit var mapLayout: FrameLayout
 
-    lateinit var currentMapLatitude: String
-    lateinit var currentMapLongitude: String
+    var currentMapLatitude: Double? = null
+    var currentMapLongitude: Double? = null
 
     var map: GoogleMap? = null
 
@@ -120,13 +121,14 @@ class LocationWidget : CardView {
     }
 
     fun setMapCoordinates(latitude: String?, longitude: String?) {
-        if(map != null) {
-//            map.cameraPosition = CameraPosition()
-        }
+       setMapCoordinates(latitude?.toDouble(), longitude?.toDouble())
     }
 
-    fun setMapCoordinates(latitude: Float, longitude: Float) {
+    fun setMapCoordinates(latitude: Double?, longitude: Double?) {
+        currentMapLatitude = latitude
+        currentMapLongitude = longitude
 
+        safeMoveCamera()
     }
 
     private fun setVisibilityFromBoolean(value: Boolean, view: View) {
@@ -141,5 +143,17 @@ class LocationWidget : CardView {
     private fun onMapReady(map: GoogleMap?) {
         this.map = map
         map?.setMapStyle(MapStyleOptions.loadRawResourceStyle(context, R.raw.google_maps_style))
+        map?.uiSettings?.isScrollGesturesEnabled = false
+        map?.uiSettings?.isZoomControlsEnabled = false
+
+        safeMoveCamera()
+    }
+
+    private fun safeMoveCamera() {
+        if(currentMapLatitude != null && currentMapLongitude != null && map != null) {
+            val position = LatLng(currentMapLatitude!!, currentMapLongitude!!)
+            val update = CameraUpdateFactory.newLatLng(position)
+            map?.moveCamera(update)
+        }
     }
 }

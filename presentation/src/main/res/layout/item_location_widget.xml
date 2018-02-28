@@ -2,8 +2,6 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     style="@style/card_squared">
 
     <android.support.constraint.ConstraintLayout
@@ -45,13 +43,6 @@
             app:layout_constraintTop_toTopOf="@id/location_widget_switch"
             app:layout_constraintBottom_toBottomOf="@id/location_widget_switch"
             tools:text="@string/edit" />
-
-        <!--<com.google.android.gms.maps.MapView-->
-            <!--android:id="@+id/location_widget_map"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="@dimen/location_widget_map_height"-->
-            <!--android:layout_marginTop="@dimen/padding_default"-->
-            <!--app:layout_constraintTop_toBottomOf="@id/location_widget_content"/>-->
 
         <FrameLayout
             android:id="@+id/location_widget_map_layout"

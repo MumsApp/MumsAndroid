@@ -45,6 +45,24 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+    
+    <style name="square_button_small" parent="square_button_default">
+        <item name="android:layout_width">@dimen/square_button_small_size</item>
+        <item name="android:layout_height">@dimen/square_button_small_size</item>
+        <item name="android:textSize">@dimen/square_button_small_text_size</item>
+    </style>
+    
+    <style name="button_plus" parent="square_button_small">
+        <item name="android:text">@string/plus</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/btn_square_green_small</item>
+    </style>
+
+    <style name="button_minus" parent="square_button_small">
+        <item name="android:text">@string/minus</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/btn_square_grey_small</item>
+    </style>
 
     <!-- Text Views -->
     <style name="text_view_default">
@@ -232,6 +250,15 @@
     <style name="switch_green" parent="default_switch">
         <item name="colorAccent">@color/green_light</item>
         <item name="colorSwitchThumbNormal">@color/grey_light</item>
+    </style>
+
+    <!-- Widgets -->
+    <style name="widget_layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:paddingTop">@dimen/padding_default</item>
+        <item name="android:paddingStart">@dimen/padding_default</item>
+        <item name="android:paddingEnd">@dimen/padding_default</item>
     </style>
 
     <!-- Location Widget -->
