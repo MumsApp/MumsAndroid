@@ -70,7 +70,7 @@
             <com.mumsapp.android.ui.views.ChildrenSelectionWidget
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/padding_medium"
+                android:layout_marginTop="@dimen/padding_12dp"
                 android:layout_marginStart="@dimen/padding_medium"
                 android:layout_marginEnd="@dimen/padding_medium"
                 app:layout_constraintTop_toBottomOf="@id/my_profile_location_widget"/>

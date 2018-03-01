@@ -35,4 +35,9 @@
 
     <!-- Main Menu -->
     <color name="menu_text">#B2B9CD</color>
+
+
+    <!-- Text Views -->
+    <color name="text_container_background">#FCFDFF</color>
+    <color name="text_container_border">#EBECEE</color>
 </resources>
