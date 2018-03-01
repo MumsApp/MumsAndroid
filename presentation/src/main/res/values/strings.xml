@@ -59,4 +59,9 @@
     <string name="minus">-</string>
     <string name="number">Number</string>
     <string name="age_range">Age range</string>
+
+    <string name="schools">Schools</string>
+    <string name="plus_add_school">+ Add school</string>
+    <string name="delete">Delete</string>
+    <string name="follow">Follow</string>
 </resources>

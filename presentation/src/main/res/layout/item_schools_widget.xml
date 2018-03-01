@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/card_squared">
+
+    <android.support.constraint.ConstraintLayout
+        style="@style/widget_layout"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
+        android:paddingBottom="0dp">
+
+        <com.mumsapp.android.ui.views.BaseTextView
+            android:id="@+id/schools_widget_title"
+            style="@style/text_normal_bold"
+            android:layout_marginStart="@dimen/padding_default"
+            android:text="@string/schools"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/schools_widget_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_default"
+            android:paddingStart="@dimen/padding_default"
+            android:paddingEnd="@dimen/padding_default"
+            app:layout_constraintTop_toBottomOf="@id/schools_widget_title"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            tools:listitem="@layout/cell_schools_widget"/>
+
+        <View
+            android:id="@+id/schools_widget_divider"
+            style="@style/divider_horizontal"
+            app:layout_constraintTop_toBottomOf="@id/schools_widget_recycler_view"/>
+
+        <Button
+            android:id="@+id/schools_widget_add"
+            style="@style/button_white_background"
+            app:layout_constraintTop_toBottomOf="@id/schools_widget_divider"
+            android:text="@string/plus_add_school"/>
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>

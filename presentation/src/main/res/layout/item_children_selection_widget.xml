@@ -28,7 +28,7 @@
             app:layout_constraintRight_toLeftOf="@id/children_selection_widget_plus"
             app:layout_constraintTop_toTopOf="@id/children_selection_widget_plus" />
 
-        <TextView
+        <com.mumsapp.android.ui.views.BaseTextView
             android:id="@+id/children_selection_widget_children_count"
             style="@style/text_container_small"
             android:layout_marginEnd="@dimen/padding_small"
@@ -36,7 +36,7 @@
             app:layout_constraintRight_toLeftOf="@id/children_selection_widget_minus"
             app:layout_constraintTop_toTopOf="@id/children_selection_widget_plus" />
 
-        <TextView
+        <com.mumsapp.android.ui.views.BaseTextView
             style="@style/text_tiny_grey_light"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
             android:layout_marginTop="@dimen/padding_default"
             app:layout_constraintTop_toBottomOf="@id/children_selection_widget_plus" />
 
-        <TextView
+        <com.mumsapp.android.ui.views.BaseTextView
             android:id="@+id/children_selection_seek_bar_label"
             style="@style/text_tiny_grey_light"
             android:layout_width="wrap_content"
@@ -61,7 +61,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/children_selection_buttons_divider" />
 
-        <TextView
+        <com.mumsapp.android.ui.views.BaseTextView
             android:id="@+id/children_selection_range_min"
             style="@style/text_tiny_black"
             android:layout_marginStart="@dimen/padding_big"
@@ -70,7 +70,7 @@
             app:layout_constraintTop_toTopOf="@id/children_selection_seek_bar_label"
             tools:text="0" />
 
-        <TextView
+        <com.mumsapp.android.ui.views.BaseTextView
             android:id="@+id/children_selection_range_max"
             style="@style/text_tiny_black"
             app:layout_constraintBottom_toBottomOf="@id/children_selection_seek_bar_label"

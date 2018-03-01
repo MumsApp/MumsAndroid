@@ -8,7 +8,8 @@
         style="@style/widget_layout"
         android:paddingEnd="0dp"
         android:paddingStart="0dp"
-        android:paddingTop="0dp">
+        android:paddingTop="0dp"
+        android:paddingBottom="0dp">
 
         <com.mumsapp.android.ui.views.BaseTextView
             android:id="@+id/location_widget_title"
