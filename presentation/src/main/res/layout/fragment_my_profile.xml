@@ -19,7 +19,8 @@
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/padding_scroll_view_bottom">
 
             <com.mumsapp.android.ui.views.CircleImageView
                 android:id="@+id/my_profile_avatar"
@@ -76,6 +77,11 @@
                 android:id="@+id/my_profile_schools_widget"
                 style="@style/my_profile_widget"
                 app:layout_constraintTop_toBottomOf="@id/my_profile_children_selection_widget" />
+
+            <com.mumsapp.android.ui.views.MumsAppOffersWidget
+                android:id="@+id/my_profile_mums_app_offers_widget"
+                style="@style/my_profile_widget"
+                app:layout_constraintTop_toBottomOf="@id/my_profile_schools_widget"/>
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>

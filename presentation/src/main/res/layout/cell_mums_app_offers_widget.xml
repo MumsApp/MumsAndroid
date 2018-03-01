@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/default_layout"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/padding_default"
+    android:paddingTop="@dimen/padding_default">
+
+    <com.mumsapp.android.ui.views.BaseSwitch
+        android:id="@+id/cell_mums_app_offers_switch"
+        style="@style/switch_green"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/cell_mums_app_offers_label"
+        style="@style/text_tiny_grey_light"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/cell_mums_app_offers_switch"
+        app:layout_constraintBottom_toBottomOf="@id/cell_mums_app_offers_switch"
+        tools:text="Strollers"/>
+</android.support.constraint.ConstraintLayout>
