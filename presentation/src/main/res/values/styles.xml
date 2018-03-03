@@ -204,6 +204,12 @@
         <item name="topBarRightIcon">@drawable/ic_gear</item>
     </style>
 
+    <style name="top_bar_close" parent="top_bar_default">
+        <item name="topBarLeftButtonVisible">false</item>
+        <item name="topBarRightButtonVisible">true</item>
+        <item name="topBarRightIcon">@drawable/ic_close</item>
+    </style>
+
 
     <!--Forms -->
     <style name="default_form_theme">
@@ -278,6 +284,13 @@
     <style name="switch_green" parent="default_switch">
         <item name="colorAccent">@color/green_light</item>
         <item name="colorSwitchThumbNormal">@color/grey_light</item>
+    </style>
+
+    <style name="switch_settings" parent="switch_green">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">@dimen/padding_default</item>
+        <item name="android:paddingBottom">@dimen/padding_default</item>
     </style>
 
     <!-- Widgets -->

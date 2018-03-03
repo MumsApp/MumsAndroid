@@ -11,6 +11,8 @@ import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.base.BasePresenter
 import com.mumsapp.android.base.BaseView
 import com.mumsapp.android.di.components.ActivityComponent
+import com.mumsapp.android.di.scopes.ActivityScope
+import com.mumsapp.android.ui.dialogs.AccountSettingsDialog
 import com.mumsapp.android.ui.views.BaseTextView
 import com.mumsapp.android.ui.views.CircleImageView
 import com.mumsapp.android.ui.views.TopBar
@@ -24,6 +26,9 @@ class MyProfileFragment: BaseFragment(), MyProfileView {
 
     @Inject
     lateinit var imagesLoader: ImagesLoader
+
+    @Inject
+    lateinit var accountSettingsDialog: AccountSettingsDialog
 
     @BindView(R.id.my_profile_top_bar)
     lateinit var topBar: TopBar
@@ -68,6 +73,10 @@ class MyProfileFragment: BaseFragment(), MyProfileView {
     }
 
     override fun loadAvatar(url: String) {
-        imagesLoader
+        imagesLoader.load(url, avatarView)
+    }
+
+    override fun showAccountSettingsDialog() {
+        accountSettingsDialog.show()
     }
 }

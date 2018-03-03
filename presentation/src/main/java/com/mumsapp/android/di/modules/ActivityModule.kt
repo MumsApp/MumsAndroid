@@ -6,6 +6,7 @@ import com.mumsapp.android.base.BaseActivity
 import com.mumsapp.android.base.BaseFragmentActivity
 import com.mumsapp.android.di.qualifiers.FragmentContainerId
 import com.mumsapp.android.di.scopes.ActivityScope
+import com.mumsapp.android.ui.dialogs.AccountSettingsDialog
 import com.mumsapp.data.facebook.FacebookLoginObservable
 import com.mumsapp.data.repository.FacebookRepositoryImpl
 import com.mumsapp.data.repository.GoogleRepositoryImpl
@@ -95,4 +96,8 @@ class ActivityModule(private val activity: BaseActivity) {
                                       tokenPersistenceService: TokenPersistenceService, getUserProfileUseCase: GetUserProfileUseCase, schedulerProvider: SchedulerProvider): GoogleSignUpUseCase {
         return GoogleSignUpUseCase(googleRepository, userRepository, tokenPersistenceService, getUserProfileUseCase, schedulerProvider)
     }
+
+    @Provides
+    @ActivityScope
+    fun provideAccountSettingsDialog() = AccountSettingsDialog(activity)
 }

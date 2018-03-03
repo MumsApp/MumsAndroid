@@ -64,4 +64,12 @@
     <string name="plus_add_school">+ Add school</string>
     <string name="delete">Delete</string>
     <string name="follow">Follow</string>
+
+    <string name="account_settings">Account settings</string>
+    <string name="public_profile">Public profile</string>
+    <string name="push_notifications">Push notifications</string>
+    <string name="access_my_location">Access my location</string>
+    <string name="emergency_button">Emergency button</string>
+    <string name="logout">Logout</string>
+    <string name="ask_question_or_report_a_change">Ask question or report a change</string>
 </resources>

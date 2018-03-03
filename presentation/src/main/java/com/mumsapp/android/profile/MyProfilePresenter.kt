@@ -33,7 +33,7 @@ class MyProfilePresenter: BasePresenter<MyProfileView> {
     }
 
     fun onSettingsClick() {
-
+        view?.showAccountSettingsDialog()
     }
 
     private fun loadAndUpdateUserProfile() {

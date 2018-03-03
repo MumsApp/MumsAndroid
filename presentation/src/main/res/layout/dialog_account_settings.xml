@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/default_layout"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/padding_big"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:theme="@style/AppTheme">
+
+    <com.mumsapp.android.ui.views.TopBar
+        android:id="@+id/account_settings_top_bar"
+        style="@style/top_bar_close"
+        app:topBarTitle="@string/account_settings"/>
+
+    <com.mumsapp.android.ui.views.BaseSwitch
+        android:id="@+id/account_settings_public_profile"
+        style="@style/switch_settings"
+        android:layout_marginStart="@dimen/padding_default"
+        android:layout_marginEnd="@dimen/padding_default"
+        android:text="@string/public_profile"
+        app:layout_constraintTop_toBottomOf="@id/account_settings_top_bar"/>
+
+    <View
+        android:id="@+id/account_settings_public_profile_divider"
+        style="@style/divider_horizontal"
+        app:layout_constraintTop_toBottomOf="@id/account_settings_public_profile"/>
+
+    <com.mumsapp.android.ui.views.BaseSwitch
+        android:id="@+id/account_settings_push_notifications"
+        style="@style/switch_settings"
+        android:layout_marginStart="@dimen/padding_default"
+        android:layout_marginEnd="@dimen/padding_default"
+        android:text="@string/push_notifications"
+        app:layout_constraintTop_toBottomOf="@id/account_settings_public_profile"/>
+
+    <View
+        android:id="@+id/account_settings_push_notifications_divider"
+        style="@style/divider_horizontal"
+        app:layout_constraintTop_toBottomOf="@id/account_settings_push_notifications"/>
+
+    <com.mumsapp.android.ui.views.BaseSwitch
+        android:id="@+id/account_settings_access_my_location"
+        style="@style/switch_settings"
+        android:layout_marginStart="@dimen/padding_default"
+        android:layout_marginEnd="@dimen/padding_default"
+        android:text="@string/access_my_location"
+        app:layout_constraintTop_toBottomOf="@id/account_settings_push_notifications_divider"/>
+
+    <View
+        android:id="@+id/account_settings_access_my_location_divider"
+        style="@style/divider_horizontal"
+        app:layout_constraintTop_toBottomOf="@id/account_settings_access_my_location"/>
+
+    <com.mumsapp.android.ui.views.BaseSwitch
+        android:id="@+id/account_settings_emergency_button"
+        style="@style/switch_settings"
+        android:layout_marginStart="@dimen/padding_default"
+        android:layout_marginEnd="@dimen/padding_default"
+        android:text="@string/emergency_button"
+        app:layout_constraintTop_toBottomOf="@id/account_settings_access_my_location_divider"/>
+
+    <View
+        android:id="@+id/account_settings_emergency_button_divider"
+        style="@style/divider_horizontal"
+        app:layout_constraintTop_toBottomOf="@id/account_settings_emergency_button"/>
+
+    <com.mumsapp.android.ui.views.BaseButton
+        android:id="@+id/account_settings_logout"
+        style="@style/button_green"
+        android:layout_marginTop="@dimen/padding_default"
+        android:layout_marginStart="@dimen/padding_default"
+        android:layout_marginEnd="@dimen/padding_default"
+        android:text="@string/logout"
+        app:layout_constraintTop_toBottomOf="@id/account_settings_emergency_button_divider"/>
+
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/account_settings_report"
+        style="@style/text_tiny_grey_light"
+        android:layout_marginTop="@dimen/padding_big"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/account_settings_logout"
+        android:text="@string/ask_question_or_report_a_change" />
+</android.support.constraint.ConstraintLayout>
