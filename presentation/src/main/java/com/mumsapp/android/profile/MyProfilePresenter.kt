@@ -1,7 +1,7 @@
 package com.mumsapp.android.profile
 
 import com.mumsapp.android.R
-import com.mumsapp.android.base.BasePresenter
+import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.domain.interactor.user.GetUserProfileUseCase
 import com.mumsapp.domain.model.user.UserResponse
 import com.mumsapp.domain.utils.SessionManager
@@ -10,7 +10,7 @@ import com.mumsapp.domain.repository.ImagesRepository
 import com.mumsapp.domain.repository.ResourceRepository
 import javax.inject.Inject
 
-class MyProfilePresenter: BasePresenter<MyProfileView> {
+class MyProfilePresenter: LifecyclePresenter<MyProfileView> {
 
     private val getUserProfileUseCase: GetUserProfileUseCase
     private val sessionManager: SessionManager

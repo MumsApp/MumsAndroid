@@ -1,77 +1,22 @@
 package com.mumsapp.android.base
 
-import android.arch.lifecycle.Lifecycle
-import android.arch.lifecycle.LifecycleObserver
-import android.arch.lifecycle.OnLifecycleEvent
 import com.mumsapp.domain.exceptions.InvalidRefreshTokenException
 import io.reactivex.Observable
 import io.reactivex.ObservableTransformer
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
-abstract class BasePresenter<View: BaseView>: LifecycleObserver {
+abstract class BasePresenter<View: BaseView> {
 
     protected var view: View? = null
 
     protected var compositeDisposable: CompositeDisposable? = CompositeDisposable()
 
-    fun attachViewWithLifecycle(view: View) {
+    fun attachView(view: View) {
         this.view = view
-        this.view?.getLifecycle()?.addObserver(this)
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
-    fun onStop() {
-        stop()
-    }
-
-    protected open fun stop() {
-        resetDisposables()
-    }
-
-    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-    fun onDestroy() {
-        destroy()
-        detachView()
-    }
-
-    protected open fun destroy() {
-
-    }
-
-    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
-    fun onPause() {
-        pause()
-    }
-
-
-    protected open fun pause() {}
-
-
-    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    fun onResume() {
-        resume()
-    }
-
-    protected open fun resume() {}
-
-
-    @OnLifecycleEvent(Lifecycle.Event.ON_START)
-    fun onStart() {
-        start()
-    }
-
-    protected open fun start() {}
-
-    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-    fun onCreate() {
-        create()
-    }
-
-    protected open fun create() {}
-
-    fun detachView() {
-        view?.getLifecycle()?.removeObserver(this)
+    open fun detachView() {
         view = null
     }
 
@@ -97,14 +42,8 @@ abstract class BasePresenter<View: BaseView>: LifecycleObserver {
         return true
     }
 
-    protected fun isViewAvailable(): Boolean {
-        if (view == null || view?.lifecycle == null) {
-            return false
-        }
-
-        val state = view?.getLifecycle()?.currentState
-
-        return state!!.isAtLeast(Lifecycle.State.CREATED) && state != Lifecycle.State.DESTROYED
+    protected open fun isViewAvailable(): Boolean {
+        return view != null
     }
 
     protected fun <T> applyOverlaysToObservable(): ObservableTransformer<T, T> {
@@ -134,4 +73,20 @@ abstract class BasePresenter<View: BaseView>: LifecycleObserver {
             view?.hideOverlays()
         }
     }
+
+    protected open fun stop() {
+        resetDisposables()
+    }
+
+    protected open fun destroy() {
+
+    }
+
+    protected open fun pause() {}
+
+    protected open fun resume() {}
+
+    protected open fun start() {}
+
+    protected open fun create() {}
 }

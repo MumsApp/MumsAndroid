@@ -7,14 +7,14 @@ import android.view.ViewGroup
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.mumsapp.android.R
-import com.mumsapp.android.base.BaseFragment
-import com.mumsapp.android.base.BasePresenter
-import com.mumsapp.android.base.BaseView
+import com.mumsapp.android.base.LifecycleFragment
+import com.mumsapp.android.base.LifecyclePresenter
+import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.di.components.ActivityComponent
 import com.mumsapp.android.ui.views.TopBar
 import javax.inject.Inject
 
-class CreatePageFragment: BaseFragment(), CreatePageView {
+class CreatePageFragment: LifecycleFragment(), CreatePageView {
 
     @Inject
     lateinit var presenter: CreatePagePresenter
@@ -28,7 +28,7 @@ class CreatePageFragment: BaseFragment(), CreatePageView {
         }
     }
 
-    override fun <T : BasePresenter<BaseView>> getPresenter(): T = presenter as T
+    override fun <T : LifecyclePresenter<LifecycleView>> getPresenter(): T = presenter as T
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

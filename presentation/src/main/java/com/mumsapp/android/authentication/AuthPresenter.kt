@@ -1,12 +1,11 @@
 package com.mumsapp.android.authentication
 
-import com.mumsapp.android.base.BasePresenter
+import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.navigation.ActivitiesNavigationService
-import com.mumsapp.android.navigation.ActivitiesNavigationService_Factory
 import com.mumsapp.android.navigation.FragmentsNavigationService
 import javax.inject.Inject
 
-class AuthPresenter: BasePresenter<AuthView> {
+class AuthPresenter: LifecyclePresenter<AuthView> {
 
     private val fragmentsNavigationService: FragmentsNavigationService
     private val activityNavigationService: ActivitiesNavigationService

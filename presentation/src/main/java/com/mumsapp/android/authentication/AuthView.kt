@@ -1,6 +1,6 @@
 package com.mumsapp.android.authentication
 
-import com.mumsapp.android.base.BaseView
+import com.mumsapp.android.base.LifecycleView
 
-interface AuthView: BaseView {
+interface AuthView: LifecycleView {
 }

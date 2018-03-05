@@ -10,8 +10,8 @@ import com.facebook.CallbackManager
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.mumsapp.android.R
 import com.mumsapp.android.base.BaseFragmentActivity
-import com.mumsapp.android.base.BasePresenter
-import com.mumsapp.android.base.BaseView
+import com.mumsapp.android.base.LifecyclePresenter
+import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.common.features.HasOverlays
 import com.mumsapp.android.ui.views.NonCLickableFrameLayout
 import com.mumsapp.data.google.GoogleCallbackHandler
@@ -52,7 +52,7 @@ class AuthActivity : BaseFragmentActivity(), AuthView, HasOverlays {
 
     override fun makeInject() = activityComponent.inject(this)
 
-    override fun <T: BasePresenter<BaseView>> getPresenter(): T = presenter as T
+    override fun <T: LifecyclePresenter<LifecycleView>> getPresenter(): T = presenter as T
 
     override fun getFragmentContainerId(): Int {
         return R.id.auth_frame_layout

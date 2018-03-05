@@ -9,8 +9,8 @@ import butterknife.ButterKnife
 import butterknife.OnClick
 import com.mumsapp.android.R
 import com.mumsapp.android.base.BaseFragmentActivity
-import com.mumsapp.android.base.BasePresenter
-import com.mumsapp.android.base.BaseView
+import com.mumsapp.android.base.LifecyclePresenter
+import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.common.features.HasOverlays
 import com.mumsapp.android.ui.views.NonCLickableFrameLayout
 import javax.inject.Inject
@@ -40,7 +40,7 @@ class MainActivity : BaseFragmentActivity(), MainView, HasOverlays {
 
     override fun getProperFragmentManager(): FragmentManager = supportFragmentManager
 
-    override fun <T : BasePresenter<BaseView>> getPresenter(): T = presenter as T
+    override fun <T : LifecyclePresenter<LifecycleView>> getPresenter(): T = presenter as T
 
     override fun makeInject() = activityComponent.inject(this)
 

@@ -1,8 +1,8 @@
 package com.mumsapp.android.profile
 
-import com.mumsapp.android.base.BaseView
+import com.mumsapp.android.base.LifecycleView
 
-interface MyProfileView: BaseView {
+interface MyProfileView: LifecycleView {
 
     fun showProfileInfo(name: String, description: String)
 

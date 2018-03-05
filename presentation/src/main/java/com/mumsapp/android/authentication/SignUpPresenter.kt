@@ -1,7 +1,7 @@
 package com.mumsapp.android.authentication
 
 import com.mumsapp.android.R
-import com.mumsapp.android.base.BasePresenter
+import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.navigation.ActivitiesNavigationService
 import com.mumsapp.android.navigation.FragmentsNavigationService
 import com.mumsapp.domain.interactor.user.FacebookSignUpUseCase
@@ -15,7 +15,7 @@ import com.mumsapp.domain.utils.SessionManager
 import com.mumsapp.domain.utils.ValidationHelper
 import javax.inject.Inject
 
-class SignUpPresenter: BasePresenter<SignUpView> {
+class SignUpPresenter: LifecyclePresenter<SignUpView> {
 
     private val fragmentsNavigationService: FragmentsNavigationService
     private val signUpUseCase: SignUpUseCase

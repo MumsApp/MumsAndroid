@@ -2,9 +2,11 @@ package com.mumsapp.android.di.modules
 
 import com.mumsapp.domain.interactor.user.GetUserProfileUseCase
 import com.mumsapp.domain.interactor.user.SignInUseCase
+import com.mumsapp.domain.interactor.user.SignOutUserUseCase
 import com.mumsapp.domain.interactor.user.SignUpUseCase
 import com.mumsapp.domain.repository.UserRepository
 import com.mumsapp.domain.utils.SchedulerProvider
+import com.mumsapp.domain.utils.SessionManager
 import com.mumsapp.domain.utils.TokenPersistenceService
 import dagger.Module
 import dagger.Provides
@@ -30,5 +32,13 @@ class UseCaseModule {
     @Singleton
     fun providesSignInUseCase(userRepository: UserRepository, tokenPersistenceService: TokenPersistenceService, getUserProfileUseCase: GetUserProfileUseCase, schedulerProvider: SchedulerProvider) : SignInUseCase {
         return SignInUseCase(userRepository, tokenPersistenceService, getUserProfileUseCase, schedulerProvider)
+    }
+
+    @Provides
+    @Singleton
+    fun providesSignOutUseCase(sessionManager: SessionManager,
+                               tokenPersistenceService: TokenPersistenceService,
+                               schedulerProvider: SchedulerProvider) : SignOutUserUseCase {
+        return SignOutUserUseCase(sessionManager, tokenPersistenceService, schedulerProvider)
     }
 }

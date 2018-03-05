@@ -1,11 +1,11 @@
 package com.mumsapp.android.main
 
-import com.mumsapp.android.base.BasePresenter
+import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.navigation.ActivitiesNavigationService
 import com.mumsapp.android.navigation.FragmentsNavigationService
 import javax.inject.Inject
 
-class MainPresenter : BasePresenter<MainView> {
+class MainPresenter : LifecyclePresenter<MainView> {
 
     private val fragmentsNavigationService: FragmentsNavigationService
     private val activityNavigationService: ActivitiesNavigationService

@@ -1,8 +1,8 @@
 package com.mumsapp.android.authentication
 
-import com.mumsapp.android.base.BaseView
+import com.mumsapp.android.base.LifecycleView
 
-interface SignUpView: BaseView {
+interface SignUpView: LifecycleView {
 
     fun showFirstNameError(error: String)
 

@@ -6,7 +6,7 @@ import butterknife.Unbinder
 import com.mumsapp.android.common.features.HasComponent
 import com.mumsapp.android.common.features.HasOverlays
 
-abstract class BaseFragment: Fragment(), BaseView {
+abstract class LifecycleFragment : Fragment(), LifecycleView {
 
     private var unbinder: Unbinder? = null
 
@@ -37,7 +37,7 @@ abstract class BaseFragment: Fragment(), BaseView {
 
     override fun showError(error: String) = (activity as BaseActivity).showError(error)
 
-    fun goingBack(): Boolean = getPresenter<BasePresenter<BaseView>>() != null || getPresenter<BasePresenter<BaseView>>().onGoingBack()
+    fun goingBack(): Boolean = getPresenter<LifecyclePresenter<LifecycleView>>() != null || getPresenter<LifecyclePresenter<LifecycleView>>().onGoingBack()
 
     override fun showLoading() {
         if(activity is HasOverlays) {

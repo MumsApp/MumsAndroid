@@ -1,12 +1,11 @@
 package com.mumsapp.android.base
 
-import android.arch.lifecycle.LifecycleOwner
 import android.view.View
 import com.mumsapp.android.common.features.HasOverlays
 
-interface BaseView: LifecycleOwner, HasOverlays {
+interface BaseView : HasOverlays {
 
-    fun <T: BasePresenter<BaseView>> getPresenter(): T
+    fun <T: LifecyclePresenter<LifecycleView>> getPresenter(): T
 
     fun hideKeyboard()
 

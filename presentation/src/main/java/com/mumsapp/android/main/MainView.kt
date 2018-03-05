@@ -1,8 +1,8 @@
 package com.mumsapp.android.main
 
-import com.mumsapp.android.base.BaseView
+import com.mumsapp.android.base.LifecycleView
 
-interface MainView : BaseView {
+interface MainView : LifecycleView {
 
     fun showMenu()
 

@@ -7,19 +7,19 @@ import android.view.ViewGroup
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.mumsapp.android.R
-import com.mumsapp.android.base.BaseFragment
-import com.mumsapp.android.base.BasePresenter
-import com.mumsapp.android.base.BaseView
+import com.mumsapp.android.base.BaseActivity
+import com.mumsapp.android.base.LifecycleFragment
+import com.mumsapp.android.base.LifecyclePresenter
+import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.di.components.ActivityComponent
-import com.mumsapp.android.di.scopes.ActivityScope
-import com.mumsapp.android.ui.dialogs.AccountSettingsDialog
+import com.mumsapp.android.navigation.DialogsProvider
 import com.mumsapp.android.ui.views.BaseTextView
 import com.mumsapp.android.ui.views.CircleImageView
 import com.mumsapp.android.ui.views.TopBar
 import com.mumsapp.android.util.ImagesLoader
 import javax.inject.Inject
 
-class MyProfileFragment: BaseFragment(), MyProfileView {
+class MyProfileFragment: LifecycleFragment(), MyProfileView {
 
     @Inject
     lateinit var presenter: MyProfilePresenter
@@ -28,7 +28,7 @@ class MyProfileFragment: BaseFragment(), MyProfileView {
     lateinit var imagesLoader: ImagesLoader
 
     @Inject
-    lateinit var accountSettingsDialog: AccountSettingsDialog
+    lateinit var dialogsProvider: DialogsProvider
 
     @BindView(R.id.my_profile_top_bar)
     lateinit var topBar: TopBar
@@ -42,7 +42,9 @@ class MyProfileFragment: BaseFragment(), MyProfileView {
     @BindView(R.id.my_profile_avatar)
     lateinit var avatarView: CircleImageView
 
-    override fun <T : BasePresenter<BaseView>> getPresenter(): T = presenter as T
+    private var accountSettingsDialog: AccountSettingsDialog? = null
+
+    override fun <T : LifecyclePresenter<LifecycleView>> getPresenter(): T = presenter as T
 
     companion object {
         fun getInstance(): MyProfileFragment {
@@ -77,6 +79,9 @@ class MyProfileFragment: BaseFragment(), MyProfileView {
     }
 
     override fun showAccountSettingsDialog() {
-        accountSettingsDialog.show()
+        if(accountSettingsDialog == null) {
+            accountSettingsDialog = dialogsProvider.createAccountSettingsDialog()
+        }
+        accountSettingsDialog?.show()
     }
 }

@@ -4,6 +4,7 @@ import android.content.Context
 import com.mumsapp.android.di.modules.ActivityModule
 import com.mumsapp.android.di.modules.AppModule
 import com.mumsapp.android.di.modules.UseCaseModule
+import com.mumsapp.android.profile.AccountSettingsDialog
 import dagger.Component
 import javax.inject.Singleton
 
@@ -13,4 +14,6 @@ interface AppComponent {
 
     fun plus(module: ActivityModule): ActivityComponent
     fun context(): Context
+
+    fun inject(dialog: AccountSettingsDialog)
 }
