@@ -1,5 +1,7 @@
 package com.mumsapp.android.main
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.v4.app.FragmentManager
@@ -27,6 +29,12 @@ class MainActivity : BaseFragmentActivity(), MainView, HasOverlays {
     lateinit var progressLayout: NonCLickableFrameLayout
 
     private var loadingPresented = false
+
+    companion object {
+        fun createIntent(context: Context): Intent {
+            return Intent(context, MainActivity::class.java)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

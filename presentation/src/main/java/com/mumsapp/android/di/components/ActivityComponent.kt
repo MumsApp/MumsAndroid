@@ -28,4 +28,6 @@ interface ActivityComponent {
     fun inject(fragment: MyProfileFragment)
 
     fun inject(widget: LocationWidget)
+
+    fun inject(dialog: AccountSettingsDialog)
 }

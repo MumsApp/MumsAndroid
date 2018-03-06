@@ -29,20 +29,8 @@
         android:visibility="gone"
         tools:visibility="visible"/>
 
-    <com.mumsapp.android.ui.views.NonCLickableFrameLayout
+    <include
         android:id="@+id/main_progress_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/overlay_background"
-        android:visibility="gone">
-
-        <ProgressBar
-            android:id="@+id/main_progress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:indeterminate="true" />
-
-    </com.mumsapp.android.ui.views.NonCLickableFrameLayout>
+        layout="@layout/item_progress_overlay" />
 
 </android.support.constraint.ConstraintLayout>

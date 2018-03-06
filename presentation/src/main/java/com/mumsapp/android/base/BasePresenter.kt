@@ -82,11 +82,11 @@ abstract class BasePresenter<View: BaseView> {
 
     }
 
-    protected open fun pause() {}
+    open fun pause() {}
 
-    protected open fun resume() {}
+    open fun resume() {}
 
-    protected open fun start() {}
+    open fun start() {}
 
-    protected open fun create() {}
+    open fun create() {}
 }

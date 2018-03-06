@@ -14,6 +14,4 @@ interface AppComponent {
 
     fun plus(module: ActivityModule): ActivityComponent
     fun context(): Context
-
-    fun inject(dialog: AccountSettingsDialog)
 }

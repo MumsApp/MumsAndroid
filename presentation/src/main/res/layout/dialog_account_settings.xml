@@ -80,4 +80,8 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/account_settings_logout"
         android:text="@string/ask_question_or_report_a_change" />
+
+    <include
+        android:id="@+id/account_settings_progress_layout"
+        layout="@layout/item_progress_overlay" />
 </android.support.constraint.ConstraintLayout>

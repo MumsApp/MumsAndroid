@@ -1,5 +1,6 @@
 package com.mumsapp.android.authentication
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.FragmentManager
@@ -13,6 +14,7 @@ import com.mumsapp.android.base.BaseFragmentActivity
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.common.features.HasOverlays
+import com.mumsapp.android.main.MainActivity
 import com.mumsapp.android.ui.views.NonCLickableFrameLayout
 import com.mumsapp.data.google.GoogleCallbackHandler
 import javax.inject.Inject
@@ -32,6 +34,12 @@ class AuthActivity : BaseFragmentActivity(), AuthView, HasOverlays {
     lateinit var progressLayout: NonCLickableFrameLayout
 
     private var loadingPresented = false
+
+    companion object {
+        fun createIntent(context: Context): Intent {
+            return Intent(context, AuthActivity::class.java)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

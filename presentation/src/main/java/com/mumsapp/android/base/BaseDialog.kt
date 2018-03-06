@@ -4,9 +4,7 @@ import android.content.Context
 import android.support.v7.app.AlertDialog
 import android.view.View
 import butterknife.Unbinder
-import com.mumsapp.android.MainApplication
 import com.mumsapp.android.common.features.HasComponent
-import com.mumsapp.android.di.components.AppComponent
 
 abstract class BaseDialog(context: Context) : AlertDialog(context), BaseView {
 
@@ -16,8 +14,8 @@ abstract class BaseDialog(context: Context) : AlertDialog(context), BaseView {
         this.unbinder = unbinder
     }
 
-    protected fun getComponent(): AppComponent {
-        return MainApplication.getApplication(context.applicationContext).appComponent
+    protected fun <C> getComponent(componentType: Class<C>): C? {
+        return componentType.cast((ownerActivity as HasComponent<C>).getComponent())
     }
 
     override fun onDetachedFromWindow() {

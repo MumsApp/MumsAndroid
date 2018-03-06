@@ -2,6 +2,7 @@ package com.mumsapp.android.navigation
 
 import android.content.Intent
 import android.net.Uri
+import com.mumsapp.android.authentication.AuthActivity
 import com.mumsapp.android.base.BaseActivity
 import com.mumsapp.android.main.MainActivity
 import javax.inject.Inject
@@ -15,8 +16,13 @@ class ActivitiesNavigationService {
         this.activity = activity
     }
 
+    fun openAuthActivity() {
+        val intent = AuthActivity.createIntent(activity)
+        activity.startActivity(intent)
+    }
+
     fun openMainActivity() {
-        val intent = Intent(activity, MainActivity::class.java)
+        val intent = MainActivity.createIntent(activity)
         activity.startActivity(intent)
     }
 
