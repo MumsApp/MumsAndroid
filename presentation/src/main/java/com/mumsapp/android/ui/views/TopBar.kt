@@ -83,7 +83,7 @@ class TopBar: ConstraintLayout {
         rightButton.setImageDrawable(drawable)
     }
 
-    fun setRightButtonClickListener(listener: View.OnClickListener) {
+    fun setRightButtonClickListener(listener: (view: View) -> Unit) {
         rightButton.setOnClickListener(listener)
     }
 

@@ -22,7 +22,7 @@ class SchoolsWidget : CardView {
     }
 
     private fun setup(context: Context, attrs: AttributeSet?) {
-        val view = View.inflate(context, R.layout.item_schools_widget, this)
+        val view = View.inflate(context, R.layout.widget_schools, this)
         ButterKnife.bind(view)
     }
 }

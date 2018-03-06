@@ -65,4 +65,16 @@ class MyProfilePresenter: LifecyclePresenter<MyProfileView> {
             view?.loadAvatar(url)
         }
     }
+
+    fun onEditLocationClickListener() {
+        view?.showEditLocationDialog()
+    }
+
+    fun onLocationSwitchChanged(value: Boolean) {
+        if(value) {
+            view?.showLocation()
+        } else {
+            view?.hideLocation()
+        }
+    }
 }

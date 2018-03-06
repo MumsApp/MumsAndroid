@@ -9,4 +9,10 @@ interface MyProfileView: LifecycleView {
     fun loadAvatar(url: String)
 
     fun showAccountSettingsDialog()
+
+    fun showEditLocationDialog()
+
+    fun showLocation()
+
+    fun hideLocation()
 }

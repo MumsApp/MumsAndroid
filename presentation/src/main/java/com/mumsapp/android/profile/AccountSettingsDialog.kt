@@ -27,12 +27,6 @@ class AccountSettingsDialog(context: Context) : BaseDialog(context), AccountSett
     @BindView(R.id.account_settings_top_bar)
     lateinit var topBar: TopBar
 
-    init {
-        if(context is BaseActivity) {
-            ownerActivity = context
-        }
-    }
-
     override fun <T : LifecyclePresenter<LifecycleView>> getPresenter(): T = presenter as T
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,10 +37,10 @@ class AccountSettingsDialog(context: Context) : BaseDialog(context), AccountSett
     private fun setup() {
         getComponent(ActivityComponent::class.java)?.inject(this)
         setContentView(R.layout.dialog_account_settings)
-        ButterKnife.bind(this)
-        topBar.setRightButtonClickListener(View.OnClickListener {
+        setUnbinder(ButterKnife.bind(this))
+        topBar.setRightButtonClickListener {
             presenter.onCloseClick()
-        })
+        }
         presenter.attachView(this)
     }
 

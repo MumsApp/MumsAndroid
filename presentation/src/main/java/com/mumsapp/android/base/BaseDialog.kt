@@ -10,6 +10,12 @@ abstract class BaseDialog(context: Context) : AlertDialog(context), BaseView {
 
     private var unbinder: Unbinder? = null
 
+    init {
+        if(context is BaseActivity) {
+            ownerActivity = context
+        }
+    }
+
     protected fun setUnbinder(unbinder: Unbinder) {
         this.unbinder = unbinder
     }

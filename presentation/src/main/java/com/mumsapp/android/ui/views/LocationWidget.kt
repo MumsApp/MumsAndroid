@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager
 import android.support.v7.widget.CardView
 import android.util.AttributeSet
 import android.view.View
+import android.widget.CompoundButton
 import android.widget.FrameLayout
 import butterknife.BindView
 import butterknife.ButterKnife
@@ -56,7 +57,7 @@ class LocationWidget : CardView {
     }
 
     private fun setup(context: Context, attrs: AttributeSet?) {
-        val view = View.inflate(context, R.layout.item_location_widget, this)
+        val view = View.inflate(context, R.layout.widget_location, this)
         if(context is HasComponent<*>) {
             (context as HasComponent<ActivityComponent>).getComponent().inject(this)
         }
@@ -75,7 +76,7 @@ class LocationWidget : CardView {
         setSwitchVisibility(switchVisible)
 
         val switchValue = array.getBoolean(R.styleable.LocationWidget_switchDefaultValue, false)
-        setSwitchDefaultValue(switchValue)
+        setSwitchValue(switchValue)
 
         val buttonVisible = array.getBoolean(R.styleable.LocationWidget_buttonVisible, false)
         setButtonVisibility(buttonVisible)
@@ -101,7 +102,7 @@ class LocationWidget : CardView {
         setVisibilityFromBoolean(visibility, switchView)
     }
 
-    fun setSwitchDefaultValue(value: Boolean) {
+    fun setSwitchValue(value: Boolean) {
         switchView.isChecked = value
     }
 
@@ -132,7 +133,7 @@ class LocationWidget : CardView {
     }
 
     private fun setVisibilityFromBoolean(value: Boolean, view: View) {
-        val visibility = if (value) View.VISIBLE else View.INVISIBLE
+        val visibility = if (value) View.VISIBLE else View.GONE
         view.visibility = visibility
     }
 
@@ -155,5 +156,13 @@ class LocationWidget : CardView {
             val update = CameraUpdateFactory.newLatLng(position)
             map?.moveCamera(update)
         }
+    }
+
+    fun setWidgetButtonListener(lambda: ((v: View) -> Unit)) {
+        buttonView.setOnClickListener(lambda)
+    }
+
+    fun setSwitchChangeListener(lambda: (buttonView: CompoundButton, isChecked: Boolean) -> Unit) {
+        switchView.setOnCheckedChangeListener(lambda)
     }
 }

@@ -8,7 +8,6 @@ import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
-import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarChangeListener
 import com.mumsapp.android.R
 
 class ChildrenSelectionWidget : CardView {
@@ -40,7 +39,7 @@ class ChildrenSelectionWidget : CardView {
     }
 
     private fun setup(context: Context, attrs: AttributeSet?) {
-        val view = View.inflate(context, R.layout.item_children_selection_widget, this)
+        val view = View.inflate(context, R.layout.widget_children_selection, this)
         ButterKnife.bind(view)
         configureViews()
     }
