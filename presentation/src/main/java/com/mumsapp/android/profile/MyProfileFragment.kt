@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.CompoundButton
 import butterknife.BindView
 import butterknife.ButterKnife
+import butterknife.OnClick
 import com.google.android.gms.location.places.ui.PlaceAutocomplete
 import com.mumsapp.android.R
 import com.mumsapp.android.base.LifecycleFragment
@@ -54,6 +55,8 @@ class MyProfileFragment: LifecycleFragment(), MyProfileView {
     lateinit var locationWidget: LocationWidget
 
     private var accountSettingsDialog: AccountSettingsDialog? = null
+
+    private var userDetailsSettingsDialog: UserDetailsSettingsDialog? = null
 
     override fun <T : LifecyclePresenter<LifecycleView>> getPresenter(): T = presenter as T
 
@@ -105,11 +108,23 @@ class MyProfileFragment: LifecycleFragment(), MyProfileView {
         imagesLoader.load(url, avatarView)
     }
 
+    @OnClick(R.id.my_profile_change_name)
+    fun onChangeClick() {
+        presenter.onChangeClick()
+    }
+
     override fun showAccountSettingsDialog() {
         if(accountSettingsDialog == null) {
             accountSettingsDialog = dialogsProvider.createAccountSettingsDialog()
         }
         accountSettingsDialog?.show()
+    }
+
+    override fun showUserDetailsSettingsDialog() {
+        if(userDetailsSettingsDialog == null) {
+            userDetailsSettingsDialog = dialogsProvider.createUserDetailsSettingsDialog()
+        }
+        userDetailsSettingsDialog?.show()
     }
 
     private fun configureLocationWidget() {

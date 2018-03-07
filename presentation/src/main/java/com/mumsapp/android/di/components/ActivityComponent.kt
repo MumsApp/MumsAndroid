@@ -6,6 +6,7 @@ import com.mumsapp.android.di.scopes.ActivityScope
 import com.mumsapp.android.main.MainActivity
 import com.mumsapp.android.profile.AccountSettingsDialog
 import com.mumsapp.android.profile.MyProfileFragment
+import com.mumsapp.android.profile.UserDetailsSettingsDialog
 import com.mumsapp.android.ui.views.LocationWidget
 import dagger.Subcomponent
 
@@ -30,4 +31,6 @@ interface ActivityComponent {
     fun inject(widget: LocationWidget)
 
     fun inject(dialog: AccountSettingsDialog)
+
+    fun inject(dialog: UserDetailsSettingsDialog)
 }

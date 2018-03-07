@@ -15,6 +15,7 @@
     </style>
 
     <style name="default_dialog_layout" parent="default_layout">
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:paddingBottom">@dimen/padding_big</item>
     </style>
 
@@ -239,6 +240,11 @@
         <item name="android:textColorHint">@color/black_light</item>
         <item name="android:textSize">@dimen/text_size_normal</item>
         <item name="android:theme">@style/default_form_theme</item>
+    </style>
+
+    <style name="dialog_form" parent="default_form">
+        <item name="android:layout_marginStart">@dimen/padding_default</item>
+        <item name="android:layout_marginEnd">@dimen/padding_default</item>
     </style>
 
     <!-- Card View -->

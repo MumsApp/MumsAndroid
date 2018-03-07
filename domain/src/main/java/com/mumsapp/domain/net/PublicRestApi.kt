@@ -1,11 +1,9 @@
 package com.mumsapp.domain.net
 
-import com.mumsapp.domain.model.BaseResponse
 import com.mumsapp.domain.model.EmptyResponse
 import com.mumsapp.domain.model.identity.Token
 import com.mumsapp.domain.model.user.*
 import io.reactivex.Observable
-import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.*
 

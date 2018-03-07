@@ -73,9 +73,9 @@
     <string name="logout">Logout</string>
     <string name="ask_question_or_report_a_change">Ask question or report a change</string>
 
-    <string name="change_location">Change location</string>
-    <string name="enter_location">Enter location</string>
-    <string name="done">Done</string>
-
     <string name="location_choose_error">Cannot choose location, try again later</string>
+
+    <string name="update_details">Update details</string>
+    <string name="description">Description</string>
+    <string name="save">Save</string>
 </resources>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/default_dialog_layout"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.mumsapp.android.ui.views.TopBar
+        android:id="@+id/user_details_settings_top_bar"
+        style="@style/top_bar_close"
+        app:topBarTitle="@string/update_details"/>
+
+    <com.mumsapp.android.ui.views.BaseInput
+        android:id="@+id/user_details_settings_first_name"
+        style="@style/dialog_form"
+        android:layout_marginTop="@dimen/padding_default"
+        app:layout_constraintTop_toBottomOf="@id/user_details_settings_top_bar"
+        android:inputType="textPersonName"
+        android:hint="@string/first_name"/>
+
+    <com.mumsapp.android.ui.views.BaseInput
+        android:id="@+id/user_details_settings_last_name"
+        style="@style/dialog_form"
+        android:layout_marginTop="@dimen/form_padding_vertical"
+        app:layout_constraintTop_toBottomOf="@id/user_details_settings_first_name"
+        android:inputType="textPersonName"
+        android:hint="@string/last_name"/>
+
+    <com.mumsapp.android.ui.views.BaseInput
+        android:id="@+id/user_details_settings_description"
+        style="@style/dialog_form"
+        android:layout_marginTop="@dimen/form_padding_vertical"
+        app:layout_constraintTop_toBottomOf="@id/user_details_settings_last_name"
+        android:inputType="textAutoComplete"
+        android:hint="@string/description"/>
+
+    <com.mumsapp.android.ui.views.BaseButton
+        android:id="@+id/account_settings_logout"
+        style="@style/button_dialog"
+        android:text="@string/save"
+        app:layout_constraintTop_toBottomOf="@id/user_details_settings_description"/>
+</android.support.constraint.ConstraintLayout>

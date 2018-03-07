@@ -73,6 +73,10 @@ class MyProfilePresenter: LifecyclePresenter<MyProfileView> {
         }
     }
 
+    fun onChangeClick() {
+        view?.showUserDetailsSettingsDialog()
+    }
+
     fun onEditLocationClickListener() {
         view?.showEditLocationScreen()
     }
