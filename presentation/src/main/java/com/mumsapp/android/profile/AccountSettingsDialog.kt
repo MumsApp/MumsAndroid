@@ -7,7 +7,6 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
 import com.mumsapp.android.R
-import com.mumsapp.android.base.BaseActivity
 import com.mumsapp.android.base.BaseDialog
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.base.LifecycleView
@@ -37,6 +36,7 @@ class AccountSettingsDialog(context: Context) : BaseDialog(context), AccountSett
     private fun setup() {
         getComponent(ActivityComponent::class.java)?.inject(this)
         setContentView(R.layout.dialog_account_settings)
+        configureWindow()
         setUnbinder(ButterKnife.bind(this))
         topBar.setRightButtonClickListener {
             presenter.onCloseClick()

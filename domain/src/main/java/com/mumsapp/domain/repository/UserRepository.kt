@@ -21,4 +21,6 @@ interface UserRepository {
     fun signInGoogle(request: GoogleSignInRequest): Observable<Token>
 
     fun getUserData(id: Int, level: Int): Observable<UserResponse>
+
+    fun updateUserLocation(id: Int, request: UpdateLocationRequest): Observable<EmptyResponse>
 }

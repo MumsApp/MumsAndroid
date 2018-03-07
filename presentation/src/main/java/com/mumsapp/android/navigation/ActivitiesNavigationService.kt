@@ -2,8 +2,10 @@ package com.mumsapp.android.navigation
 
 import android.content.Intent
 import android.net.Uri
+import com.google.android.gms.location.places.ui.PlaceAutocomplete
 import com.mumsapp.android.authentication.AuthActivity
 import com.mumsapp.android.base.BaseActivity
+import com.mumsapp.android.base.LifecycleFragment
 import com.mumsapp.android.main.MainActivity
 import javax.inject.Inject
 
@@ -37,5 +39,14 @@ class ActivitiesNavigationService {
 
     fun finishCurrentActivity() {
         this.activity.finish()
+    }
+
+    fun openGooglePlacesOverlayActivity(fragment: LifecycleFragment, requestCode: Int) {
+        val intent = createGooglePlacesOverlayActivityIntent()
+        fragment.startActivityForResult(intent, requestCode)
+    }
+
+    fun createGooglePlacesOverlayActivityIntent(): Intent {
+        return PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_OVERLAY).build(activity)
     }
 }

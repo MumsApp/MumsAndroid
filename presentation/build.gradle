@@ -124,6 +124,9 @@ dependencies {
     //Google maps
     implementation "com.google.android.gms:play-services-maps:$googleMapsVersion"
 
+    //Google places
+    compile "com.google.android.gms:play-services-places:$googleMapsVersion"
+
     //https://github.com/syedowaisali/crystal-range-seekbar Customizable seekbars
     implementation 'com.crystal:crystalrangeseekbar:1.1.3'
 

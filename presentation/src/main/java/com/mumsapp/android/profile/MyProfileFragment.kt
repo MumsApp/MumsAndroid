@@ -1,5 +1,7 @@
 package com.mumsapp.android.profile
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,13 +9,13 @@ import android.view.ViewGroup
 import android.widget.CompoundButton
 import butterknife.BindView
 import butterknife.ButterKnife
+import com.google.android.gms.location.places.ui.PlaceAutocomplete
 import com.mumsapp.android.R
-import com.mumsapp.android.base.BaseActivity
 import com.mumsapp.android.base.LifecycleFragment
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.di.components.ActivityComponent
-import com.mumsapp.android.location.LocationSelectingDialog
+import com.mumsapp.android.navigation.ActivitiesNavigationService
 import com.mumsapp.android.navigation.DialogsProvider
 import com.mumsapp.android.ui.views.BaseTextView
 import com.mumsapp.android.ui.views.CircleImageView
@@ -33,6 +35,9 @@ class MyProfileFragment: LifecycleFragment(), MyProfileView {
     @Inject
     lateinit var dialogsProvider: DialogsProvider
 
+    @Inject
+    lateinit var activitiesNavigationService: ActivitiesNavigationService
+
     @BindView(R.id.my_profile_top_bar)
     lateinit var topBar: TopBar
 
@@ -50,14 +55,14 @@ class MyProfileFragment: LifecycleFragment(), MyProfileView {
 
     private var accountSettingsDialog: AccountSettingsDialog? = null
 
-    private var locationSelectingDialog: LocationSelectingDialog? = null
-
     override fun <T : LifecyclePresenter<LifecycleView>> getPresenter(): T = presenter as T
 
     companion object {
         fun getInstance(): MyProfileFragment {
             return MyProfileFragment()
         }
+
+        private val GOOGLE_PLACES_REQUEST_CODE = 1;
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,6 +81,19 @@ class MyProfileFragment: LifecycleFragment(), MyProfileView {
         presenter.attachViewWithLifecycle(this)
         topBar.setRightButtonClickListener { presenter.onSettingsClick() }
         configureLocationWidget()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == GOOGLE_PLACES_REQUEST_CODE) {
+            if(resultCode == Activity.RESULT_OK) {
+                val place = PlaceAutocomplete.getPlace(context, data)
+                presenter.onLocationSelected(place)
+            } else if(resultCode == PlaceAutocomplete.RESULT_ERROR) {
+                val status = PlaceAutocomplete.getStatus(context, data)
+                presenter.onLocationError(status)
+            }
+        }
     }
 
     override fun showProfileInfo(name: String, description: String) {
@@ -104,16 +122,19 @@ class MyProfileFragment: LifecycleFragment(), MyProfileView {
         })
     }
 
-    override fun showEditLocationDialog() {
-        if(locationSelectingDialog == null) {
-            locationSelectingDialog = dialogsProvider.createLocationSelectingDialog()
-        }
-
-        locationSelectingDialog?.show()
+    override fun showEditLocationScreen() {
+        activitiesNavigationService.openGooglePlacesOverlayActivity(this, GOOGLE_PLACES_REQUEST_CODE)
     }
 
     override fun showLocation() {
         locationWidget.setMapVisibility(true)
+        locationWidget.setSwitchValue(true)
+    }
+
+    override fun showNewLocation(latitude: String, longitude: String, name: String) {
+        showLocation()
+        locationWidget.setMapCoordinates(latitude, longitude)
+        locationWidget.setLocationName(name)
     }
 
     override fun hideLocation() {

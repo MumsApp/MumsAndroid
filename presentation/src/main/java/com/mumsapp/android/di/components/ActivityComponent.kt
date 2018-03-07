@@ -3,7 +3,6 @@ package com.mumsapp.android.di.components
 import com.mumsapp.android.authentication.*
 import com.mumsapp.android.di.modules.ActivityModule
 import com.mumsapp.android.di.scopes.ActivityScope
-import com.mumsapp.android.location.LocationSelectingDialog
 import com.mumsapp.android.main.MainActivity
 import com.mumsapp.android.profile.AccountSettingsDialog
 import com.mumsapp.android.profile.MyProfileFragment
@@ -31,6 +30,4 @@ interface ActivityComponent {
     fun inject(widget: LocationWidget)
 
     fun inject(dialog: AccountSettingsDialog)
-
-    fun inject(dialog: LocationSelectingDialog)
 }

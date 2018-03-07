@@ -1,11 +1,15 @@
 package com.mumsapp.android.profile
 
+import com.google.android.gms.common.api.Status
+import com.google.android.gms.location.places.Place
 import com.mumsapp.android.R
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.domain.interactor.user.GetUserProfileUseCase
 import com.mumsapp.domain.model.user.UserResponse
 import com.mumsapp.domain.utils.SessionManager
 import com.mumsapp.domain.interactor.user.GetUserProfileUseCase.Params
+import com.mumsapp.domain.interactor.user.UpdateUserLocationUseCase
+import com.mumsapp.domain.model.user.UpdateLocationRequest
 import com.mumsapp.domain.repository.ImagesRepository
 import com.mumsapp.domain.repository.ResourceRepository
 import javax.inject.Inject
@@ -16,16 +20,19 @@ class MyProfilePresenter: LifecyclePresenter<MyProfileView> {
     private val sessionManager: SessionManager
     private val resourceRepository: ResourceRepository
     private val imagesRepository: ImagesRepository
+    private val updateUserLocationUseCase: UpdateUserLocationUseCase
 
 
     @Inject
     constructor(getUserProfileUseCase: GetUserProfileUseCase, sessionManager: SessionManager,
                 resourceRepository: ResourceRepository,
-                imagesRepository: ImagesRepository) {
+                imagesRepository: ImagesRepository,
+                updateUserLocationUseCase: UpdateUserLocationUseCase) {
         this.getUserProfileUseCase = getUserProfileUseCase
         this.sessionManager = sessionManager
         this.resourceRepository = resourceRepository
         this.imagesRepository = imagesRepository
+        this.updateUserLocationUseCase = updateUserLocationUseCase
     }
 
     override fun start() {
@@ -67,7 +74,7 @@ class MyProfilePresenter: LifecyclePresenter<MyProfileView> {
     }
 
     fun onEditLocationClickListener() {
-        view?.showEditLocationDialog()
+        view?.showEditLocationScreen()
     }
 
     fun onLocationSwitchChanged(value: Boolean) {
@@ -76,5 +83,34 @@ class MyProfilePresenter: LifecyclePresenter<MyProfileView> {
         } else {
             view?.hideLocation()
         }
+    }
+
+    fun onLocationSelected(place: Place) {
+        updateLocationOnServer(place)
+    }
+
+    fun onLocationError(status: Status) {
+        view?.showToast(resourceRepository.getString(R.string.location_choose_error))
+    }
+
+    private fun updateLocationOnServer(place: Place) {
+        val request = UpdateLocationRequest(place.name.toString(), place.id,
+                place.latLng.latitude, place.latLng.longitude,
+                place.address.toString())
+        addDisposable(
+                updateUserLocationUseCase
+                        .execute(request)
+                        .compose(applyOverlaysToObservable())
+                        .subscribe(this::handleUpdateLocationSuccess, this::handleUpdateLocationError)
+        )
+    }
+
+    private fun handleUpdateLocationSuccess(response: UserResponse) {
+        val location = response.data.location
+        view?.showNewLocation(location.latitude!!, location.longitude!!, location.formattedAddress!!)
+    }
+
+    private fun handleUpdateLocationError(throwable: Throwable) {
+        view?.showToast(throwable.localizedMessage)
     }
 }

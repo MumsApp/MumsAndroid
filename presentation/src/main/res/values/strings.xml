@@ -76,4 +76,6 @@
     <string name="change_location">Change location</string>
     <string name="enter_location">Enter location</string>
     <string name="done">Done</string>
+
+    <string name="location_choose_error">Cannot choose location, try again later</string>
 </resources>

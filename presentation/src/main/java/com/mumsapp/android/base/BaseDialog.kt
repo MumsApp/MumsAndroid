@@ -1,12 +1,14 @@
 package com.mumsapp.android.base
 
+import android.app.Dialog
 import android.content.Context
-import android.support.v7.app.AlertDialog
+import android.view.Gravity
 import android.view.View
+import android.view.ViewGroup
 import butterknife.Unbinder
 import com.mumsapp.android.common.features.HasComponent
 
-abstract class BaseDialog(context: Context) : AlertDialog(context), BaseView {
+abstract class BaseDialog(context: Context) : Dialog(context), BaseView {
 
     private var unbinder: Unbinder? = null
 
@@ -14,6 +16,11 @@ abstract class BaseDialog(context: Context) : AlertDialog(context), BaseView {
         if(context is BaseActivity) {
             ownerActivity = context
         }
+    }
+
+    protected fun configureWindow() {
+        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        window.setGravity(Gravity.CENTER)
     }
 
     protected fun setUnbinder(unbinder: Unbinder) {

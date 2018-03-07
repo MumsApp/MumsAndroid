@@ -14,6 +14,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MapStyleOptions
+import com.google.android.gms.maps.model.MarkerOptions
 import com.mumsapp.android.R
 import com.mumsapp.android.common.features.HasComponent
 import com.mumsapp.android.di.components.ActivityComponent
@@ -153,8 +154,12 @@ class LocationWidget : CardView {
     private fun safeMoveCamera() {
         if(currentMapLatitude != null && currentMapLongitude != null && map != null) {
             val position = LatLng(currentMapLatitude!!, currentMapLongitude!!)
-            val update = CameraUpdateFactory.newLatLng(position)
+            val update = CameraUpdateFactory.newLatLngZoom(position, 15f)
             map?.moveCamera(update)
+
+            val marker = MarkerOptions()
+            marker.position(LatLng(currentMapLatitude!!, currentMapLongitude!!))
+            map?.addMarker(marker)
         }
     }
 

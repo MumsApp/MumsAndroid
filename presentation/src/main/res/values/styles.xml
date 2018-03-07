@@ -242,13 +242,17 @@
     </style>
 
     <!-- Card View -->
-    <style name="card_squared" parent="CardView">
+    <style name="cardview_default" parent="CardView">
+        <item name="cardUseCompatPadding">false</item>
+    </style>
+
+    <style name="card_squared" parent="cardview_default">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="cardElevation">@dimen/card_view_default_elevation</item>
     </style>
 
-    <style name="card_rounded" parent="card_squared">
+    <style name="card_rounded" parent="cardview_default">
         <item name="cardCornerRadius">@dimen/card_view_corner_radius</item>
     </style>
 

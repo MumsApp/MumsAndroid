@@ -1,9 +1,6 @@
 package com.mumsapp.android.di.modules
 
-import com.mumsapp.domain.interactor.user.GetUserProfileUseCase
-import com.mumsapp.domain.interactor.user.SignInUseCase
-import com.mumsapp.domain.interactor.user.SignOutUserUseCase
-import com.mumsapp.domain.interactor.user.SignUpUseCase
+import com.mumsapp.domain.interactor.user.*
 import com.mumsapp.domain.repository.UserRepository
 import com.mumsapp.domain.utils.SchedulerProvider
 import com.mumsapp.domain.utils.SessionManager
@@ -40,5 +37,13 @@ class UseCaseModule {
                                tokenPersistenceService: TokenPersistenceService,
                                schedulerProvider: SchedulerProvider) : SignOutUserUseCase {
         return SignOutUserUseCase(sessionManager, tokenPersistenceService, schedulerProvider)
+    }
+
+    @Provides
+    @Singleton
+    fun providesUpdateLocationUseCase(userRepository: UserRepository,
+                                      sessionManager: SessionManager,
+                                      schedulerProvider: SchedulerProvider) : UpdateUserLocationUseCase {
+        return UpdateUserLocationUseCase(userRepository, sessionManager, schedulerProvider)
     }
 }

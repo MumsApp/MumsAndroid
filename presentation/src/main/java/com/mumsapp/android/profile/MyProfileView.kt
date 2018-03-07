@@ -1,5 +1,6 @@
 package com.mumsapp.android.profile
 
+import com.google.android.gms.maps.model.LatLng
 import com.mumsapp.android.base.LifecycleView
 
 interface MyProfileView: LifecycleView {
@@ -10,9 +11,11 @@ interface MyProfileView: LifecycleView {
 
     fun showAccountSettingsDialog()
 
-    fun showEditLocationDialog()
+    fun showEditLocationScreen()
 
     fun showLocation()
+
+    fun showNewLocation(latitude: String, longitude: String, name: String)
 
     fun hideLocation()
 }
