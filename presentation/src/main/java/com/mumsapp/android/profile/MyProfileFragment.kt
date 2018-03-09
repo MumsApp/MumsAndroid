@@ -120,11 +120,13 @@ class MyProfileFragment: LifecycleFragment(), MyProfileView {
         accountSettingsDialog?.show()
     }
 
-    override fun showUserDetailsSettingsDialog() {
+    override fun showUserDetailsSettingsDialog(firstName: String?, lastName: String?, description: String?,
+                                               listener: (firstName: String, lastName: String, description: String) -> Unit) {
         if(userDetailsSettingsDialog == null) {
             userDetailsSettingsDialog = dialogsProvider.createUserDetailsSettingsDialog()
         }
-        userDetailsSettingsDialog?.show()
+
+        userDetailsSettingsDialog?.show(firstName, lastName, description, listener)
     }
 
     private fun configureLocationWidget() {

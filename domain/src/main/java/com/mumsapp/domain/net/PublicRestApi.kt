@@ -32,4 +32,7 @@ interface PublicRestApi {
 
     @PUT("user/{id}/location")
     fun putUserLocation(@Path("id") id: Int, @Body param: UpdateLocationRequest): Observable<Response<EmptyResponse>>
+
+    @PUT("user/{id}")
+    fun putUser(@Path("id") id: Int, @Body param: UpdateUserDetailsRequest): Observable<Response<EmptyResponse>>
 }

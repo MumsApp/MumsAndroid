@@ -10,7 +10,8 @@ interface MyProfileView: LifecycleView {
 
     fun showAccountSettingsDialog()
 
-    fun showUserDetailsSettingsDialog()
+    fun showUserDetailsSettingsDialog(firstName: String?, lastName: String?, description: String?,
+                                      listener: (firstName: String, lastName: String, description: String) -> Unit)
 
     fun showEditLocationScreen()
 

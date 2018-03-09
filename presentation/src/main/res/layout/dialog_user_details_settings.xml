@@ -33,7 +33,7 @@
         android:hint="@string/description"/>
 
     <com.mumsapp.android.ui.views.BaseButton
-        android:id="@+id/account_settings_logout"
+        android:id="@+id/user_details_settings_save"
         style="@style/button_dialog"
         android:text="@string/save"
         app:layout_constraintTop_toBottomOf="@id/user_details_settings_description"/>

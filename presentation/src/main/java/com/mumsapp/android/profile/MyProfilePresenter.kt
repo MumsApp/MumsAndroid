@@ -8,8 +8,10 @@ import com.mumsapp.domain.interactor.user.GetUserProfileUseCase
 import com.mumsapp.domain.model.user.UserResponse
 import com.mumsapp.domain.utils.SessionManager
 import com.mumsapp.domain.interactor.user.GetUserProfileUseCase.Params
+import com.mumsapp.domain.interactor.user.UpdateUserDetailsUseCase
 import com.mumsapp.domain.interactor.user.UpdateUserLocationUseCase
 import com.mumsapp.domain.model.user.UpdateLocationRequest
+import com.mumsapp.domain.model.user.UpdateUserDetailsRequest
 import com.mumsapp.domain.repository.ImagesRepository
 import com.mumsapp.domain.repository.ResourceRepository
 import javax.inject.Inject
@@ -21,18 +23,21 @@ class MyProfilePresenter: LifecyclePresenter<MyProfileView> {
     private val resourceRepository: ResourceRepository
     private val imagesRepository: ImagesRepository
     private val updateUserLocationUseCase: UpdateUserLocationUseCase
+    private val updateUserDetailsUseCase: UpdateUserDetailsUseCase
 
 
     @Inject
     constructor(getUserProfileUseCase: GetUserProfileUseCase, sessionManager: SessionManager,
                 resourceRepository: ResourceRepository,
                 imagesRepository: ImagesRepository,
-                updateUserLocationUseCase: UpdateUserLocationUseCase) {
+                updateUserLocationUseCase: UpdateUserLocationUseCase,
+                updateUserDetailsUseCase: UpdateUserDetailsUseCase) {
         this.getUserProfileUseCase = getUserProfileUseCase
         this.sessionManager = sessionManager
         this.resourceRepository = resourceRepository
         this.imagesRepository = imagesRepository
         this.updateUserLocationUseCase = updateUserLocationUseCase
+        this.updateUserDetailsUseCase = updateUserDetailsUseCase
     }
 
     override fun start() {
@@ -48,17 +53,12 @@ class MyProfilePresenter: LifecyclePresenter<MyProfileView> {
         addDisposable(
                 getUserProfileUseCase.execute(Params(currentUser?.data!!.id, Params.LEVEL_FULL))
                         .compose(applyOverlaysToObservable())
-                        .subscribe(this::handleSuccess, this::handleError)
+                        .subscribe(this::handleUserLoadSuccess, this::handleApiError)
         )
     }
 
-    private fun handleSuccess(user: UserResponse) {
-        sessionManager.saveLoggedUser(user)
+    private fun handleUserLoadSuccess(user: UserResponse) {
         showUserDetails(user.data)
-    }
-
-    private fun handleError(throwable: Throwable) {
-        view?.showSnackbar(throwable.message!!)
     }
 
     private fun showUserDetails(user: UserResponse.User) {
@@ -74,7 +74,22 @@ class MyProfilePresenter: LifecyclePresenter<MyProfileView> {
     }
 
     fun onChangeClick() {
-        view?.showUserDetailsSettingsDialog()
+        val user = sessionManager.loadLoggedUser()!!.data
+        view?.showUserDetailsSettingsDialog(user.firstName, user.lastName, user.description,
+                this::handleUserDataUpdate)
+    }
+
+    private fun handleUserDataUpdate(firstName: String, lastName: String, description: String) {
+        val request = UpdateUserDetailsRequest(firstName, lastName, description)
+
+        addDisposable(
+                updateUserDetailsUseCase.execute(request)
+                        .compose(applyOverlaysToObservable())
+                        .subscribe(this::handleUpdateUserDetailsSuccess, this::handleApiError))
+    }
+
+    private fun handleUpdateUserDetailsSuccess(user: UserResponse) {
+        showUserDetails(user.data)
     }
 
     fun onEditLocationClickListener() {
@@ -105,16 +120,12 @@ class MyProfilePresenter: LifecyclePresenter<MyProfileView> {
                 updateUserLocationUseCase
                         .execute(request)
                         .compose(applyOverlaysToObservable())
-                        .subscribe(this::handleUpdateLocationSuccess, this::handleUpdateLocationError)
+                        .subscribe(this::handleUpdateLocationSuccess, this::handleApiError)
         )
     }
 
     private fun handleUpdateLocationSuccess(response: UserResponse) {
         val location = response.data.location
         view?.showNewLocation(location.latitude!!, location.longitude!!, location.formattedAddress!!)
-    }
-
-    private fun handleUpdateLocationError(throwable: Throwable) {
-        view?.showToast(throwable.localizedMessage)
     }
 }

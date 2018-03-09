@@ -23,4 +23,6 @@ interface UserRepository {
     fun getUserData(id: Int, level: Int): Observable<UserResponse>
 
     fun updateUserLocation(id: Int, request: UpdateLocationRequest): Observable<EmptyResponse>
+
+    fun updateUserDetails(id: Int, request: UpdateUserDetailsRequest): Observable<EmptyResponse>
 }

@@ -53,4 +53,8 @@ class UserRepositoryImpl : BaseRestRepository, UserRepository {
     override fun updateUserLocation(id: Int, request: UpdateLocationRequest): Observable<EmptyResponse> {
         return requestWithErrorMapping(restApi.putUserLocation(id, request))
     }
+
+    override fun updateUserDetails(id: Int, request: UpdateUserDetailsRequest): Observable<EmptyResponse> {
+        return requestWithErrorMapping(restApi.putUser(id, request))
+    }
 }

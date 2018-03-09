@@ -5,12 +5,9 @@ import android.content.Context
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
-import butterknife.Unbinder
 import com.mumsapp.android.common.features.HasComponent
 
 abstract class BaseDialog(context: Context) : Dialog(context), BaseView {
-
-    private var unbinder: Unbinder? = null
 
     init {
         if(context is BaseActivity) {
@@ -23,17 +20,8 @@ abstract class BaseDialog(context: Context) : Dialog(context), BaseView {
         window.setGravity(Gravity.CENTER)
     }
 
-    protected fun setUnbinder(unbinder: Unbinder) {
-        this.unbinder = unbinder
-    }
-
     protected fun <C> getComponent(componentType: Class<C>): C? {
         return componentType.cast((ownerActivity as HasComponent<C>).getComponent())
-    }
-
-    override fun onDetachedFromWindow() {
-        super.onDetachedFromWindow()
-        unbinder?.unbind()
     }
 
 

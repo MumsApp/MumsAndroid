@@ -21,8 +21,9 @@ class UseCaseModule {
 
     @Provides
     @Singleton
-    fun providesGetUserProfileUseCase(userRepository: UserRepository, schedulerProvider: SchedulerProvider): GetUserProfileUseCase {
-        return GetUserProfileUseCase(userRepository, schedulerProvider)
+    fun providesGetUserProfileUseCase(userRepository: UserRepository, sessionManager: SessionManager,
+                                      schedulerProvider: SchedulerProvider): GetUserProfileUseCase {
+        return GetUserProfileUseCase(userRepository, sessionManager, schedulerProvider)
     }
 
     @Provides
@@ -45,5 +46,13 @@ class UseCaseModule {
                                       sessionManager: SessionManager,
                                       schedulerProvider: SchedulerProvider) : UpdateUserLocationUseCase {
         return UpdateUserLocationUseCase(userRepository, sessionManager, schedulerProvider)
+    }
+
+    @Provides
+    @Singleton
+    fun providesUpdateUserDetailsUseCase(userRepository: UserRepository,
+                                      sessionManager: SessionManager,
+                                      schedulerProvider: SchedulerProvider) : UpdateUserDetailsUseCase {
+        return UpdateUserDetailsUseCase(userRepository, sessionManager, schedulerProvider)
     }
 }

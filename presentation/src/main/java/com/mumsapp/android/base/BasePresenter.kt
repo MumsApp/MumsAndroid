@@ -89,4 +89,8 @@ abstract class BasePresenter<View: BaseView> {
     open fun start() {}
 
     open fun create() {}
+
+    protected fun handleApiError(throwable: Throwable) {
+        view?.showSnackbar(throwable.localizedMessage)
+    }
 }

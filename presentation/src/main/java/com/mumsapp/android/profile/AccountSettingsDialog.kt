@@ -37,7 +37,7 @@ class AccountSettingsDialog(context: Context) : BaseDialog(context), AccountSett
         getComponent(ActivityComponent::class.java)?.inject(this)
         setContentView(R.layout.dialog_account_settings)
         configureWindow()
-        setUnbinder(ButterKnife.bind(this))
+        ButterKnife.bind(this)
         topBar.setRightButtonClickListener {
             presenter.onCloseClick()
         }

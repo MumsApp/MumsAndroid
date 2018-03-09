@@ -16,7 +16,7 @@ class UpdateUserLocationUseCase(val repository: UserRepository, val sessionManag
 
 
     override fun createUseCaseObservable(param: UpdateLocationRequest): Observable<UserResponse> {
-        return repository.updateUserLocation(sessionManager.loadLoggedUser()!!.data!!.id, param)
+        return repository.updateUserLocation(sessionManager.loadLoggedUser()!!.data.id, param)
                 .map {
                     val user = sessionManager.loadLoggedUser()
                     val location = UserResponse.Location(param.name, param.placeId, param.latitude.toString(),
