@@ -1,5 +1,8 @@
 package com.mumsapp.android.di.modules
 
+import com.mumsapp.domain.interactor.transformers.qualifiers.AuthorizationTransformer
+import com.mumsapp.domain.interactor.transformers.AuthorizationTransformerProvider
+import com.mumsapp.domain.interactor.transformers.UseCaseTransformerProvider
 import com.mumsapp.domain.interactor.user.*
 import com.mumsapp.domain.repository.UserRepository
 import com.mumsapp.domain.utils.SchedulerProvider
@@ -22,13 +25,14 @@ class UseCaseModule {
     @Provides
     @Singleton
     fun providesGetUserProfileUseCase(userRepository: UserRepository, sessionManager: SessionManager,
+                                      @AuthorizationTransformer transformerProvider: UseCaseTransformerProvider,
                                       schedulerProvider: SchedulerProvider): GetUserProfileUseCase {
-        return GetUserProfileUseCase(userRepository, sessionManager, schedulerProvider)
+        return GetUserProfileUseCase(userRepository, sessionManager, transformerProvider, schedulerProvider)
     }
 
     @Provides
     @Singleton
-    fun providesSignInUseCase(userRepository: UserRepository, tokenPersistenceService: TokenPersistenceService, getUserProfileUseCase: GetUserProfileUseCase, schedulerProvider: SchedulerProvider) : SignInUseCase {
+    fun providesSignInUseCase(userRepository: UserRepository, tokenPersistenceService: TokenPersistenceService, getUserProfileUseCase: GetUserProfileUseCase, schedulerProvider: SchedulerProvider): SignInUseCase {
         return SignInUseCase(userRepository, tokenPersistenceService, getUserProfileUseCase, schedulerProvider)
     }
 
@@ -36,7 +40,7 @@ class UseCaseModule {
     @Singleton
     fun providesSignOutUseCase(sessionManager: SessionManager,
                                tokenPersistenceService: TokenPersistenceService,
-                               schedulerProvider: SchedulerProvider) : SignOutUserUseCase {
+                               schedulerProvider: SchedulerProvider): SignOutUserUseCase {
         return SignOutUserUseCase(sessionManager, tokenPersistenceService, schedulerProvider)
     }
 
@@ -44,15 +48,23 @@ class UseCaseModule {
     @Singleton
     fun providesUpdateLocationUseCase(userRepository: UserRepository,
                                       sessionManager: SessionManager,
-                                      schedulerProvider: SchedulerProvider) : UpdateUserLocationUseCase {
-        return UpdateUserLocationUseCase(userRepository, sessionManager, schedulerProvider)
+                                      @AuthorizationTransformer transformerProvider: UseCaseTransformerProvider,
+                                      schedulerProvider: SchedulerProvider): UpdateUserLocationUseCase {
+        return UpdateUserLocationUseCase(userRepository, sessionManager, transformerProvider, schedulerProvider)
     }
 
     @Provides
     @Singleton
     fun providesUpdateUserDetailsUseCase(userRepository: UserRepository,
-                                      sessionManager: SessionManager,
-                                      schedulerProvider: SchedulerProvider) : UpdateUserDetailsUseCase {
-        return UpdateUserDetailsUseCase(userRepository, sessionManager, schedulerProvider)
+                                         sessionManager: SessionManager,
+                                         @AuthorizationTransformer transformerProvider: UseCaseTransformerProvider,
+                                         schedulerProvider: SchedulerProvider): UpdateUserDetailsUseCase {
+        return UpdateUserDetailsUseCase(userRepository, sessionManager, transformerProvider, schedulerProvider)
+    }
+
+    @Provides
+    @AuthorizationTransformer
+    internal fun provideAuthorizationTransformer(userRepository: UserRepository, tokenPersistenceService: TokenPersistenceService): UseCaseTransformerProvider {
+        return AuthorizationTransformerProvider(userRepository, tokenPersistenceService)
     }
 }

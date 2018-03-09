@@ -1,6 +1,9 @@
 package com.mumsapp.data.repository
 
+import com.mumsapp.android.data.R
+import com.mumsapp.domain.exceptions.InvalidRefreshTokenException
 import com.mumsapp.domain.model.EmptyResponse
+import com.mumsapp.domain.model.identity.RefreshTokenRequest
 import com.mumsapp.domain.model.identity.Token
 import com.mumsapp.domain.model.user.*
 import com.mumsapp.domain.net.PublicRestApi
@@ -9,9 +12,11 @@ import com.mumsapp.domain.repository.UserRepository
 import com.mumsapp.domain.utils.ExceptionDispatcher
 import com.mumsapp.domain.utils.SerializationHelper
 import io.reactivex.Observable
+import io.reactivex.functions.Function
 import javax.inject.Inject
 
 class UserRepositoryImpl : BaseRestRepository, UserRepository {
+
 
     private val restApi: PublicRestApi
 
@@ -28,6 +33,18 @@ class UserRepositoryImpl : BaseRestRepository, UserRepository {
 
     override fun requestToken(request: SignInRequest): Observable<Token> {
         return requestWithErrorMapping(restApi.loginCheck(request))
+    }
+
+    override fun refreshToken(request: RefreshTokenRequest): Observable<Token> {
+        return restApi.tokenRefresh(request)
+                .onErrorResumeNext(Function {
+                    if(exceptionDispatcher.isBadRequest(it)) {
+                        val message = resourceRepository.getString(R.string.error_refresh_token_invalid_or_expired)
+                        Observable.error<InvalidRefreshTokenException>(InvalidRefreshTokenException(message))
+                    }
+
+                    Observable.error(it)
+                })
     }
 
     override fun signUpFacebook(request: FacebookSignUpRequest): Observable<EmptyResponse> {

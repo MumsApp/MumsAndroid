@@ -1,6 +1,9 @@
 package com.mumsapp.domain.interactor.user
 
+import com.mumsapp.domain.interactor.AuthorizedUseCase
 import com.mumsapp.domain.interactor.BaseUseCase
+import com.mumsapp.domain.interactor.transformers.UseCaseTransformerProvider
+import com.mumsapp.domain.interactor.transformers.qualifiers.AuthorizationTransformer
 import com.mumsapp.domain.interactor.user.GetUserProfileUseCase.Params
 import com.mumsapp.domain.model.BaseRequest
 import com.mumsapp.domain.model.user.UserResponse
@@ -10,8 +13,9 @@ import com.mumsapp.domain.utils.SessionManager
 import io.reactivex.Observable
 
 class GetUserProfileUseCase(val userRepository: UserRepository, val sessionManager: SessionManager,
+                            @AuthorizationTransformer transformerProvider: UseCaseTransformerProvider,
                             schedulerProvider: SchedulerProvider)
-    : BaseUseCase<Params, UserResponse>(schedulerProvider) {
+    : AuthorizedUseCase<Params, UserResponse>(transformerProvider, schedulerProvider) {
 
 
     override fun createUseCaseObservable(param: Params): Observable<UserResponse> {

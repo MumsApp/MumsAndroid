@@ -1,6 +1,7 @@
 package com.mumsapp.domain.net
 
 import com.mumsapp.domain.model.EmptyResponse
+import com.mumsapp.domain.model.identity.RefreshTokenRequest
 import com.mumsapp.domain.model.identity.Token
 import com.mumsapp.domain.model.user.*
 import io.reactivex.Observable
@@ -14,6 +15,9 @@ interface PublicRestApi {
 
     @POST("login_check")
     fun loginCheck(@Body param: SignInRequest): Observable<Response<Token>>
+
+    @POST("token/refresh")
+    fun tokenRefresh(@Body param: RefreshTokenRequest): Observable<Token>
 
     @POST("public/facebook/create")
     fun facebookCreate(@Body param: FacebookSignUpRequest): Observable<Response<EmptyResponse>>

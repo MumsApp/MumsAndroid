@@ -106,8 +106,8 @@ class AppModule(private val context: MainApplication) {
 
     @Provides
     @Singleton
-    fun providesTokenPersistenceService(tokenPersitenceServiceImpl: TokenPersitenceServiceImpl): TokenPersistenceService {
-        return tokenPersitenceServiceImpl
+    fun providesTokenPersistenceService(tokenPersistenceServiceImpl: TokenPersistenceServiceImpl): TokenPersistenceService {
+        return tokenPersistenceServiceImpl
     }
 
     @Provides

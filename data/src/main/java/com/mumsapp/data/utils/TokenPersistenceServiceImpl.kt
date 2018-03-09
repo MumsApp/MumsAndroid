@@ -5,7 +5,7 @@ import com.mumsapp.domain.utils.SharedPreferencesManager
 import com.mumsapp.domain.utils.TokenPersistenceService
 import javax.inject.Inject
 
-class TokenPersitenceServiceImpl : TokenPersistenceService {
+class TokenPersistenceServiceImpl : TokenPersistenceService {
 
     private val tokenIdKey = "TokenId"
     private val tokenKey = "Token"
@@ -46,5 +46,11 @@ class TokenPersitenceServiceImpl : TokenPersistenceService {
         sharedPreferencesManager.putString(refreshTokenKey, null)
     }
 
-    override fun getToken(): Token? = token
+    override fun getToken(): Token? {
+        if(token == null) {
+            token = loadToken()
+        }
+
+        return token
+    }
 }

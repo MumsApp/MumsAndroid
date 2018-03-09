@@ -1,6 +1,9 @@
 package com.mumsapp.domain.interactor.user
 
+import com.mumsapp.domain.interactor.AuthorizedUseCase
 import com.mumsapp.domain.interactor.BaseUseCase
+import com.mumsapp.domain.interactor.transformers.UseCaseTransformerProvider
+import com.mumsapp.domain.interactor.transformers.qualifiers.AuthorizationTransformer
 import com.mumsapp.domain.model.user.UpdateLocationRequest
 import com.mumsapp.domain.model.user.UserResponse
 import com.mumsapp.domain.repository.UserRepository
@@ -11,8 +14,9 @@ import javax.inject.Singleton
 
 @Singleton
 class UpdateUserLocationUseCase(val repository: UserRepository, val sessionManager: SessionManager,
+                                @AuthorizationTransformer transformerProvider: UseCaseTransformerProvider,
                                 schedulerProvider: SchedulerProvider) :
-        BaseUseCase<UpdateLocationRequest, UserResponse>(schedulerProvider) {
+        AuthorizedUseCase<UpdateLocationRequest, UserResponse>(transformerProvider, schedulerProvider) {
 
 
     override fun createUseCaseObservable(param: UpdateLocationRequest): Observable<UserResponse> {
