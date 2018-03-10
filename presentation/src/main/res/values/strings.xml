@@ -80,4 +80,6 @@
 
     <string name="the_lobby">The Lobby</string>
     <string name="search">Search</string>
+
+    <string name="plus_add_category">+ Add category</string>
 </resources>

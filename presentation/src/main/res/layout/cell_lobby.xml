@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/card_squared">
+
+    <android.support.constraint.ConstraintLayout
+        style="@style/widget_layout"
+        android:paddingTop="@dimen/padding_big"
+        android:paddingBottom="@dimen/padding_big">
+
+        <com.mumsapp.android.ui.views.CircleImageView
+            android:id="@+id/lobby_cell_image"
+            style="@style/avatar_image_view" />
+
+        <com.mumsapp.android.ui.views.BaseTextView
+            android:id="@+id/lobby_cell_title"
+            android:layout_width="0dp"
+            style="@style/text_normal"
+            android:layout_marginStart="@dimen/padding_default"
+            app:layout_constraintLeft_toRightOf="@id/lobby_cell_image"
+            app:layout_constraintRight_toLeftOf="@id/lobby_cell_switch"
+            tools:text="Expectant Moms"/>
+
+        <com.mumsapp.android.ui.views.BaseSwitch
+            android:id="@+id/lobby_cell_switch"
+            style="@style/switch_green"
+            app:layout_constraintTop_toTopOf="@id/lobby_cell_title"
+            app:layout_constraintBottom_toBottomOf="@id/lobby_cell_title"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <com.mumsapp.android.ui.views.BaseTextView
+            android:id="@+id/lobby_cell_description"
+            android:layout_width="0dp"
+            style="@style/text_small_grey_light"
+            app:layout_constraintTop_toBottomOf="@id/lobby_cell_switch"
+            app:layout_constraintLeft_toLeftOf="@id/lobby_cell_title"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:text="@string/template_long_text"/>
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>

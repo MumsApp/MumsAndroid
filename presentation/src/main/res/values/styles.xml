@@ -81,6 +81,12 @@
         <item name="android:layout_marginEnd">@dimen/padding_default</item>
     </style>
 
+    <style name="button_white_background_card" parent="card_squared">
+        <item name="android:textColor">@color/green_light</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:textSize">@dimen/text_size_normal</item>
+    </style>
+
     <!-- Text Views -->
     <style name="text_view_default">
         <item name="android:layout_width">wrap_content</item>
@@ -382,5 +388,13 @@
         <item name="right_thumb_color">@color/green_light</item>
         <item name="left_thumb_color_pressed">@color/green_light</item>
         <item name="right_thumb_color_pressed">@color/green_light</item>
+    </style>
+
+
+    <!-- Lists -->
+    <style name="recycler_default">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="layoutManager">android.support.v7.widget.LinearLayoutManager</item>
     </style>
 </resources>

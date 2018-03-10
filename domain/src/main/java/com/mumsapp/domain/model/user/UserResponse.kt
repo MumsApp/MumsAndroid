@@ -25,4 +25,5 @@ data class UserResponse(@SerializedName("status") var status: String,
                         @SerializedName("lat") var latitude: String?,
                         @SerializedName("lon") var longitude: String?,
                         @SerializedName("formattedAddress") var formattedAddress: String?)
+        : BaseResponse()
 }
