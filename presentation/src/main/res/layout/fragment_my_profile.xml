@@ -6,7 +6,7 @@
 
     <com.mumsapp.android.ui.views.TopBar
         android:id="@+id/my_profile_top_bar"
-        style="@style/top_bar_gear"
+        style="@style/top_bar_settings"
         app:layout_constraintTop_toTopOf="parent"
         app:topBarTitle="@string/my_profile" />
 

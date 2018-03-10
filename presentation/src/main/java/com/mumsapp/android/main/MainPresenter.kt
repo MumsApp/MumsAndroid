@@ -52,7 +52,9 @@ class MainPresenter : LifecyclePresenter<MainView> {
     }
 
     fun onLobbyClick() {
-
+        fragmentsNavigationService.popFragmentsToRoot()
+        fragmentsNavigationService.openLobbyFragment(true)
+        view?.hideMenu()
     }
 
     fun onTalkClick() {

@@ -16,7 +16,7 @@ import com.mumsapp.domain.repository.ImagesRepository
 import com.mumsapp.domain.repository.ResourceRepository
 import javax.inject.Inject
 
-class MyProfilePresenter: LifecyclePresenter<MyProfileView> {
+class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
 
     private val getUserProfileUseCase: GetUserProfileUseCase
     private val sessionManager: SessionManager
@@ -67,7 +67,7 @@ class MyProfilePresenter: LifecyclePresenter<MyProfileView> {
 
         view?.showProfileInfo(name, user.description)
 
-        if(user.photo.src != null) {
+        if (user.photo.src != null) {
             val url = imagesRepository.getApiImageUrl(user.photo.src!!)
             view?.loadAvatar(url)
         }
@@ -97,7 +97,7 @@ class MyProfilePresenter: LifecyclePresenter<MyProfileView> {
     }
 
     fun onLocationSwitchChanged(value: Boolean) {
-        if(value) {
+        if (value) {
             view?.showLocation()
         } else {
             view?.hideLocation()

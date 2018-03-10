@@ -7,6 +7,7 @@ import com.mumsapp.android.authentication.SignInFragment
 import com.mumsapp.android.authentication.SignUpFragment
 import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.di.qualifiers.FragmentContainerId
+import com.mumsapp.android.lobby.LobbyFragment
 import com.mumsapp.android.profile.MyProfileFragment
 import javax.inject.Inject
 
@@ -59,6 +60,13 @@ class FragmentsNavigationService {
     }
 
     fun createMyProfileFragment() = MyProfileFragment.getInstance()
+
+    fun openLobbyFragment(addToBackStack: Boolean) {
+        val fragment = createLobbyFragment()
+        openFragment(fragment, addToBackStack)
+    }
+
+    fun createLobbyFragment() = LobbyFragment.getInstance()
 
     fun popFragment() {
         fragmentManager.popBackStack()

@@ -77,4 +77,6 @@
     <string name="update_details">Update details</string>
     <string name="description">Description</string>
     <string name="save">Save</string>
+
+    <string name="the_lobby">The Lobby</string>
 </resources>

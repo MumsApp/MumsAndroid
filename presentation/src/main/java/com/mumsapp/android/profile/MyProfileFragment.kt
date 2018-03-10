@@ -25,7 +25,7 @@ import com.mumsapp.android.ui.views.TopBar
 import com.mumsapp.android.util.ImagesLoader
 import javax.inject.Inject
 
-class MyProfileFragment: BaseFragment(), MyProfileView {
+class MyProfileFragment : BaseFragment(), MyProfileView {
 
     @Inject
     lateinit var presenter: MyProfilePresenter
@@ -58,7 +58,7 @@ class MyProfileFragment: BaseFragment(), MyProfileView {
 
     private var userDetailsSettingsDialog: UserDetailsSettingsDialog? = null
 
-    override fun <T : LifecyclePresenter<LifecycleView>> getPresenter(): T = presenter as T
+    override fun <T : LifecyclePresenter<LifecycleView>> getPresenter() = presenter as T
 
     companion object {
         fun getInstance(): MyProfileFragment {
@@ -88,11 +88,11 @@ class MyProfileFragment: BaseFragment(), MyProfileView {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == GOOGLE_PLACES_REQUEST_CODE) {
-            if(resultCode == Activity.RESULT_OK) {
+        if (requestCode == GOOGLE_PLACES_REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
                 val place = PlaceAutocomplete.getPlace(context, data)
                 presenter.onLocationSelected(place)
-            } else if(resultCode == PlaceAutocomplete.RESULT_ERROR) {
+            } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
                 val status = PlaceAutocomplete.getStatus(context, data)
                 presenter.onLocationError(status)
             }
@@ -114,7 +114,7 @@ class MyProfileFragment: BaseFragment(), MyProfileView {
     }
 
     override fun showAccountSettingsDialog() {
-        if(accountSettingsDialog == null) {
+        if (accountSettingsDialog == null) {
             accountSettingsDialog = dialogsProvider.createAccountSettingsDialog()
         }
         accountSettingsDialog?.show()
@@ -122,7 +122,7 @@ class MyProfileFragment: BaseFragment(), MyProfileView {
 
     override fun showUserDetailsSettingsDialog(firstName: String?, lastName: String?, description: String?,
                                                listener: (firstName: String, lastName: String, description: String) -> Unit) {
-        if(userDetailsSettingsDialog == null) {
+        if (userDetailsSettingsDialog == null) {
             userDetailsSettingsDialog = dialogsProvider.createUserDetailsSettingsDialog()
         }
 
@@ -134,7 +134,7 @@ class MyProfileFragment: BaseFragment(), MyProfileView {
             presenter.onEditLocationClickListener()
         }
 
-        locationWidget.setSwitchChangeListener( { _: CompoundButton, value: Boolean ->
+        locationWidget.setSwitchChangeListener({ _: CompoundButton, value: Boolean ->
             presenter.onLocationSwitchChanged(value)
         })
     }

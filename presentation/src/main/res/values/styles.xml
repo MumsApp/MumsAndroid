@@ -209,7 +209,7 @@
         <item name="topBarRightButtonVisible">false</item>
     </style>
 
-    <style name="top_bar_gear" parent="top_bar_default">
+    <style name="top_bar_settings" parent="top_bar_default">
         <item name="topBarLeftButtonVisible">false</item>
         <item name="topBarRightButtonVisible">true</item>
         <item name="topBarRightIcon">@drawable/ic_gear</item>
@@ -219,6 +219,12 @@
         <item name="topBarLeftButtonVisible">false</item>
         <item name="topBarRightButtonVisible">true</item>
         <item name="topBarRightIcon">@drawable/ic_close</item>
+    </style>
+
+    <style name="top_bar_filters" parent="top_bar_default">
+        <item name="topBarLeftButtonVisible">false</item>
+        <item name="topBarRightButtonVisible">true</item>
+        <item name="topBarRightIcon">@drawable/ic_switches</item>
     </style>
 
 

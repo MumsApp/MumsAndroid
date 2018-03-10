@@ -105,7 +105,7 @@ class MainActivity : BaseFragmentActivity(), MainView, HasOverlays {
 
     @OnClick(R.id.auth_session_expired_button)
     fun onSessionExpiredButtonClick() {
-        onSessionExpiredButtonClick()
+        presenter.onSessionExpiredButtonClick()
     }
 
     @OnClick(R.id.menu_open)
