@@ -6,7 +6,7 @@
 
     <com.mumsapp.android.ui.views.TopBar
         android:id="@+id/lobby_top_bar"
-        style="@style/top_bar_filters"
+        style="@style/top_bar_filters_search"
         app:layout_constraintTop_toTopOf="parent"
         app:topBarTitle="@string/the_lobby" />
 </android.support.constraint.ConstraintLayout>

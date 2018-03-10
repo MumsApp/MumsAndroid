@@ -89,7 +89,9 @@
     </style>
 
     <style name="text_top_bar_title" parent="text_view_default">
+        <item name="android:layout_height">?attr/actionBarSize</item>
         <item name="android:textSize">@dimen/text_size_top_bar</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <style name="text_tiny" parent="text_view_default">
@@ -200,7 +202,7 @@
     <!-- Top bar -->
     <style name="top_bar_default">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
     <style name="top_bar_back" parent="top_bar_default">
@@ -227,6 +229,10 @@
         <item name="topBarRightIcon">@drawable/ic_switches</item>
     </style>
 
+    <style name="top_bar_filters_search" parent="top_bar_filters">
+        <item name="searchVisible">true</item>
+    </style>
+
 
     <!--Forms -->
     <style name="default_form_theme">
@@ -251,6 +257,14 @@
     <style name="dialog_form" parent="default_form">
         <item name="android:layout_marginStart">@dimen/padding_default</item>
         <item name="android:layout_marginEnd">@dimen/padding_default</item>
+    </style>
+
+    <style name="default_edit_text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black_light</item>
+        <item name="android:textColorHint">@color/grey_light</item>
+        <item name="android:textSize">@dimen/text_size_normal</item>
     </style>
 
     <!-- Card View -->
@@ -281,7 +295,7 @@
 
     <style name="topbar_button" parent="default_image_button">
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_height">0dp</item>
         <item name="android:paddingStart">@dimen/padding_default</item>
         <item name="android:paddingEnd">@dimen/padding_default</item>
     </style>

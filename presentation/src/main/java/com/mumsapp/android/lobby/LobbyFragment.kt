@@ -45,5 +45,6 @@ class LobbyFragment : BaseFragment(), LobbyView {
         super.onViewCreated(view, savedInstanceState)
         presenter.attachViewWithLifecycle(this)
         topBar.setRightButtonClickListener { presenter.onFiltersButtonClick() }
+        topBar.setSearchListener(presenter::onSearch)
     }
 }

@@ -7,6 +7,7 @@
         <attr name="topBarLeftIcon" format="reference"/>
         <attr name="topBarRightButtonVisible" format="boolean"/>
         <attr name="topBarRightIcon" format="reference"/>
+        <attr name="searchVisible" format="boolean"/>
     </declare-styleable>
 
     <declare-styleable name="TextAttributes">

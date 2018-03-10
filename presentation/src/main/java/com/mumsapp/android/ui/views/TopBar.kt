@@ -20,6 +20,15 @@ class TopBar: ConstraintLayout {
     @BindView(R.id.top_bar_right_button)
     lateinit var rightButton: BaseImageButton
 
+    @BindView(R.id.top_bar_search_input)
+    lateinit var searchInput: BaseEditText
+
+    @BindView(R.id.top_bar_search_button)
+    lateinit var searchButton: BaseImageButton
+
+    @BindView(R.id.top_bar_search_divider)
+    lateinit var searchDivider: View
+
     constructor(context: Context) : super(context) {
         setup(context, null)
     }
@@ -56,6 +65,9 @@ class TopBar: ConstraintLayout {
         val rightButtonDrawable = array.getDrawable(R.styleable.TopBar_topBarRightIcon)
         setRightButtonDrawable(rightButtonDrawable)
 
+        val searchVisible = array.getBoolean(R.styleable.TopBar_searchVisible, false)
+        setSearchVisibility(searchVisible)
+
         array.recycle()
     }
 
@@ -87,8 +99,24 @@ class TopBar: ConstraintLayout {
         rightButton.setOnClickListener(listener)
     }
 
+    fun setSearchVisibility(visibility: Boolean) {
+        setVisibilityFromBoolean(visibility, searchInput, View.GONE)
+        setVisibilityFromBoolean(visibility, searchButton, View.GONE)
+        setVisibilityFromBoolean(visibility, searchDivider, View.GONE)
+    }
+
+    fun setSearchListener(listener: (value: String) -> Unit) {
+        searchButton.setOnClickListener({
+            listener.invoke(searchInput.text.toString())
+        })
+    }
+
     private fun setVisibilityFromBoolean(value: Boolean, view: View) {
-        var visibility =  if (value) View.VISIBLE else View.INVISIBLE
+        setVisibilityFromBoolean(value, view, View.INVISIBLE)
+    }
+
+    private fun setVisibilityFromBoolean(value: Boolean, view: View, valueForFalse: Int) {
+        val visibility =  if (value) View.VISIBLE else valueForFalse
         view.visibility = visibility
     }
 }

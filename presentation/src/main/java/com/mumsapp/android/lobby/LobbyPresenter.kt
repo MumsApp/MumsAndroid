@@ -13,4 +13,8 @@ class LobbyPresenter : LifecyclePresenter<LobbyView> {
     fun onFiltersButtonClick() {
 
     }
+
+    fun onSearch(value: String) {
+
+    }
 }
