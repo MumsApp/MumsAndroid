@@ -28,7 +28,12 @@ class MainActivity : BaseFragmentActivity(), MainView, HasOverlays {
     @BindView(R.id.main_progress_layout)
     lateinit var progressLayout: NonCLickableFrameLayout
 
+    @BindView(R.id.auth_session_expired)
+    lateinit var sessionExpiredView: ConstraintLayout
+
     private var loadingPresented = false
+
+    private var sessionExpiredPresented = false
 
     companion object {
         fun createIntent(context: Context): Intent {
@@ -67,10 +72,22 @@ class MainActivity : BaseFragmentActivity(), MainView, HasOverlays {
 
     override fun hideOverlays() {
         progressLayout.visibility = View.GONE
+        sessionExpiredView.visibility = View.GONE
         loadingPresented = false
+        sessionExpiredPresented = false
     }
 
     override fun isLoadingPresented(): Boolean = loadingPresented
+
+    override fun isSessionExpiredPresented() = sessionExpiredPresented
+
+    override fun showSessionExpired() {
+        sessionExpiredPresented = true
+        keyboardHelper.hideKeyboard(sessionExpiredView)
+        progressLayout.visibility = View.GONE
+        loadingPresented = false
+        sessionExpiredView.visibility = View.VISIBLE
+    }
 
     override fun showMenu() {
         menuLayout.translationY = menuLayout.height.toFloat()
@@ -84,6 +101,11 @@ class MainActivity : BaseFragmentActivity(), MainView, HasOverlays {
         menuLayout.animate().translationY(menuLayout.height.toFloat()).withEndAction({
             menuLayout.visibility = View.GONE
         })
+    }
+
+    @OnClick(R.id.auth_session_expired_button)
+    fun onSessionExpiredButtonClick() {
+        onSessionExpiredButtonClick()
     }
 
     @OnClick(R.id.menu_open)

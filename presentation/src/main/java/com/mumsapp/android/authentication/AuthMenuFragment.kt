@@ -8,14 +8,14 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
 import com.mumsapp.android.R
-import com.mumsapp.android.base.LifecycleFragment
+import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.di.components.ActivityComponent
 import com.mumsapp.android.ui.views.BaseButton
 import javax.inject.Inject
 
-class AuthMenuFragment: LifecycleFragment(), AuthMenuView {
+class AuthMenuFragment: BaseFragment(), AuthMenuView {
 
     @Inject
     lateinit var presenter: AuthMenuPresenter

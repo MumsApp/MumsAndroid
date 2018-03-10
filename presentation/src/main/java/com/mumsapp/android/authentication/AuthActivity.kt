@@ -88,4 +88,8 @@ class AuthActivity : BaseFragmentActivity(), AuthView, HasOverlays {
     }
 
     override fun isLoadingPresented(): Boolean = loadingPresented
+
+    override fun isSessionExpiredPresented() = false
+
+    override fun showSessionExpired(){}
 }

@@ -7,4 +7,8 @@ interface HasOverlays {
     fun hideOverlays()
 
     fun isLoadingPresented(): Boolean
+
+    fun isSessionExpiredPresented(): Boolean
+    
+    fun showSessionExpired()
 }

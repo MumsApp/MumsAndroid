@@ -9,7 +9,7 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
 import com.mumsapp.android.R
-import com.mumsapp.android.base.LifecycleFragment
+import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.di.components.ActivityComponent
@@ -17,7 +17,7 @@ import com.mumsapp.android.ui.views.BaseInput
 import com.mumsapp.android.ui.views.TopBar
 import javax.inject.Inject
 
-class SignUpFragment: LifecycleFragment(), SignUpView {
+class SignUpFragment: BaseFragment(), SignUpView {
 
     @Inject
     lateinit var presenter: SignUpPresenter

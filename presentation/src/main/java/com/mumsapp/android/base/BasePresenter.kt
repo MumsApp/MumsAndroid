@@ -35,6 +35,10 @@ abstract class BasePresenter<View: BaseView> {
             return true
         }
 
+        if(view!!.isSessionExpiredPresented()) {
+            return false
+        }
+
         if(isViewAvailable() && view!!.isLoadingPresented()) {
             return false
         }
@@ -52,7 +56,7 @@ abstract class BasePresenter<View: BaseView> {
                     .doOnComplete({ tryHideOverlays() })
                     .onErrorResumeNext({ throwable: Throwable ->
                         if(throwable is InvalidRefreshTokenException) {
-                            //view.showSessionExpired()
+                            view?.showSessionExpired()
                             Observable.empty<T>()
                         }
 

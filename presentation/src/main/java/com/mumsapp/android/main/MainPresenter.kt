@@ -34,6 +34,11 @@ class MainPresenter : LifecyclePresenter<MainView> {
         return false
     }
 
+    fun onSessionExpiredButtonClick() {
+        activityNavigationService.openAuthActivity()
+        activityNavigationService.finishCurrentActivity()
+    }
+
     fun onOpenMenuClick() {
         view?.showMenu()
     }

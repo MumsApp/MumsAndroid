@@ -7,14 +7,14 @@ import android.view.ViewGroup
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.mumsapp.android.R
-import com.mumsapp.android.base.LifecycleFragment
+import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.di.components.ActivityComponent
 import com.mumsapp.android.ui.views.TopBar
 import javax.inject.Inject
 
-class CreatePageFragment: LifecycleFragment(), CreatePageView {
+class CreatePageFragment: BaseFragment(), CreatePageView {
 
     @Inject
     lateinit var presenter: CreatePagePresenter

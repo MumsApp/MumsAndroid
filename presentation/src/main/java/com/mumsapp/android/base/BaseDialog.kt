@@ -70,4 +70,8 @@ abstract class BaseDialog(context: Context) : Dialog(context), BaseView {
     }
 
     override fun isLoadingPresented(): Boolean = false
+
+    override fun isSessionExpiredPresented() = false
+
+    override fun showSessionExpired() {}
 }

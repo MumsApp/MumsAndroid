@@ -6,7 +6,7 @@ import butterknife.Unbinder
 import com.mumsapp.android.common.features.HasComponent
 import com.mumsapp.android.common.features.HasOverlays
 
-abstract class LifecycleFragment : Fragment(), LifecycleView {
+abstract class BaseFragment : Fragment(), LifecycleView {
 
     private var unbinder: Unbinder? = null
 
@@ -63,5 +63,19 @@ abstract class LifecycleFragment : Fragment(), LifecycleView {
         }
 
         throw IllegalStateException("Activity must be HasOverlays")
+    }
+
+    override fun isSessionExpiredPresented(): Boolean {
+        if(activity is HasOverlays) {
+            return (activity as HasOverlays).isSessionExpiredPresented()
+        }
+
+        return false
+    }
+
+    override fun showSessionExpired() {
+        if(activity is HasOverlays) {
+            (activity as HasOverlays).showSessionExpired()
+        }
     }
 }

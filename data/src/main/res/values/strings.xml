@@ -6,4 +6,5 @@
     <string name="error_server">Server error. Try again later.</string>
     <string name="error_refresh_token_invalid_or_expired">Refresh token is invalid or expired.</string>
     <string name="error_access_token_invalid_or_expired">Access token is invalid or expired.</string>
+    <string name="error_token_expired">Your session has expired. Please sign in and try again.</string>
 </resources>

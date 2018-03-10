@@ -10,24 +10,54 @@
         android:id="@+id/main_frame_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/splash"/>
+        android:background="@drawable/splash" />
 
     <com.mumsapp.android.ui.views.BaseImageButton
         android:id="@+id/menu_open"
         style="@style/default_image_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
         android:src="@drawable/open_menu"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:adjustViewBounds="true"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/auth_session_expired"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <com.mumsapp.android.ui.views.BaseTextView
+            android:id="@+id/auth_session_expired_text"
+            style="@style/text_small_grey_light"
+            android:layout_marginBottom="@dimen/padding_medium"
+            android:text="@string/error_token_expired"
+            app:layout_constraintBottom_toTopOf="@id/auth_session_expired_button"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <com.mumsapp.android.ui.views.BaseButton
+            android:id="@+id/auth_session_expired_button"
+            style="@style/button_green"
+            android:layout_marginEnd="@dimen/padding_default"
+            android:layout_marginStart="@dimen/padding_default"
+            android:text="@string/sign_in"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/auth_session_expired_text" />
+
+    </android.support.constraint.ConstraintLayout>
 
     <include
         android:id="@+id/main_menu"
         layout="@layout/item_menu"
         android:visibility="gone"
-        tools:visibility="visible"/>
+        tools:visibility="visible" />
 
     <include
         android:id="@+id/main_progress_layout"

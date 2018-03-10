@@ -5,7 +5,7 @@ import com.mumsapp.android.authentication.AuthMenuFragment
 import com.mumsapp.android.authentication.CreatePageFragment
 import com.mumsapp.android.authentication.SignInFragment
 import com.mumsapp.android.authentication.SignUpFragment
-import com.mumsapp.android.base.LifecycleFragment
+import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.di.qualifiers.FragmentContainerId
 import com.mumsapp.android.profile.MyProfileFragment
 import javax.inject.Inject
@@ -75,7 +75,7 @@ class FragmentsNavigationService {
         return fragmentManager.backStackEntryCount
     }
 
-    private fun openFragment(fragment: LifecycleFragment, addToBackStack: Boolean) {
+    private fun openFragment(fragment: BaseFragment, addToBackStack: Boolean) {
         val transaction = fragmentManager.beginTransaction()
         transaction.setCustomAnimations(android.R.anim.fade_in, 0)
 
@@ -90,10 +90,10 @@ class FragmentsNavigationService {
     }
 
     @Throws(UnsupportedOperationException::class)
-    fun findTopFragment(): LifecycleFragment? {
+    fun findTopFragment(): BaseFragment? {
         val f = fragmentManager.findFragmentById(containerId)
         return if (f != null) {
-            f as? LifecycleFragment ?: throw UnsupportedOperationException("Invalid fragment in fragment manager: Every fragment on the stack should be a child of LifecycleFragment!")
+            f as? BaseFragment ?: throw UnsupportedOperationException("Invalid fragment in fragment manager: Every fragment on the stack should be a child of BaseFragment!")
         } else null
 
     }
