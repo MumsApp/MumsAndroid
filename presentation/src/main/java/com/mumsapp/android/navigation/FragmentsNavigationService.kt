@@ -6,6 +6,7 @@ import com.mumsapp.android.authentication.CreatePageFragment
 import com.mumsapp.android.authentication.SignInFragment
 import com.mumsapp.android.authentication.SignUpFragment
 import com.mumsapp.android.base.BaseFragment
+import com.mumsapp.android.chat.ChatListFragment
 import com.mumsapp.android.di.qualifiers.FragmentContainerId
 import com.mumsapp.android.lobby.LobbyFragment
 import com.mumsapp.android.profile.MyProfileFragment
@@ -67,6 +68,13 @@ class FragmentsNavigationService {
     }
 
     fun createLobbyFragment() = LobbyFragment.getInstance()
+
+    fun openChatListFragment(addToBackStack: Boolean) {
+        val fragment = createChatListFragment()
+        openFragment(fragment, addToBackStack)
+    }
+
+    fun createChatListFragment() = ChatListFragment.genInstance()
 
     fun popFragment() {
         fragmentManager.popBackStack()

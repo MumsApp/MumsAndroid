@@ -58,7 +58,9 @@ class MainPresenter : LifecyclePresenter<MainView> {
     }
 
     fun onTalkClick() {
-
+        fragmentsNavigationService.popFragmentsToRoot()
+        fragmentsNavigationService.openChatListFragment(true)
+        view?.hideMenu()
     }
 
     fun onMeClick() {
