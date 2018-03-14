@@ -1,6 +1,7 @@
 package com.mumsapp.android.di.components
 
 import com.mumsapp.android.authentication.*
+import com.mumsapp.android.chat.ChatListFragment
 import com.mumsapp.android.di.modules.ActivityModule
 import com.mumsapp.android.di.scopes.ActivityScope
 import com.mumsapp.android.lobby.LobbyFragment
@@ -36,4 +37,6 @@ interface ActivityComponent {
     fun inject(dialog: UserDetailsSettingsDialog)
 
     fun inject(fragment: LobbyFragment)
+
+    fun inject(fragment: ChatListFragment)
 }

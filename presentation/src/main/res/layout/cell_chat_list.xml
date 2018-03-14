@@ -20,7 +20,7 @@
             app:layout_constraintRight_toRightOf="@id/chat_list_cell_image"
             android:visibility="gone"
             tools:visibility="visible"
-            android:src="@drawable/ic_search_grey"/>
+            android:src="@drawable/ic_online"/>
 
         <com.mumsapp.android.ui.views.BaseImageView
             android:id="@+id/chat_list_cell_verification_status"
@@ -29,7 +29,8 @@
             app:layout_constraintRight_toRightOf="@id/chat_list_cell_image"
             android:visibility="gone"
             tools:visibility="visible"
-            android:src="@drawable/ic_search_grey"/>
+            android:src="@drawable/ic_verified"
+            android:adjustViewBounds="true"/>
 
         <com.mumsapp.android.ui.views.BaseTextView
             android:id="@+id/chat_list_cell_title"

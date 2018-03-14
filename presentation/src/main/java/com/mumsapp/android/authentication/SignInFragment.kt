@@ -52,7 +52,7 @@ class SignInFragment: BaseFragment(), SignInView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter.attachViewWithLifecycle(this)
-        topBar.setLeftButtonClickListener(View.OnClickListener { presenter.onBackClick() })
+        topBar.setLeftButtonClickListener { presenter.onBackClick() }
     }
 
     @OnClick(R.id.sign_in_facebook)

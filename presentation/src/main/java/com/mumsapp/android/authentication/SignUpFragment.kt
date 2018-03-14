@@ -65,7 +65,7 @@ class SignUpFragment: BaseFragment(), SignUpView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter.attachViewWithLifecycle(this)
-        topBar.setLeftButtonClickListener(View.OnClickListener { presenter.onBackClick() })
+        topBar.setLeftButtonClickListener { presenter.onBackClick() }
     }
 
     @OnClick(R.id.sign_up_facebook)
