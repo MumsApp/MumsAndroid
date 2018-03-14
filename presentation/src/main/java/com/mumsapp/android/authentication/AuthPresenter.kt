@@ -25,7 +25,8 @@ class AuthPresenter: LifecyclePresenter<AuthView> {
         if(sessionManager.isUserLogged()) {
             activityNavigationService.openMainActivity()
         } else {
-            fragmentsNavigationService.openAuthMenuFragment(true)
+//            fragmentsNavigationService.openAuthMenuFragment(true) TODO: Change this when api will be ready
+            activityNavigationService.openMainActivity()
         }
     }
 

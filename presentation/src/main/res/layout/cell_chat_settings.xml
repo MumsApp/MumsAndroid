@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/default_layout"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/padding_medium"
+    android:paddingBottom="@dimen/padding_medium">
+
+    <com.mumsapp.android.ui.views.CircleImageView
+        android:id="@+id/chat_settings_cell_image"
+        style="@style/small_avatar_image_view"
+        android:layout_marginStart="@dimen/padding_default"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/chat_settings_top_bar_divider" />
+
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/chat_settings_cell_text"
+        style="@style/text_normal_bold"
+        android:layout_width="0dp"
+        android:layout_marginStart="@dimen/padding_medium"
+        android:text="@string/select_all"
+        app:layout_constraintBottom_toBottomOf="@id/chat_settings_cell_image"
+        app:layout_constraintLeft_toRightOf="@id/chat_settings_cell_image"
+        app:layout_constraintRight_toLeftOf="@id/chat_settings_cell_checkbox"
+        app:layout_constraintTop_toTopOf="@id/chat_settings_cell_image" />
+
+    <CheckBox
+        android:id="@+id/chat_settings_cell_checkbox"
+        style="@style/checkbox_default"
+        android:layout_marginEnd="@dimen/padding_default"
+        app:layout_constraintBottom_toBottomOf="@id/chat_settings_cell_image"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/chat_settings_cell_image" />
+</android.support.constraint.ConstraintLayout>

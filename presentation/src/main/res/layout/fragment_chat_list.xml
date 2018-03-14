@@ -7,6 +7,7 @@
     <com.mumsapp.android.ui.views.TopBar
         android:id="@+id/chat_list_top_bar"
         style="@style/top_bar_filters_settings_search"
+        app:topBarTitle="@string/chats"
         app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.v4.widget.NestedScrollView

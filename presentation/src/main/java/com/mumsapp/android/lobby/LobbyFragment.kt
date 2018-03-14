@@ -20,7 +20,7 @@ import javax.inject.Inject
 class LobbyFragment : BaseFragment(), LobbyView {
 
     @Inject
-    lateinit var presenter: LobbyPresenter
+    lateinit var lifecyclePresenter: LobbyPresenter
 
     @Inject
     lateinit var adapter: LobbyItemsAdapter
@@ -31,7 +31,7 @@ class LobbyFragment : BaseFragment(), LobbyView {
     @BindView(R.id.lobby_recycler_view)
     lateinit var recyclerView: CardsRecyclerView
 
-    override fun <T : LifecyclePresenter<LifecycleView>> getPresenter() = presenter as T
+    override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter() = lifecyclePresenter as T
 
     companion object {
         fun getInstance(): LobbyFragment {
@@ -52,14 +52,14 @@ class LobbyFragment : BaseFragment(), LobbyView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        presenter.attachViewWithLifecycle(this)
-        topBar.setRightButtonClickListener { presenter.onFiltersButtonClick() }
-        topBar.setSearchListener(presenter::onSearch)
+        lifecyclePresenter.attachViewWithLifecycle(this)
+        topBar.setRightButtonClickListener { lifecyclePresenter.onFiltersButtonClick() }
+        topBar.setSearchListener(lifecyclePresenter::onSearch)
     }
 
     @OnClick(R.id.lobby_add_category)
     fun onAddCategoryClick() {
-        presenter.onAddCategoryClick()
+        lifecyclePresenter.onAddCategoryClick()
     }
 
     override fun showItems(items: List<LobbyItem>, listener: (item: LobbyItem, value: Boolean) -> Unit) {

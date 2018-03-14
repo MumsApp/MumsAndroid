@@ -321,9 +321,14 @@
     </style>
 
     <style name="avatar_image_view" parent="default_image_view">
-        <item name="android:layout_width">@dimen/my_profile_avatar_size</item>
-        <item name="android:layout_height">@dimen/my_profile_avatar_size</item>
+        <item name="android:layout_width">@dimen/regular_avatar_size</item>
+        <item name="android:layout_height">@dimen/regular_avatar_size</item>
         <item name="android:src">@drawable/menu_me</item>
+    </style>
+
+    <style name="small_avatar_image_view" parent="avatar_image_view">
+        <item name="android:layout_width">@dimen/small_avatar_size</item>
+        <item name="android:layout_height">@dimen/small_avatar_size</item>
     </style>
 
 
@@ -402,5 +407,16 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="layoutManager">android.support.v7.widget.LinearLayoutManager</item>
+    </style>
+
+    <style name="recycler_view_dialog" parent="recycler_default">
+        <item name="android:layout_height">@dimen/dialog_recycler_view_height</item>
+    </style>
+
+
+    <!-- CheckBoxes -->
+    <style name="checkbox_default" parent="text_normal">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 </resources>

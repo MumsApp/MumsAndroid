@@ -15,7 +15,7 @@ class ChatListPresenter : LifecyclePresenter<ChatListView> {
     }
 
     fun onSettingsButtonClick() {
-
+        view?.openChatSettingsDialog()
     }
 
     fun onSearch(value: String) {

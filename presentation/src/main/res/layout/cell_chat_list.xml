@@ -18,7 +18,7 @@
             style="@style/default_image_view"
             app:layout_constraintTop_toTopOf="@id/chat_list_cell_image"
             app:layout_constraintRight_toRightOf="@id/chat_list_cell_image"
-            android:visibility="gone"
+            android:visibility="visible"
             tools:visibility="visible"
             android:src="@drawable/ic_online"/>
 
@@ -27,7 +27,7 @@
             style="@style/default_image_view"
             app:layout_constraintBottom_toBottomOf="@id/chat_list_cell_image"
             app:layout_constraintRight_toRightOf="@id/chat_list_cell_image"
-            android:visibility="gone"
+            android:visibility="visible"
             tools:visibility="visible"
             android:src="@drawable/ic_verified"
             android:adjustViewBounds="true"/>

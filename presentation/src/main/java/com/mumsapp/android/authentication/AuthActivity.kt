@@ -14,7 +14,6 @@ import com.mumsapp.android.base.BaseFragmentActivity
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.common.features.HasOverlays
-import com.mumsapp.android.main.MainActivity
 import com.mumsapp.android.ui.views.NonCLickableFrameLayout
 import com.mumsapp.data.google.GoogleCallbackHandler
 import javax.inject.Inject
@@ -22,7 +21,7 @@ import javax.inject.Inject
 class AuthActivity : BaseFragmentActivity(), AuthView, HasOverlays {
 
     @Inject
-    lateinit var presenter: AuthPresenter
+    lateinit var lifecyclePresenter: AuthPresenter
 
     @Inject
     lateinit var callbackManager: CallbackManager
@@ -45,7 +44,7 @@ class AuthActivity : BaseFragmentActivity(), AuthView, HasOverlays {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
         ButterKnife.bind(this)
-        presenter.attachViewWithLifecycle(this)
+        lifecyclePresenter.attachViewWithLifecycle(this)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
@@ -60,7 +59,7 @@ class AuthActivity : BaseFragmentActivity(), AuthView, HasOverlays {
 
     override fun makeInject() = activityComponent.inject(this)
 
-    override fun <T: LifecyclePresenter<LifecycleView>> getPresenter(): T = presenter as T
+    override fun <T: LifecyclePresenter<LifecycleView>> getLifecyclePresenter(): T = lifecyclePresenter as T
 
     override fun getFragmentContainerId(): Int {
         return R.id.auth_frame_layout
@@ -71,7 +70,7 @@ class AuthActivity : BaseFragmentActivity(), AuthView, HasOverlays {
     }
 
     override fun onBackPressed() {
-        if(presenter.handleBackOrDelegateToSystem()) {
+        if(lifecyclePresenter.handleBackOrDelegateToSystem()) {
             super.onBackPressed()
         }
     }

@@ -50,6 +50,11 @@
     <dimen name="card_view_default_elevation">5dp</dimen>
 
 
+    <!-- Images -->
+    <dimen name="regular_avatar_size">54dp</dimen>
+    <dimen name="small_avatar_size">36dp</dimen>
+
+
     <!-- Sign Up Fragment -->
     <dimen name="sign_up_social_buttons_margin_top">20dp</dimen>
 
@@ -69,10 +74,9 @@
     <dimen name="menu_labels_text_size">12sp</dimen>
 
 
-    <!-- My Profile -->
-    <dimen name="my_profile_avatar_size">54dp</dimen>
-
-
     <!-- Location Widget -->
     <dimen name="location_widget_map_height">200dp</dimen>
+
+    <!-- Recycler Views -->
+    <dimen name="dialog_recycler_view_height">300dp</dimen>
 </resources>

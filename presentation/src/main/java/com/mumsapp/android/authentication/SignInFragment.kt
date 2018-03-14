@@ -19,7 +19,7 @@ import javax.inject.Inject
 class SignInFragment: BaseFragment(), SignInView {
 
     @Inject
-    lateinit var presenter: SignInPresenter
+    lateinit var lifecyclePresenter: SignInPresenter
 
     @BindView(R.id.sign_in_top_bar)
     lateinit var topBar: TopBar
@@ -36,7 +36,7 @@ class SignInFragment: BaseFragment(), SignInView {
         }
     }
 
-    override fun <T : LifecyclePresenter<LifecycleView>> getPresenter(): T = presenter as T
+    override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter(): T = lifecyclePresenter as T
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,18 +51,18 @@ class SignInFragment: BaseFragment(), SignInView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        presenter.attachViewWithLifecycle(this)
-        topBar.setLeftButtonClickListener { presenter.onBackClick() }
+        lifecyclePresenter.attachViewWithLifecycle(this)
+        topBar.setLeftButtonClickListener { lifecyclePresenter.onBackClick() }
     }
 
     @OnClick(R.id.sign_in_facebook)
     fun onFacebookClick() {
-        presenter.onFacebookClick()
+        lifecyclePresenter.onFacebookClick()
     }
 
     @OnClick(R.id.sign_in_google)
     fun onGoogleClick() {
-        presenter.onGoogleClick()
+        lifecyclePresenter.onGoogleClick()
     }
 
     @OnClick(R.id.sign_in_button)
@@ -70,17 +70,17 @@ class SignInFragment: BaseFragment(), SignInView {
         val email = emailInput.text
         val password = passwordInput.text
 
-        presenter.onSignInClick(email, password)
+        lifecyclePresenter.onSignInClick(email, password)
     }
 
     @OnClick(R.id.sign_in_no_account)
     fun onSignUpClick() {
-        presenter.onSignUpClick()
+        lifecyclePresenter.onSignUpClick()
     }
 
     @OnClick(R.id.sign_in_forget_password)
     fun onForgetPasswordClick() {
-        presenter.onForgetPasswordClick()
+        lifecyclePresenter.onForgetPasswordClick()
     }
 
     override fun showEmailError(error: String) {

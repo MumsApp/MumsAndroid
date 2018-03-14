@@ -20,7 +20,7 @@ import javax.inject.Inject
 class SignUpFragment: BaseFragment(), SignUpView {
 
     @Inject
-    lateinit var presenter: SignUpPresenter
+    lateinit var lifecyclePresenter: SignUpPresenter
 
     @BindView(R.id.sign_up_top_bar)
     lateinit var topBar: TopBar
@@ -49,7 +49,7 @@ class SignUpFragment: BaseFragment(), SignUpView {
         }
     }
 
-    override fun <T : LifecyclePresenter<LifecycleView>> getPresenter(): T = presenter as T
+    override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter(): T = lifecyclePresenter as T
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,23 +64,23 @@ class SignUpFragment: BaseFragment(), SignUpView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        presenter.attachViewWithLifecycle(this)
-        topBar.setLeftButtonClickListener { presenter.onBackClick() }
+        lifecyclePresenter.attachViewWithLifecycle(this)
+        topBar.setLeftButtonClickListener { lifecyclePresenter.onBackClick() }
     }
 
     @OnClick(R.id.sign_up_facebook)
     fun onFacebookClick() {
-        presenter.onFacebookClick()
+        lifecyclePresenter.onFacebookClick()
     }
 
     @OnClick(R.id.sign_up_google)
     fun onGoogleClick() {
-        presenter.onGoogleClick()
+        lifecyclePresenter.onGoogleClick()
     }
 
     @OnClick(R.id.sign_up_terms_label)
     fun onTermsLinkClick() {
-        presenter.onTermsLinkClick()
+        lifecyclePresenter.onTermsLinkClick()
     }
 
     @OnClick(R.id.sign_up_button)
@@ -92,12 +92,12 @@ class SignUpFragment: BaseFragment(), SignUpView {
         val passwordConfirmation = passwordConfirmationInput.text
         val termsChecked = termsCheckbox.isChecked
 
-        presenter.onSignUpClick(firstName, lastName, email, password, passwordConfirmation, termsChecked)
+        lifecyclePresenter.onSignUpClick(firstName, lastName, email, password, passwordConfirmation, termsChecked)
     }
 
     @OnClick(R.id.sign_up_already_have_account)
     fun onSignInClick() {
-        presenter.onSignInClick()
+        lifecyclePresenter.onSignInClick()
     }
 
     override fun showFirstNameError(error: String) {

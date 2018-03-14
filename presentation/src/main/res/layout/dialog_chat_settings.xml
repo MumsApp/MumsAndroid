@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/default_dialog_layout">
+
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/chat_settings_title"
+        style="@style/text_top_bar_title"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_default"
+        android:text="@string/chat_settings"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/chat_settings_description"
+        style="@style/text_small_grey_light"
+        android:text="@string/show_online_status_to_colon"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/chat_settings_title" />
+
+    <com.mumsapp.android.ui.views.BaseImageButton
+        android:id="@+id/chat_settings_close_button"
+        style="@style/topbar_button"
+        android:src="@drawable/ic_close"
+        app:layout_constraintBottom_toBottomOf="@id/chat_settings_description"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/chat_settings_title" />
+
+    <View
+        android:id="@+id/chat_settings_top_bar_divider"
+        style="@style/divider_horizontal"
+        android:layout_marginTop="@dimen/padding_default"
+        app:layout_constraintTop_toBottomOf="@id/chat_settings_description" />
+
+    <com.mumsapp.android.ui.views.CircleImageView
+        android:id="@+id/chat_settings_select_all_image"
+        style="@style/small_avatar_image_view"
+        android:layout_marginStart="@dimen/padding_default"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:src="@drawable/ic_avatar_placeholder_small"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/chat_settings_top_bar_divider" />
+
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/chat_settings_select_all_text"
+        style="@style/text_normal_bold"
+        android:layout_marginStart="@dimen/padding_medium"
+        android:text="@string/select_all"
+        app:layout_constraintBottom_toBottomOf="@id/chat_settings_select_all_image"
+        app:layout_constraintLeft_toRightOf="@id/chat_settings_select_all_image"
+        app:layout_constraintTop_toTopOf="@id/chat_settings_select_all_image" />
+
+    <CheckBox
+        android:id="@+id/chat_settings_select_all_checkbox"
+        style="@style/checkbox_default"
+        android:layout_marginEnd="@dimen/padding_default"
+        app:layout_constraintBottom_toBottomOf="@id/chat_settings_select_all_image"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/chat_settings_select_all_image" />
+
+    <View
+        android:id="@+id/chat_settings_select_all_divider"
+        style="@style/divider_horizontal"
+        android:layout_marginTop="@dimen/padding_medium"
+        app:layout_constraintTop_toBottomOf="@id/chat_settings_select_all_image" />
+
+    <com.mumsapp.android.ui.views.StripeDividerRecyclerView
+        android:id="@+id/chat_settings_recycler_view"
+        style="@style/recycler_view_dialog"
+        app:layout_constraintTop_toBottomOf="@id/chat_settings_select_all_divider"
+        tools:listitem="@layout/cell_chat_settings" />
+
+    <View
+        android:id="@+id/chat_settings_recycler_view_divider"
+        style="@style/divider_horizontal"
+        app:layout_constraintTop_toBottomOf="@id/chat_settings_recycler_view" />
+
+    <com.mumsapp.android.ui.views.BaseButton
+        android:id="@+id/chat_settings_save_button"
+        style="@style/button_green"
+        android:layout_marginLeft="@dimen/padding_default"
+        android:layout_marginRight="@dimen/padding_default"
+        android:layout_marginTop="@dimen/padding_default"
+        android:text="@string/save"
+        app:layout_constraintTop_toBottomOf="@id/chat_settings_recycler_view_divider" />
+</android.support.constraint.ConstraintLayout>

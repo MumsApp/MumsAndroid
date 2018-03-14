@@ -11,6 +11,7 @@ import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.di.components.ActivityComponent
+import com.mumsapp.android.navigation.DialogsProvider
 import com.mumsapp.android.ui.views.TopBar
 import javax.inject.Inject
 
@@ -19,10 +20,15 @@ class ChatListFragment : BaseFragment(), ChatListView {
     @Inject
     lateinit var presenter: ChatListPresenter
 
+    @Inject
+    lateinit var dialogsProvider: DialogsProvider
+
     @BindView(R.id.chat_list_top_bar)
     lateinit var topBar: TopBar
 
-    override fun <T : LifecyclePresenter<LifecycleView>> getPresenter() = presenter as T
+    private var chatSettingsDialog: ChatSettingsDialog? = null
+
+    override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter() = presenter as T
 
     companion object {
         fun genInstance() : ChatListFragment {
@@ -36,7 +42,7 @@ class ChatListFragment : BaseFragment(), ChatListView {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val v = inflater.inflate(R.layout.fragment_lobby, container, false)
+        val v = inflater.inflate(R.layout.fragment_chat_list, container, false)
         setUnbinder(ButterKnife.bind(this, v))
         return v
     }
@@ -47,5 +53,13 @@ class ChatListFragment : BaseFragment(), ChatListView {
         topBar.setLeftButtonClickListener { presenter.onFiltersButtonClick() }
         topBar.setRightButtonClickListener { presenter.onSettingsButtonClick() }
         topBar.setSearchListener(presenter::onSearch)
+    }
+
+    override fun openChatSettingsDialog() {
+        if(chatSettingsDialog == null) {
+            chatSettingsDialog = dialogsProvider.createChatSettingsDialog()
+        }
+
+        chatSettingsDialog?.show()
     }
 }

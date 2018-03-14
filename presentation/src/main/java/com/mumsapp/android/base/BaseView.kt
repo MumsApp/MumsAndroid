@@ -5,7 +5,7 @@ import com.mumsapp.android.common.features.HasOverlays
 
 interface BaseView : HasOverlays {
 
-    fun <T: LifecyclePresenter<LifecycleView>> getPresenter(): T
+    fun <T: BasePresenter<BaseView>> getPresenter(): T
 
     fun hideKeyboard()
 

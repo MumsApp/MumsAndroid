@@ -18,7 +18,7 @@ import javax.inject.Inject
 class AuthMenuFragment: BaseFragment(), AuthMenuView {
 
     @Inject
-    lateinit var presenter: AuthMenuPresenter
+    lateinit var lifecyclePresenter: AuthMenuPresenter
 
     @BindView(R.id.auth_menu_sign_up)
     lateinit var button: BaseButton
@@ -29,7 +29,7 @@ class AuthMenuFragment: BaseFragment(), AuthMenuView {
         }
     }
 
-    override fun <T : LifecyclePresenter<LifecycleView>> getPresenter(): T = presenter as T
+    override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter(): T = lifecyclePresenter as T
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,21 +44,21 @@ class AuthMenuFragment: BaseFragment(), AuthMenuView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        presenter.attachViewWithLifecycle(this)
+        lifecyclePresenter.attachViewWithLifecycle(this)
     }
 
     @OnClick(R.id.auth_menu_sign_up)
     fun onSignUpClick() {
-        presenter.onSignUpClick()
+        lifecyclePresenter.onSignUpClick()
     }
 
     @OnClick(R.id.auth_menu_sign_in)
     fun onSignInClick() {
-        presenter.onSignInClick()
+        lifecyclePresenter.onSignInClick()
     }
 
     @OnClick(R.id.auth_menu_create_page)
     fun onCreatePageClick() {
-        presenter.onCreatePageClick()
+        lifecyclePresenter.onCreatePageClick()
     }
 }

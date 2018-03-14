@@ -20,7 +20,7 @@ import javax.inject.Inject
 class MainActivity : BaseFragmentActivity(), MainView, HasOverlays {
 
     @Inject
-    lateinit var presenter: MainPresenter
+    lateinit var lifecyclePresenter: MainPresenter
 
     @BindView(R.id.main_menu)
     lateinit var menuLayout: ConstraintLayout
@@ -45,7 +45,7 @@ class MainActivity : BaseFragmentActivity(), MainView, HasOverlays {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         ButterKnife.bind(this)
-        presenter.attachViewWithLifecycle(this)
+        lifecyclePresenter.attachViewWithLifecycle(this)
         showMenu()
     }
 
@@ -53,12 +53,12 @@ class MainActivity : BaseFragmentActivity(), MainView, HasOverlays {
 
     override fun getProperFragmentManager(): FragmentManager = supportFragmentManager
 
-    override fun <T : LifecyclePresenter<LifecycleView>> getPresenter(): T = presenter as T
+    override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter(): T = lifecyclePresenter as T
 
     override fun makeInject() = activityComponent.inject(this)
 
     override fun onBackPressed() {
-        if (presenter.handleBackOrDelegateToSystem()) {
+        if (lifecyclePresenter.handleBackOrDelegateToSystem()) {
             super.onBackPressed()
         }
     }
@@ -105,46 +105,46 @@ class MainActivity : BaseFragmentActivity(), MainView, HasOverlays {
 
     @OnClick(R.id.auth_session_expired_button)
     fun onSessionExpiredButtonClick() {
-        presenter.onSessionExpiredButtonClick()
+        lifecyclePresenter.onSessionExpiredButtonClick()
     }
 
     @OnClick(R.id.menu_open)
     fun onOpenMenuClick() {
-        presenter.onOpenMenuClick()
+        lifecyclePresenter.onOpenMenuClick()
     }
 
     @OnClick(R.id.menu_close)
     fun onCloseMenuClick() {
-        presenter.onCloseMenuClick()
+        lifecyclePresenter.onCloseMenuClick()
     }
 
     @OnClick(R.id.menu_where_find, R.id.menu_where_find_text)
     fun onWhereFindClick() {
-        presenter.onWhereFindClick()
+        lifecyclePresenter.onWhereFindClick()
     }
 
     @OnClick(R.id.menu_lobby, R.id.menu_lobby_text)
     fun onLobbyClick() {
-        presenter.onLobbyClick()
+        lifecyclePresenter.onLobbyClick()
     }
 
     @OnClick(R.id.menu_talk, R.id.menu_talk_text)
     fun onTalkClick() {
-        presenter.onTalkClick()
+        lifecyclePresenter.onTalkClick()
     }
 
     @OnClick(R.id.menu_me, R.id.menu_me_text)
     fun onMeClick() {
-        presenter.onMeClick()
+        lifecyclePresenter.onMeClick()
     }
 
     @OnClick(R.id.menu_shop, R.id.menu_shop_text)
     fun onShopClick() {
-        presenter.onShopClick()
+        lifecyclePresenter.onShopClick()
     }
 
     @OnClick(R.id.menu_offers, R.id.menu_offers_text)
     fun onOffersClick() {
-        presenter.onOffersClick()
+        lifecyclePresenter.onOffersClick()
     }
 }

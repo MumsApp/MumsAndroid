@@ -17,7 +17,7 @@ import javax.inject.Inject
 class CreatePageFragment: BaseFragment(), CreatePageView {
 
     @Inject
-    lateinit var presenter: CreatePagePresenter
+    lateinit var lifecyclePresenter: CreatePagePresenter
 
     @BindView(R.id.create_page_top_bar)
     lateinit var topBar: TopBar
@@ -28,7 +28,7 @@ class CreatePageFragment: BaseFragment(), CreatePageView {
         }
     }
 
-    override fun <T : LifecyclePresenter<LifecycleView>> getPresenter(): T = presenter as T
+    override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter(): T = lifecyclePresenter as T
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +43,7 @@ class CreatePageFragment: BaseFragment(), CreatePageView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        presenter.attachViewWithLifecycle(this)
-        topBar.setLeftButtonClickListener { presenter.onBackClick() }
+        lifecyclePresenter.attachViewWithLifecycle(this)
+        topBar.setLeftButtonClickListener { lifecyclePresenter.onBackClick() }
     }
 }

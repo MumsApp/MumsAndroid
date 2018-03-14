@@ -11,11 +11,11 @@ import com.mumsapp.android.R
 
 class TopBar: ConstraintLayout {
 
-    @BindView(R.id.top_bar_left_button)
-    lateinit var backButton: BaseImageButton
-
     @BindView(R.id.top_bar_title)
     lateinit var title: BaseTextView
+
+    @BindView(R.id.top_bar_left_button)
+    lateinit var leftButton: BaseImageButton
 
     @BindView(R.id.top_bar_right_button)
     lateinit var rightButton: BaseImageButton
@@ -72,15 +72,15 @@ class TopBar: ConstraintLayout {
     }
 
     fun setLeftButtonVisibility(visible: Boolean) {
-        setVisibilityFromBoolean(visible, backButton)
+        setVisibilityFromBoolean(visible, leftButton)
     }
 
     fun setLeftButtonDrawable(drawable: Drawable?) {
-        rightButton.setImageDrawable(drawable)
+        leftButton.setImageDrawable(drawable)
     }
 
     fun setLeftButtonClickListener(listener: (view: View) -> Unit) {
-        backButton.setOnClickListener(listener)
+        leftButton.setOnClickListener(listener)
     }
 
     fun setTitleText(titleText: String) {

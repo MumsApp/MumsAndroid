@@ -6,9 +6,7 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
 import com.mumsapp.android.R
-import com.mumsapp.android.base.BaseDialog
-import com.mumsapp.android.base.LifecyclePresenter
-import com.mumsapp.android.base.LifecycleView
+import com.mumsapp.android.base.*
 import com.mumsapp.android.di.components.ActivityComponent
 import com.mumsapp.android.ui.views.BaseInput
 import com.mumsapp.android.ui.views.TopBar
@@ -33,7 +31,7 @@ class UserDetailsSettingsDialog(context: Context) : BaseDialog(context), UserDet
 
     private var actionListener: ((firstName: String, lastName: String, description: String) -> Unit)? = null
 
-    override fun <T : LifecyclePresenter<LifecycleView>> getPresenter() = presenter as T
+    override fun <T : BasePresenter<BaseView>> getPresenter() = presenter as T
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
