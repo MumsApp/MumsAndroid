@@ -10,6 +10,7 @@ import com.mumsapp.android.main.MainActivity
 import com.mumsapp.android.profile.AccountSettingsDialog
 import com.mumsapp.android.profile.MyProfileFragment
 import com.mumsapp.android.profile.UserDetailsSettingsDialog
+import com.mumsapp.android.shop.ShopFragment
 import com.mumsapp.android.ui.views.LocationWidget
 import dagger.Subcomponent
 
@@ -42,4 +43,6 @@ interface ActivityComponent {
     fun inject(fragment: ChatListFragment)
 
     fun inject(dialog: ChatSettingsDialog)
+
+    fun inject(fragment: ShopFragment)
 }

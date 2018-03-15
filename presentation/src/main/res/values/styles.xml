@@ -19,16 +19,6 @@
         <item name="android:paddingBottom">@dimen/padding_big</item>
     </style>
 
-    <style name="default_scroll">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:fillViewport">true</item>
-    </style>
-
-    <style name="default_scroll_layout" parent="default_layout">
-        <item name="android:layout_height">wrap_content</item>
-    </style>
-
     <!-- Buttons -->
     <style name="button_default">
         <item name="android:layout_width">match_parent</item>
@@ -194,6 +184,10 @@
         <item name="android:layout_height">@dimen/text_container_small_height</item>
     </style>
 
+    <style name="text_filter" parent="text_small">
+        <item name="android:maxWidth">@dimen/text_filter_max_width</item>
+    </style>
+
     <!-- Dividers -->
     <style name="divider_default">
         <item name="android:background">@color/default_divider</item>
@@ -201,7 +195,12 @@
 
     <style name="divider_horizontal" parent="divider_default">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/divider_horizontal_height</item>
+        <item name="android:layout_height">@dimen/divider_size</item>
+    </style>
+
+    <style name="divider_vertical" parent="divider_default">
+        <item name="android:layout_width">@dimen/divider_size</item>
+        <item name="android:layout_height">0dp</item>
     </style>
 
 
@@ -242,6 +241,16 @@
     <style name="top_bar_filters_settings_search" parent="top_bar_settings">
         <item name="topBarLeftButtonVisible">true</item>
         <item name="topBarLeftIcon">@drawable/ic_switches</item>
+        <item name="searchVisible">true</item>
+    </style>
+
+    <style name="top_bar_hamburger" parent="top_bar_default">
+        <item name="topBarLeftButtonVisible">false</item>
+        <item name="topBarRightButtonVisible">true</item>
+        <item name="topBarRightIcon">@drawable/ic_hamburger</item>
+    </style>
+
+    <style name="top_bar_hamburger_search" parent="top_bar_hamburger">
         <item name="searchVisible">true</item>
     </style>
 
@@ -418,5 +427,23 @@
     <style name="checkbox_default" parent="text_normal">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+    </style>
+
+
+    <!-- Scrolls -->
+    <style name="default_scroll">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:fillViewport">true</item>
+    </style>
+
+    <style name="default_scroll_layout" parent="default_layout">
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="scroll_with_recycler" parent="default_scroll">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:fillViewport">true</item>
     </style>
 </resources>

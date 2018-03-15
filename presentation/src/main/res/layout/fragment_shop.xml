@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/default_layout">
+
+    <com.mumsapp.android.ui.views.TopBar
+        android:id="@+id/shop_top_bar"
+        style="@style/top_bar_hamburger_search"
+        app:layout_constraintTop_toTopOf="parent"
+        app:topBarTitle="@string/shop" />
+
+    <android.support.v4.widget.NestedScrollView
+        style="@style/scroll_with_recycler"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/shop_top_bar">
+
+        <LinearLayout
+            style="@style/default_scroll_layout"
+            android:orientation="vertical">
+
+            <android.support.constraint.ConstraintLayout
+                style="@style/default_layout"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_default">
+
+                <com.mumsapp.android.ui.views.BaseTextView
+                    android:id="@+id/shop_filter_category"
+                    style="@style/text_filter"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/shop_filter_category_divider"
+                    tools:text="Baby clothing" />
+
+                <View
+                    android:id="@+id/shop_filter_category_divider"
+                    style="@style/divider_vertical"
+                    app:layout_constraintBottom_toBottomOf="@id/shop_filter_category"
+                    app:layout_constraintLeft_toRightOf="@id/shop_filter_category"
+                    app:layout_constraintRight_toLeftOf="@id/shop_filter_price"
+                    app:layout_constraintTop_toTopOf="@id/shop_filter_category" />
+
+                <com.mumsapp.android.ui.views.BaseTextView
+                    android:id="@+id/shop_filter_price"
+                    style="@style/text_filter"
+                    android:gravity="center"
+                    app:layout_constraintLeft_toRightOf="@id/shop_filter_category_divider"
+                    app:layout_constraintRight_toLeftOf="@id/shop_filter_price_divider"
+                    tools:text="Price 45-150" />
+
+                <View
+                    android:id="@+id/shop_filter_price_divider"
+                    style="@style/divider_vertical"
+                    app:layout_constraintBottom_toBottomOf="@id/shop_filter_category"
+                    app:layout_constraintLeft_toRightOf="@id/shop_filter_price"
+                    app:layout_constraintRight_toLeftOf="@id/shop_filter_distance"
+                    app:layout_constraintTop_toTopOf="@id/shop_filter_category" />
+
+                <com.mumsapp.android.ui.views.BaseTextView
+                    android:id="@+id/shop_filter_distance"
+                    style="@style/text_filter"
+                    android:gravity="end"
+                    app:layout_constraintLeft_toRightOf="@id/shop_filter_price_divider"
+                    app:layout_constraintRight_toRightOf="parent"
+                    tools:text="1-30 Miles" />
+            </android.support.constraint.ConstraintLayout>
+
+            <com.mumsapp.android.ui.views.BaseButton
+                android:id="@+id/shop_filter_button"
+                style="@style/button_green"
+                android:layout_marginEnd="@dimen/padding_default"
+                android:layout_marginStart="@dimen/padding_default"
+                android:layout_marginTop="@dimen/padding_default"
+                android:text="@string/filter" />
+
+            <com.mumsapp.android.ui.views.CardsRecyclerView
+                android:id="@+id/shop_recycler_view"
+                style="@style/recycler_default"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/cell_chat_list" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_scroll_view_bottom" />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</android.support.constraint.ConstraintLayout>

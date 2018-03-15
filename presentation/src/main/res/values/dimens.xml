@@ -27,6 +27,8 @@
     <dimen name="text_container_small_width">30dp</dimen>
     <dimen name="text_container_small_height">24dp</dimen>
 
+    <dimen name="text_filter_max_width">60dp</dimen>
+
 
     <!-- Buttons -->
     <dimen name="button_default_radius">3dp</dimen>
@@ -42,7 +44,7 @@
 
 
     <!-- Dividers -->
-    <dimen name="divider_horizontal_height">1dp</dimen>
+    <dimen name="divider_size">1dp</dimen>
 
 
     <!-- Card View -->

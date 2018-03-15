@@ -70,7 +70,9 @@ class MainPresenter : LifecyclePresenter<MainView> {
     }
 
     fun onShopClick() {
-
+        fragmentsNavigationService.popFragmentsToRoot()
+        fragmentsNavigationService.openShopFragment(true)
+        view?.hideMenu()
     }
 
     fun onOffersClick() {
