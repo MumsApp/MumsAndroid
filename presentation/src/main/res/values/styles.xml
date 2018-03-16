@@ -332,12 +332,17 @@
     <style name="avatar_image_view" parent="default_image_view">
         <item name="android:layout_width">@dimen/regular_avatar_size</item>
         <item name="android:layout_height">@dimen/regular_avatar_size</item>
-        <item name="android:src">@drawable/menu_me</item>
+        <item name="android:src">@drawable/ic_image_placeholder</item>
     </style>
 
     <style name="small_avatar_image_view" parent="avatar_image_view">
         <item name="android:layout_width">@dimen/small_avatar_size</item>
         <item name="android:layout_height">@dimen/small_avatar_size</item>
+    </style>
+
+    <style name="tiny_avatar_image_view" parent="avatar_image_view">
+        <item name="android:layout_width">@dimen/tiny_avatar_size</item>
+        <item name="android:layout_height">@dimen/tiny_avatar_size</item>
     </style>
 
 

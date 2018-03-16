@@ -77,7 +77,7 @@
                 style="@style/recycler_default"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:listitem="@layout/cell_chat_list" />
+                tools:listitem="@layout/cell_shop" />
 
             <View
                 android:layout_width="match_parent"

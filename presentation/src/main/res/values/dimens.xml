@@ -55,6 +55,7 @@
     <!-- Images -->
     <dimen name="regular_avatar_size">54dp</dimen>
     <dimen name="small_avatar_size">36dp</dimen>
+    <dimen name="tiny_avatar_size">26dp</dimen>
 
 
     <!-- Sign Up Fragment -->
@@ -81,4 +82,7 @@
 
     <!-- Recycler Views -->
     <dimen name="dialog_recycler_view_height">300dp</dimen>
+
+    <!-- Shop Fragment -->
+    <dimen name="shop_item_image_size">90dp</dimen>
 </resources>

@@ -28,4 +28,8 @@
         <attr name="mapLatitude" format="string"/>
         <attr name="mapLongitude" format="string"/>
     </declare-styleable>
+
+    <declare-styleable name="RoundedCornersImageView">
+        <attr name="cornerRadius" format="float"/>
+    </declare-styleable>
 </resources>
