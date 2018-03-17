@@ -89,4 +89,7 @@
     <string name="select_all">Select all</string>
 
     <string name="filter">Filter</string>
+    <string name="menu">Menu</string>
+    <string name="my_products">My products</string>
+    <string name="my_wishlist">My wishlist</string>
 </resources>

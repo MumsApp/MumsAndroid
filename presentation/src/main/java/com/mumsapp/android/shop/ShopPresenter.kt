@@ -11,6 +11,12 @@ class ShopPresenter : LifecyclePresenter<ShopView> {
     }
 
     fun onMenuButtonClick() {
+        view?.openMenuDialog()
+    }
+
+    fun onDialogSearchButtonClick() {
+        view?.closeMenuDialog()
+        view?.startSearching()
     }
 
     fun onSearch(value: String) {

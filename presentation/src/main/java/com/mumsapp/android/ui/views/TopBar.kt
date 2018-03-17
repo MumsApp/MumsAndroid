@@ -111,6 +111,11 @@ class TopBar: ConstraintLayout {
         })
     }
 
+    fun requestSearchFocus() {
+        searchInput.requestFocus()
+        searchInput.requestFocusFromTouch()
+    }
+
     private fun setVisibilityFromBoolean(value: Boolean, view: View) {
         setVisibilityFromBoolean(value, view, View.INVISIBLE)
     }

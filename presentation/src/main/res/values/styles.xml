@@ -40,13 +40,13 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
-    
+
     <style name="square_button_small" parent="square_button_default">
         <item name="android:layout_width">@dimen/square_button_small_size</item>
         <item name="android:layout_height">@dimen/square_button_small_size</item>
         <item name="android:textSize">@dimen/square_button_small_text_size</item>
     </style>
-    
+
     <style name="button_plus" parent="square_button_small">
         <item name="android:text">@string/plus</item>
         <item name="android:textColor">@color/white</item>
@@ -186,6 +186,14 @@
 
     <style name="text_filter" parent="text_small">
         <item name="android:maxWidth">@dimen/text_filter_max_width</item>
+    </style>
+
+    <style name="text_normal_dialog_button" parent="text_normal">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:paddingTop">@dimen/padding_default</item>
+        <item name="android:paddingBottom">@dimen/padding_default</item>
+        <item name="android:paddingEnd">@dimen/padding_default</item>
+        <item name="android:gravity">center_vertical|left</item>
     </style>
 
     <!-- Dividers -->
@@ -343,6 +351,11 @@
     <style name="tiny_avatar_image_view" parent="avatar_image_view">
         <item name="android:layout_width">@dimen/tiny_avatar_size</item>
         <item name="android:layout_height">@dimen/tiny_avatar_size</item>
+    </style>
+
+    <style name="dialog_menu_icon_image_view" parent="default_image_view">
+        <item name="android:paddingTop">@dimen/padding_default</item>
+        <item name="android:paddingBottom">@dimen/padding_default</item>
     </style>
 
 

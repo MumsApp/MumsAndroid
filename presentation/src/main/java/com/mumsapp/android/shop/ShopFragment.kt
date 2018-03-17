@@ -11,6 +11,7 @@ import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.di.components.ActivityComponent
+import com.mumsapp.android.navigation.DialogsProvider
 import com.mumsapp.android.ui.views.TopBar
 import javax.inject.Inject
 
@@ -19,8 +20,13 @@ class ShopFragment : BaseFragment(), ShopView {
     @Inject
     lateinit var presenter: ShopPresenter
 
+    @Inject
+    lateinit var dialogsProvider: DialogsProvider
+
     @BindView(R.id.shop_top_bar)
     lateinit var topBar: TopBar
+
+    private var shopMenuDialog: ShopMenuDialog? = null
 
     override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter() = presenter as T
 
@@ -46,5 +52,22 @@ class ShopFragment : BaseFragment(), ShopView {
         presenter.attachViewWithLifecycle(this)
         topBar.setRightButtonClickListener { presenter.onMenuButtonClick() }
         topBar.setSearchListener(presenter::onSearch)
+    }
+
+    override fun openMenuDialog() {
+        if(shopMenuDialog == null) {
+            shopMenuDialog = dialogsProvider.createShopMenuDialog()
+        }
+
+        shopMenuDialog?.setOnSearchClickListener(presenter::onDialogSearchButtonClick)
+        shopMenuDialog?.show()
+    }
+
+    override fun closeMenuDialog() {
+        shopMenuDialog?.dismissView()
+    }
+
+    override fun startSearching() {
+        topBar.requestSearchFocus()
     }
 }

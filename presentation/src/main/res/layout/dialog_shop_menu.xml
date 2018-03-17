@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/default_dialog_layout"
+    android:paddingBottom="0dp">
+
+    <com.mumsapp.android.ui.views.TopBar
+        android:id="@+id/shop_menu_top_bar"
+        style="@style/top_bar_close"
+        app:topBarTitle="@string/menu" />
+
+    <com.mumsapp.android.ui.views.BaseImageView
+        android:id="@+id/shop_menu_search_icon"
+        style="@style/dialog_menu_icon_image_view"
+        android:layout_marginStart="@dimen/padding_default"
+        android:src="@drawable/ic_search_green"
+        app:layout_constraintBottom_toBottomOf="@id/shop_menu_search"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/shop_menu_search" />
+
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/shop_menu_search"
+        style="@style/text_normal_dialog_button"
+        android:layout_marginStart="@dimen/padding_default"
+        android:text="@string/search"
+        app:layout_constraintLeft_toRightOf="@id/shop_menu_search_icon"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/shop_menu_top_bar" />
+
+    <View
+        android:id="@+id/shop_menu_search_divider"
+        style="@style/divider_horizontal"
+        app:layout_constraintTop_toBottomOf="@id/shop_menu_search" />
+
+    <com.mumsapp.android.ui.views.BaseImageView
+        android:id="@+id/shop_menu_my_products_icon"
+        style="@style/dialog_menu_icon_image_view"
+        android:src="@drawable/ic_my_products"
+        app:layout_constraintBottom_toBottomOf="@id/shop_menu_my_products"
+        app:layout_constraintLeft_toLeftOf="@id/shop_menu_search_icon"
+        app:layout_constraintRight_toRightOf="@id/shop_menu_search_icon"
+        app:layout_constraintTop_toTopOf="@+id/shop_menu_my_products" />
+
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/shop_menu_my_products"
+        style="@style/text_normal_dialog_button"
+        android:text="@string/my_products"
+        app:layout_constraintLeft_toLeftOf="@id/shop_menu_search"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/shop_menu_search_divider" />
+
+    <View
+        android:id="@+id/shop_menu_my_products_divider"
+        style="@style/divider_horizontal"
+        app:layout_constraintTop_toBottomOf="@id/shop_menu_my_products" />
+
+    <com.mumsapp.android.ui.views.BaseImageView
+        android:id="@+id/shop_menu_my_wishlist_icon"
+        style="@style/dialog_menu_icon_image_view"
+        android:src="@drawable/ic_my_wishlist"
+        app:layout_constraintBottom_toBottomOf="@id/shop_menu_my_wishlist"
+        app:layout_constraintLeft_toLeftOf="@id/shop_menu_search_icon"
+        app:layout_constraintRight_toRightOf="@id/shop_menu_search_icon"
+        app:layout_constraintTop_toTopOf="@+id/shop_menu_my_wishlist" />
+
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/shop_menu_my_wishlist"
+        style="@style/text_normal_dialog_button"
+        android:text="@string/my_wishlist"
+        app:layout_constraintLeft_toLeftOf="@id/shop_menu_search"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/shop_menu_my_products_divider" />
+</android.support.constraint.ConstraintLayout>

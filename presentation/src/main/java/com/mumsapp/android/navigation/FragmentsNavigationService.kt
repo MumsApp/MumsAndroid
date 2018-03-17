@@ -84,6 +84,14 @@ class FragmentsNavigationService {
 
     fun createShopFragment() = ShopFragment.genInstance()
 
+    fun openMyProductsFragment(addToBackStack: Boolean) {
+
+    }
+
+    fun openMyWishlistFragment(addToBackStack: Boolean) {
+
+    }
+
     fun popFragment() {
         fragmentManager.popBackStack()
     }

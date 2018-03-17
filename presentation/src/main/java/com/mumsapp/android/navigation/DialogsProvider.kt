@@ -4,6 +4,7 @@ import com.mumsapp.android.base.BaseActivity
 import com.mumsapp.android.chat.ChatSettingsDialog
 import com.mumsapp.android.profile.AccountSettingsDialog
 import com.mumsapp.android.profile.UserDetailsSettingsDialog
+import com.mumsapp.android.shop.ShopMenuDialog
 import javax.inject.Inject
 
 class DialogsProvider {
@@ -20,4 +21,6 @@ class DialogsProvider {
     fun createUserDetailsSettingsDialog() = UserDetailsSettingsDialog(activity)
 
     fun createChatSettingsDialog() = ChatSettingsDialog(activity)
+
+    fun createShopMenuDialog() = ShopMenuDialog(activity)
 }
