@@ -77,6 +77,16 @@
         <item name="android:textSize">@dimen/text_size_normal</item>
     </style>
 
+    <style name="button_white_grey_arrow_right" parent="card_squared">
+        <item name="android:paddingStart">@dimen/padding_default</item>
+        <item name="android:paddingEnd">@dimen/padding_default</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:textColor">@color/grey_light</item>
+        <item name="android:textSize">@dimen/text_size_normal</item>
+        <item name="android:drawableRight">@drawable/ic_arrow_right_green</item>
+        <item name="android:gravity">left|center_vertical</item>
+    </style>
+
     <!-- Text Views -->
     <style name="text_view_default">
         <item name="android:layout_width">wrap_content</item>
@@ -388,7 +398,7 @@
         <item name="android:background">@color/white</item>
     </style>
 
-    <style name="my_profile_widget">
+    <style name="my_profile_widget" parent="card_squared">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">@dimen/padding_12dp</item>
@@ -397,7 +407,7 @@
     </style>
 
     <!-- Location Widget -->
-    <style name="default_location_widget">
+    <style name="default_location_widget" parent="card_squared">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginStart">@dimen/padding_medium</item>

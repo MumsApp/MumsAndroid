@@ -10,6 +10,7 @@ import com.mumsapp.android.main.MainActivity
 import com.mumsapp.android.profile.AccountSettingsDialog
 import com.mumsapp.android.profile.MyProfileFragment
 import com.mumsapp.android.profile.UserDetailsSettingsDialog
+import com.mumsapp.android.shop.ShopFilterFragment
 import com.mumsapp.android.shop.ShopFragment
 import com.mumsapp.android.shop.ShopMenuDialog
 import com.mumsapp.android.ui.views.LocationWidget
@@ -48,4 +49,6 @@ interface ActivityComponent {
     fun inject(fragment: ShopFragment)
 
     fun inject(dialog: ShopMenuDialog)
+
+    fun inject(fragment: ShopFilterFragment)
 }

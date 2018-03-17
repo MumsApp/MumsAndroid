@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/default_layout">
+
+    <com.mumsapp.android.ui.views.TopBar
+        android:id="@+id/shop_filter_top_bar"
+        style="@style/top_bar_back"
+        app:layout_constraintTop_toTopOf="parent"
+        app:topBarTitle="@string/filter" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/shop_filter_top_bar">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/padding_scroll_view_bottom">
+
+            <com.mumsapp.android.ui.views.BaseTextView
+                android:id="@+id/shop_filter_product_type_label"
+                style="@style/text_normal_bold"
+                android:layout_marginStart="@dimen/padding_default"
+                android:layout_marginTop="@dimen/padding_big"
+                android:text="@string/product_type"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.mumsapp.android.ui.views.BaseButton
+                android:id="@+id/shop_filter_select_category"
+                style="@style/button_white_grey_arrow_right"
+                android:layout_marginEnd="@dimen/padding_medium"
+                android:layout_marginStart="@dimen/padding_medium"
+                android:layout_marginTop="@dimen/padding_default"
+                android:text="@string/select_product_category"
+                app:layout_constraintTop_toBottomOf="@id/shop_filter_product_type_label" />
+
+            <com.mumsapp.android.ui.views.BaseTextView
+                android:id="@+id/shop_filter_price_range_label"
+                style="@style/text_normal_bold"
+                android:layout_marginStart="@dimen/padding_default"
+                android:layout_marginTop="@dimen/padding_default"
+                android:text="@string/price_range"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/shop_filter_select_category"/>
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v4.widget.NestedScrollView>
+</android.support.constraint.ConstraintLayout>

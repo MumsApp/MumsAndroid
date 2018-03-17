@@ -1,31 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/card_squared">
+    style="@style/widget_layout"
+    android:paddingEnd="0dp"
+    android:paddingStart="0dp"
+    android:paddingTop="0dp">
 
-    <android.support.constraint.ConstraintLayout
-        style="@style/widget_layout"
-        android:paddingEnd="0dp"
-        android:paddingStart="0dp"
-        android:paddingTop="0dp">
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/mums_app_offers_widget_title"
+        style="@style/text_normal_bold"
+        android:layout_marginStart="@dimen/padding_default"
+        android:layout_marginTop="@dimen/padding_default"
+        android:text="@string/mumsapp_offers"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <com.mumsapp.android.ui.views.BaseTextView
-            android:id="@+id/mums_app_offers_widget_title"
-            style="@style/text_normal_bold"
-            android:layout_marginStart="@dimen/padding_default"
-            android:layout_marginTop="@dimen/padding_default"
-            android:text="@string/mumsapp_offers"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.mumsapp.android.ui.views.BaseRecyclerView
-            android:id="@+id/mums_app_offers_widget_recycler_view"
-            style="@style/recycler_default"
-            android:layout_marginTop="@dimen/padding_default"
-            android:paddingEnd="@dimen/padding_default"
-            android:paddingStart="@dimen/padding_default"
-            app:layout_constraintTop_toBottomOf="@id/mums_app_offers_widget_title"
-            tools:listitem="@layout/cell_mums_app_offers_widget" />
-    </android.support.constraint.ConstraintLayout>
-</android.support.v7.widget.CardView>
+    <com.mumsapp.android.ui.views.BaseRecyclerView
+        android:id="@+id/mums_app_offers_widget_recycler_view"
+        style="@style/recycler_default"
+        android:layout_marginTop="@dimen/padding_default"
+        android:paddingEnd="@dimen/padding_default"
+        android:paddingStart="@dimen/padding_default"
+        app:layout_constraintTop_toBottomOf="@id/mums_app_offers_widget_title"
+        tools:listitem="@layout/cell_mums_app_offers_widget" />
+</android.support.constraint.ConstraintLayout>

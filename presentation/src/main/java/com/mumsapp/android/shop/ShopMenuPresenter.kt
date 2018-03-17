@@ -1,7 +1,5 @@
 package com.mumsapp.android.shop
 
-import butterknife.OnClick
-import com.mumsapp.android.R
 import com.mumsapp.android.base.BasePresenter
 import com.mumsapp.android.navigation.FragmentsNavigationService
 import javax.inject.Inject

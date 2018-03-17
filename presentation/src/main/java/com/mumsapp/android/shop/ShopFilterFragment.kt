@@ -1,4 +1,4 @@
-package com.mumsapp.android.chat
+package com.mumsapp.android.shop
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,28 +11,22 @@ import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.di.components.ActivityComponent
-import com.mumsapp.android.navigation.DialogsProvider
 import com.mumsapp.android.ui.views.TopBar
 import javax.inject.Inject
 
-class ChatListFragment : BaseFragment(), ChatListView {
+class ShopFilterFragment : BaseFragment(), ShopFilterView {
 
     @Inject
-    lateinit var presenter: ChatListPresenter
+    lateinit var presenter: ShopFilterPresenter
 
-    @Inject
-    lateinit var dialogsProvider: DialogsProvider
-
-    @BindView(R.id.chat_list_top_bar)
+    @BindView(R.id.shop_filter_top_bar)
     lateinit var topBar: TopBar
-
-    private var chatSettingsDialog: ChatSettingsDialog? = null
 
     override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter() = presenter as T
 
     companion object {
-        fun getInstance() : ChatListFragment {
-            return ChatListFragment()
+        fun getInstance(): ShopFilterFragment {
+            return ShopFilterFragment()
         }
     }
 
@@ -42,7 +36,7 @@ class ChatListFragment : BaseFragment(), ChatListView {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val v = inflater.inflate(R.layout.fragment_chat_list, container, false)
+        val v = inflater.inflate(R.layout.fragment_shop_filter, container, false)
         setUnbinder(ButterKnife.bind(this, v))
         return v
     }
@@ -50,16 +44,6 @@ class ChatListFragment : BaseFragment(), ChatListView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter.attachViewWithLifecycle(this)
-        topBar.setLeftButtonClickListener { presenter.onFiltersButtonClick() }
-        topBar.setRightButtonClickListener { presenter.onSettingsButtonClick() }
-        topBar.setSearchListener(presenter::onSearch)
-    }
-
-    override fun openChatSettingsDialog() {
-        if(chatSettingsDialog == null) {
-            chatSettingsDialog = dialogsProvider.createChatSettingsDialog()
-        }
-
-        chatSettingsDialog?.show()
+        topBar.setLeftButtonClickListener { presenter.onBackClick() }
     }
 }

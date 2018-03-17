@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/default_layout"
+    android:layout_height="wrap_content">
+
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/range_selector_label"
+        style="@style/text_small_grey_light"
+        android:layout_marginStart="@dimen/padding_default"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:text="@string/how_much_would_you_want_to_pay_question_mark" />
+
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/range_selector_left_value"
+        style="@style/text_small"
+        android:layout_marginStart="@dimen/padding_default"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/range_selector_seek_bar"
+        app:layout_constraintBottom_toBottomOf="@id/range_selector_seek_bar"
+        tools:text="$145"/>
+
+    <com.mumsapp.android.ui.views.RangeSeekBar
+        android:id="@+id/range_selector_seek_bar"
+        style="@style/green_seek_bar"
+        android:layout_width="0dp"
+        android:layout_marginEnd="@dimen/padding_medium"
+        android:layout_marginStart="@dimen/padding_medium"
+        android:layout_marginTop="@dimen/padding_default"
+        app:layout_constraintLeft_toRightOf="@id/range_selector_left_value"
+        app:layout_constraintRight_toLeftOf="@id/range_selector_right_value"
+        app:layout_constraintTop_toBottomOf="@id/range_selector_label" />
+
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/range_selector_right_value"
+        style="@style/text_small"
+        android:layout_marginEnd="@dimen/padding_default"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/range_selector_seek_bar"
+        app:layout_constraintBottom_toBottomOf="@id/range_selector_seek_bar"
+        tools:text="$300"/>
+</android.support.constraint.ConstraintLayout>

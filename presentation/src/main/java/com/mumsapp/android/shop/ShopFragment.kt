@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import butterknife.BindView
 import butterknife.ButterKnife
+import butterknife.OnClick
 import com.mumsapp.android.R
 import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.base.LifecyclePresenter
@@ -31,7 +32,7 @@ class ShopFragment : BaseFragment(), ShopView {
     override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter() = presenter as T
 
     companion object {
-        fun genInstance() : ShopFragment {
+        fun getInstance(): ShopFragment {
             return ShopFragment()
         }
     }
@@ -54,8 +55,13 @@ class ShopFragment : BaseFragment(), ShopView {
         topBar.setSearchListener(presenter::onSearch)
     }
 
+    @OnClick(R.id.shop_filter_button)
+    fun onFilterButtonClick() {
+        presenter.onFilterClick()
+    }
+
     override fun openMenuDialog() {
-        if(shopMenuDialog == null) {
+        if (shopMenuDialog == null) {
             shopMenuDialog = dialogsProvider.createShopMenuDialog()
         }
 

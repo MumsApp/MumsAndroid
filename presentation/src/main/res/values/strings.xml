@@ -92,4 +92,12 @@
     <string name="menu">Menu</string>
     <string name="my_products">My products</string>
     <string name="my_wishlist">My wishlist</string>
+
+    <string name="product_type">Product type</string>
+    <string name="select_product_category">Select product category</string>
+    <string name="price_range">Price range</string>
+    <string name="distance">Distance</string>
+    <string name="how_far_do_you_want_to_search_question_mark">How much would you want to search?</string>
+    <string name="give_it_for_free">Give it for free</string>
+    <string name="how_much_would_you_want_to_pay_question_mark">How much would you want to pay?</string>
 </resources>

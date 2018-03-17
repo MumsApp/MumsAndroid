@@ -1,94 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/card_squared">
+    style="@style/widget_layout">
 
-    <android.support.constraint.ConstraintLayout
-        style="@style/widget_layout">
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/children_selection_widget_title"
+        style="@style/text_normal_bold"
+        android:text="@string/children"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <com.mumsapp.android.ui.views.BaseTextView
-            android:id="@+id/children_selection_widget_title"
-            style="@style/text_normal_bold"
-            android:text="@string/children"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <com.mumsapp.android.ui.views.BaseButton
+        android:id="@+id/children_selection_widget_plus"
+        style="@style/button_plus"
+        android:layout_marginTop="@dimen/padding_default"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/children_selection_widget_title" />
 
-        <com.mumsapp.android.ui.views.BaseButton
-            android:id="@+id/children_selection_widget_plus"
-            style="@style/button_plus"
-            android:layout_marginTop="@dimen/padding_default"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/children_selection_widget_title" />
+    <com.mumsapp.android.ui.views.BaseButton
+        android:id="@+id/children_selection_widget_minus"
+        style="@style/button_minus"
+        android:layout_marginEnd="@dimen/padding_small"
+        app:layout_constraintRight_toLeftOf="@id/children_selection_widget_plus"
+        app:layout_constraintTop_toTopOf="@id/children_selection_widget_plus" />
 
-        <com.mumsapp.android.ui.views.BaseButton
-            android:id="@+id/children_selection_widget_minus"
-            style="@style/button_minus"
-            android:layout_marginEnd="@dimen/padding_small"
-            app:layout_constraintRight_toLeftOf="@id/children_selection_widget_plus"
-            app:layout_constraintTop_toTopOf="@id/children_selection_widget_plus" />
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/children_selection_widget_children_count"
+        style="@style/text_container_small"
+        android:layout_marginEnd="@dimen/padding_small"
+        app:layout_constraintBottom_toBottomOf="@id/children_selection_widget_plus"
+        app:layout_constraintRight_toLeftOf="@id/children_selection_widget_minus"
+        app:layout_constraintTop_toTopOf="@id/children_selection_widget_plus" />
 
-        <com.mumsapp.android.ui.views.BaseTextView
-            android:id="@+id/children_selection_widget_children_count"
-            style="@style/text_container_small"
-            android:layout_marginEnd="@dimen/padding_small"
-            app:layout_constraintBottom_toBottomOf="@id/children_selection_widget_plus"
-            app:layout_constraintRight_toLeftOf="@id/children_selection_widget_minus"
-            app:layout_constraintTop_toTopOf="@id/children_selection_widget_plus" />
+    <com.mumsapp.android.ui.views.BaseTextView
+        style="@style/text_tiny_grey_light"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/number"
+        app:layout_constraintBottom_toBottomOf="@id/children_selection_widget_children_count"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/children_selection_widget_children_count" />
 
-        <com.mumsapp.android.ui.views.BaseTextView
-            style="@style/text_tiny_grey_light"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/number"
-            app:layout_constraintBottom_toBottomOf="@id/children_selection_widget_children_count"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="@id/children_selection_widget_children_count" />
+    <View
+        android:id="@+id/children_selection_buttons_divider"
+        style="@style/divider_horizontal"
+        android:layout_marginTop="@dimen/padding_default"
+        app:layout_constraintTop_toBottomOf="@id/children_selection_widget_plus" />
 
-        <View
-            android:id="@+id/children_selection_buttons_divider"
-            style="@style/divider_horizontal"
-            android:layout_marginTop="@dimen/padding_default"
-            app:layout_constraintTop_toBottomOf="@id/children_selection_widget_plus" />
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/children_selection_seek_bar_label"
+        style="@style/text_tiny_grey_light"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_default"
+        android:text="@string/age_range"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/children_selection_buttons_divider" />
 
-        <com.mumsapp.android.ui.views.BaseTextView
-            android:id="@+id/children_selection_seek_bar_label"
-            style="@style/text_tiny_grey_light"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/padding_default"
-            android:text="@string/age_range"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/children_selection_buttons_divider" />
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/children_selection_range_min"
+        style="@style/text_tiny_black"
+        android:layout_marginStart="@dimen/padding_big"
+        app:layout_constraintBottom_toBottomOf="@id/children_selection_seek_bar_label"
+        app:layout_constraintLeft_toRightOf="@id/children_selection_seek_bar_label"
+        app:layout_constraintTop_toTopOf="@id/children_selection_seek_bar_label"
+        tools:text="0" />
 
-        <com.mumsapp.android.ui.views.BaseTextView
-            android:id="@+id/children_selection_range_min"
-            style="@style/text_tiny_black"
-            android:layout_marginStart="@dimen/padding_big"
-            app:layout_constraintBottom_toBottomOf="@id/children_selection_seek_bar_label"
-            app:layout_constraintLeft_toRightOf="@id/children_selection_seek_bar_label"
-            app:layout_constraintTop_toTopOf="@id/children_selection_seek_bar_label"
-            tools:text="0" />
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/children_selection_range_max"
+        style="@style/text_tiny_black"
+        app:layout_constraintBottom_toBottomOf="@id/children_selection_seek_bar_label"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/children_selection_seek_bar_label"
+        tools:text="18" />
 
-        <com.mumsapp.android.ui.views.BaseTextView
-            android:id="@+id/children_selection_range_max"
-            style="@style/text_tiny_black"
-            app:layout_constraintBottom_toBottomOf="@id/children_selection_seek_bar_label"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/children_selection_seek_bar_label"
-            tools:text="18" />
-
-        <com.mumsapp.android.ui.views.RangeSeekBar
-            android:id="@+id/children_selection_seek_bar"
-            style="@style/green_seek_bar"
-            android:layout_width="0dp"
-            android:layout_marginStart="@dimen/padding_medium"
-            android:layout_marginEnd="@dimen/padding_medium"
-            app:layout_constraintBottom_toBottomOf="@id/children_selection_range_min"
-            app:layout_constraintLeft_toRightOf="@id/children_selection_range_min"
-            app:layout_constraintRight_toLeftOf="@id/children_selection_range_max"
-            app:layout_constraintTop_toTopOf="@id/children_selection_range_min"
-            app:max_value="18"
-            app:min_value="0" />
-    </android.support.constraint.ConstraintLayout>
-</android.support.v7.widget.CardView>
+    <com.mumsapp.android.ui.views.RangeSeekBar
+        android:id="@+id/children_selection_seek_bar"
+        style="@style/green_seek_bar"
+        android:layout_width="0dp"
+        android:layout_marginEnd="@dimen/padding_medium"
+        android:layout_marginStart="@dimen/padding_medium"
+        app:layout_constraintBottom_toBottomOf="@id/children_selection_range_min"
+        app:layout_constraintLeft_toRightOf="@id/children_selection_range_min"
+        app:layout_constraintRight_toLeftOf="@id/children_selection_range_max"
+        app:layout_constraintTop_toTopOf="@id/children_selection_range_min"
+        app:max_value="18"
+        app:min_value="0" />
+</android.support.constraint.ConstraintLayout>

@@ -10,6 +10,7 @@ import com.mumsapp.android.chat.ChatListFragment
 import com.mumsapp.android.di.qualifiers.FragmentContainerId
 import com.mumsapp.android.lobby.LobbyFragment
 import com.mumsapp.android.profile.MyProfileFragment
+import com.mumsapp.android.shop.ShopFilterFragment
 import com.mumsapp.android.shop.ShopFragment
 import javax.inject.Inject
 
@@ -75,14 +76,21 @@ class FragmentsNavigationService {
         openFragment(fragment, addToBackStack)
     }
 
-    fun createChatListFragment() = ChatListFragment.genInstance()
+    fun createChatListFragment() = ChatListFragment.getInstance()
 
     fun openShopFragment(addToBackStack: Boolean) {
         val fragment = createShopFragment()
         openFragment(fragment, addToBackStack)
     }
 
-    fun createShopFragment() = ShopFragment.genInstance()
+    fun createShopFragment() = ShopFragment.getInstance()
+
+    fun openShopFilterFragment(addToBackStack: Boolean) {
+        val fragment = createShopFilterFragment()
+        openFragment(fragment, addToBackStack)
+    }
+
+    fun createShopFilterFragment() = ShopFilterFragment.getInstance()
 
     fun openMyProductsFragment(addToBackStack: Boolean) {
 
