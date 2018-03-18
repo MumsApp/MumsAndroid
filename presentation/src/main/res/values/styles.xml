@@ -398,7 +398,7 @@
         <item name="android:background">@color/white</item>
     </style>
 
-    <style name="my_profile_widget" parent="card_squared">
+    <style name="default_widget" parent="card_squared">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">@dimen/padding_12dp</item>
@@ -420,6 +420,13 @@
         <item name="buttonVisible">true</item>
         <item name="buttonText">@string/edit</item>
         <item name="mapVisible">false</item>
+    </style>
+
+
+    <!-- Range Selector -->
+    <style name="default_range_selector">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
 

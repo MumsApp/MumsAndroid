@@ -46,7 +46,34 @@
                 android:layout_marginTop="@dimen/padding_default"
                 android:text="@string/price_range"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/shop_filter_select_category"/>
+                app:layout_constraintTop_toBottomOf="@id/shop_filter_select_category" />
+
+            <com.mumsapp.android.ui.views.PriceRangeWidget
+                android:id="@+id/shop_filter_price_range_widget"
+                style="@style/default_widget"
+                android:layout_marginTop="@dimen/padding_default"
+                app:layout_constraintTop_toBottomOf="@id/shop_filter_price_range_label" />
+
+            <com.mumsapp.android.ui.views.BaseTextView
+                android:id="@+id/shop_filter_distance_range_label"
+                style="@style/text_normal_bold"
+                android:layout_marginStart="@dimen/padding_default"
+                android:layout_marginTop="@dimen/padding_default"
+                android:text="@string/distance"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/shop_filter_price_range_widget" />
+
+            <com.mumsapp.android.ui.views.DistanceRangeWidget
+                android:id="@+id/shop_filter_distance_range_widget"
+                style="@style/default_widget"
+                android:layout_marginTop="@dimen/padding_default"
+                app:layout_constraintTop_toBottomOf="@id/shop_filter_distance_range_label" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_small"
+                android:layout_marginTop="@dimen/padding_medium"
+                app:layout_constraintTop_toBottomOf="@id/shop_filter_distance_range_widget" />
         </android.support.constraint.ConstraintLayout>
     </android.support.v4.widget.NestedScrollView>
 </android.support.constraint.ConstraintLayout>

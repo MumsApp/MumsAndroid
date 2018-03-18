@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/widget_layout"
+    android:paddingStart="0dp"
+    android:paddingEnd="0dp">
+
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/price_range_free_label"
+        style="@style/text_small_grey_light"
+        android:layout_marginStart="@dimen/padding_default"
+        android:text="@string/give_it_for_free"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <com.mumsapp.android.ui.views.BaseSwitch
+        android:id="@+id/price_range_free_switch"
+        style="@style/switch_green"
+        android:layout_marginEnd="@dimen/padding_default"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <View
+        android:id="@+id/price_range_free_divider"
+        style="@style/divider_horizontal"
+        android:layout_marginTop="@dimen/padding_default"
+        app:layout_constraintTop_toBottomOf="@id/price_range_free_label"/>
+
+    <com.mumsapp.android.ui.views.RangeSelector
+        android:id="@+id/price_range_selector"
+        android:layout_marginTop="@dimen/padding_default"
+        style="@style/default_range_selector"
+        app:layout_constraintTop_toBottomOf="@id/price_range_free_divider"
+        app:label="@string/how_much_would_you_want_to_pay_question_mark"/>
+</android.support.constraint.ConstraintLayout>
