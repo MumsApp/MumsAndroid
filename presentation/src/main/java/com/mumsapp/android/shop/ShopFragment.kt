@@ -13,7 +13,9 @@ import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.di.components.ActivityComponent
 import com.mumsapp.android.navigation.DialogsProvider
+import com.mumsapp.android.ui.views.CardsRecyclerView
 import com.mumsapp.android.ui.views.TopBar
+import com.mumsapp.domain.model.product.ProductItem
 import javax.inject.Inject
 
 class ShopFragment : BaseFragment(), ShopView {
@@ -24,8 +26,14 @@ class ShopFragment : BaseFragment(), ShopView {
     @Inject
     lateinit var dialogsProvider: DialogsProvider
 
+    @Inject
+    lateinit var adapter: ShopItemsAdapter
+
     @BindView(R.id.shop_top_bar)
     lateinit var topBar: TopBar
+
+    @BindView(R.id.shop_recycler_view)
+    lateinit var recyclerView: CardsRecyclerView
 
     private var shopMenuDialog: ShopMenuDialog? = null
 
@@ -75,5 +83,17 @@ class ShopFragment : BaseFragment(), ShopView {
 
     override fun startSearching() {
         topBar.requestSearchFocus()
+    }
+
+    override fun showItems(items: List<ProductItem>) {
+        adapter.items = items
+        adapter.notifyDataSetChanged()
+
+        if(recyclerView.adapter == null) {
+            adapter.getItemsClickEmitter()?.subscribe {
+                presenter.onProductClick(it)
+            }
+            recyclerView.adapter = adapter
+        }
     }
 }

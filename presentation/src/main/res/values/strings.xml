@@ -101,4 +101,7 @@
     <string name="give_it_for_free">Give it for free</string>
     <string name="how_much_would_you_want_to_pay_question_mark">How much would you want to pay?</string>
     <string name="set_location">Set location</string>
+
+    <string name="product">Product</string>
+    <string name="pounds_price_format">£ %1%d</string>
 </resources>

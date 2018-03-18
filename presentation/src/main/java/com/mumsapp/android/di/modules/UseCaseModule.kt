@@ -1,6 +1,7 @@
 package com.mumsapp.android.di.modules
 
 import com.mumsapp.domain.interactor.lobby.GetLobbyItemsUseCase
+import com.mumsapp.domain.interactor.shop.GetShopItemsUseCase
 import com.mumsapp.domain.interactor.transformers.qualifiers.AuthorizationTransformer
 import com.mumsapp.domain.interactor.transformers.AuthorizationTransformerProvider
 import com.mumsapp.domain.interactor.transformers.UseCaseTransformerProvider
@@ -66,13 +67,19 @@ class UseCaseModule {
     @Provides
     @Singleton
     @AuthorizationTransformer
-    internal fun provideAuthorizationTransformer(userRepository: UserRepository, tokenPersistenceService: TokenPersistenceService): UseCaseTransformerProvider {
+    fun provideAuthorizationTransformer(userRepository: UserRepository, tokenPersistenceService: TokenPersistenceService): UseCaseTransformerProvider {
         return AuthorizationTransformerProvider(userRepository, tokenPersistenceService)
     }
 
     @Provides
     @Singleton
-    fun providesGetLobbyItemssUseCase(schedulerProvider: SchedulerProvider): GetLobbyItemsUseCase {
+    fun providesGetLobbyItemsUseCase(schedulerProvider: SchedulerProvider): GetLobbyItemsUseCase {
         return GetLobbyItemsUseCase(schedulerProvider)
+    }
+
+    @Provides
+    @Singleton
+    fun providesGetShopItemsUseCase(schedulerProvider: SchedulerProvider): GetShopItemsUseCase {
+        return GetShopItemsUseCase(schedulerProvider)
     }
 }

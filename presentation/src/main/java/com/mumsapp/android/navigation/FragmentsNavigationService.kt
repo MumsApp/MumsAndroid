@@ -9,6 +9,7 @@ import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.chat.ChatListFragment
 import com.mumsapp.android.di.qualifiers.FragmentContainerId
 import com.mumsapp.android.lobby.LobbyFragment
+import com.mumsapp.android.product.ProductFragment
 import com.mumsapp.android.profile.MyProfileFragment
 import com.mumsapp.android.shop.ShopFilterFragment
 import com.mumsapp.android.shop.ShopFragment
@@ -91,6 +92,13 @@ class FragmentsNavigationService {
     }
 
     fun createShopFilterFragment() = ShopFilterFragment.getInstance()
+
+    fun openProductFragment(productId: Int, addToBackStack: Boolean) {
+        val fragment = createProductFragment(productId)
+        openFragment(fragment, addToBackStack)
+    }
+
+    fun createProductFragment(productId: Int) = ProductFragment.getInstance(productId)
 
     fun openMyProductsFragment(addToBackStack: Boolean) {
 

@@ -58,7 +58,7 @@
             app:layout_constraintLeft_toLeftOf="@id/shop_cell_name"
             tools:text="3 miles"/>
 
-        <android.support.v4.widget.CircleImageView
+        <com.mumsapp.android.ui.views.CircleImageView
             android:id="@+id/shop_cell_avatar"
             style="@style/tiny_avatar_image_view"
             android:layout_marginTop="@dimen/padding_medium"
