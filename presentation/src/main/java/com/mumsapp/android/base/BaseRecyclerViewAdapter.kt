@@ -2,6 +2,7 @@ package com.mumsapp.android.base
 
 import android.support.v7.widget.RecyclerView
 import com.mumsapp.domain.model.BaseResponse
+import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 import java.util.*
 
@@ -21,7 +22,7 @@ abstract class BaseRecyclerViewAdapter<T : BaseResponse, VH : BaseViewHolder<T>>
         }
     }
 
-    fun getItemsClickEmitter(): PublishSubject<T>? {
-        return onItemClickListener
+    fun getItemsClickEmitter(): Observable<T>? {
+        return onItemClickListener?.distinctUntilChanged()
     }
 }

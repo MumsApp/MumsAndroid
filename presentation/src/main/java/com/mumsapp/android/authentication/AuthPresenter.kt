@@ -24,6 +24,7 @@ class AuthPresenter: LifecyclePresenter<AuthView> {
     override fun create() {
         if(sessionManager.isUserLogged()) {
             activityNavigationService.openMainActivity()
+            activityNavigationService.finishCurrentActivity()
         } else {
             fragmentsNavigationService.openAuthMenuFragment(true)
         }
