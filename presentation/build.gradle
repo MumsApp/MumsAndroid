@@ -130,6 +130,9 @@ dependencies {
     //https://github.com/syedowaisali/crystal-range-seekbar Customizable seekbars
     implementation 'com.crystal:crystalrangeseekbar:1.1.3'
 
+    //https://github.com/saeedsh92/Banner-Slider Slider gallery
+    implementation 'com.ss.bannerslider:bannerslider:1.8.0'
+
     // Testing
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'

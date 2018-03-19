@@ -9,4 +9,27 @@
         app:layout_constraintTop_toTopOf="parent"
         app:topBarTitle="@string/product" />
 
+    <android.support.v4.widget.NestedScrollView
+        style="@style/default_scroll"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/product_top_bar">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/padding_scroll_view_bottom">
+
+            <com.mumsapp.android.ui.views.ImagesSlider
+                android:id="@+id/product_image_slider"
+                style="@style/default_image_slider"
+                android:layout_height="@dimen/product_big_image_height"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <com.mumsapp.android.ui.widgets.ProductDetailsWidget
+                android:id="@+id/my_profile_children_selection_widget"
+                style="@style/default_widget"
+                app:layout_constraintTop_toBottomOf="@id/product_image_slider" />
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v4.widget.NestedScrollView>
 </android.support.constraint.ConstraintLayout>

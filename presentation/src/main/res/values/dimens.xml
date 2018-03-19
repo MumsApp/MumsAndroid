@@ -80,9 +80,15 @@
     <!-- Location Widget -->
     <dimen name="location_widget_map_height">200dp</dimen>
 
+
     <!-- Recycler Views -->
     <dimen name="dialog_recycler_view_height">300dp</dimen>
 
+
     <!-- Shop Fragment -->
     <dimen name="shop_item_image_size">90dp</dimen>
+
+
+    <!-- Product Fragment -->
+    <dimen name="product_big_image_height">200dp</dimen>
 </resources>

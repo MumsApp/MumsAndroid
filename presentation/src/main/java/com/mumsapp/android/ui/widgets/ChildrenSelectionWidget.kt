@@ -1,4 +1,4 @@
-package com.mumsapp.android.ui.views
+package com.mumsapp.android.ui.widgets
 
 import android.content.Context
 import android.support.v7.widget.CardView
@@ -9,6 +9,7 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
 import com.mumsapp.android.R
+import com.mumsapp.android.ui.views.RangeSeekBar
 
 class ChildrenSelectionWidget : CardView {
 

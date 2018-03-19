@@ -11,7 +11,10 @@ import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.di.components.ActivityComponent
+import com.mumsapp.android.ui.views.ImagesSlider
 import com.mumsapp.android.ui.views.TopBar
+import ss.com.bannerslider.banners.Banner
+import ss.com.bannerslider.banners.DrawableBanner
 import javax.inject.Inject
 
 class ProductFragment : BaseFragment(), ProductView {
@@ -21,6 +24,9 @@ class ProductFragment : BaseFragment(), ProductView {
 
     @BindView(R.id.product_top_bar)
     lateinit var topBar: TopBar
+
+    @BindView(R.id.product_image_slider)
+    lateinit var imagesSlider: ImagesSlider
 
     override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter() = presenter as T
 
@@ -58,10 +64,19 @@ class ProductFragment : BaseFragment(), ProductView {
         passArgumentsToPresenter()
         presenter.attachViewWithLifecycle(this)
         topBar.setLeftButtonClickListener { presenter.onBackClick() }
+        showDefaultImages()
     }
 
     private fun passArgumentsToPresenter() {
         val productId = arguments?.getInt(PRODUCT_ID_KEY)
         presenter.setArguments(productId)
+    }
+
+    private fun showDefaultImages() {
+        val banners = ArrayList<Banner>()
+        banners.add(DrawableBanner(R.drawable.ic_image_placeholder))
+        banners.add(DrawableBanner(R.drawable.ic_image_placeholder))
+        banners.add(DrawableBanner(R.drawable.ic_image_placeholder))
+        imagesSlider.setBanners(banners)
     }
 }

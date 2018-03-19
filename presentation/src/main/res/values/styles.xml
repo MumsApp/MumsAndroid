@@ -481,4 +481,12 @@
         <item name="android:layout_height">0dp</item>
         <item name="android:fillViewport">true</item>
     </style>
+
+
+    <!-- Image Sliders -->
+    <style name="default_image_slider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="defaultIndicators">circle</item>
+    </style>
 </resources>

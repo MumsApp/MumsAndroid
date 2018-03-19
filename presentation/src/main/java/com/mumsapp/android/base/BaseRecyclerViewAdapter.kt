@@ -10,7 +10,7 @@ abstract class BaseRecyclerViewAdapter<T : BaseResponse, VH : BaseViewHolder<T>>
 
     var items: List<T> = ArrayList()
 
-    protected var onItemClickListener: PublishSubject<T>? = PublishSubject.create()
+    private var onItemClickListener: PublishSubject<T>? = PublishSubject.create()
 
     override fun getItemCount() = items.size
 
