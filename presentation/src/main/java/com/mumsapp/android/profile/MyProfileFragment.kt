@@ -20,7 +20,7 @@ import com.mumsapp.android.navigation.ActivitiesNavigationService
 import com.mumsapp.android.navigation.DialogsProvider
 import com.mumsapp.android.ui.views.BaseTextView
 import com.mumsapp.android.ui.views.CircleImageView
-import com.mumsapp.android.ui.views.LocationWidget
+import com.mumsapp.android.ui.widgets.LocationWidget
 import com.mumsapp.android.ui.views.TopBar
 import com.mumsapp.android.util.ImagesLoader
 import javax.inject.Inject

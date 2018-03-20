@@ -407,7 +407,7 @@
     </style>
 
     <!-- Location Widget -->
-    <style name="default_location_widget" parent="card_squared">
+    <style name="default_location_widget" parent="default_widget">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginStart">@dimen/padding_medium</item>
@@ -420,6 +420,12 @@
         <item name="buttonVisible">true</item>
         <item name="buttonText">@string/edit</item>
         <item name="mapVisible">false</item>
+    </style>
+
+    <style name="location_widget_without_buttons" parent="default_location_widget">
+        <item name="switchVisible">false</item>
+        <item name="buttonVisible">false</item>
+        <item name="mapVisible">true</item>
     </style>
 
 
@@ -488,5 +494,13 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="defaultIndicators">circle</item>
+    </style>
+
+
+    <!-- Others -->
+    <style name="empty_view_below_card">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/padding_small</item>
+        <item name="android:layout_marginTop">@dimen/padding_medium</item>
     </style>
 </resources>

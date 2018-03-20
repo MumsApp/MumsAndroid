@@ -62,7 +62,7 @@
                 app:layout_constraintTop_toBottomOf="@id/my_profile_avatar"
                 tools:text="@string/template_long_text" />
 
-            <com.mumsapp.android.ui.views.LocationWidget
+            <com.mumsapp.android.ui.widgets.LocationWidget
                 android:id="@+id/my_profile_location_widget"
                 style="@style/my_profile_location_widget"
                 android:layout_marginTop="@dimen/padding_default"
@@ -84,9 +84,7 @@
                 app:layout_constraintTop_toBottomOf="@id/my_profile_schools_widget"/>
 
             <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/padding_small"
-                android:layout_marginTop="@dimen/padding_medium"
+                style="@style/empty_view_below_card"
                 app:layout_constraintTop_toBottomOf="@id/my_profile_mums_app_offers_widget"/>
         </android.support.constraint.ConstraintLayout>
     </android.support.v4.widget.NestedScrollView>

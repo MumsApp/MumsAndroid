@@ -27,9 +27,18 @@
                 app:layout_constraintTop_toTopOf="parent"/>
 
             <com.mumsapp.android.ui.widgets.ProductDetailsWidget
-                android:id="@+id/my_profile_children_selection_widget"
+                android:id="@+id/product_product_details_widget"
                 style="@style/default_widget"
                 app:layout_constraintTop_toBottomOf="@id/product_image_slider" />
+
+            <com.mumsapp.android.ui.widgets.LocationWidget
+                android:id="@+id/product_location_widget"
+                style="@style/location_widget_without_buttons"
+                app:layout_constraintTop_toBottomOf="@id/product_product_details_widget" />
+
+            <View
+                style="@style/empty_view_below_card"
+                app:layout_constraintTop_toBottomOf="@id/product_location_widget"/>
         </android.support.constraint.ConstraintLayout>
     </android.support.v4.widget.NestedScrollView>
 </android.support.constraint.ConstraintLayout>

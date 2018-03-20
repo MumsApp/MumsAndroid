@@ -13,6 +13,8 @@ import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.di.components.ActivityComponent
 import com.mumsapp.android.ui.views.ImagesSlider
 import com.mumsapp.android.ui.views.TopBar
+import com.mumsapp.android.ui.widgets.LocationWidget
+import com.mumsapp.android.ui.widgets.ProductDetailsWidget
 import ss.com.bannerslider.banners.Banner
 import ss.com.bannerslider.banners.DrawableBanner
 import javax.inject.Inject
@@ -27,6 +29,12 @@ class ProductFragment : BaseFragment(), ProductView {
 
     @BindView(R.id.product_image_slider)
     lateinit var imagesSlider: ImagesSlider
+
+    @BindView(R.id.product_product_details_widget)
+    lateinit var productDetailsWidget: ProductDetailsWidget
+
+    @BindView(R.id.product_location_widget)
+    lateinit var locationWidget: LocationWidget
 
     override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter() = presenter as T
 
@@ -64,7 +72,6 @@ class ProductFragment : BaseFragment(), ProductView {
         passArgumentsToPresenter()
         presenter.attachViewWithLifecycle(this)
         topBar.setLeftButtonClickListener { presenter.onBackClick() }
-        showDefaultImages()
     }
 
     private fun passArgumentsToPresenter() {
@@ -72,11 +79,21 @@ class ProductFragment : BaseFragment(), ProductView {
         presenter.setArguments(productId)
     }
 
-    private fun showDefaultImages() {
-        val banners = ArrayList<Banner>()
-        banners.add(DrawableBanner(R.drawable.ic_image_placeholder))
-        banners.add(DrawableBanner(R.drawable.ic_image_placeholder))
-        banners.add(DrawableBanner(R.drawable.ic_image_placeholder))
-        imagesSlider.setBanners(banners)
+    override fun setProductDetails(images: List<Banner>, productName: String, category: String,
+                                   avatarUrl: String, userName: String, price: String,
+                                   distance: String, description: String) {
+        imagesSlider.setBanners(images)
+        productDetailsWidget.setProductName(productName)
+        productDetailsWidget.setCategory(category)
+        productDetailsWidget.setUserName(userName)
+        productDetailsWidget.setPrice(price)
+        productDetailsWidget.setDistance(distance)
+        productDetailsWidget.setDescription(description)
+        productDetailsWidget.setContactButtonListener { presenter.onContactClick() }
+    }
+
+    override fun setLocationDetails(locationName: String, latitude: Double, longitude: Double) {
+        locationWidget.setLocationName(locationName)
+        locationWidget.setMapCoordinates(latitude, longitude)
     }
 }

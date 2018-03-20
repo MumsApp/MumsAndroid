@@ -1,4 +1,4 @@
-package com.mumsapp.android.ui.views
+package com.mumsapp.android.ui.widgets
 
 import android.content.Context
 import android.support.v4.app.FragmentManager
@@ -18,6 +18,8 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.mumsapp.android.R
 import com.mumsapp.android.common.features.HasComponent
 import com.mumsapp.android.di.components.ActivityComponent
+import com.mumsapp.android.ui.views.BaseSwitch
+import com.mumsapp.android.ui.views.BaseTextView
 import javax.inject.Inject
 
 class LocationWidget : CardView {
@@ -111,7 +113,7 @@ class LocationWidget : CardView {
         setVisibilityFromBoolean(visibility, buttonView)
     }
 
-    fun setButtonText(text: String) {
+    fun setButtonText(text: String?) {
         buttonView.text = text
     }
 

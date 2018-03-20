@@ -14,7 +14,7 @@ import com.mumsapp.android.profile.UserDetailsSettingsDialog
 import com.mumsapp.android.shop.ShopFilterFragment
 import com.mumsapp.android.shop.ShopFragment
 import com.mumsapp.android.shop.ShopMenuDialog
-import com.mumsapp.android.ui.views.LocationWidget
+import com.mumsapp.android.ui.widgets.LocationWidget
 import dagger.Subcomponent
 
 @ActivityScope

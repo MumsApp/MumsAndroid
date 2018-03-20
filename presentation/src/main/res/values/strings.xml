@@ -103,7 +103,7 @@
     <string name="set_location">Set location</string>
 
     <string name="product">Product</string>
-    <string name="pounds_price_format">£ %1%d</string>
+    <string name="pounds_price_format">£ %1$s</string>
 
     <string name="contact_user_to_make_an_offer">Contact user to make on offer</string>
 </resources>
