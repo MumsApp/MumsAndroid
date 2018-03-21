@@ -20,7 +20,7 @@ class CardsRecyclerView : BaseRecyclerView {
 
     private fun setup(context: Context, attrs: AttributeSet?) {
         val space = context.resources.getDimension(R.dimen.padding_12dp).toInt()
-        val divider = SpacesItemDecoration(space)
+        val divider = SpacesItemDecoration(space, 1)
         addItemDecoration(divider)
     }
 }

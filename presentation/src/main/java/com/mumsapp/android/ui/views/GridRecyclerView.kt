@@ -20,9 +20,6 @@ class GridRecyclerView : BaseRecyclerView {
     }
 
     private fun setup(context: Context, attrs: AttributeSet?) {
-        val space = context.resources.getDimension(R.dimen.padding_12dp).toInt()
-        val divider = SpacesItemDecoration(space)
-        addItemDecoration(divider)
         setupAttributes(context, attrs)
     }
 
@@ -38,5 +35,13 @@ class GridRecyclerView : BaseRecyclerView {
     fun setColumnsCount(columnsCount: Int) {
         val manager = GridLayoutManager(context, columnsCount)
         layoutManager = manager
+
+        setSpaceDivider(columnsCount)
+    }
+
+    fun setSpaceDivider(columnsCount: Int) {
+        val space = context.resources.getDimension(R.dimen.padding_12dp).toInt()
+        val divider = SpacesItemDecoration(space, columnsCount)
+        addItemDecoration(divider)
     }
 }

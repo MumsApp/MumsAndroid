@@ -12,6 +12,7 @@
         app:topBarTitle="@string/my_products" />
 
     <com.mumsapp.android.ui.views.GridRecyclerView
+        android:id="@+id/my_products_recycler_view"
         style="@style/default_grid_recycler"
         android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@id/my_products_top_bar"
