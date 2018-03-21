@@ -18,6 +18,14 @@
             app:layout_constraintBottom_toBottomOf="@+id/shop_cell_distance"
             android:scaleType="centerCrop"/>
 
+        <com.mumsapp.android.ui.views.BaseCheckbox
+            android:id="@+id/shop_cell_favourite_checkbox"
+            style="@style/heart_checkbox"
+            android:layout_marginTop="@dimen/padding_small"
+            android:layout_marginRight="@dimen/padding_small"
+            app:layout_constraintTop_toTopOf="@id/shop_cell_image"
+            app:layout_constraintRight_toRightOf="@id/shop_cell_image"/>
+
         <com.mumsapp.android.ui.views.BaseTextView
             android:id="@+id/shop_cell_name"
             style="@style/text_normal"

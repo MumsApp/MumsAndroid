@@ -89,7 +89,7 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"/>
 
-            <CheckBox
+            <com.mumsapp.android.ui.views.BaseCheckbox
                 android:id="@+id/sign_up_terms_checkbox"
                 style="@style/checkbox_default"
                 android:layout_marginTop="@dimen/padding_small"

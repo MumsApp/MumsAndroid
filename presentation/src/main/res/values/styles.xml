@@ -24,7 +24,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/button_default_height</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">@dimen/text_size_big</item>
+        <item name="android:textSize">@dimen/text_size_normal</item>
         <item name="android:textAllCaps">false</item>
     </style>
 
@@ -468,6 +468,11 @@
     <style name="checkbox_default" parent="text_normal">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+    </style>
+    
+    <style name="heart_checkbox" parent="checkbox_default">
+        <item name="android:button">@drawable/checkbox_heart_selector</item>
+        <item name="android:background">@null</item>
     </style>
 
 

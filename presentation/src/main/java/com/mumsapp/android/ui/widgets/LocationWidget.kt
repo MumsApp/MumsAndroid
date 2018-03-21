@@ -12,6 +12,7 @@ import butterknife.ButterKnife
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.MarkerOptions
@@ -161,6 +162,7 @@ class LocationWidget : CardView {
 
             val marker = MarkerOptions()
             marker.position(LatLng(currentMapLatitude!!, currentMapLongitude!!))
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_marker))
             map?.addMarker(marker)
         }
     }
