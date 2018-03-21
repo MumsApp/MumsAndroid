@@ -7,6 +7,7 @@ import com.mumsapp.android.di.modules.ActivityModule
 import com.mumsapp.android.di.scopes.ActivityScope
 import com.mumsapp.android.lobby.LobbyFragment
 import com.mumsapp.android.main.MainActivity
+import com.mumsapp.android.product.MyProductsFragment
 import com.mumsapp.android.product.ProductFragment
 import com.mumsapp.android.profile.AccountSettingsDialog
 import com.mumsapp.android.profile.MyProfileFragment
@@ -54,4 +55,6 @@ interface ActivityComponent {
     fun inject(fragment: ShopFilterFragment)
 
     fun inject(fragment: ProductFragment)
+
+    fun inject(fragment: MyProductsFragment)
 }
