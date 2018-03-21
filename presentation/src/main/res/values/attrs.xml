@@ -38,4 +38,8 @@
         <attr name="minValue" format="float"/>
         <attr name="maxValue" format="float"/>
     </declare-styleable>
+
+    <declare-styleable name="GridRecyclerView">
+        <attr name="columnsCount" format="integer"/>
+    </declare-styleable>
 </resources>

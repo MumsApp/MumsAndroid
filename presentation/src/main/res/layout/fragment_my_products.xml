@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/default_layout">
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/default_layout"
+    android:paddingBottom="@dimen/padding_menu_button">
 
     <com.mumsapp.android.ui.views.TopBar
         android:id="@+id/my_products_top_bar"
@@ -9,4 +11,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:topBarTitle="@string/my_products" />
 
+    <com.mumsapp.android.ui.views.GridRecyclerView
+        style="@style/default_grid_recycler"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/my_products_top_bar"
+        app:layout_constraintBottom_toTopOf="@+id/my_products_upload_button"
+        tools:listitem="@layout/cell_my_products"/>
+
+    <com.mumsapp.android.ui.views.BaseButton
+        android:id="@+id/my_products_upload_button"
+        style="@style/button_green"
+        android:layout_marginStart="@dimen/padding_medium"
+        android:layout_marginEnd="@dimen/padding_medium"
+        android:text="@string/upload_another_product"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 </android.support.constraint.ConstraintLayout>

@@ -368,6 +368,12 @@
         <item name="android:paddingBottom">@dimen/padding_default</item>
     </style>
 
+    <style name="grid_products_image_view" parent="avatar_image_view">
+        <item name="android:layout_width">@dimen/grid_products_image_width</item>
+        <item name="android:layout_height">@dimen/grid_products_image_height</item>
+        <item name="android:scaleType">fitXY</item>
+    </style>
+
 
     <!-- Switch -->
     <style name="default_switch">
@@ -461,6 +467,12 @@
 
     <style name="recycler_view_dialog" parent="recycler_default">
         <item name="android:layout_height">@dimen/dialog_recycler_view_height</item>
+    </style>
+
+    <style name="default_grid_recycler">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="columnsCount">2</item>
     </style>
 
 

@@ -8,6 +8,7 @@
     <dimen name="padding_small">4dp</dimen>
     <dimen name="padding_12dp">12dp</dimen>
     <dimen name="padding_scroll_view_bottom">80dp</dimen>
+    <dimen name="padding_menu_button">50dp</dimen>
 
     <dimen name="content_padding_horizontal">30dp</dimen>
 
@@ -56,6 +57,9 @@
     <dimen name="regular_avatar_size">54dp</dimen>
     <dimen name="small_avatar_size">36dp</dimen>
     <dimen name="tiny_avatar_size">26dp</dimen>
+
+    <dimen name="grid_products_image_width">150dp</dimen>
+    <dimen name="grid_products_image_height">140dp</dimen>
 
 
     <!-- Sign Up Fragment -->

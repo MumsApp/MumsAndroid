@@ -106,4 +106,6 @@
     <string name="pounds_price_format">£ %1$s</string>
 
     <string name="contact_user_to_make_an_offer">Contact user to make on offer</string>
+
+    <string name="upload_another_product">Upload another product</string>
 </resources>
