@@ -4,6 +4,7 @@ import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.navigation.FragmentsNavigationService
 import com.mumsapp.domain.interactor.shop.GetShopItemsUseCase
 import com.mumsapp.domain.model.EmptyRequest
+import com.mumsapp.domain.model.product.ProductItem
 import com.mumsapp.domain.model.product.TemplateProductResponse
 import javax.inject.Inject
 
@@ -36,6 +37,10 @@ class MyWishlistPresenter : LifecyclePresenter<MyWishlistView> {
     }
 
     private fun handleLoadProductsSuccess(response: TemplateProductResponse) {
-        view?.showItems(response.items)
+        view?.showItems(response.items, this::onWishlistCheckboxChanged)
+    }
+
+    private fun onWishlistCheckboxChanged(item: ProductItem, value: Boolean) {
+
     }
 }

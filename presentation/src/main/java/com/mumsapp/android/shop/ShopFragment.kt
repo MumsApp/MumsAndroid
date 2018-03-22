@@ -85,11 +85,12 @@ class ShopFragment : BaseFragment(), ShopView {
         topBar.requestSearchFocus()
     }
 
-    override fun showItems(items: List<ProductItem>) {
+    override fun showItems(items: List<ProductItem>, checkboxChangeListener: (item: ProductItem, value: Boolean) -> Unit) {
         adapter.items = items
         adapter.notifyDataSetChanged()
 
         if(recyclerView.adapter == null) {
+            adapter.checkboxChangeListener = checkboxChangeListener
             adapter.getItemsClickEmitter()?.subscribe {
                 presenter.onProductClick(it)
             }

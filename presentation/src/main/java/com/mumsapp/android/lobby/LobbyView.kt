@@ -5,5 +5,5 @@ import com.mumsapp.domain.model.lobby.LobbyItem
 
 interface LobbyView : LifecycleView {
 
-    fun showItems(items: List<LobbyItem>, listener: (item: LobbyItem, value: Boolean) -> Unit)
+    fun showItems(items: List<LobbyItem>, switchChangeListener: (item: LobbyItem, value: Boolean) -> Unit)
 }

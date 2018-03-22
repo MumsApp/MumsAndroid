@@ -59,11 +59,12 @@ class MyProductsFragment : BaseFragment(), MyProductsView {
         presenter.onUploadProductClick()
     }
 
-    override fun showItems(items: List<ProductItem>) {
+    override fun showItems(items: List<ProductItem>, editClickListener: (item: ProductItem) -> Unit) {
         adapter.items = items
         adapter.notifyDataSetChanged()
 
         if(recyclerView.adapter == null) {
+            adapter.edditButtonClickListener = editClickListener
             recyclerView.adapter = adapter
         }
     }

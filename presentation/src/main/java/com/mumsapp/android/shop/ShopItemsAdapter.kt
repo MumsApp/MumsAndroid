@@ -14,6 +14,8 @@ class ShopItemsAdapter : BaseRecyclerViewAdapter<ProductItem, ShopViewHolder> {
     private val imagesLoader: ImagesLoader
     private val resourceRepository: ResourceRepository
 
+    var checkboxChangeListener: ((item: ProductItem, value: Boolean) -> Unit)? = null
+
     @Inject
     constructor(imagesLoader: ImagesLoader, resourceRepository: ResourceRepository) {
         this.imagesLoader = imagesLoader
@@ -23,5 +25,13 @@ class ShopItemsAdapter : BaseRecyclerViewAdapter<ProductItem, ShopViewHolder> {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShopViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.cell_shop, parent, false)
         return ShopViewHolder(imagesLoader, resourceRepository, itemView)
+    }
+
+    override fun onBindViewHolder(holder: ShopViewHolder, position: Int) {
+        super.onBindViewHolder(holder, position)
+
+        if(checkboxChangeListener != null) {
+            holder.setCheckedListener(checkboxChangeListener!!)
+        }
     }
 }

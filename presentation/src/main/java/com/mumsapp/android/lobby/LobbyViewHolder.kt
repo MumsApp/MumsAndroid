@@ -40,6 +40,8 @@ class LobbyViewHolder : BaseViewHolder<LobbyItem> {
     }
 
     override fun init(item: LobbyItem) {
+        this.item = item
+
         titleView.text = item.name
         descriptionView.text = item.description
         switchView.isChecked = item.joined

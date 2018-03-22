@@ -62,12 +62,12 @@ class LobbyFragment : BaseFragment(), LobbyView {
         lifecyclePresenter.onAddCategoryClick()
     }
 
-    override fun showItems(items: List<LobbyItem>, listener: (item: LobbyItem, value: Boolean) -> Unit) {
+    override fun showItems(items: List<LobbyItem>, switchChangeListener: (item: LobbyItem, value: Boolean) -> Unit) {
         adapter.items = items
         adapter.notifyDataSetChanged()
 
         if(recyclerView.adapter == null) {
-            adapter.listener = listener
+            adapter.switchChangeListener = switchChangeListener
             recyclerView.adapter = adapter
         }
     }

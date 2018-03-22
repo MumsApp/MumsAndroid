@@ -54,6 +54,10 @@ class ShopPresenter : LifecyclePresenter<ShopView> {
     }
 
     private fun handleLoadProductsSuccess(response: TemplateProductResponse) {
-        view?.showItems(response.items)
+        view?.showItems(response.items, this::onFavouriteCheckboxChanged)
+    }
+
+    private fun onFavouriteCheckboxChanged(item: ProductItem, value: Boolean) {
+
     }
 }

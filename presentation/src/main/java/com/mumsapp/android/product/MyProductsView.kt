@@ -5,5 +5,5 @@ import com.mumsapp.domain.model.product.ProductItem
 
 interface MyProductsView : LifecycleView {
 
-    fun showItems(items: List<ProductItem>)
+    fun showItems(items: List<ProductItem>, editClickListener: (item: ProductItem) -> Unit)
 }

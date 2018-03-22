@@ -12,7 +12,7 @@ class LobbyItemsAdapter : BaseRecyclerViewAdapter<LobbyItem, LobbyViewHolder> {
 
     private val imagesLoader: ImagesLoader
 
-    var listener: ((item: LobbyItem, value: Boolean) -> Unit)? = null
+    var switchChangeListener: ((item: LobbyItem, value: Boolean) -> Unit)? = null
 
     @Inject
     constructor(imagesLoader: ImagesLoader) {
@@ -27,8 +27,8 @@ class LobbyItemsAdapter : BaseRecyclerViewAdapter<LobbyItem, LobbyViewHolder> {
     override fun onBindViewHolder(holder: LobbyViewHolder, position: Int) {
         super.onBindViewHolder(holder, position)
 
-        if (listener != null) {
-            holder.setCheckedListener(listener!!)
+        if (switchChangeListener != null) {
+            holder.setCheckedListener(switchChangeListener!!)
         }
     }
 }

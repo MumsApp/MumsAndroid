@@ -5,5 +5,5 @@ import com.mumsapp.domain.model.product.ProductItem
 
 interface MyWishlistView : LifecycleView {
 
-    fun showItems(items: List<ProductItem>)
+    fun showItems(items: List<ProductItem>, checkboxChangeListener: (item: ProductItem, value: Boolean) -> Unit)
 }

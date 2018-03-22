@@ -14,6 +14,8 @@ class MyProductsItemsAdapter : BaseRecyclerViewAdapter<ProductItem, MyProductsVi
     private val imagesLoader: ImagesLoader
     private val resourceRepository: ResourceRepository
 
+    var edditButtonClickListener: ((item: ProductItem) -> Unit)? = null
+
     @Inject
     constructor(imagesLoader: ImagesLoader, resourceRepository: ResourceRepository) {
         this.imagesLoader = imagesLoader
@@ -23,5 +25,13 @@ class MyProductsItemsAdapter : BaseRecyclerViewAdapter<ProductItem, MyProductsVi
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyProductsViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.cell_my_products, parent, false)
         return MyProductsViewHolder(imagesLoader, resourceRepository, itemView)
+    }
+
+    override fun onBindViewHolder(holder: MyProductsViewHolder, position: Int) {
+        super.onBindViewHolder(holder, position)
+
+        if(edditButtonClickListener != null) {
+            holder.setEditButtonClickListener(edditButtonClickListener!!)
+        }
     }
 }
