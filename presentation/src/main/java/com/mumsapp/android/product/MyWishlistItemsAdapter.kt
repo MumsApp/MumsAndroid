@@ -21,7 +21,7 @@ class MyWishlistItemsAdapter : BaseRecyclerViewAdapter<ProductItem, MyWishlistVi
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyWishlistViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.cell_my_products, parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.cell_my_wishlist, parent, false)
         return MyWishlistViewHolder(imagesLoader, resourceRepository, itemView)
     }
 }
