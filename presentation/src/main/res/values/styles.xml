@@ -369,7 +369,7 @@
     </style>
 
     <style name="grid_products_image_view" parent="default_image_view">
-        <item name="android:layout_width">@dimen/grid_products_image_width</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/grid_products_image_height</item>
         <item name="android:scaleType">fitXY</item>
         <item name="android:src">@drawable/ic_image_placeholder</item>
