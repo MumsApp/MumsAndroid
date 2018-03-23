@@ -11,6 +11,7 @@ import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.di.components.ActivityComponent
+import com.mumsapp.android.navigation.DialogsProvider
 import com.mumsapp.android.ui.views.GridRecyclerView
 import com.mumsapp.android.ui.views.TopBar
 import com.mumsapp.domain.model.product.ProductItem
@@ -24,11 +25,16 @@ class MyWishlistFragment : BaseFragment(), MyWishlistView {
     @Inject
     lateinit var adapter: MyWishlistItemsAdapter
 
+    @Inject
+    lateinit var dialogsProvider: DialogsProvider
+
     @BindView(R.id.my_wishlist_top_bar)
     lateinit var topBar: TopBar
 
     @BindView(R.id.my_wishlist_recycler_view)
     lateinit var recyclerView: GridRecyclerView
+
+    private var removeProductDialog: RemoveProductDialog? = null
 
     override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter() = presenter as T
 
@@ -62,4 +68,13 @@ class MyWishlistFragment : BaseFragment(), MyWishlistView {
             recyclerView.adapter = adapter
         }
     }
+
+    override fun openRemoveProductDialog(item: ProductItem, bottomText: String, listener: () -> Unit) {
+        if(removeProductDialog == null) {
+            removeProductDialog = dialogsProvider.createRemoveProductDialog()
+        }
+
+        removeProductDialog?.show(item, bottomText, listener)
+    }
+
 }

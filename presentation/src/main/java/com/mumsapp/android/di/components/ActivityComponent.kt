@@ -10,6 +10,7 @@ import com.mumsapp.android.main.MainActivity
 import com.mumsapp.android.product.MyProductsFragment
 import com.mumsapp.android.product.MyWishlistFragment
 import com.mumsapp.android.product.ProductFragment
+import com.mumsapp.android.product.RemoveProductDialog
 import com.mumsapp.android.profile.AccountSettingsDialog
 import com.mumsapp.android.profile.MyProfileFragment
 import com.mumsapp.android.profile.UserDetailsSettingsDialog
@@ -60,4 +61,6 @@ interface ActivityComponent {
     fun inject(fragment: MyProductsFragment)
 
     fun inject(fragment: MyWishlistFragment)
+
+    fun inject(dialog: RemoveProductDialog)
 }

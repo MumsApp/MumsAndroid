@@ -108,4 +108,9 @@
     <string name="contact_user_to_make_an_offer">Contact user to make on offer</string>
 
     <string name="upload_another_product">Upload another product</string>
+
+    <string name="are_you_sure_you_want_to_remove">Are you sure you want to remove</string>
+    <string name="from_your_wishlist_question_mark">from your wishlist?</string>
+
+    <string name="yes_coma_remove">Yes, remove</string>
 </resources>
