@@ -29,7 +29,7 @@ class MyProductsPresenter : LifecyclePresenter<MyProductsView> {
     }
 
     fun onUploadProductClick() {
-
+        fragmentsNavigationService.openAddProductFragment(true)
     }
 
     private fun loadItems() {

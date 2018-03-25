@@ -9,6 +9,7 @@ import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.chat.ChatListFragment
 import com.mumsapp.android.di.qualifiers.FragmentContainerId
 import com.mumsapp.android.lobby.LobbyFragment
+import com.mumsapp.android.product.AddProductFragment
 import com.mumsapp.android.product.MyProductsFragment
 import com.mumsapp.android.product.MyWishlistFragment
 import com.mumsapp.android.product.ProductFragment
@@ -115,6 +116,13 @@ class FragmentsNavigationService {
     }
 
     fun createMyWishlistFragment() = MyWishlistFragment.getInstance()
+
+    fun openAddProductFragment(addToBackStack: Boolean) {
+        val fragment = createAddProductFragment()
+        openFragment(fragment, addToBackStack)
+    }
+
+    fun createAddProductFragment() = AddProductFragment.getInstance()
 
     fun popFragment() {
         fragmentManager.popBackStack()
