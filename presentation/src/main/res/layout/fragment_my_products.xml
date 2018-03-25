@@ -26,4 +26,8 @@
         android:layout_marginEnd="@dimen/padding_medium"
         android:text="@string/upload_another_product"
         app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <View
+        style="@style/empty_view_below_card"
+        app:layout_constraintTop_toBottomOf="@id/my_products_upload_button" />
 </android.support.constraint.ConstraintLayout>

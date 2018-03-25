@@ -40,4 +40,9 @@
     <!-- Text Views -->
     <color name="text_container_background">#FCFDFF</color>
     <color name="text_container_border">#EBECEE</color>
+    <color name="image_placeholder_text">#708FB3</color>
+
+
+    <!-- Image View -->
+    <color name="image_placeholder_background">#F1F5FA</color>
 </resources>

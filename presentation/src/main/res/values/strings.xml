@@ -115,4 +115,12 @@
     <string name="yes_coma_remove">Yes, remove</string>
 
     <string name="add_product">Add Product</string>
+    <string name="add_photo">Add photo</string>
+    <string name="uploaded_photos">Uploades photos</string>
+    <string name="add_title">Add title</string>
+    <string name="add_category">Add category</string>
+    <string name="ask_for_new_category">Ask for new category</string>
+    <string name="price">Price</string>
+    <string name="add_description">Add description</string>
+    <string name="upload_product">Upload product</string>
 </resources>
