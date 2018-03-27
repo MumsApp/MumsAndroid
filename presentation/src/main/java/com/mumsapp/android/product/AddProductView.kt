@@ -4,5 +4,6 @@ import com.mumsapp.android.base.LifecycleView
 
 interface AddProductView : LifecycleView {
 
-
+    fun showSelectImageSourceDialog(galleryClickListener: () -> Unit,
+                                    cameraClickListener: () -> Unit)
 }

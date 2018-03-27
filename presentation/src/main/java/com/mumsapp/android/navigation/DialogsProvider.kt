@@ -3,6 +3,7 @@ package com.mumsapp.android.navigation
 import com.mumsapp.android.base.BaseActivity
 import com.mumsapp.android.chat.ChatSettingsDialog
 import com.mumsapp.android.product.RemoveProductDialog
+import com.mumsapp.android.product.SelectImageSourceDialog
 import com.mumsapp.android.profile.AccountSettingsDialog
 import com.mumsapp.android.profile.UserDetailsSettingsDialog
 import com.mumsapp.android.shop.ShopMenuDialog
@@ -26,4 +27,6 @@ class DialogsProvider {
     fun createShopMenuDialog() = ShopMenuDialog(activity)
 
     fun createRemoveProductDialog() = RemoveProductDialog(activity)
+
+    fun createSelectImageSourceDialog() = SelectImageSourceDialog(activity)
 }

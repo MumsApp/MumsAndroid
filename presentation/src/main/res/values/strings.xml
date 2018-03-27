@@ -123,4 +123,8 @@
     <string name="price">Price</string>
     <string name="add_description">Add description</string>
     <string name="upload_product">Upload product</string>
+
+    <string name="choose_image_source">Choose image source</string>
+    <string name="photo_library">Photo Library</string>
+    <string name="camera">Camera</string>
 </resources>

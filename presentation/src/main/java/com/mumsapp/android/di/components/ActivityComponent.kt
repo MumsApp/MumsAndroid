@@ -62,4 +62,6 @@ interface ActivityComponent {
     fun inject(dialog: RemoveProductDialog)
 
     fun inject(fragment: AddProductFragment)
+
+    fun inject(dialog: SelectImageSourceDialog)
 }

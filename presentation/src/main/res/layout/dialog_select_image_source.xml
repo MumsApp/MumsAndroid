@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/default_dialog_layout"
+    android:background="@color/white">
+
+    <com.mumsapp.android.ui.views.TopBar
+        android:id="@+id/select_image_source_top_bar"
+        style="@style/top_bar_close"
+        app:topBarTitle="@string/choose_image_source" />
+
+    <com.mumsapp.android.ui.views.BaseButton
+        android:id="@+id/select_image_source_gallery"
+        style="@style/button_dialog"
+        android:layout_marginTop="@dimen/padding_default"
+        android:text="@string/photo_library"
+        app:layout_constraintTop_toBottomOf="@id/select_image_source_top_bar"/>
+
+    <com.mumsapp.android.ui.views.BaseButton
+        android:id="@+id/select_image_source_camera"
+        style="@style/button_dialog"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:text="@string/camera"
+        app:layout_constraintTop_toBottomOf="@id/select_image_source_gallery"/>
+
+    <View
+        style="@style/empty_view_below_card"
+        app:layout_constraintTop_toBottomOf="@+id/select_image_source_camera"/>
+</android.support.constraint.ConstraintLayout>

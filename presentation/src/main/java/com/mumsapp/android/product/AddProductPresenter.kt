@@ -16,4 +16,8 @@ class AddProductPresenter : LifecyclePresenter<AddProductView> {
     fun onBackClick() {
         fragmentsNavigationService.popFragment()
     }
+
+    fun onAddPhotoClick() {
+        view?.showSelectImageSourceDialog({}, {})
+    }
 }
