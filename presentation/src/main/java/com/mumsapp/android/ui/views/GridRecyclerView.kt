@@ -41,7 +41,7 @@ class GridRecyclerView : BaseRecyclerView {
 
     fun setSpaceDivider(columnsCount: Int) {
         val space = context.resources.getDimension(R.dimen.padding_12dp).toInt()
-        val divider = SpacesItemDecoration(space, columnsCount)
+        val divider = VerticalSpacesItemDecoration(space, columnsCount)
         addItemDecoration(divider)
     }
 }

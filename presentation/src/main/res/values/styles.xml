@@ -495,6 +495,10 @@
         <item name="columnsCount">2</item>
     </style>
 
+    <style name="horizontal_recycler" parent="recycler_default">
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
 
     <!-- CheckBoxes -->
     <style name="checkbox_default" parent="text_normal">

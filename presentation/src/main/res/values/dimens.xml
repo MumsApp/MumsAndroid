@@ -96,6 +96,11 @@
     <dimen name="product_big_image_height">200dp</dimen>
 
 
+    <!-- Add Product Fragment -->
+    <dimen name="product_photos_cell_width">160dp</dimen>
+    <dimen name="product_photos_cell_height">150</dimen>
+
+
     <!-- Edit Product Details Widget -->
     <dimen name="edit_product_details_description_height">200dp</dimen>
 </resources>

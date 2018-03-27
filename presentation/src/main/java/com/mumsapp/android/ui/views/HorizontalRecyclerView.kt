@@ -1,10 +1,11 @@
 package com.mumsapp.android.ui.views
 
 import android.content.Context
+import android.support.v7.widget.LinearLayoutManager
 import android.util.AttributeSet
 import com.mumsapp.android.R
 
-class CardsRecyclerView : BaseRecyclerView {
+class HorizontalRecyclerView : BaseRecyclerView {
 
     constructor(context: Context) : super(context) {
         setup(context, null)
@@ -19,8 +20,15 @@ class CardsRecyclerView : BaseRecyclerView {
     }
 
     private fun setup(context: Context, attrs: AttributeSet?) {
+        val manager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        layoutManager = manager
+
+        setupDivider(context)
+    }
+
+    private fun setupDivider(context: Context) {
         val space = context.resources.getDimension(R.dimen.padding_12dp).toInt()
-        val divider = VerticalSpacesItemDecoration(space, 1)
+        val divider = HorizontalSpacesItemDecoration(space)
         addItemDecoration(divider)
     }
 }
