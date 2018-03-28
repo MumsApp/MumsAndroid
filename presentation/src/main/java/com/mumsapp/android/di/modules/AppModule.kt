@@ -125,4 +125,8 @@ class AppModule(private val context: MainApplication) {
     fun provideImagesRepository(): ImagesRepository {
         return ImagesRepositoryImpl(BuildConfig.API_URL)
     }
+
+    @Provides
+    @Singleton
+    fun provideFilesHelper(filesHelperImpl: FilesHelperImpl): FilesHelper = filesHelperImpl
 }

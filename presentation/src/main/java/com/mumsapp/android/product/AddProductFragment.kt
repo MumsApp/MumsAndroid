@@ -1,5 +1,7 @@
 package com.mumsapp.android.product
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +16,8 @@ import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.di.components.ActivityComponent
 import com.mumsapp.android.navigation.DialogsProvider
 import com.mumsapp.android.ui.views.TopBar
+import com.mumsapp.android.util.CAMERA_REQUEST_CODE
+import com.mumsapp.android.util.GALLERY_REQUEST_CODE
 import javax.inject.Inject
 
 class AddProductFragment : BaseFragment(), AddProductView {
@@ -52,17 +56,33 @@ class AddProductFragment : BaseFragment(), AddProductView {
         topBar.setLeftButtonClickListener { presenter.onBackClick() }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(resultCode == Activity.RESULT_OK) {
+            when (requestCode) {
+                GALLERY_REQUEST_CODE -> {
+                    presenter.onGalleryImageReceived(data!!.data)
+                }
+
+                CAMERA_REQUEST_CODE -> {
+                    presenter.onCameraImageReceived()
+                }
+            }
+        }
+    }
+
     @OnClick(R.id.add_product_add_image_button, R.id.add_product_add_image_text,
             R.id.add_product_add_image_background)
     fun onAddPhotoClick() {
         presenter.onAddPhotoClick()
     }
 
-    override fun showSelectImageSourceDialog(galleryClickListener: () -> Unit, cameraClickListener: () -> Unit) {
-        if(selectImageSourceDialog == null) {
+    override fun showSelectImageSourceDialog() {
+        if (selectImageSourceDialog == null) {
             selectImageSourceDialog = dialogsProvider.createSelectImageSourceDialog()
         }
 
-        selectImageSourceDialog?.show(galleryClickListener, cameraClickListener)
+        selectImageSourceDialog?.show(presenter::onGalleryClick, presenter::onCameraClick)
     }
 }

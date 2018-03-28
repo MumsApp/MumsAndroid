@@ -1,5 +1,8 @@
 package com.mumsapp.android.navigation
 
+import android.content.Intent
+import android.net.Uri
+import android.provider.MediaStore
 import android.support.v4.app.FragmentManager
 import com.mumsapp.android.authentication.AuthMenuFragment
 import com.mumsapp.android.authentication.CreatePageFragment
@@ -123,6 +126,26 @@ class FragmentsNavigationService {
     }
 
     fun createAddProductFragment() = AddProductFragment.getInstance()
+
+    fun openCameraActivityForResults(output: Uri, requestCode: Int) {
+        val intent = createCameraIntent(output)
+        findTopFragment()!!.startActivityForResult(intent, requestCode)
+    }
+
+    fun createCameraIntent(output: Uri): Intent {
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, output)
+        return intent
+    }
+
+    fun openGalleryActivityForResults(requestCode: Int) {
+        val intent = createGalleryIntent()
+        findTopFragment()!!.startActivityForResult(intent, requestCode)
+    }
+
+    fun createGalleryIntent(): Intent {
+        return Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+    }
 
     fun popFragment() {
         fragmentManager.popBackStack()
