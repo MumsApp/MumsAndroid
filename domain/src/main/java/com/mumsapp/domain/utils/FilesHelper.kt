@@ -4,5 +4,7 @@ import java.io.File
 
 interface FilesHelper {
 
-    fun createTemporaryFile(name: String, ext: String): File
+    fun createTemporaryFile(name: String, extWithDot: String): File
+
+    fun getExportedUri(file: File): String
 }

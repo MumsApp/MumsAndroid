@@ -2,6 +2,7 @@ package com.mumsapp.android.product
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,9 +16,11 @@ import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.di.components.ActivityComponent
 import com.mumsapp.android.navigation.DialogsProvider
+import com.mumsapp.android.ui.views.BaseImageView
 import com.mumsapp.android.ui.views.TopBar
 import com.mumsapp.android.util.CAMERA_REQUEST_CODE
 import com.mumsapp.android.util.GALLERY_REQUEST_CODE
+import com.mumsapp.android.util.ImagesLoader
 import javax.inject.Inject
 
 class AddProductFragment : BaseFragment(), AddProductView {
@@ -28,8 +31,14 @@ class AddProductFragment : BaseFragment(), AddProductView {
     @Inject
     lateinit var dialogsProvider: DialogsProvider
 
+    @Inject
+    lateinit var imagesLoader: ImagesLoader
+
     @BindView(R.id.add_product_top_bar)
     lateinit var topBar: TopBar
+
+    @BindView(R.id.add_product_image_header)
+    lateinit var headerImageView: BaseImageView
 
     private var selectImageSourceDialog: SelectImageSourceDialog? = null
 
@@ -84,5 +93,9 @@ class AddProductFragment : BaseFragment(), AddProductView {
         }
 
         selectImageSourceDialog?.show(presenter::onGalleryClick, presenter::onCameraClick)
+    }
+
+    override fun showImageHeader(uri: Uri) {
+        imagesLoader.load(uri, headerImageView)
     }
 }

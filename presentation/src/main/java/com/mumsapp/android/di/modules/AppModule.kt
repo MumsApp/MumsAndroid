@@ -8,6 +8,7 @@ import com.facebook.CallbackManager
 import com.google.gson.Gson
 import com.mumsapp.android.BuildConfig
 import com.mumsapp.android.MainApplication
+import com.mumsapp.android.di.qualifiers.ApplicationId
 import com.mumsapp.android.util.KeyboardHelper
 import com.mumsapp.data.net.PublicRestApiProviderImpl
 import com.mumsapp.data.repository.ImagesRepositoryImpl
@@ -129,4 +130,9 @@ class AppModule(private val context: MainApplication) {
     @Provides
     @Singleton
     fun provideFilesHelper(filesHelperImpl: FilesHelperImpl): FilesHelper = filesHelperImpl
+
+    @Provides
+    @Singleton
+    @ApplicationId
+    fun providesAppId() = BuildConfig.APPLICATION_ID
 }

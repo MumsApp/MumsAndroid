@@ -15,7 +15,7 @@ class AddProductPresenter : LifecyclePresenter<AddProductView> {
     private val fragmentsNavigationService: FragmentsNavigationService
     private val filesHelper: FilesHelper
     private var tmpCameraFile: File? = null
-    private var chosenPhotos: List<File>? = null
+    private var chosenPhotos: List<File> = ArrayList()
 
     @Inject
     constructor(fragmentsNavigationService: FragmentsNavigationService, filesHelper: FilesHelper) {
@@ -37,15 +37,19 @@ class AddProductPresenter : LifecyclePresenter<AddProductView> {
 
     fun onCameraClick() {
         tmpCameraFile = createTemporaryFile()
-        fragmentsNavigationService.openCameraActivityForResults(Uri.fromFile(tmpCameraFile), CAMERA_REQUEST_CODE)
+        val uri = Uri.parse(filesHelper.getExportedUri(tmpCameraFile!!))
+
+        fragmentsNavigationService.openCameraActivityForResults(uri, CAMERA_REQUEST_CODE)
     }
 
     fun onGalleryImageReceived(uri: Uri) {
         Log.e("AddProductPresenter", uri.toString())
+        view?.showImageHeader(uri)
     }
 
     fun onCameraImageReceived() {
         Log.e("AddProductPresenter", "camera")
+        view?.showImageHeader(Uri.fromFile(tmpCameraFile))
     }
 
     private fun createTemporaryFile(): File {
@@ -54,4 +58,6 @@ class AddProductPresenter : LifecyclePresenter<AddProductView> {
 
         return filesHelper.createTemporaryFile(name, ".jpg")
     }
+
+    private fun addPhotoToView()
 }
