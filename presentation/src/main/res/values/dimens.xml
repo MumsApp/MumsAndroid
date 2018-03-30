@@ -98,7 +98,7 @@
 
     <!-- Add Product Fragment -->
     <dimen name="product_photos_cell_width">160dp</dimen>
-    <dimen name="product_photos_cell_height">150</dimen>
+    <dimen name="product_photos_cell_height">150dp</dimen>
 
 
     <!-- Edit Product Details Widget -->

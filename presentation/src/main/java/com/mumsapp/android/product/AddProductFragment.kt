@@ -17,6 +17,8 @@ import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.di.components.ActivityComponent
 import com.mumsapp.android.navigation.DialogsProvider
 import com.mumsapp.android.ui.views.BaseImageView
+import com.mumsapp.android.ui.views.BaseTextView
+import com.mumsapp.android.ui.views.HorizontalRecyclerView
 import com.mumsapp.android.ui.views.TopBar
 import com.mumsapp.android.util.CAMERA_REQUEST_CODE
 import com.mumsapp.android.util.GALLERY_REQUEST_CODE
@@ -34,11 +36,20 @@ class AddProductFragment : BaseFragment(), AddProductView {
     @Inject
     lateinit var imagesLoader: ImagesLoader
 
+    @Inject
+    lateinit var photosAdapter: ProductImagesAdapter
+
     @BindView(R.id.add_product_top_bar)
     lateinit var topBar: TopBar
 
     @BindView(R.id.add_product_image_header)
     lateinit var headerImageView: BaseImageView
+
+    @BindView(R.id.add_product_upload_photos_label)
+    lateinit var photosLabelView: BaseTextView
+
+    @BindView(R.id.add_product_photos_recycler)
+    lateinit var photosRecyclerView: HorizontalRecyclerView
 
     private var selectImageSourceDialog: SelectImageSourceDialog? = null
 
@@ -95,7 +106,35 @@ class AddProductFragment : BaseFragment(), AddProductView {
         selectImageSourceDialog?.show(presenter::onGalleryClick, presenter::onCameraClick)
     }
 
+    override fun hideImageSlider() {
+        photosLabelView.visibility = View.GONE
+        photosRecyclerView.visibility = View.GONE
+        photosRecyclerView.adapter = null
+    }
+
     override fun showImageHeader(uri: Uri) {
         imagesLoader.load(uri, headerImageView)
+    }
+
+    override fun showImageSlider(items: List<ImageSliderItem>,  deleteButtonClickListener: ((position: Int) -> Unit)) {
+        photosAdapter.items = items
+        photosAdapter.deleteButtonClickListener = deleteButtonClickListener
+
+        if(photosRecyclerView.adapter == null) {
+            photosRecyclerView.adapter = photosAdapter
+        }
+
+        photosLabelView.visibility = View.VISIBLE
+        photosRecyclerView.visibility = View.VISIBLE
+    }
+
+    override fun addImageSliderItem(items: List<ImageSliderItem>, changedItemPosition: Int) {
+        photosAdapter.items = items
+        photosAdapter.notifyItemInserted(changedItemPosition)
+    }
+
+    override fun removeImageSliderItem(items: List<ImageSliderItem>, changedItemPosition: Int) {
+        photosAdapter.items = items
+        photosAdapter.notifyItemRemoved(changedItemPosition)
     }
 }

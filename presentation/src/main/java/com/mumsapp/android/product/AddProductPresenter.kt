@@ -15,7 +15,8 @@ class AddProductPresenter : LifecyclePresenter<AddProductView> {
     private val fragmentsNavigationService: FragmentsNavigationService
     private val filesHelper: FilesHelper
     private var tmpCameraFile: File? = null
-    private var chosenPhotos: List<File> = ArrayList()
+    private var chosenPhotos: MutableList<ImageSliderItem> = ArrayList()
+    private var currentHeader: Uri? = null
 
     @Inject
     constructor(fragmentsNavigationService: FragmentsNavigationService, filesHelper: FilesHelper) {
@@ -43,13 +44,11 @@ class AddProductPresenter : LifecyclePresenter<AddProductView> {
     }
 
     fun onGalleryImageReceived(uri: Uri) {
-        Log.e("AddProductPresenter", uri.toString())
-        view?.showImageHeader(uri)
+        addPhotoToView(uri)
     }
 
     fun onCameraImageReceived() {
-        Log.e("AddProductPresenter", "camera")
-        view?.showImageHeader(Uri.fromFile(tmpCameraFile))
+        addPhotoToView(Uri.fromFile(tmpCameraFile))
     }
 
     private fun createTemporaryFile(): File {
@@ -59,5 +58,27 @@ class AddProductPresenter : LifecyclePresenter<AddProductView> {
         return filesHelper.createTemporaryFile(name, ".jpg")
     }
 
-    private fun addPhotoToView()
+    private fun addPhotoToView(uri: Uri) {
+        if(currentHeader == null) {
+            currentHeader = uri
+            view?.showImageHeader(currentHeader!!)
+        }
+
+        chosenPhotos.add(ImageSliderItem(uri, false))
+
+        if(chosenPhotos.size <= 2) {
+            if(!chosenPhotos.get(0).isAddPhoto) {
+                chosenPhotos.add(0, ImageSliderItem(null, true))
+            }
+
+            view?.showImageSlider(chosenPhotos, this::onPhotoRemoved)
+        } else {
+            view?.addImageSliderItem(chosenPhotos, chosenPhotos.lastIndex)
+        }
+    }
+
+    private fun onPhotoRemoved(position: Int) {
+        chosenPhotos.removeAt(position)
+        view?.removeImageSliderItem(chosenPhotos, position)
+    }
 }

@@ -15,7 +15,7 @@
             android:src="@drawable/ic_image_placeholder"/>
 
         <com.mumsapp.android.ui.views.BaseImageButton
-            android:id="@+id/prodct_photos_cell_delete_photo"
+            android:id="@+id/product_photos_cell_delete_photo"
             style="@style/default_image_button"
             android:layout_marginTop="@dimen/padding_medium"
             android:paddingEnd="@dimen/padding_medium"
