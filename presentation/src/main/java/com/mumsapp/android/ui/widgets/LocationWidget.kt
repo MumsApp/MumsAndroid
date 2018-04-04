@@ -19,14 +19,20 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.mumsapp.android.R
 import com.mumsapp.android.common.features.HasComponent
 import com.mumsapp.android.di.components.ActivityComponent
+import com.mumsapp.android.navigation.FragmentsNavigationService
 import com.mumsapp.android.ui.views.BaseSwitch
 import com.mumsapp.android.ui.views.BaseTextView
 import javax.inject.Inject
 
 class LocationWidget : CardView {
 
+    private val MAP_FRAGMENT_TAG = "mapFragment";
+
     @Inject
     lateinit var fragmentManager: FragmentManager
+
+    @Inject
+    lateinit var fragmentsNavigationService: FragmentsNavigationService
 
     lateinit var mapFragment: SupportMapFragment
 
@@ -66,8 +72,20 @@ class LocationWidget : CardView {
             (context as HasComponent<ActivityComponent>).getComponent().inject(this)
         }
         ButterKnife.bind(view)
-        mapFragment = fragmentManager.findFragmentById(R.id.location_widget_map) as SupportMapFragment
+        setupMapFragment()
         setupAttributes(context, attrs)
+    }
+
+    private fun setupMapFragment() {
+        val childFragmentManager = fragmentsNavigationService.findTopFragment()!!.childFragmentManager
+        var tmpMapFragment = childFragmentManager.findFragmentByTag(MAP_FRAGMENT_TAG) as SupportMapFragment?
+
+        if(tmpMapFragment == null) {
+            tmpMapFragment = SupportMapFragment()
+            fragmentsNavigationService.openMapFragment(tmpMapFragment, childFragmentManager,
+                    R.id.location_widget_map_layout, MAP_FRAGMENT_TAG)
+        }
+        mapFragment = tmpMapFragment
     }
 
     private fun setupAttributes(context: Context, attrs: AttributeSet?) {

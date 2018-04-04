@@ -3,7 +3,9 @@ package com.mumsapp.android.navigation
 import android.content.Intent
 import android.net.Uri
 import android.provider.MediaStore
+import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
+import com.google.android.gms.maps.SupportMapFragment
 import com.mumsapp.android.authentication.AuthMenuFragment
 import com.mumsapp.android.authentication.CreatePageFragment
 import com.mumsapp.android.authentication.SignInFragment
@@ -160,6 +162,14 @@ class FragmentsNavigationService {
 
     fun getBackStackCount(): Int {
         return fragmentManager.backStackEntryCount
+    }
+
+    fun openMapFragment(fragment: SupportMapFragment, childFragmentManager: FragmentManager,
+                        containerId: Int, tag: String) {
+        val transaction = fragmentManager.beginTransaction()
+        transaction.add(containerId, fragment, tag)
+        transaction.commit()
+        childFragmentManager.executePendingTransactions()
     }
 
     private fun openFragment(fragment: BaseFragment, addToBackStack: Boolean) {

@@ -49,12 +49,5 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/location_widget_map_height"
         android:layout_marginTop="@dimen/padding_default"
-        app:layout_constraintTop_toBottomOf="@id/location_widget_name">
-
-        <fragment
-            android:id="@+id/location_widget_map"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </FrameLayout>
+        app:layout_constraintTop_toBottomOf="@id/location_widget_name"/>
 </android.support.constraint.ConstraintLayout>
