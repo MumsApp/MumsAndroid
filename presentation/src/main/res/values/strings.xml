@@ -127,4 +127,8 @@
     <string name="choose_image_source">Choose image source</string>
     <string name="photo_library">Photo Library</string>
     <string name="camera">Camera</string>
+
+    <string name="congratulations_your_product_has_been_uploaded">Congratulations, your product has been uploaded!</string>
+    <string name="back_to_search">Back to search</string>
+    <string name="to_my_product_list">To my product list</string>
 </resources>

@@ -7,7 +7,58 @@
 
     <com.mumsapp.android.ui.views.TopBar
         android:id="@+id/confirmation_with_avatar_top_bar"
-        style="@style/top_bar_close" />
+        style="@style/top_bar_close"
+        tools:topBarTitle="" />
 
+    <com.mumsapp.android.ui.views.CircleImageView
+        android:id="@+id/confirmation_with_avatar_image"
+        style="@style/avatar_image_view"
+        app:layout_constraintBottom_toBottomOf="@id/confirmation_with_avatar_top_bar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/confirmation_with_avatar_top_bar" />
 
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/confirmation_with_avatar_image_title"
+        style="@style/text_normal_grey_light"
+        android:layout_marginTop="@dimen/padding_medium"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/confirmation_with_avatar_image"
+        tools:text="Nappy.com" />
+
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/confirmation_with_avatar_title"
+        style="@style/text_big"
+        android:layout_marginTop="@dimen/padding_big"
+        android:gravity="center_horizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/confirmation_with_avatar_image_title"
+        tools:text="Are you sure to remove from your contacts?" />
+
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/confirmation_with_avatar_description"
+        style="@style/text_normal_grey_light"
+        android:layout_marginTop="@dimen/padding_medium"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/confirmation_with_avatar_title"
+        tools:text="Chats with this user will be lost" />
+
+    <com.mumsapp.android.ui.views.BaseButton
+        android:id="@+id/confirmation_with_avatar_confirm_button"
+        style="@style/button_dialog"
+        android:layout_marginTop="@dimen/padding_big"
+        app:layout_constraintTop_toBottomOf="@id/confirmation_with_avatar_description"
+        tools:text="Yes, remove this contact"/>
+
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/confirmation_with_avatar_cancel_button"
+        style="@style/text_normal_grey_light"
+        android:layout_marginTop="@dimen/padding_big"
+        tools:text="No, get me out of here"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/confirmation_with_avatar_confirm_button"/>
 </android.support.constraint.ConstraintLayout>

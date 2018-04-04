@@ -83,7 +83,7 @@ class TopBar: ConstraintLayout {
         leftButton.setOnClickListener(listener)
     }
 
-    fun setTitleText(titleText: String) {
+    fun setTitleText(titleText: String?) {
         title.text = titleText
     }
 

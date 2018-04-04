@@ -9,14 +9,14 @@ class ConfirmationWithAvatarPresenter : BasePresenter<ConfirmationWithAvatarView
     var avatarUri: Uri? = null
     var avatarTitle: String? = null
     lateinit var title: String
-    lateinit var description: String
+    var description: String? = null
     lateinit var confirmButtonText: String
     lateinit var cancelButtonText: String
 
     @Inject
     constructor()
 
-    fun setArguments(avatarUri: Uri?, avatarTitle: String?, title: String, description: String,
+    fun setArguments(avatarUri: Uri?, avatarTitle: String?, title: String, description: String?,
                      confirmButtonText: String, cancelButtonText: String) {
         this.avatarUri = avatarUri
         this.avatarTitle = avatarTitle

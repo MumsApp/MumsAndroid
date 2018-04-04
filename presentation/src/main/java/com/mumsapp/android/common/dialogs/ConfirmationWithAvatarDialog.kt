@@ -5,12 +5,17 @@ import android.net.Uri
 import android.os.Bundle
 import butterknife.BindView
 import butterknife.ButterKnife
+import butterknife.OnClick
 import com.mumsapp.android.R
 import com.mumsapp.android.base.BaseDialog
 import com.mumsapp.android.base.BasePresenter
 import com.mumsapp.android.base.BaseView
 import com.mumsapp.android.di.components.ActivityComponent
+import com.mumsapp.android.ui.views.BaseButton
+import com.mumsapp.android.ui.views.BaseTextView
+import com.mumsapp.android.ui.views.CircleImageView
 import com.mumsapp.android.ui.views.TopBar
+import com.mumsapp.android.util.ImagesLoader
 import javax.inject.Inject
 
 class ConfirmationWithAvatarDialog(context: Context) : BaseDialog(context), ConfirmationWithAvatarView {
@@ -18,8 +23,29 @@ class ConfirmationWithAvatarDialog(context: Context) : BaseDialog(context), Conf
     @Inject
     lateinit var presenter: ConfirmationWithAvatarPresenter
 
+    @Inject
+    lateinit var imagesLoader: ImagesLoader
+
     @BindView(R.id.confirmation_with_avatar_top_bar)
     lateinit var topBar: TopBar
+
+    @BindView(R.id.confirmation_with_avatar_image)
+    lateinit var avatarView: CircleImageView
+
+    @BindView(R.id.confirmation_with_avatar_image_title)
+    lateinit var avatarTitleView: BaseTextView
+
+    @BindView(R.id.confirmation_with_avatar_title)
+    lateinit var titleView: BaseTextView
+
+    @BindView(R.id.confirmation_with_avatar_description)
+    lateinit var descriptionView: BaseTextView
+
+    @BindView(R.id.confirmation_with_avatar_confirm_button)
+    lateinit var confirmationButton: BaseButton
+
+    @BindView(R.id.confirmation_with_avatar_cancel_button)
+    lateinit var cancelButton: BaseTextView
 
     private var confirmationListener: (() -> Unit)? = null
     private var cancelListener: (() -> Unit)? = null
@@ -42,7 +68,7 @@ class ConfirmationWithAvatarDialog(context: Context) : BaseDialog(context), Conf
         presenter.attachView(this)
     }
 
-    fun show(avatarUri: Uri?, avatarTitle: String?, title: String, description: String,
+    fun show(avatarUri: Uri?, avatarTitle: String?, title: String, description: String?,
              confirmButtonText: String, cancelButtonText: String, confirmationListener: () -> Unit,
              cancelListener: () -> Unit) {
         super.show()
@@ -54,10 +80,26 @@ class ConfirmationWithAvatarDialog(context: Context) : BaseDialog(context), Conf
         presenter.start()
     }
 
-    override fun showAvatar(avatarUri: Uri, avatarTitle: String?) {
+    @OnClick(R.id.confirmation_with_avatar_confirm_button)
+    fun onConfirmButtonClick() {
+        presenter.onConfirmButtonClick()
     }
 
-    override fun setContent(title: String, description: String, confirmButtonText: String, cancelButtonText: String) {
+    @OnClick(R.id.confirmation_with_avatar_cancel_button)
+    fun onCancelButtonClick() {
+        presenter.onCancelButtonClick()
+    }
+
+    override fun showAvatar(avatarUri: Uri, avatarTitle: String?) {
+        imagesLoader.load(avatarUri, avatarView)
+        avatarTitleView.text = avatarTitle
+    }
+
+    override fun setContent(title: String, description: String?, confirmButtonText: String, cancelButtonText: String) {
+        titleView.text = title
+        descriptionView.text = description
+        confirmationButton.text = confirmButtonText
+        cancelButton.text = cancelButtonText
     }
 
     override fun dismissView() {

@@ -2,10 +2,12 @@ package com.mumsapp.android.product
 
 import android.net.Uri
 import android.util.Log
+import com.mumsapp.android.R
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.navigation.FragmentsNavigationService
 import com.mumsapp.android.util.CAMERA_REQUEST_CODE
 import com.mumsapp.android.util.GALLERY_REQUEST_CODE
+import com.mumsapp.domain.repository.ResourceRepository
 import com.mumsapp.domain.utils.FilesHelper
 import java.io.File
 import javax.inject.Inject
@@ -14,14 +16,18 @@ class AddProductPresenter : LifecyclePresenter<AddProductView> {
 
     private val fragmentsNavigationService: FragmentsNavigationService
     private val filesHelper: FilesHelper
+    private val resourceRepository: ResourceRepository
+
     private var tmpCameraFile: File? = null
     private var chosenPhotos: MutableList<ImageSliderItem> = ArrayList()
     private var currentHeader: ImageSliderItem? = null
 
     @Inject
-    constructor(fragmentsNavigationService: FragmentsNavigationService, filesHelper: FilesHelper) {
+    constructor(fragmentsNavigationService: FragmentsNavigationService, filesHelper: FilesHelper,
+                resourceRepository: ResourceRepository) {
         this.fragmentsNavigationService = fragmentsNavigationService
         this.filesHelper = filesHelper
+        this.resourceRepository = resourceRepository
     }
 
     fun onBackClick() {
@@ -49,6 +55,33 @@ class AddProductPresenter : LifecyclePresenter<AddProductView> {
 
     fun onCameraImageReceived() {
         addPhotoToView(Uri.fromFile(tmpCameraFile))
+    }
+
+    fun onPhotoSliderItemClick(item: ImageSliderItem) {
+        if(item.isAddPhoto) {
+            onAddPhotoClick()
+        } else {
+            currentHeader = item
+            view?.showImageHeader(currentHeader!!.uri!!)
+        }
+    }
+
+    fun onUploadButtonClick() {
+        val title = resourceRepository.getString(R.string.congratulations_your_product_has_been_uploaded)
+        val confirmButtonText = resourceRepository.getString(R.string.back_to_search)
+        val cancelButtonText = resourceRepository.getString(R.string.to_my_product_list)
+
+        view?.showConfirmationDialog(currentHeader?.uri, null, title, null,
+                confirmButtonText, cancelButtonText)
+    }
+
+    fun onConfirmDialogButtonClick() {
+        fragmentsNavigationService.popFragment()
+        fragmentsNavigationService.popFragment()
+    }
+
+    fun onCancelDialogButtonClick() {
+        fragmentsNavigationService.popFragment()
     }
 
     private fun createTemporaryFile(): File {
@@ -81,14 +114,5 @@ class AddProductPresenter : LifecyclePresenter<AddProductView> {
     private fun onPhotoRemoved(position: Int) {
         chosenPhotos.removeAt(position)
         view?.removeImageSliderItem(chosenPhotos, position)
-    }
-
-    fun onPhotoSliderItemClick(item: ImageSliderItem) {
-        if(item.isAddPhoto) {
-            onAddPhotoClick()
-        } else {
-            currentHeader = item
-            view?.showImageHeader(currentHeader!!.uri!!)
-        }
     }
 }

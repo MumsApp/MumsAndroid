@@ -16,4 +16,7 @@ interface AddProductView : LifecycleView {
     fun addImageSliderItem(items: List<ImageSliderItem>, changedItemPosition: Int)
 
     fun removeImageSliderItem(items: List<ImageSliderItem>, changedItemPosition: Int)
+
+    fun showConfirmationDialog(avatarUri: Uri?, avatarTitle: String?, title: String, description: String?,
+                               confirmButtonText: String, cancelButtonText: String)
 }

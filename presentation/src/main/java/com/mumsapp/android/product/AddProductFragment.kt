@@ -14,6 +14,7 @@ import com.mumsapp.android.R
 import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.base.LifecycleView
+import com.mumsapp.android.common.dialogs.ConfirmationWithAvatarDialog
 import com.mumsapp.android.di.components.ActivityComponent
 import com.mumsapp.android.navigation.DialogsProvider
 import com.mumsapp.android.ui.views.BaseImageView
@@ -52,6 +53,8 @@ class AddProductFragment : BaseFragment(), AddProductView {
     lateinit var photosRecyclerView: HorizontalRecyclerView
 
     private var selectImageSourceDialog: SelectImageSourceDialog? = null
+
+    private var confirmationWithAvatarDialog: ConfirmationWithAvatarDialog? = null
 
     override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter() = presenter as T
 
@@ -98,6 +101,11 @@ class AddProductFragment : BaseFragment(), AddProductView {
         presenter.onAddPhotoClick()
     }
 
+    @OnClick(R.id.add_product_upload_button)
+    fun onUploadButtonClick() {
+        presenter.onUploadButtonClick()
+    }
+
     override fun showSelectImageSourceDialog() {
         if (selectImageSourceDialog == null) {
             selectImageSourceDialog = dialogsProvider.createSelectImageSourceDialog()
@@ -137,5 +145,15 @@ class AddProductFragment : BaseFragment(), AddProductView {
     override fun removeImageSliderItem(items: List<ImageSliderItem>, changedItemPosition: Int) {
         photosAdapter.items = items
         photosAdapter.notifyItemRemoved(changedItemPosition)
+    }
+
+    override fun showConfirmationDialog(avatarUri: Uri?, avatarTitle: String?, title: String, description: String?, confirmButtonText: String, cancelButtonText: String) {
+        if(confirmationWithAvatarDialog == null) {
+            confirmationWithAvatarDialog = dialogsProvider.createConfirmationWithAvatarDialog()
+        }
+
+        confirmationWithAvatarDialog!!.show(avatarUri, avatarTitle, title, description,
+                confirmButtonText, cancelButtonText, presenter::onConfirmDialogButtonClick,
+                presenter::onCancelDialogButtonClick)
     }
 }
