@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/default_dialog_layout"
+    android:background="@color/white">
+
+    <com.mumsapp.android.ui.views.TopBar
+        android:id="@+id/confirmation_with_avatar_top_bar"
+        style="@style/top_bar_close" />
+
+
+</android.support.constraint.ConstraintLayout>

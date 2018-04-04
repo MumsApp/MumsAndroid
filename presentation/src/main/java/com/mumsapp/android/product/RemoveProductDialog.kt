@@ -67,7 +67,7 @@ class RemoveProductDialog(context: Context) : BaseDialog(context), RemoveProduct
     }
 
     override fun dismissView() {
-        this.confirmationListener = null
+        confirmationListener = null
         dismiss()
     }
 
