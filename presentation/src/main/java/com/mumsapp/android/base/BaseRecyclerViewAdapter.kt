@@ -10,7 +10,7 @@ abstract class BaseRecyclerViewAdapter<T : BaseResponse, VH : BaseViewHolder<T>>
 
     var items: List<T> = ArrayList()
 
-    private var onItemClickListener: PublishSubject<T>? = PublishSubject.create()
+    private var onItemClickListener: ((item: T) -> Unit)? = null
 
     override fun getItemCount() = items.size
 
@@ -18,11 +18,11 @@ abstract class BaseRecyclerViewAdapter<T : BaseResponse, VH : BaseViewHolder<T>>
     override fun onBindViewHolder(holder: VH, position: Int) {
         holder.init(items[position])
         holder.itemView.setOnClickListener{
-            onItemClickListener?.onNext(items[position])
+            onItemClickListener?.invoke(items[position])
         }
     }
 
-    fun getItemsClickEmitter(): Observable<T>? {
-        return onItemClickListener?.distinctUntilChanged()
+    fun setItemsClickListener(listener: (item: T) -> Unit) {
+        onItemClickListener = listener
     }
 }

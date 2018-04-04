@@ -16,7 +16,7 @@ class AddProductPresenter : LifecyclePresenter<AddProductView> {
     private val filesHelper: FilesHelper
     private var tmpCameraFile: File? = null
     private var chosenPhotos: MutableList<ImageSliderItem> = ArrayList()
-    private var currentHeader: Uri? = null
+    private var currentHeader: ImageSliderItem? = null
 
     @Inject
     constructor(fragmentsNavigationService: FragmentsNavigationService, filesHelper: FilesHelper) {
@@ -59,15 +59,16 @@ class AddProductPresenter : LifecyclePresenter<AddProductView> {
     }
 
     private fun addPhotoToView(uri: Uri) {
+        val item = ImageSliderItem(uri, false)
         if(currentHeader == null) {
-            currentHeader = uri
-            view?.showImageHeader(currentHeader!!)
+            currentHeader = item
+            view?.showImageHeader(currentHeader!!.uri!!)
         }
 
-        chosenPhotos.add(ImageSliderItem(uri, false))
+        chosenPhotos.add(item)
 
-        if(chosenPhotos.size <= 2) {
-            if(!chosenPhotos.get(0).isAddPhoto) {
+        if(chosenPhotos.size < 2) {
+            if(!chosenPhotos[0].isAddPhoto) {
                 chosenPhotos.add(0, ImageSliderItem(null, true))
             }
 
@@ -80,5 +81,14 @@ class AddProductPresenter : LifecyclePresenter<AddProductView> {
     private fun onPhotoRemoved(position: Int) {
         chosenPhotos.removeAt(position)
         view?.removeImageSliderItem(chosenPhotos, position)
+    }
+
+    fun onPhotoSliderItemClick(item: ImageSliderItem) {
+        if(item.isAddPhoto) {
+            onAddPhotoClick()
+        } else {
+            currentHeader = item
+            view?.showImageHeader(currentHeader!!.uri!!)
+        }
     }
 }

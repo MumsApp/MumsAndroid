@@ -12,7 +12,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             style="@style/default_image_view"
-            android:src="@drawable/ic_image_placeholder"/>
+            android:src="@drawable/ic_image_placeholder"
+            android:scaleType="centerCrop"/>
 
         <com.mumsapp.android.ui.views.BaseImageButton
             android:id="@+id/product_photos_cell_delete_photo"

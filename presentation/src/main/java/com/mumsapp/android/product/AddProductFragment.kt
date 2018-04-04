@@ -119,6 +119,7 @@ class AddProductFragment : BaseFragment(), AddProductView {
     override fun showImageSlider(items: List<ImageSliderItem>,  deleteButtonClickListener: ((position: Int) -> Unit)) {
         photosAdapter.items = items
         photosAdapter.deleteButtonClickListener = deleteButtonClickListener
+        photosAdapter.setItemsClickListener(presenter::onPhotoSliderItemClick)
 
         if(photosRecyclerView.adapter == null) {
             photosRecyclerView.adapter = photosAdapter

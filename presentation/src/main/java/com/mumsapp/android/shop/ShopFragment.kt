@@ -91,9 +91,7 @@ class ShopFragment : BaseFragment(), ShopView {
 
         if(recyclerView.adapter == null) {
             adapter.checkboxChangeListener = checkboxChangeListener
-            adapter.getItemsClickEmitter()?.subscribe {
-                presenter.onProductClick(it)
-            }
+            adapter.setItemsClickListener(presenter::onProductClick)
             recyclerView.adapter = adapter
         }
     }
