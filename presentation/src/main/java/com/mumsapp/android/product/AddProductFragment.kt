@@ -10,19 +10,23 @@ import android.view.ViewGroup
 import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
+import com.google.android.gms.location.places.ui.PlaceAutocomplete
 import com.mumsapp.android.R
 import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.common.dialogs.ConfirmationWithAvatarDialog
 import com.mumsapp.android.di.components.ActivityComponent
+import com.mumsapp.android.navigation.ActivitiesNavigationService
 import com.mumsapp.android.navigation.DialogsProvider
 import com.mumsapp.android.ui.views.BaseImageView
 import com.mumsapp.android.ui.views.BaseTextView
 import com.mumsapp.android.ui.views.HorizontalRecyclerView
 import com.mumsapp.android.ui.views.TopBar
+import com.mumsapp.android.ui.widgets.LocationWidget
 import com.mumsapp.android.util.CAMERA_REQUEST_CODE
 import com.mumsapp.android.util.GALLERY_REQUEST_CODE
+import com.mumsapp.android.util.GOOGLE_PLACES_REQUEST_CODE
 import com.mumsapp.android.util.ImagesLoader
 import javax.inject.Inject
 
@@ -40,6 +44,9 @@ class AddProductFragment : BaseFragment(), AddProductView {
     @Inject
     lateinit var photosAdapter: ProductImagesAdapter
 
+    @Inject
+    lateinit var activitiesNavigationService: ActivitiesNavigationService
+
     @BindView(R.id.add_product_top_bar)
     lateinit var topBar: TopBar
 
@@ -51,6 +58,9 @@ class AddProductFragment : BaseFragment(), AddProductView {
 
     @BindView(R.id.add_product_photos_recycler)
     lateinit var photosRecyclerView: HorizontalRecyclerView
+
+    @BindView(R.id.add_product_location_widget)
+    lateinit var locationWidget: LocationWidget
 
     private var selectImageSourceDialog: SelectImageSourceDialog? = null
 
@@ -77,12 +87,13 @@ class AddProductFragment : BaseFragment(), AddProductView {
         super.onViewCreated(view, savedInstanceState)
         presenter.attachViewWithLifecycle(this)
         topBar.setLeftButtonClickListener { presenter.onBackClick() }
+        locationWidget.setWidgetButtonListener { presenter.onEditLocationClick() }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if(resultCode == Activity.RESULT_OK) {
+        if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
                 GALLERY_REQUEST_CODE -> {
                     presenter.onGalleryImageReceived(data!!.data)
@@ -90,6 +101,11 @@ class AddProductFragment : BaseFragment(), AddProductView {
 
                 CAMERA_REQUEST_CODE -> {
                     presenter.onCameraImageReceived()
+                }
+
+                GOOGLE_PLACES_REQUEST_CODE -> {
+                    val place = PlaceAutocomplete.getPlace(context, data)
+                    presenter.onLocationSelected(place)
                 }
             }
         }
@@ -124,12 +140,12 @@ class AddProductFragment : BaseFragment(), AddProductView {
         imagesLoader.load(uri, headerImageView)
     }
 
-    override fun showImageSlider(items: List<ImageSliderItem>,  deleteButtonClickListener: ((position: Int) -> Unit)) {
+    override fun showImageSlider(items: List<ImageSliderItem>, deleteButtonClickListener: ((position: Int) -> Unit)) {
         photosAdapter.items = items
         photosAdapter.deleteButtonClickListener = deleteButtonClickListener
         photosAdapter.setItemsClickListener(presenter::onPhotoSliderItemClick)
 
-        if(photosRecyclerView.adapter == null) {
+        if (photosRecyclerView.adapter == null) {
             photosRecyclerView.adapter = photosAdapter
         }
 
@@ -148,12 +164,21 @@ class AddProductFragment : BaseFragment(), AddProductView {
     }
 
     override fun showConfirmationDialog(avatarUri: Uri?, avatarTitle: String?, title: String, description: String?, confirmButtonText: String, cancelButtonText: String) {
-        if(confirmationWithAvatarDialog == null) {
+        if (confirmationWithAvatarDialog == null) {
             confirmationWithAvatarDialog = dialogsProvider.createConfirmationWithAvatarDialog()
         }
 
         confirmationWithAvatarDialog!!.show(avatarUri, avatarTitle, title, description,
                 confirmButtonText, cancelButtonText, presenter::onConfirmDialogButtonClick,
                 presenter::onCancelDialogButtonClick)
+    }
+
+    override fun showEditLocationScreen() {
+        activitiesNavigationService.openGooglePlacesOverlayActivity(this, GOOGLE_PLACES_REQUEST_CODE)
+    }
+
+    override fun showNewLocation(latitude: Double, longitude: Double, name: String) {
+        locationWidget.setMapCoordinates(latitude, longitude)
+        locationWidget.setLocationName(name)
     }
 }

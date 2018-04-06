@@ -22,6 +22,7 @@ import com.mumsapp.android.ui.views.BaseTextView
 import com.mumsapp.android.ui.views.CircleImageView
 import com.mumsapp.android.ui.widgets.LocationWidget
 import com.mumsapp.android.ui.views.TopBar
+import com.mumsapp.android.util.GOOGLE_PLACES_REQUEST_CODE
 import com.mumsapp.android.util.ImagesLoader
 import javax.inject.Inject
 
@@ -64,8 +65,6 @@ class MyProfileFragment : BaseFragment(), MyProfileView {
         fun getInstance(): MyProfileFragment {
             return MyProfileFragment()
         }
-
-        private val GOOGLE_PLACES_REQUEST_CODE = 1;
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -131,7 +130,7 @@ class MyProfileFragment : BaseFragment(), MyProfileView {
 
     private fun configureLocationWidget() {
         locationWidget.setWidgetButtonListener {
-            lifecyclePresenter.onEditLocationClickListener()
+            lifecyclePresenter.onEditLocationClick()
         }
 
         locationWidget.setSwitchChangeListener({ _: CompoundButton, value: Boolean ->

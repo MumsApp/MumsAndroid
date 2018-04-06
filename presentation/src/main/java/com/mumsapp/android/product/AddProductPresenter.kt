@@ -2,6 +2,7 @@ package com.mumsapp.android.product
 
 import android.net.Uri
 import android.util.Log
+import com.google.android.gms.location.places.Place
 import com.mumsapp.android.R
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.navigation.FragmentsNavigationService
@@ -21,6 +22,7 @@ class AddProductPresenter : LifecyclePresenter<AddProductView> {
     private var tmpCameraFile: File? = null
     private var chosenPhotos: MutableList<ImageSliderItem> = ArrayList()
     private var currentHeader: ImageSliderItem? = null
+    private var selectedLocation: Place? = null
 
     @Inject
     constructor(fragmentsNavigationService: FragmentsNavigationService, filesHelper: FilesHelper,
@@ -64,6 +66,16 @@ class AddProductPresenter : LifecyclePresenter<AddProductView> {
             currentHeader = item
             view?.showImageHeader(currentHeader!!.uri!!)
         }
+    }
+
+    fun onEditLocationClick() {
+        view?.showEditLocationScreen()
+    }
+
+    fun onLocationSelected(place: Place) {
+        this.selectedLocation = place
+
+        view?.showNewLocation(place.latLng.latitude, place.latLng.longitude, place.address.toString())
     }
 
     fun onUploadButtonClick() {

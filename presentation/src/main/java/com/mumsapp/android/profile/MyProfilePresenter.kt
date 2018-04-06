@@ -92,7 +92,7 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
         showUserDetails(user.data)
     }
 
-    fun onEditLocationClickListener() {
+    fun onEditLocationClick() {
         view?.showEditLocationScreen()
     }
 

@@ -19,4 +19,8 @@ interface AddProductView : LifecycleView {
 
     fun showConfirmationDialog(avatarUri: Uri?, avatarTitle: String?, title: String, description: String?,
                                confirmButtonText: String, cancelButtonText: String)
+
+    fun showEditLocationScreen()
+
+    fun showNewLocation(latitude: Double, longitude: Double, name: String)
 }
