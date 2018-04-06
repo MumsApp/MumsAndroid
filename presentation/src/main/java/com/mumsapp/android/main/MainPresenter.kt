@@ -51,16 +51,20 @@ class MainPresenter : LifecyclePresenter<MainView> {
 
     }
 
+    fun onTalkClick() {
+        fragmentsNavigationService.popFragmentsToRoot()
+        fragmentsNavigationService.openChatListFragment(true)
+        view?.hideMenu()
+    }
+
     fun onLobbyClick() {
         fragmentsNavigationService.popFragmentsToRoot()
         fragmentsNavigationService.openLobbyFragment(true)
         view?.hideMenu()
     }
 
-    fun onTalkClick() {
-        fragmentsNavigationService.popFragmentsToRoot()
-        fragmentsNavigationService.openChatListFragment(true)
-        view?.hideMenu()
+    fun onSchoolClick() {
+
     }
 
     fun onMeClick() {

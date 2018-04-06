@@ -341,8 +341,12 @@
         <item name="android:background">@null</item>
     </style>
 
-    <style name="main_menu_button" parent="default_image_button">
-        <item name="layout_constraintCircleRadius">@dimen/menu_radius</item>
+    <style name="main_menu_button_row_1" parent="default_image_button">
+        <item name="layout_constraintCircleRadius">@dimen/menu_row_1_radius</item>
+    </style>
+
+    <style name="main_menu_button_row_2" parent="main_menu_button_row_1">
+        <item name="layout_constraintCircleRadius">@dimen/menu_row_2_radius</item>
     </style>
 
     <style name="topbar_button" parent="default_image_button">

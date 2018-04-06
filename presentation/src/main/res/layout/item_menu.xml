@@ -19,7 +19,7 @@
 
     <com.mumsapp.android.ui.views.BaseImageButton
         android:id="@+id/menu_where_find"
-        style="@style/main_menu_button"
+        style="@style/main_menu_button_row_1"
         android:src="@drawable/menu_find"
         app:layout_constraintCircle="@id/menu_close"
         app:layout_constraintCircleAngle="275" />
@@ -37,27 +37,11 @@
         android:gravity="start"/>
 
     <com.mumsapp.android.ui.views.BaseImageButton
-        android:id="@+id/menu_lobby"
-        style="@style/main_menu_button"
-        android:src="@drawable/menu_lobby"
-        app:layout_constraintCircle="@id/menu_close"
-        app:layout_constraintCircleAngle="315" />
-
-    <com.mumsapp.android.ui.views.BaseTextView
-        android:id="@+id/menu_lobby_text"
-        style="@style/main_menu_button_text"
-        android:paddingBottom="@dimen/padding_medium"
-        android:text="@string/lobby"
-        app:layout_constraintBottom_toTopOf="@id/menu_lobby"
-        app:layout_constraintLeft_toLeftOf="@id/menu_lobby"
-        app:layout_constraintRight_toRightOf="@id/menu_lobby" />
-
-    <com.mumsapp.android.ui.views.BaseImageButton
         android:id="@+id/menu_talk"
-        style="@style/main_menu_button"
+        style="@style/main_menu_button_row_1"
         android:src="@drawable/menu_talk"
         app:layout_constraintCircle="@id/menu_close"
-        app:layout_constraintCircleAngle="0" />
+        app:layout_constraintCircleAngle="315" />
 
     <com.mumsapp.android.ui.views.BaseTextView
         android:id="@+id/menu_talk_text"
@@ -69,8 +53,24 @@
         app:layout_constraintRight_toRightOf="@id/menu_talk" />
 
     <com.mumsapp.android.ui.views.BaseImageButton
+        android:id="@+id/menu_lobby"
+        style="@style/main_menu_button_row_1"
+        android:src="@drawable/menu_lobby"
+        app:layout_constraintCircle="@id/menu_close"
+        app:layout_constraintCircleAngle="0" />
+
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/menu_lobby_text"
+        style="@style/main_menu_button_text"
+        android:paddingBottom="@dimen/padding_medium"
+        android:text="@string/lobby"
+        app:layout_constraintBottom_toTopOf="@id/menu_lobby"
+        app:layout_constraintLeft_toLeftOf="@id/menu_lobby"
+        app:layout_constraintRight_toRightOf="@id/menu_lobby" />
+
+    <com.mumsapp.android.ui.views.BaseImageButton
         android:id="@+id/menu_shop"
-        style="@style/main_menu_button"
+        style="@style/main_menu_button_row_1"
         android:src="@drawable/menu_shop"
         app:layout_constraintCircle="@id/menu_close"
         app:layout_constraintCircleAngle="45" />
@@ -86,7 +86,7 @@
 
     <com.mumsapp.android.ui.views.BaseImageButton
         android:id="@+id/menu_offers"
-        style="@style/main_menu_button"
+        style="@style/main_menu_button_row_1"
         android:src="@drawable/menu_offers"
         app:layout_constraintCircle="@id/menu_close"
         app:layout_constraintCircleAngle="85" />
@@ -105,14 +105,10 @@
 
     <com.mumsapp.android.ui.views.BaseImageButton
         android:id="@+id/menu_me"
-        style="@style/main_menu_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/padding_default"
+        style="@style/main_menu_button_row_2"
         android:src="@drawable/menu_me"
-        app:layout_constraintBottom_toTopOf="@id/menu_talk_text"
-        app:layout_constraintLeft_toLeftOf="@id/menu_talk"
-        app:layout_constraintRight_toRightOf="@id/menu_talk" />
+        app:layout_constraintCircle="@id/menu_close"
+        app:layout_constraintCircleAngle="0" />
 
     <com.mumsapp.android.ui.views.BaseTextView
         android:id="@+id/menu_me_text"
@@ -122,4 +118,20 @@
         app:layout_constraintBottom_toTopOf="@id/menu_me"
         app:layout_constraintLeft_toLeftOf="@id/menu_me"
         app:layout_constraintRight_toRightOf="@id/menu_me" />
+
+    <com.mumsapp.android.ui.views.BaseImageButton
+        android:id="@+id/menu_school"
+        style="@style/main_menu_button_row_2"
+        android:src="@drawable/ic_school"
+        app:layout_constraintCircle="@id/menu_close"
+        app:layout_constraintCircleAngle="340" />
+
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/menu_school_text"
+        style="@style/main_menu_button_text"
+        android:paddingBottom="@dimen/padding_medium"
+        android:text="@string/school"
+        app:layout_constraintBottom_toTopOf="@id/menu_school"
+        app:layout_constraintLeft_toLeftOf="@id/menu_school"
+        app:layout_constraintRight_toRightOf="@id/menu_school" />
 </android.support.constraint.ConstraintLayout>

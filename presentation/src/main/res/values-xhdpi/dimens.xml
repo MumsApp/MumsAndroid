@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Main Menu -->
-    <dimen name="menu_radius">120dp</dimen>
+    <dimen name="menu_row_1_radius">120dp</dimen>
+    <dimen name="menu_row_2_radius">220dp</dimen>
     <dimen name="menu_labels_text_size">8sp</dimen>
 </resources>

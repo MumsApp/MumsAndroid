@@ -123,14 +123,19 @@ class MainActivity : BaseFragmentActivity(), MainView, HasOverlays {
         lifecyclePresenter.onWhereFindClick()
     }
 
+    @OnClick(R.id.menu_talk, R.id.menu_talk_text)
+    fun onTalkClick() {
+        lifecyclePresenter.onTalkClick()
+    }
+
     @OnClick(R.id.menu_lobby, R.id.menu_lobby_text)
     fun onLobbyClick() {
         lifecyclePresenter.onLobbyClick()
     }
 
-    @OnClick(R.id.menu_talk, R.id.menu_talk_text)
-    fun onTalkClick() {
-        lifecyclePresenter.onTalkClick()
+    @OnClick(R.id.menu_school, R.id.menu_school_text)
+    fun onSchoolClick() {
+
     }
 
     @OnClick(R.id.menu_me, R.id.menu_me_text)
