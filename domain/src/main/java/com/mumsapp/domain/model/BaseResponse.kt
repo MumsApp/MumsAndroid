@@ -1,3 +1,5 @@
 package com.mumsapp.domain.model
 
-abstract class BaseResponse
+import java.io.Serializable
+
+abstract class BaseResponse : Serializable

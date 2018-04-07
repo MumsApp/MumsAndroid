@@ -7,6 +7,4 @@ data class LobbyResponse(@SerializedName("items") var items: List<LobbyItem>) : 
 
 data class LobbyItem(@SerializedName("name") var name: String,
                  @SerializedName("description") var description: String,
-                 @SerializedName("joined") var joined: Boolean) : BaseResponse() {
-
-}
+                 @SerializedName("joined") var joined: Boolean) : BaseResponse()

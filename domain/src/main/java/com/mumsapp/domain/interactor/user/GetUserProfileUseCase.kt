@@ -28,7 +28,7 @@ class GetUserProfileUseCase(val userRepository: UserRepository, val sessionManag
 
     data class Params(val id: Int, val level: Int): BaseRequest() {
         companion object {
-            val LEVEL_FULL = 7
+            const val LEVEL_FULL = 7
         }
     }
 }

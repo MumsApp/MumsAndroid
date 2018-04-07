@@ -12,7 +12,10 @@ import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.di.components.ActivityComponent
 import com.mumsapp.android.navigation.DialogsProvider
+import com.mumsapp.android.ui.views.CardsRecyclerView
 import com.mumsapp.android.ui.views.TopBar
+import com.mumsapp.domain.model.chat.TemplateChatThread
+import kotlinx.android.synthetic.main.fragment_chat_list.*
 import javax.inject.Inject
 
 class ChatListFragment : BaseFragment(), ChatListView {
@@ -23,8 +26,14 @@ class ChatListFragment : BaseFragment(), ChatListView {
     @Inject
     lateinit var dialogsProvider: DialogsProvider
 
+    @Inject
+    lateinit var adapter: ChatListAdapter
+
     @BindView(R.id.chat_list_top_bar)
     lateinit var topBar: TopBar
+
+    @BindView(R.id.chat_list_recycler_view)
+    lateinit var recyclerView: CardsRecyclerView
 
     private var chatSettingsDialog: ChatSettingsDialog? = null
 
@@ -61,5 +70,15 @@ class ChatListFragment : BaseFragment(), ChatListView {
         }
 
         chatSettingsDialog?.show()
+    }
+
+    override fun showItems(items: List<TemplateChatThread>) {
+        adapter.items = items
+        adapter.notifyDataSetChanged()
+        adapter.setItemsClickListener(presenter::onChatThreadClick)
+
+        if(recyclerView.adapter == null) {
+            recyclerView.adapter = adapter
+        }
     }
 }

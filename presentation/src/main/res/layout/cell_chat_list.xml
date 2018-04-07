@@ -69,7 +69,7 @@
             tools:visibility="visible" />
 
         <com.mumsapp.android.ui.views.BaseTextView
-            android:id="@+id/lobby_cell_description"
+            android:id="@+id/chat_list_cell_description"
             style="@style/text_small_grey_light"
             android:layout_width="0dp"
             android:layout_marginTop="@dimen/padding_small"

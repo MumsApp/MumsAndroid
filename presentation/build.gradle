@@ -137,6 +137,9 @@ dependencies {
     //https://github.com/tbruyelle/RxPermissions Android permissions using RxJava 2
     implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'
 
+    //https://github.com/stfalcon-studio/ChatKit Chat UI
+    implementation 'com.github.stfalcon:chatkit:0.2.2'
+
     // Testing
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'

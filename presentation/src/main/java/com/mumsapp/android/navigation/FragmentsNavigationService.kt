@@ -12,6 +12,7 @@ import com.mumsapp.android.authentication.SignInFragment
 import com.mumsapp.android.authentication.SignUpFragment
 import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.chat.ChatListFragment
+import com.mumsapp.android.chat.ChatThreadFragment
 import com.mumsapp.android.di.qualifiers.FragmentContainerId
 import com.mumsapp.android.lobby.LobbyFragment
 import com.mumsapp.android.product.AddProductFragment
@@ -21,6 +22,7 @@ import com.mumsapp.android.product.ProductFragment
 import com.mumsapp.android.profile.MyProfileFragment
 import com.mumsapp.android.shop.ShopFilterFragment
 import com.mumsapp.android.shop.ShopFragment
+import com.mumsapp.domain.model.chat.TemplateChatThread
 import javax.inject.Inject
 
 class FragmentsNavigationService {
@@ -148,6 +150,13 @@ class FragmentsNavigationService {
     fun createGalleryIntent(): Intent {
         return Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
     }
+
+    fun openChatThreadFragment(thread: TemplateChatThread, addToBackStack: Boolean) {
+        val fragment = createChatThreadFragment(thread)
+        openFragment(fragment, addToBackStack)
+    }
+
+    fun createChatThreadFragment(thread: TemplateChatThread) = ChatThreadFragment.getInstance(thread)
 
     fun popFragment() {
         fragmentManager.popBackStack()
