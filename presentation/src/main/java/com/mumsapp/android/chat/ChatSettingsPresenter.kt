@@ -22,18 +22,18 @@ class ChatSettingsPresenter : BasePresenter<ChatSettingsView> {
 
     private fun createTemplateRecipients(): List<TemplateChatRecipient> {
         val list = ArrayList<TemplateChatRecipient>()
-        list.add(TemplateChatRecipient("Layla Patrickson"))
-        list.add(TemplateChatRecipient("Layla Patrickson"))
-        list.add(TemplateChatRecipient("Layla Patrickson"))
-        list.add(TemplateChatRecipient("Layla Patrickson"))
-        list.add(TemplateChatRecipient("Layla Patrickson"))
-        list.add(TemplateChatRecipient("Layla Patrickson"))
-        list.add(TemplateChatRecipient("Layla Patrickson"))
-        list.add(TemplateChatRecipient("Layla Patrickson"))
-        list.add(TemplateChatRecipient("Layla Patrickson"))
-        list.add(TemplateChatRecipient("Layla Patrickson"))
-        list.add(TemplateChatRecipient("Layla Patrickson"))
-        list.add(TemplateChatRecipient("Layla Patrickson"))
+        list.add(TemplateChatRecipient("0", "Layla Patrickson"))
+        list.add(TemplateChatRecipient("0", "Layla Patrickson"))
+        list.add(TemplateChatRecipient("0", "Layla Patrickson"))
+        list.add(TemplateChatRecipient("0", "Layla Patrickson"))
+        list.add(TemplateChatRecipient("0", "Layla Patrickson"))
+        list.add(TemplateChatRecipient("0", "Layla Patrickson"))
+        list.add(TemplateChatRecipient("0", "Layla Patrickson"))
+        list.add(TemplateChatRecipient("0", "Layla Patrickson"))
+        list.add(TemplateChatRecipient("0", "Layla Patrickson"))
+        list.add(TemplateChatRecipient("0", "Layla Patrickson"))
+        list.add(TemplateChatRecipient("0", "Layla Patrickson"))
+        list.add(TemplateChatRecipient("0", "Layla Patrickson"))
 
         return list
     }

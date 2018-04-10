@@ -13,7 +13,12 @@ import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.di.components.ActivityComponent
 import com.mumsapp.android.ui.views.TopBar
 import com.mumsapp.android.util.CHAT_THREAD_KEY
+import com.mumsapp.android.util.ImagesLoader
+import com.mumsapp.domain.model.chat.TemplateChatMessage
 import com.mumsapp.domain.model.chat.TemplateChatThread
+import com.stfalcon.chatkit.messages.MessageInput
+import com.stfalcon.chatkit.messages.MessagesList
+import com.stfalcon.chatkit.messages.MessagesListAdapter
 import javax.inject.Inject
 
 class ChatThreadFragment : BaseFragment(), ChatThreadView {
@@ -21,8 +26,17 @@ class ChatThreadFragment : BaseFragment(), ChatThreadView {
     @Inject
     lateinit var presenter: ChatThreadPresenter
 
+    @Inject
+    lateinit var imagesLoader: ImagesLoader
+
     @BindView(R.id.chat_thread_top_bar)
     lateinit var topBar: TopBar
+
+    @BindView(R.id.chat_thread_messages)
+    lateinit var messagesView: MessagesList
+
+    @BindView(R.id.chat_thread_input)
+    lateinit var inputView: MessageInput
 
     override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter() = presenter as T
 
@@ -57,13 +71,25 @@ class ChatThreadFragment : BaseFragment(), ChatThreadView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setArgumentsToPresenter()
+        passArgumentsToPresenter()
         presenter.attachViewWithLifecycle(this)
         topBar.setLeftButtonClickListener { presenter.onBackClick() }
     }
 
-    private fun setArgumentsToPresenter() {
+    override fun bottomMenuVisibile() = false
+
+    private fun passArgumentsToPresenter() {
         val thread = arguments!!.getSerializable(CHAT_THREAD_KEY) as TemplateChatThread
         presenter.setArguments(thread)
+    }
+
+    override fun setTitle(title: String) {
+        topBar.setTitleText(title)
+    }
+
+    override fun showMessages(senderId: String, messages: List<TemplateChatMessage>) {
+        val adapter: MessagesListAdapter<TemplateChatMessage> = MessagesListAdapter(senderId, imagesLoader)
+        adapter.addToEnd(messages, false)
+        messagesView.setAdapter(adapter)
     }
 }

@@ -1,7 +1,10 @@
 package com.mumsapp.android.base
 
+import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import butterknife.Unbinder
 import com.mumsapp.android.common.features.HasComponent
 import com.mumsapp.android.common.features.HasOverlays
@@ -12,6 +15,16 @@ abstract class BaseFragment : Fragment(), LifecycleView {
 
     protected fun setUnbinder(unbinder: Unbinder) {
         this.unbinder = unbinder
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        if(bottomMenuVisibile()) {
+            showBottomMenuButton()
+        } else {
+            hideBottomMenuButton()
+        }
     }
 
     override fun onDestroyView() {
@@ -77,5 +90,27 @@ abstract class BaseFragment : Fragment(), LifecycleView {
         if(activity is HasOverlays) {
             (activity as HasOverlays).showSessionExpired()
         }
+    }
+
+    open fun bottomMenuVisibile() = true
+
+    override fun hideBottomMenuButton() {
+        if(activity is LifecycleView) {
+            (activity as LifecycleView).hideBottomMenuButton()
+        }
+    }
+
+    override fun showBottomMenuButton() {
+        if(activity is LifecycleView) {
+            (activity as LifecycleView).showBottomMenuButton()
+        }
+    }
+
+    override fun isBottomMenuButtonVisible(): Boolean {
+        if(activity is LifecycleView) {
+            return (activity as LifecycleView).isBottomMenuButtonVisible()
+        }
+
+        return false
     }
 }

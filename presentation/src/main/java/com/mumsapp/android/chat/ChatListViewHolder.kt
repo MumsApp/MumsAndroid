@@ -45,7 +45,7 @@ class ChatListViewHolder : BaseViewHolder<TemplateChatThread> {
     }
 
     override fun init(item: TemplateChatThread) {
-        titleView.text = item.recipient.name
+        titleView.text = item.recipient.userName
         timeView.text = item.date
         descriptionView.text = item.messages[0].content
     }

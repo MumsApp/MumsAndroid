@@ -14,6 +14,7 @@ import com.mumsapp.android.base.BaseFragmentActivity
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.common.features.HasOverlays
+import com.mumsapp.android.ui.views.BaseImageButton
 import com.mumsapp.android.ui.views.NonCLickableFrameLayout
 import javax.inject.Inject
 
@@ -21,6 +22,9 @@ class MainActivity : BaseFragmentActivity(), MainView, HasOverlays {
 
     @Inject
     lateinit var lifecyclePresenter: MainPresenter
+
+    @BindView(R.id.menu_open)
+    lateinit var menuOpenButton: BaseImageButton
 
     @BindView(R.id.main_menu)
     lateinit var menuLayout: ConstraintLayout
@@ -102,6 +106,16 @@ class MainActivity : BaseFragmentActivity(), MainView, HasOverlays {
             menuLayout.visibility = View.GONE
         })
     }
+
+    override fun hideBottomMenuButton() {
+        menuOpenButton.visibility = View.GONE
+    }
+
+    override fun showBottomMenuButton() {
+        menuOpenButton.visibility = View.VISIBLE
+    }
+
+    override fun isBottomMenuButtonVisible() = menuOpenButton.visibility == View.VISIBLE
 
     @OnClick(R.id.auth_session_expired_button)
     fun onSessionExpiredButtonClick() {

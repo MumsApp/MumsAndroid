@@ -20,7 +20,16 @@ class ChatThreadPresenter : LifecyclePresenter<ChatThreadView> {
         this.chatThread = chatThread
     }
 
+    override fun start() {
+        configureView()
+    }
+
     fun onBackClick() {
         fragmentsNavigationService.popFragment()
+    }
+
+    private fun configureView() {
+        view?.setTitle(chatThread.recipient.userName)
+        view?.showMessages("0", chatThread.messages)
     }
 }

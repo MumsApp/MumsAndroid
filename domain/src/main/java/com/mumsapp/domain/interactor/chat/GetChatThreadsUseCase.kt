@@ -8,10 +8,11 @@ import com.mumsapp.domain.model.chat.TemplateChatRecipient
 import com.mumsapp.domain.model.chat.TemplateChatThread
 import com.mumsapp.domain.utils.SchedulerProvider
 import io.reactivex.Observable
+import java.util.*
 
 class GetChatThreadsUseCase(val schedulerProvider: SchedulerProvider) : BaseUseCase<BaseRequest, ChatThreadResponse>(schedulerProvider) {
 
-    private var isOwnMessages: Boolean = true
+    private var lastId = "0"
 
 
     override fun createUseCaseObservable(param: BaseRequest): Observable<ChatThreadResponse> {
@@ -24,18 +25,18 @@ class GetChatThreadsUseCase(val schedulerProvider: SchedulerProvider) : BaseUseC
             createThreadMock(), createThreadMock(), createThreadMock(), createThreadMock(), createThreadMock(), createThreadMock(), createThreadMock()] as Array<TemplateChatThread>
 
     private fun createThreadMock() : TemplateChatThread {
-        val recipient = TemplateChatRecipient("John Fade")
+        lastId = if (lastId == "0") "1" else "0" 
+        val recipient = TemplateChatRecipient(lastId, "John Space")
 
-        return TemplateChatThread(recipient, "17:56", mockedMessagesList().asList())
+        return TemplateChatThread(recipient, "17:56", mockedMessagesList(recipient).asList())
     }
 
-    private fun mockedMessagesList() : Array<TemplateChatMessage> = this[createMessageMock(), createMessageMock(), createMessageMock(),
-            createMessageMock(), createMessageMock(), createMessageMock(), createMessageMock(), createMessageMock(), createMessageMock(), createMessageMock(),
-            createMessageMock(), createMessageMock(), createMessageMock(), createMessageMock(), createMessageMock(), createMessageMock(), createMessageMock()] as Array<TemplateChatMessage>
+    private fun mockedMessagesList(recipient: TemplateChatRecipient) : Array<TemplateChatMessage> = this[createMessageMock(recipient), createMessageMock(recipient), createMessageMock(recipient),
+            createMessageMock(recipient), createMessageMock(recipient), createMessageMock(recipient), createMessageMock(recipient), createMessageMock(recipient), createMessageMock(recipient), createMessageMock(recipient),
+            createMessageMock(recipient), createMessageMock(recipient), createMessageMock(recipient), createMessageMock(recipient), createMessageMock(recipient), createMessageMock(recipient), createMessageMock(recipient)] as Array<TemplateChatMessage>
 
-    private fun createMessageMock() : TemplateChatMessage {
-        isOwnMessages = !isOwnMessages
-        return TemplateChatMessage("Template message", isOwnMessages)
+    private fun createMessageMock(recipient: TemplateChatRecipient) : TemplateChatMessage {
+        return TemplateChatMessage("1", "Template message", Date(), recipient)
     }
 
     operator fun get(vararg array: TemplateChatThread) = array

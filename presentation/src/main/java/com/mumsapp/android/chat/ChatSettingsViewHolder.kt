@@ -26,6 +26,6 @@ class ChatSettingsViewHolder : BaseViewHolder<TemplateChatRecipient> {
     }
 
     override fun init(item: TemplateChatRecipient) {
-        name.text = item.name
+        name.text = item.userName
     }
 }

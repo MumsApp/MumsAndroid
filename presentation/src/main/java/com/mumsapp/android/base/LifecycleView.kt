@@ -9,4 +9,10 @@ interface LifecycleView : BaseView, LifecycleOwner {
     }
 
     fun <T: LifecyclePresenter<LifecycleView>> getLifecyclePresenter(): T
+
+    fun hideBottomMenuButton() {}
+
+    fun showBottomMenuButton() {}
+
+    fun isBottomMenuButtonVisible() = false
 }

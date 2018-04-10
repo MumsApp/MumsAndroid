@@ -8,9 +8,10 @@ import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.squareup.picasso.Picasso
+import com.stfalcon.chatkit.commons.ImageLoader
 import javax.inject.Inject
 
-class ImagesLoader {
+class ImagesLoader : ImageLoader {
 
     private val context: Context
 
@@ -40,5 +41,9 @@ class ImagesLoader {
 
         val options = RequestOptions.overrideOf(reqWidth, reqHeight)
         Glide.with(context).load(uri).apply(options).into(imageView)
+    }
+
+    override fun loadImage(imageView: ImageView?, url: String?) {
+        load(url!!, imageView!!)
     }
 }
