@@ -275,6 +275,10 @@
     <style name="top_bar_hamburger_search" parent="top_bar_hamburger">
         <item name="searchVisible">true</item>
     </style>
+    
+    <style name="top_bar_back_right_text" parent="top_bar_back">
+        <item name="topBarRightTextVisible">true</item>
+    </style>
 
 
     <!--Forms -->

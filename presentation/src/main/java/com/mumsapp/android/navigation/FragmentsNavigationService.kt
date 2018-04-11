@@ -15,6 +15,7 @@ import com.mumsapp.android.chat.ChatListFragment
 import com.mumsapp.android.chat.ChatThreadFragment
 import com.mumsapp.android.di.qualifiers.FragmentContainerId
 import com.mumsapp.android.lobby.LobbyFragment
+import com.mumsapp.android.organisation.OrganisationDetailsFragment
 import com.mumsapp.android.product.AddProductFragment
 import com.mumsapp.android.product.MyProductsFragment
 import com.mumsapp.android.product.MyWishlistFragment
@@ -157,6 +158,13 @@ class FragmentsNavigationService {
     }
 
     fun createChatThreadFragment(thread: TemplateChatThread) = ChatThreadFragment.getInstance(thread)
+
+    fun openOrganisationDetailsFragment(organisationId: String, addToBackStack: Boolean) {
+        val fragment = createOrganisationDetailsFragment(organisationId)
+        openFragment(fragment, addToBackStack)
+    }
+
+    fun createOrganisationDetailsFragment(organisationId: String) = OrganisationDetailsFragment.getInstance(organisationId)
 
     fun popFragment() {
         fragmentManager.popBackStack()

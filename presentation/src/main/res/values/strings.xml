@@ -133,4 +133,7 @@
     <string name="to_my_product_list">To my product list</string>
 
     <string name="new_message">New message</string>
+
+    <string name="organisation">Organisation</string>
+    <string name="details">Details</string>
 </resources>

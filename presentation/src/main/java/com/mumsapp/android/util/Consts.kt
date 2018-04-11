@@ -7,4 +7,5 @@ const val GOOGLE_PLACES_REQUEST_CODE = 3
 
 //Bundle keys
 const val CHAT_THREAD_KEY = "CHAT_THREAD"
+const val ORGANISATION_ID_KEY = "ORGANISATION_ID"
 

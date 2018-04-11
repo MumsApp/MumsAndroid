@@ -28,6 +28,10 @@ class ChatThreadPresenter : LifecyclePresenter<ChatThreadView> {
         fragmentsNavigationService.popFragment()
     }
 
+    fun onDetailsClick() {
+        fragmentsNavigationService.openOrganisationDetailsFragment(chatThread.recipient.getId(), true)
+    }
+
     private fun configureView() {
         view?.setTitle(chatThread.recipient.userName)
         view?.showMessages("0", chatThread.messages)

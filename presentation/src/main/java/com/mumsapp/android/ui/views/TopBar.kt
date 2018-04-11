@@ -20,6 +20,9 @@ class TopBar: ConstraintLayout {
     @BindView(R.id.top_bar_right_button)
     lateinit var rightButton: BaseImageButton
 
+    @BindView(R.id.top_bar_right_text)
+    lateinit var rightText: BaseTextView
+
     @BindView(R.id.top_bar_search_input)
     lateinit var searchInput: BaseEditText
 
@@ -65,6 +68,12 @@ class TopBar: ConstraintLayout {
         val rightButtonDrawable = array.getDrawable(R.styleable.TopBar_topBarRightIcon)
         setRightButtonDrawable(rightButtonDrawable)
 
+        val rightTextVisibility = array.getBoolean(R.styleable.TopBar_topBarRightTextVisible, false)
+        setRightTextVisibility(rightTextVisibility)
+
+        val rightText = array.getString(R.styleable.TopBar_topBarRightText)
+        setRightText(rightText)
+
         val searchVisible = array.getBoolean(R.styleable.TopBar_searchVisible, false)
         setSearchVisibility(searchVisible)
 
@@ -97,6 +106,18 @@ class TopBar: ConstraintLayout {
 
     fun setRightButtonClickListener(listener: (view: View) -> Unit) {
         rightButton.setOnClickListener(listener)
+    }
+
+    fun setRightTextVisibility(visibility: Boolean) {
+        setVisibilityFromBoolean(visibility, rightText)
+    }
+
+    fun setRightText(text: String?) {
+        rightText.text = text
+    }
+
+    fun setRightTextClickListener(listener: (view: View) -> Unit) {
+        rightText.setOnClickListener(listener)
     }
 
     fun setSearchVisibility(visibility: Boolean) {

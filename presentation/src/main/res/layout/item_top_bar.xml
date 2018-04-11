@@ -29,6 +29,17 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@id/top_bar_title"
         tools:src="@drawable/ic_gear" />
+    
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/top_bar_right_text"
+        android:layout_height="0dp"
+        style="@style/text_normal_green_light"
+        android:layout_marginEnd="@dimen/padding_default"
+        app:layout_constraintBottom_toBottomOf="@id/top_bar_title"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/top_bar_title"
+        android:gravity="center"
+        tools:text="Details"/>
 
     <View
         android:id="@+id/top_bar_title_divider"

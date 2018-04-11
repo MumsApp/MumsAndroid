@@ -6,8 +6,9 @@
 
     <com.mumsapp.android.ui.views.TopBar
         android:id="@+id/chat_thread_top_bar"
-        style="@style/top_bar_back"
-        app:layout_constraintTop_toTopOf="parent" />
+        style="@style/top_bar_back_right_text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:topBarRightText="@string/details"/>
 
     <com.stfalcon.chatkit.messages.MessagesList
         android:id="@+id/chat_thread_messages"

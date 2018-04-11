@@ -9,6 +9,7 @@ import com.mumsapp.android.di.modules.ActivityModule
 import com.mumsapp.android.di.scopes.ActivityScope
 import com.mumsapp.android.lobby.LobbyFragment
 import com.mumsapp.android.main.MainActivity
+import com.mumsapp.android.organisation.OrganisationDetailsFragment
 import com.mumsapp.android.product.*
 import com.mumsapp.android.profile.AccountSettingsDialog
 import com.mumsapp.android.profile.MyProfileFragment
@@ -70,4 +71,6 @@ interface ActivityComponent {
     fun inject(dialog: ConfirmationWithAvatarDialog)
 
     fun inject(fragment: ChatThreadFragment)
+
+    fun inject(fragment: OrganisationDetailsFragment)
 }

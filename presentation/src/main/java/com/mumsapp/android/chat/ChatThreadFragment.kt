@@ -74,6 +74,7 @@ class ChatThreadFragment : BaseFragment(), ChatThreadView {
         passArgumentsToPresenter()
         presenter.attachViewWithLifecycle(this)
         topBar.setLeftButtonClickListener { presenter.onBackClick() }
+        topBar.setRightTextClickListener { presenter.onDetailsClick() }
     }
 
     override fun bottomMenuVisibile() = false
