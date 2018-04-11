@@ -32,6 +32,11 @@
         <item name="android:background">@drawable/btn_green</item>
     </style>
 
+    <style name="button_green_tight" parent="button_green">
+        <item name="android:layout_height">@dimen/button_tight_height</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
     <style name="button_grey" parent="button_default">
         <item name="android:background">@drawable/btn_grey</item>
     </style>
@@ -372,6 +377,11 @@
         <item name="android:layout_width">@dimen/regular_avatar_size</item>
         <item name="android:layout_height">@dimen/regular_avatar_size</item>
         <item name="android:src">@drawable/ic_image_placeholder</item>
+    </style>
+
+    <style name="big_avatar_image_view" parent="avatar_image_view">
+        <item name="android:layout_width">@dimen/big_avatar_size</item>
+        <item name="android:layout_height">@dimen/big_avatar_size</item>
     </style>
 
     <style name="small_avatar_image_view" parent="avatar_image_view">

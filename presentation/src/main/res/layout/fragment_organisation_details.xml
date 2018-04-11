@@ -8,6 +8,108 @@
         android:id="@+id/organisation_details_top_bar"
         style="@style/top_bar_back"
         app:layout_constraintTop_toTopOf="parent"
-        app:topBarTitle="@string/organisation"/>
+        app:topBarTitle="@string/organisation" />
 
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/organisation_details_top_bar">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/padding_scroll_view_bottom"
+            android:paddingTop="@dimen/padding_default">
+
+            <com.mumsapp.android.ui.views.CircleImageView
+                android:id="@+id/organisation_details_avatar"
+                style="@style/big_avatar_image_view"
+                android:layout_marginStart="@dimen/padding_default"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.mumsapp.android.ui.views.BaseImageView
+                android:id="@+id/organisation_details_verification_status"
+                style="@style/default_image_view"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_verified"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@id/organisation_details_avatar"
+                app:layout_constraintRight_toRightOf="@id/organisation_details_avatar"
+                tools:visibility="visible" />
+
+            <com.mumsapp.android.ui.views.BaseTextView
+                android:id="@+id/organisation_details_name"
+                style="@style/text_big"
+                android:layout_width="0dp"
+                android:layout_marginEnd="@dimen/padding_medium"
+                android:layout_marginStart="@dimen/padding_medium"
+                android:gravity="start"
+                app:layout_constraintBottom_toBottomOf="@id/organisation_details_avatar"
+                app:layout_constraintLeft_toRightOf="@id/organisation_details_avatar"
+                app:layout_constraintRight_toLeftOf="@id/organisation_details_follow_button"
+                app:layout_constraintTop_toTopOf="@id/organisation_details_avatar"
+                tools:text="St. Barnabas Primary School" />
+
+            <com.mumsapp.android.ui.views.BaseButton
+                android:id="@+id/organisation_details_follow_button"
+                style="@style/button_green_tight"
+                android:layout_marginEnd="@dimen/padding_default"
+                android:text="@string/follow"
+                app:layout_constraintBottom_toBottomOf="@id/organisation_details_avatar"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/organisation_details_avatar" />
+
+            <View
+                android:id="@+id/organisation_details_top_divider"
+                style="@style/divider_horizontal"
+                android:layout_marginEnd="@dimen/padding_medium"
+                android:layout_marginStart="@dimen/padding_medium"
+                android:layout_marginTop="@dimen/padding_default"
+                app:layout_constraintTop_toBottomOf="@id/organisation_details_avatar" />
+
+            <com.mumsapp.android.ui.views.BaseTextView
+                android:id="@+id/organisation_details_description"
+                style="@style/text_small_grey_light"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="@dimen/padding_12dp"
+                android:layout_marginStart="@dimen/padding_12dp"
+                android:layout_marginTop="@dimen/padding_default"
+                app:layout_constraintTop_toBottomOf="@id/organisation_details_top_divider"
+                tools:text="@string/template_long_text" />
+
+            <com.mumsapp.android.ui.widgets.LocationWidget
+                android:id="@+id/organisation_details_location_widget"
+                style="@style/location_widget_without_buttons"
+                android:layout_marginTop="@dimen/padding_default"
+                app:layout_constraintTop_toBottomOf="@id/organisation_details_description" />
+
+            <com.mumsapp.android.ui.views.BaseTextView
+                android:id="@+id/organisation_details_photos_label"
+                style="@style/text_normal_bold"
+                android:layout_marginStart="@dimen/padding_default"
+                android:layout_marginTop="@dimen/padding_big"
+                android:text="@string/photos"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/organisation_details_location_widget" />
+
+            <com.mumsapp.android.ui.views.HorizontalRecyclerView
+                android:id="@+id/organisation_details_photos_recycler"
+                style="@style/horizontal_recycler"
+                android:layout_marginTop="@dimen/padding_default"
+                app:layout_constraintTop_toBottomOf="@id/organisation_details_photos_label"
+                tools:listitem="@layout/cell_product_photos_photo"/>
+
+            <com.mumsapp.android.ui.views.BaseTextView
+                android:id="@+id/organisation_details_members_label"
+                style="@style/text_normal_bold"
+                android:layout_marginStart="@dimen/padding_default"
+                android:layout_marginTop="@dimen/padding_big"
+                android:text="@string/members"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/organisation_details_photos_recycler" />
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v4.widget.NestedScrollView>
 </android.support.constraint.ConstraintLayout>

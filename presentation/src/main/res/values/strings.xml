@@ -136,4 +136,9 @@
 
     <string name="organisation">Organisation</string>
     <string name="details">Details</string>
+
+    <string name="photos">Photos</string>
+    <string name="news_feed">News feed</string>
+    <string name="members">Members</string>
+    <string name="send_a_message">Send a message</string>
 </resources>

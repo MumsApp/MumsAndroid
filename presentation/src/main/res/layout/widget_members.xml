@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/widget_layout"
+    android:paddingBottom="0dp"
+    android:paddingEnd="0dp"
+    android:paddingStart="0dp">
+
+    <com.mumsapp.android.ui.views.GridRecyclerView
+        android:id="@+id/members_recycler_view"
+        style="@style/default_grid_recycler"
+        app:columnsCount="6"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:itemCount="9"
+        tools:listitem="@layout/cell_members_widget" />
+
+    <View
+        android:id="@+id/members_divider"
+        style="@style/divider_horizontal"
+        app:layout_constraintTop_toBottomOf="@id/members_recycler_view" />
+
+    <com.mumsapp.android.ui.views.BaseButton
+        android:id="@+id/members_button"
+        style="@style/button_white_background"
+        android:drawablePadding="@dimen/padding_big"
+        android:text="@string/send_a_message"
+        app:alignedDrawableLeft="@drawable/ic_latter"
+        app:layout_constraintTop_toBottomOf="@id/members_divider" />
+</android.support.constraint.ConstraintLayout>
