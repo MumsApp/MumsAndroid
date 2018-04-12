@@ -26,7 +26,7 @@ class MembersWidgetAdapter : BaseRecyclerViewAdapter<TemplateChatRecipient, Memb
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MembersWidgetViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.cell_shop, parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.cell_members_widget, parent, false)
         return MembersWidgetViewHolder(imagesLoader, itemView)
     }
 

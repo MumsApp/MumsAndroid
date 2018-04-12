@@ -28,7 +28,7 @@ class ShopViewHolder : BaseViewHolder<ProductItem> {
     lateinit var nameView: BaseTextView
 
     @BindView(R.id.shop_cell_category)
-    lateinit var categoryView: BaseTextViewx
+    lateinit var categoryView: BaseTextView
 
     @BindView(R.id.shop_cell_price)
     lateinit var priceView: BaseTextView
