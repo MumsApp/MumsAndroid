@@ -29,9 +29,6 @@ class LocationWidget : CardView {
     private val MAP_FRAGMENT_TAG = "mapFragment";
 
     @Inject
-    lateinit var fragmentManager: FragmentManager
-
-    @Inject
     lateinit var fragmentsNavigationService: FragmentsNavigationService
 
     lateinit var mapFragment: SupportMapFragment

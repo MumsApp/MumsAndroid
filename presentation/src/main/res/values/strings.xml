@@ -141,4 +141,5 @@
     <string name="news_feed">News feed</string>
     <string name="members">Members</string>
     <string name="send_a_message">Send a message</string>
+    <string name="plus_with_number_pattern">+%s</string>
 </resources>

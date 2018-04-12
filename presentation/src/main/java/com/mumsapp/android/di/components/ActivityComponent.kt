@@ -18,6 +18,7 @@ import com.mumsapp.android.shop.ShopFilterFragment
 import com.mumsapp.android.shop.ShopFragment
 import com.mumsapp.android.shop.ShopMenuDialog
 import com.mumsapp.android.ui.widgets.LocationWidget
+import com.mumsapp.android.ui.widgets.members.MembersWidget
 import dagger.Subcomponent
 
 @ActivityScope
@@ -73,4 +74,6 @@ interface ActivityComponent {
     fun inject(fragment: ChatThreadFragment)
 
     fun inject(fragment: OrganisationDetailsFragment)
+
+    fun inject(widget: MembersWidget)
 }
