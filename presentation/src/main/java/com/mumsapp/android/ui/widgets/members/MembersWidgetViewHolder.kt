@@ -26,12 +26,11 @@ class MembersWidgetViewHolder : BaseViewHolder<TemplateChatRecipient> {
     }
 
     override fun init(item: TemplateChatRecipient) {
-        imagesLoader.load(item.getAvatar(), imageView)
         textView.text = ""
     }
 
     fun init(text: String) {
-        imageView.setImageResource(R.drawable.ic_avatar_placeholder_small)
+        imageView.setImageResource(R.drawable.ic_image_placeholder_square)
         textView.text = text
     }
 }

@@ -44,9 +44,4 @@
     <declare-styleable name="GridRecyclerView">
         <attr name="columnsCount" format="integer"/>
     </declare-styleable>
-
-    <declare-styleable name="BaseButton">
-        <attr name="alignedDrawableLeft" format="reference"/>
-        <attr name="alignedDrawablePadding" format="dimension"/>
-    </declare-styleable>
 </resources>

@@ -47,6 +47,6 @@
     <View
         android:id="@+id/organisation_details_feed_cell_empty_bottom_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/padding_medium"
         app:layout_constraintTop_toBottomOf="@id/organisation_details_feed_card"/>
 </android.support.constraint.ConstraintLayout>

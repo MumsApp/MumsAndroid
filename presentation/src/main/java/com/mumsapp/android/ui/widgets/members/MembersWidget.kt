@@ -38,7 +38,7 @@ class MembersWidget : CardView {
     }
 
     private fun setup(context: Context, attrs: AttributeSet?) {
-        val view = View.inflate(context, R.layout.widget_product_details, this)
+        val view = View.inflate(context, R.layout.widget_members, this)
         ButterKnife.bind(view)
 
         if(context is HasComponent<*>) {

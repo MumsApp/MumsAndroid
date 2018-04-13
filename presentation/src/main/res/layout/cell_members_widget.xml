@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/default_layout"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/white">
 
     <com.mumsapp.android.ui.views.CircleImageView
         android:id="@+id/cell_members_widget_avatar"
@@ -17,7 +18,5 @@
         app:layout_constraintTop_toTopOf="@id/cell_members_widget_avatar"
         app:layout_constraintLeft_toLeftOf="@id/cell_members_widget_avatar"
         app:layout_constraintRight_toRightOf="@id/cell_members_widget_avatar"
-        app:layout_constraintBottom_toBottomOf="@id/cell_members_widget_avatar"
-        android:visibility="gone"
-        tools:visibility="visible"/>
+        app:layout_constraintBottom_toBottomOf="@id/cell_members_widget_avatar"/>
 </android.support.constraint.ConstraintLayout>

@@ -23,8 +23,9 @@
     <com.mumsapp.android.ui.views.BaseButton
         android:id="@+id/members_button"
         style="@style/button_white_background"
-        android:drawablePadding="@dimen/padding_big"
+        android:paddingStart="@dimen/padding_medium"
+        android:paddingEnd="@dimen/padding_medium"
         android:text="@string/send_a_message"
-        app:alignedDrawableLeft="@drawable/ic_latter"
+        android:drawableStart="@drawable/ic_latter"
         app:layout_constraintTop_toBottomOf="@id/members_divider" />
 </android.support.constraint.ConstraintLayout>
