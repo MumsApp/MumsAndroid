@@ -14,6 +14,7 @@ import com.mumsapp.android.chat.ChatListFragment
 import com.mumsapp.android.chat.ChatThreadFragment
 import com.mumsapp.android.di.qualifiers.FragmentContainerId
 import com.mumsapp.android.lobby.LobbyFragment
+import com.mumsapp.android.mums_app_offers.MumsAppOfferDetailsFragment
 import com.mumsapp.android.mums_app_offers.MumsAppOffersFragment
 import com.mumsapp.android.organisation.OrganisationDetailsFragment
 import com.mumsapp.android.product.AddProductFragment
@@ -173,13 +174,12 @@ class FragmentsNavigationService {
 
     fun createMumsAppOffersFragment() = MumsAppOffersFragment.getInstance()
 
-    fun openMumsAppOfferDetailsFragment(addToBackStack: Boolean) {
-
+    fun openMumsAppOfferDetailsFragment(offerId: Int, addToBackStack: Boolean) {
+        val fragment = createMumsAppOfferDetailsFragment(offerId)
+        openFragment(fragment, addToBackStack)
     }
 
-    fun createMumsAppOfferDetailsFragment() {
-
-    }
+    fun createMumsAppOfferDetailsFragment(offerId: Int) = MumsAppOfferDetailsFragment.getInstance(offerId)
 
     fun popFragment() {
         fragmentManager.popBackStack()

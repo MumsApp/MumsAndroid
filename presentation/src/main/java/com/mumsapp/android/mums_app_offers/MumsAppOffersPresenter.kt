@@ -25,7 +25,8 @@ class MumsAppOffersPresenter : LifecyclePresenter<MumsAppOffersView> {
     }
 
     fun onChatThreadClick(item: TemplateChatThread) {
-        fragmentsNavigationService.openMumsAppOfferDetailsFragment(true)
+        //TODO: Change this when api will be ready
+        fragmentsNavigationService.openMumsAppOfferDetailsFragment(0, true)
     }
 
     private fun loadThreads() {

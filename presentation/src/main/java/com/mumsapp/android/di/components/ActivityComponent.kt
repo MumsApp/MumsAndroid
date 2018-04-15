@@ -9,6 +9,7 @@ import com.mumsapp.android.di.modules.ActivityModule
 import com.mumsapp.android.di.scopes.ActivityScope
 import com.mumsapp.android.lobby.LobbyFragment
 import com.mumsapp.android.main.MainActivity
+import com.mumsapp.android.mums_app_offers.MumsAppOfferDetailsFragment
 import com.mumsapp.android.mums_app_offers.MumsAppOffersFragment
 import com.mumsapp.android.organisation.OrganisationDetailsFragment
 import com.mumsapp.android.product.*
@@ -79,4 +80,6 @@ interface ActivityComponent {
     fun inject(widget: MembersWidget)
 
     fun inject(fragment: MumsAppOffersFragment)
+
+    fun inject(fragment: MumsAppOfferDetailsFragment)
 }
