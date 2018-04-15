@@ -237,6 +237,11 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
+    <style name="top_bar_title" parent="top_bar_default">
+        <item name="topBarLeftButtonVisible">false</item>
+        <item name="topBarRightButtonVisible">false</item>
+    </style>
+
     <style name="top_bar_back" parent="top_bar_default">
         <item name="topBarLeftButtonVisible">true</item>
         <item name="topBarLeftIcon">@drawable/ic_back</item>

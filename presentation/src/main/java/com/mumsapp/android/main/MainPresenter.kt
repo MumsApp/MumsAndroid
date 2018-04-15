@@ -80,6 +80,8 @@ class MainPresenter : LifecyclePresenter<MainView> {
     }
 
     fun onOffersClick() {
-
+        fragmentsNavigationService.popFragmentsToRoot()
+        fragmentsNavigationService.openMumsAppOffersFragment(true)
+        view?.hideMenu()
     }
 }
