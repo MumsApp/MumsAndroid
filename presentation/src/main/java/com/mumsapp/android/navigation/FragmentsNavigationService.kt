@@ -3,7 +3,6 @@ package com.mumsapp.android.navigation
 import android.content.Intent
 import android.net.Uri
 import android.provider.MediaStore
-import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import com.google.android.gms.maps.SupportMapFragment
 import com.mumsapp.android.authentication.AuthMenuFragment
@@ -168,11 +167,19 @@ class FragmentsNavigationService {
     fun createOrganisationDetailsFragment(organisationId: String) = OrganisationDetailsFragment.getInstance(organisationId)
 
     fun openMumsAppOffersFragment(addToBackStack: Boolean) {
-        val fragment = createMumsAppFragment()
+        val fragment = createMumsAppOffersFragment()
         openFragment(fragment, addToBackStack)
     }
 
-    fun createMumsAppFragment() = MumsAppOffersFragment.getInstance()
+    fun createMumsAppOffersFragment() = MumsAppOffersFragment.getInstance()
+
+    fun openMumsAppOfferDetailsFragment(addToBackStack: Boolean) {
+
+    }
+
+    fun createMumsAppOfferDetailsFragment() {
+
+    }
 
     fun popFragment() {
         fragmentManager.popBackStack()

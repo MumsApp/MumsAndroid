@@ -22,7 +22,7 @@ class AuthPresenter: LifecyclePresenter<AuthView> {
     }
 
     override fun create() {
-        if(/*sessionManager.isUserLogged() TODO: Change this when api will be ready*/true) {
+        if(sessionManager.isUserLogged()) {
             activityNavigationService.openMainActivity()
             activityNavigationService.finishCurrentActivity()
         } else {
