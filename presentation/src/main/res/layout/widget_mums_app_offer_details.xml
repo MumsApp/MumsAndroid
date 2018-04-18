@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/widget_layout">
+
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/mums_app_offer_details_promotion"
+        style="@style/text_big"
+        android:text="@string/promotion" />
+
+    <View
+        android:id="@+id/mums_app_offer_details_top_divider"
+        style="@style/divider_horizontal"
+        android:layout_marginTop="@dimen/padding_default"
+        app:layout_constraintTop_toBottomOf="@id/mums_app_offer_details_promotion" />
+
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/mums_app_offer_details_title"
+        style="@style/text_big"
+        android:layout_marginTop="@dimen/padding_default"
+        app:layout_constraintTop_toBottomOf="@id/mums_app_offer_details_top_divider"
+        tools:text="Title" />
+
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/mums_app_offer_details_description"
+        style="@style/text_small_grey_light"
+        android:layout_marginTop="@dimen/padding_default"
+        app:layout_constraintTop_toBottomOf="@id/mums_app_offer_details_title"
+        tools:text="@string/template_long_text" />
+
+    <com.mumsapp.android.ui.views.BaseButton
+        android:id="@+id/mums_app_offer_details_get_voucher"
+        style="@style/button_green"
+        android:layout_marginTop="@dimen/padding_default"
+        android:text="@string/get_voucher_code"
+        app:layout_constraintTop_toBottomOf="@id/mums_app_offer_details_description" />
+
+    <com.mumsapp.android.ui.views.BaseButton
+        android:id="@+id/mums_app_offer_details_follow"
+        style="@style/button_green"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:text="@string/follow"
+        app:layout_constraintTop_toBottomOf="@id/mums_app_offer_details_get_voucher" />
+
+    <com.mumsapp.android.ui.views.BaseTextView
+        style="@style/text_small_grey_light"
+        android:layout_marginTop="@dimen/padding_default"
+        android:text="@string/company_will_be_added_to_your_contacts"
+        app:layout_constraintTop_toBottomOf="@id/mums_app_offer_details_follow" />
+</android.support.constraint.ConstraintLayout>
