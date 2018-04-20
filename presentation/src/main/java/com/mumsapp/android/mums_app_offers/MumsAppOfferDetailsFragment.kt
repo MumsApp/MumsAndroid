@@ -11,9 +11,15 @@ import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.di.components.ActivityComponent
+import com.mumsapp.android.product.MyWishlistItemsAdapter
+import com.mumsapp.android.ui.views.GridRecyclerView
+import com.mumsapp.android.ui.views.ImagesSlider
 import com.mumsapp.android.ui.views.TopBar
+import com.mumsapp.android.ui.widgets.MumsAppOfferDetailsWidget
 import com.mumsapp.android.util.MUMS_APP_OFFER_ID_KEY
 import com.mumsapp.android.util.PRODUCT_ID_KEY
+import com.mumsapp.domain.model.product.ProductItem
+import ss.com.bannerslider.banners.Banner
 import javax.inject.Inject
 
 class MumsAppOfferDetailsFragment : BaseFragment(), MumsAppOfferDetailsView {
@@ -21,8 +27,20 @@ class MumsAppOfferDetailsFragment : BaseFragment(), MumsAppOfferDetailsView {
     @Inject
     lateinit var presenter: MumsAppOfferDetailsPresenter
 
+    @Inject
+    lateinit var adapter: MyWishlistItemsAdapter
+
     @BindView(R.id.mums_app_offer_details_top_bar)
     lateinit var topBar: TopBar
+
+    @BindView(R.id.mums_app_offer_details_image_slider)
+    lateinit var imagesSlider: ImagesSlider
+
+    @BindView(R.id.mums_app_offer_details_widget)
+    lateinit var detailsWidget: MumsAppOfferDetailsWidget
+
+    @BindView(R.id.mums_app_offer_details_recycler_view)
+    lateinit var recyclerView: GridRecyclerView
 
     override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter() = presenter as T
 
@@ -63,5 +81,25 @@ class MumsAppOfferDetailsFragment : BaseFragment(), MumsAppOfferDetailsView {
     private fun passArgumentsToPresenter() {
         val productId = arguments?.getInt(PRODUCT_ID_KEY)
         presenter.setArguments(productId)
+    }
+
+    override fun showImages(images: List<Banner>) {
+        imagesSlider.setBanners(images)
+    }
+
+    override fun showDetails(title: String, description: String) {
+        detailsWidget.setTitle(title)
+        detailsWidget.setDescription(description)
+        detailsWidget.setGetVoucherButtonClickListener(presenter::onGetVoucherClick)
+        detailsWidget.setFollowButtonClickListener(presenter::onFollowClick)
+    }
+
+    override fun showOtherItems(items: List<ProductItem>) {
+        adapter.items = items
+        adapter.notifyDataSetChanged()
+
+        if(recyclerView.adapter == null) {
+            recyclerView.adapter = adapter
+        }
     }
 }

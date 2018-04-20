@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     style="@style/default_layout">
 
     <com.mumsapp.android.ui.views.TopBar
@@ -27,9 +28,30 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.mumsapp.android.ui.widgets.MumsAppOfferDetailsWidget
-                android:id="@+id/product_product_details_widget"
+                android:id="@+id/mums_app_offer_details_widget"
                 style="@style/default_widget"
                 app:layout_constraintTop_toBottomOf="@id/mums_app_offer_details_image_slider" />
+
+            <com.mumsapp.android.ui.views.BaseTextView
+                android:id="@+id/mums_app_offer_details_see_also_label"
+                style="@style/text_normal_bold"
+                android:layout_marginStart="@dimen/padding_default"
+                android:layout_marginTop="@dimen/padding_big"
+                android:text="@string/see_also"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mums_app_offer_details_widget" />
+
+            <com.mumsapp.android.ui.views.GridRecyclerView
+                android:id="@+id/mums_app_offer_details_recycler_view"
+                style="@style/default_grid_recycler"
+                android:layout_marginTop="@dimen/padding_default"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/mums_app_offer_details_see_also_label"
+                tools:listitem="@layout/cell_my_wishlist"/>
+
+            <View
+                style="@style/empty_view_below_card"
+                app:layout_constraintTop_toBottomOf="@id/mums_app_offer_details_recycler_view"/>
         </android.support.constraint.ConstraintLayout>
     </android.support.v4.widget.NestedScrollView>
 </android.support.constraint.ConstraintLayout>

@@ -29,7 +29,7 @@
 
             <View
                 style="@style/empty_view_below_card"
-                app:layout_constraintTop_toBottomOf="@id/product_location_widget"/>
+                app:layout_constraintTop_toBottomOf="@id/my_wishlist_recycler_view"/>
         </android.support.constraint.ConstraintLayout>
     </android.support.v4.widget.NestedScrollView>
 

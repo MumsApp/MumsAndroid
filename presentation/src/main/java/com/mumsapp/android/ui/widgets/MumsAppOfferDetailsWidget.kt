@@ -49,11 +49,11 @@ class MumsAppOfferDetailsWidget : CardView {
         descriptionView.text = description
     }
 
-    fun setGetVoucherButtonClickListener(listener: () -> Void) {
+    fun setGetVoucherButtonClickListener(listener: () -> Unit) {
         getVoucherButton.setOnClickListener { listener.invoke() }
     }
 
-    fun setFollowButtonClickListener(listener: () -> Void) {
+    fun setFollowButtonClickListener(listener: () -> Unit) {
         followButton.setOnClickListener { listener.invoke() }
     }
 }
