@@ -4,6 +4,7 @@ import com.mumsapp.android.authentication.*
 import com.mumsapp.android.chat.ChatListFragment
 import com.mumsapp.android.chat.ChatSettingsDialog
 import com.mumsapp.android.chat.ChatThreadFragment
+import com.mumsapp.android.common.dialogs.ConfirmationDialog
 import com.mumsapp.android.common.dialogs.ConfirmationWithAvatarDialog
 import com.mumsapp.android.di.modules.ActivityModule
 import com.mumsapp.android.di.scopes.ActivityScope
@@ -82,4 +83,6 @@ interface ActivityComponent {
     fun inject(fragment: MumsAppOffersFragment)
 
     fun inject(fragment: MumsAppOfferDetailsFragment)
+
+    fun inject(dialog: ConfirmationDialog)
 }

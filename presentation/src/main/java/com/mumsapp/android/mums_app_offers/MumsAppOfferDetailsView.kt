@@ -11,4 +11,6 @@ interface MumsAppOfferDetailsView : LifecycleView {
     fun showDetails(title: String, description: String)
 
     fun showOtherItems(items: List<ProductItem>)
+
+    fun showGetVoucherDialog(title: String, description: String, confirmButtonText: String)
 }

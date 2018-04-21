@@ -2,6 +2,7 @@ package com.mumsapp.android.navigation
 
 import com.mumsapp.android.base.BaseActivity
 import com.mumsapp.android.chat.ChatSettingsDialog
+import com.mumsapp.android.common.dialogs.ConfirmationDialog
 import com.mumsapp.android.common.dialogs.ConfirmationWithAvatarDialog
 import com.mumsapp.android.product.RemoveProductDialog
 import com.mumsapp.android.product.SelectImageSourceDialog
@@ -32,4 +33,6 @@ class DialogsProvider {
     fun createSelectImageSourceDialog() = SelectImageSourceDialog(activity)
 
     fun createConfirmationWithAvatarDialog() = ConfirmationWithAvatarDialog(activity)
+
+    fun createConfirmationDialog() = ConfirmationDialog(activity)
 }

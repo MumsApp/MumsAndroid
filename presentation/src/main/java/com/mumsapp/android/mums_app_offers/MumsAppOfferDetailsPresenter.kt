@@ -41,10 +41,14 @@ class MumsAppOfferDetailsPresenter : LifecyclePresenter<MumsAppOfferDetailsView>
     }
 
     fun onGetVoucherClick() {
-
+        view?.showGetVoucherDialog("5$ Discount on Nappy.com", "Promotion description", "Got it!")
     }
 
     fun onFollowClick() {
+
+    }
+
+    fun onGetVoucherConfirmationClick() {
 
     }
 

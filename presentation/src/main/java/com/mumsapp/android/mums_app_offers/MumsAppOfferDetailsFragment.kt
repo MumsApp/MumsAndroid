@@ -10,7 +10,9 @@ import com.mumsapp.android.R
 import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.base.LifecycleView
+import com.mumsapp.android.common.dialogs.ConfirmationDialog
 import com.mumsapp.android.di.components.ActivityComponent
+import com.mumsapp.android.navigation.DialogsProvider
 import com.mumsapp.android.product.MyWishlistItemsAdapter
 import com.mumsapp.android.ui.views.GridRecyclerView
 import com.mumsapp.android.ui.views.ImagesSlider
@@ -30,6 +32,9 @@ class MumsAppOfferDetailsFragment : BaseFragment(), MumsAppOfferDetailsView {
     @Inject
     lateinit var adapter: MyWishlistItemsAdapter
 
+    @Inject
+    lateinit var dialogsProvider: DialogsProvider
+
     @BindView(R.id.mums_app_offer_details_top_bar)
     lateinit var topBar: TopBar
 
@@ -41,6 +46,8 @@ class MumsAppOfferDetailsFragment : BaseFragment(), MumsAppOfferDetailsView {
 
     @BindView(R.id.mums_app_offer_details_recycler_view)
     lateinit var recyclerView: GridRecyclerView
+
+    private var confirmationDialog: ConfirmationDialog? = null
 
     override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter() = presenter as T
 
@@ -101,5 +108,13 @@ class MumsAppOfferDetailsFragment : BaseFragment(), MumsAppOfferDetailsView {
         if(recyclerView.adapter == null) {
             recyclerView.adapter = adapter
         }
+    }
+
+    override fun showGetVoucherDialog(title: String, description: String, confirmButtonText: String) {
+        if(confirmationDialog == null) {
+            confirmationDialog = dialogsProvider.createConfirmationDialog()
+        }
+
+        confirmationDialog!!.show(title, description, confirmButtonText, presenter::onGetVoucherConfirmationClick)
     }
 }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/default_dialog_layout"
+    android:paddingBottom="@dimen/padding_default">
+
+    <com.mumsapp.android.ui.views.TopBar
+        android:id="@+id/confirmation_top_bar"
+        style="@style/top_bar_close"
+        tools:topBarTitle="5$ Discount on Nappy.com" />
+
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/confirmation_description"
+        android:layout_width="match_parent"
+        style="@style/text_normal"
+        android:layout_marginTop="@dimen/padding_default"
+        android:layout_marginStart="@dimen/padding_default"
+        android:layout_marginEnd="@dimen/padding_default"
+        app:layout_constraintTop_toBottomOf="@id/confirmation_top_bar"
+        android:gravity="center"
+        tools:text="You will shortly receive an email from Nappy.com with the voucher code to insert at the checkout"/>
+
+    <View
+        android:id="@+id/confirmation_bottom_divider"
+        style="@style/divider_horizontal"
+        android:layout_marginTop="@dimen/padding_default"
+        app:layout_constraintTop_toBottomOf="@id/confirmation_description"/>
+
+    <com.mumsapp.android.ui.views.BaseButton
+        android:id="@+id/confirmation_button_confirm"
+        style="@style/button_dialog"
+        android:layout_marginTop="@dimen/padding_default"
+        app:layout_constraintTop_toBottomOf="@id/confirmation_bottom_divider"
+        tools:text="Got it!"/>
+</android.support.constraint.ConstraintLayout>
