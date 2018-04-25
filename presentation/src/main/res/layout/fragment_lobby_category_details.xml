@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/default_layout">
+
+    <com.mumsapp.android.ui.views.TopBar
+        android:id="@+id/lobby_category_details_top_bar"
+        style="@style/top_bar_back_edit"
+        app:layout_constraintTop_toTopOf="parent"
+        app:topBarTitle="@string/lobby" />
+
+</android.support.constraint.ConstraintLayout>

@@ -68,6 +68,7 @@ class LobbyFragment : BaseFragment(), LobbyView {
 
         if(recyclerView.adapter == null) {
             adapter.switchChangeListener = switchChangeListener
+            adapter.setItemsClickListener(lifecyclePresenter::onLobbyItemClick)
             recyclerView.adapter = adapter
         }
     }

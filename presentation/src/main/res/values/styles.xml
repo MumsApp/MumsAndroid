@@ -290,6 +290,11 @@
         <item name="topBarRightTextVisible">true</item>
     </style>
 
+    <style name="top_bar_back_edit" parent="top_bar_back">
+        <item name="topBarRightButtonVisible">true</item>
+        <item name="topBarRightIcon">@drawable/ic_write</item>
+    </style>
+
 
     <!--Forms -->
     <style name="default_form_theme">

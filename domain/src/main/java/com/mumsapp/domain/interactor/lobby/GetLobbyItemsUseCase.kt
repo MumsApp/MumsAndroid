@@ -20,7 +20,7 @@ class GetLobbyItemsUseCase(schedulerProvider: SchedulerProvider) : BaseUseCase<E
             createMock(), createMock(), createMock(), createMock(), createMock(), createMock(), createMock()] as Array<LobbyItem>
 
     private fun createMock() : LobbyItem {
-        return LobbyItem("Expectant Moms", "Lorem ipsum dolor sit amet, cons ectetur adipiscing elit. Nulla inter dum liberto tortor, quis.", false)
+        return LobbyItem(1, "Expectant Moms", "Lorem ipsum dolor sit amet, cons ectetur adipiscing elit. Nulla inter dum liberto tortor, quis.", false)
     }
 
     operator fun get(vararg  array: LobbyItem) = array
