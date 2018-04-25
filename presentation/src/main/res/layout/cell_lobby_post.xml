@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/card_squared">
+
+    <android.support.constraint.ConstraintLayout
+        style="@style/widget_layout"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
+        android:paddingBottom="@dimen/padding_medium">
+
+        <com.mumsapp.android.ui.views.CircleImageView
+            android:id="@+id/cell_lobby_post_avatar"
+            style="@style/small_avatar_image_view"
+            android:layout_marginStart="@dimen/padding_default"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+        <com.mumsapp.android.ui.views.BaseTextView
+            android:id="@+id/cell_lobby_post_user_name"
+            style="@style/text_small_green_light"
+            android:layout_width="0dp"
+            android:layout_marginStart="@dimen/padding_medium"
+            android:layout_marginEnd="@dimen/padding_medium"
+            app:layout_constraintTop_toTopOf="@id/cell_lobby_post_avatar"
+            app:layout_constraintBottom_toBottomOf="@id/cell_lobby_post_avatar"
+            app:layout_constraintLeft_toRightOf="@id/cell_lobby_post_avatar"
+            app:layout_constraintRight_toLeftOf="@+id/cell_lobby_post_date"
+            tools:text="John Conor"/>
+
+        <com.mumsapp.android.ui.views.BaseTextView
+            android:id="@+id/cell_lobby_post_date"
+            style="@style/text_small_grey_light"
+            android:layout_marginEnd="@dimen/padding_default"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/cell_lobby_post_avatar"
+            app:layout_constraintBottom_toBottomOf="@id/cell_lobby_post_avatar"
+            tools:text="8m"/>
+
+        <com.mumsapp.android.ui.views.BaseTextView
+            android:id="@+id/cell_lobby_post_title"
+            style="@style/text_normal"
+            app:layout_constraintTop_toBottomOf="@id/cell_lobby_post_avatar"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            android:layout_marginStart="@dimen/padding_default"
+            android:layout_marginEnd="@dimen/padding_default"
+            android:layout_marginTop="@dimen/padding_medium"
+            tools:text="Far far away, behind the world"/>
+
+        <com.mumsapp.android.ui.views.BaseTextView
+            android:id="@+id/cell_lobby_post_content"
+            style="@style/text_small_grey_light"
+            android:layout_width="match_parent"
+            app:layout_constraintTop_toBottomOf="@id/cell_lobby_post_title"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            android:layout_marginStart="@dimen/padding_default"
+            android:layout_marginEnd="@dimen/padding_default"
+            android:layout_marginTop="@dimen/padding_medium"
+            tools:text="@string/template_long_text"/>
+
+        <View
+            android:id="@+id/cell_lobby_post_divider"
+            style="@style/divider_horizontal"
+            android:layout_marginTop="@dimen/padding_default"
+            app:layout_constraintTop_toBottomOf="@id/cell_lobby_post_content"/>
+
+        <com.mumsapp.android.ui.views.BaseTextView
+            android:id="@+id/cell_lobby_post_reply"
+            style="@style/text_small_green_light"
+            android:layout_marginTop="@dimen/padding_medium"
+            android:layout_marginEnd="@dimen/padding_default"
+            android:drawablePadding="@dimen/padding_medium"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cell_lobby_post_divider"
+            android:text="@string/reply"
+            android:drawableStart="@drawable/ic_reply"/>
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>
