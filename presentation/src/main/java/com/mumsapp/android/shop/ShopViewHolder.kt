@@ -69,8 +69,6 @@ class ShopViewHolder : BaseViewHolder<ProductItem> {
 
     @OnCheckedChanged(R.id.shop_cell_favourite_checkbox)
     fun onCheckedChanged(value: Boolean) {
-        if(listener != null && listener!!.get() != null && item != null) {
-            listener!!.get()!!.invoke(item!!, value)
-        }
+            listener?.get()?.invoke(item!!, value)
     }
 }

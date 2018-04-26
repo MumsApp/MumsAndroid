@@ -147,4 +147,7 @@
     <string name="company_will_be_added_to_your_contacts">Company will be added to your contacts</string>
     <string name="see_also">See also</string>
     <string name="reply">Reply</string>
+
+    <string name="create_post">Create post</string>
+    <string name="done">Done</string>
 </resources>

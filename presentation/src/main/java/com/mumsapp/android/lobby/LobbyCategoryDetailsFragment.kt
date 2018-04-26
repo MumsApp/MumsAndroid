@@ -11,8 +11,10 @@ import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.di.components.ActivityComponent
+import com.mumsapp.android.ui.views.CardsRecyclerView
 import com.mumsapp.android.ui.views.TopBar
 import com.mumsapp.android.util.LOBBY_CATEGORY_ID_KEY
+import com.mumsapp.domain.model.lobby.LobbyPost
 import javax.inject.Inject
 
 class LobbyCategoryDetailsFragment : BaseFragment(), LobbyCategoryDetailsView {
@@ -20,8 +22,14 @@ class LobbyCategoryDetailsFragment : BaseFragment(), LobbyCategoryDetailsView {
     @Inject
     lateinit var presenter: LobbyCategoryDetailsPresenter
 
+    @Inject
+    lateinit var adapter: LobbyPostAdapter
+
     @BindView(R.id.lobby_category_details_top_bar)
     lateinit var topBar: TopBar
+
+    @BindView(R.id.lobby_category_details_recycler_view)
+    lateinit var recyclerView: CardsRecyclerView
 
     override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter() = presenter as T
 
@@ -63,5 +71,15 @@ class LobbyCategoryDetailsFragment : BaseFragment(), LobbyCategoryDetailsView {
     private fun passArgumentsToPresenter() {
         val lobbyCategoryId = arguments?.getInt(LOBBY_CATEGORY_ID_KEY)
         presenter.setArguments(lobbyCategoryId)
+    }
+
+    override fun showPosts(posts: List<LobbyPost>, replyClickListener: (item: LobbyPost) -> Unit) {
+        adapter.items = posts
+        adapter.notifyDataSetChanged()
+
+        if(recyclerView.adapter == null) {
+            adapter.replyClickListener = replyClickListener
+            recyclerView.adapter = adapter
+        }
     }
 }

@@ -8,6 +8,7 @@ import com.mumsapp.android.common.dialogs.ConfirmationDialog
 import com.mumsapp.android.common.dialogs.ConfirmationWithAvatarDialog
 import com.mumsapp.android.di.modules.ActivityModule
 import com.mumsapp.android.di.scopes.ActivityScope
+import com.mumsapp.android.lobby.CreatePostFragment
 import com.mumsapp.android.lobby.LobbyCategoryDetailsFragment
 import com.mumsapp.android.lobby.LobbyFragment
 import com.mumsapp.android.main.MainActivity
@@ -88,4 +89,6 @@ interface ActivityComponent {
     fun inject(dialog: ConfirmationDialog)
 
     fun inject(fragment: LobbyCategoryDetailsFragment)
+
+    fun inject(fragment: CreatePostFragment)
 }

@@ -68,8 +68,6 @@ class MyWishlistViewHolder : BaseViewHolder<ProductItem> {
 
     @OnCheckedChanged(R.id.my_wishlist_cell_checkbox)
     fun onCheckedChanged(value: Boolean) {
-        if(listener != null && listener!!.get() != null && item != null) {
-            listener!!.get()!!.invoke(item!!, value)
-        }
+        listener?.get()?.invoke(item!!, value)
     }
 }

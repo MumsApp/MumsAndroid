@@ -53,8 +53,6 @@ class LobbyViewHolder : BaseViewHolder<LobbyItem> {
 
     @OnCheckedChanged(R.id.lobby_cell_switch)
     fun onCheckedChanged(value: Boolean) {
-        if(listener != null && listener!!.get() != null && item != null) {
-            listener!!.get()!!.invoke(item!!, value)
-        }
+        listener?.get()?.invoke(item!!, value)
     }
 }

@@ -8,7 +8,7 @@
         style="@style/widget_layout"
         android:paddingStart="0dp"
         android:paddingEnd="0dp"
-        android:paddingBottom="@dimen/padding_medium">
+        android:paddingBottom="@dimen/padding_12dp">
 
         <com.mumsapp.android.ui.views.CircleImageView
             android:id="@+id/cell_lobby_post_avatar"
@@ -72,7 +72,7 @@
         <com.mumsapp.android.ui.views.BaseTextView
             android:id="@+id/cell_lobby_post_reply"
             style="@style/text_small_green_light"
-            android:layout_marginTop="@dimen/padding_medium"
+            android:layout_marginTop="@dimen/padding_12dp"
             android:layout_marginEnd="@dimen/padding_default"
             android:drawablePadding="@dimen/padding_medium"
             app:layout_constraintRight_toRightOf="parent"

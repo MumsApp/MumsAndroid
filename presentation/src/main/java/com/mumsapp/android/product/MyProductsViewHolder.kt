@@ -57,8 +57,6 @@ class MyProductsViewHolder : BaseViewHolder<ProductItem> {
 
     @OnClick(R.id.my_products_cell_edit_button)
     fun onEdditClick() {
-        if(listener != null && listener!!.get() != null && item != null) {
-            listener!!.get()!!.invoke(item!!)
-        }
+        listener?.get()?.invoke(item!!)
     }
 }

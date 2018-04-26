@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/default_layout">
+
+    <com.mumsapp.android.ui.views.TopBar
+        android:id="@+id/create_post_top_bar"
+        style="@style/top_bar_back_right_text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:topBarTitle="@string/create_post"
+        app:topBarRightText="@string/done"/>
+
+</android.support.constraint.ConstraintLayout>
