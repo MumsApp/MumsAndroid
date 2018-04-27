@@ -8,9 +8,15 @@ class CreatePostPresenter : LifecyclePresenter<CreatePostView> {
 
     private val fragmentsNavigationService: FragmentsNavigationService
 
+    private var lobbyCategoryId = 0
+
     @Inject
     constructor(fragmentsNavigationService: FragmentsNavigationService) {
         this.fragmentsNavigationService = fragmentsNavigationService
+    }
+
+    fun setArguments(lobbyCategoryId: Int) {
+        this.lobbyCategoryId = lobbyCategoryId
     }
 
     fun onBackClick() {

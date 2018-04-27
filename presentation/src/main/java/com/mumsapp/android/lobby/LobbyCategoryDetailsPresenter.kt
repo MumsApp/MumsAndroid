@@ -9,14 +9,14 @@ class LobbyCategoryDetailsPresenter : LifecyclePresenter<LobbyCategoryDetailsVie
 
     private val fragmentsNavigationService: FragmentsNavigationService
 
-    private var categoryId: Int? = null
+    private var categoryId: Int = 0
 
     @Inject
     constructor(fragmentsNavigationService: FragmentsNavigationService) {
         this.fragmentsNavigationService = fragmentsNavigationService
     }
 
-    fun setArguments(categoryId: Int?) {
+    fun setArguments(categoryId: Int) {
         this.categoryId = categoryId
     }
 
@@ -29,7 +29,7 @@ class LobbyCategoryDetailsPresenter : LifecyclePresenter<LobbyCategoryDetailsVie
     }
 
     fun onCreatePostClick() {
-        fragmentsNavigationService.openCreatePostFragment(true)
+        fragmentsNavigationService.openCreatePostFragment(categoryId!!, true)
     }
 
     private fun showMockedData() {

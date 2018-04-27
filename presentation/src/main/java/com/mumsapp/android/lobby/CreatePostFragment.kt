@@ -12,6 +12,7 @@ import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.di.components.ActivityComponent
 import com.mumsapp.android.ui.views.TopBar
+import com.mumsapp.android.util.LOBBY_CATEGORY_ID_KEY
 import javax.inject.Inject
 
 class CreatePostFragment : BaseFragment(), CreatePostView {
@@ -25,7 +26,20 @@ class CreatePostFragment : BaseFragment(), CreatePostView {
     override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter() = presenter as T
 
     companion object {
-        fun getInstance() = CreatePostFragment()
+        fun getInstance(lobbyCategoryId: Int): CreatePostFragment {
+            val args = createArgumentsBundle(lobbyCategoryId)
+            val fragment = CreatePostFragment()
+            fragment.arguments = args
+
+            return fragment
+        }
+
+        fun createArgumentsBundle(lobbyCategoryId: Int): Bundle {
+            val args = Bundle()
+            args.putInt(LOBBY_CATEGORY_ID_KEY, lobbyCategoryId)
+
+            return args
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,8 +55,13 @@ class CreatePostFragment : BaseFragment(), CreatePostView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        passArgumentsToPresenter()
         presenter.attachViewWithLifecycle(this)
         topBar.setLeftButtonClickListener { presenter.onBackClick() }
         topBar.setRightTextClickListener { presenter.onDoneClick() }
+    }
+
+    private fun passArgumentsToPresenter() {
+        val lobbyCategoryId = arguments!!.getInt(LOBBY_CATEGORY_ID_KEY)
     }
 }

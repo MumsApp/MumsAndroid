@@ -190,12 +190,12 @@ class FragmentsNavigationService {
 
     fun createLobbyCategoryDetailsFragment(lobbyCategoryId: Int) = LobbyCategoryDetailsFragment.getInstance(lobbyCategoryId)
 
-    fun openCreatePostFragment(addToBackStack: Boolean) {
-        val fragment = createCreatePostFragment()
+    fun openCreatePostFragment(lobbyCategoryId: Int, addToBackStack: Boolean) {
+        val fragment = createCreatePostFragment(lobbyCategoryId)
         openFragment(fragment, addToBackStack)
     }
 
-    fun createCreatePostFragment() = CreatePostFragment.getInstance()
+    fun createCreatePostFragment(lobbyCategoryId: Int) = CreatePostFragment.getInstance(lobbyCategoryId)
 
     fun popFragment() {
         fragmentManager.popBackStack()

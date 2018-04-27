@@ -69,7 +69,7 @@ class LobbyCategoryDetailsFragment : BaseFragment(), LobbyCategoryDetailsView {
     }
 
     private fun passArgumentsToPresenter() {
-        val lobbyCategoryId = arguments?.getInt(LOBBY_CATEGORY_ID_KEY)
+        val lobbyCategoryId = arguments!!.getInt(LOBBY_CATEGORY_ID_KEY)
         presenter.setArguments(lobbyCategoryId)
     }
 
