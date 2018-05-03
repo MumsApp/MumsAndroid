@@ -19,15 +19,15 @@ buildscript {
     ext.androidJunit5Version = '1.0.22'
     ext.spekVersion ='1.1.5'
     ext.rxJavaVersion = '2.1.8'
-    ext.rxAndroidVersion = '2.0.1'
+    ext.rxAndroidVersion = '2.0.2'
     ext.daggerVersion = '2.14.1'
     ext.retrofitVersion = '2.3.0'
     ext.okHttpVersion = '3.9.1'
     ext.retrofitRxAdapter = '1.0.0'
-    ext.compatVersion = '27.1.0'
+    ext.compatVersion = '27.1.1'
     ext.facebookSdkVersion = '4,30'
-    ext.googleAuthVersion = '12.0.0'
-    ext.googleMapsVersion = '12.0.0'
+    ext.googleAuthVersion = '15.0.0'
+    ext.googleMapsVersion = '15.0.0'
 
     repositories {
         google()

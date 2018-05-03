@@ -1,18 +1,13 @@
-package com.mumsapp.android.ui.widgets
+package com.mumsapp.android.ui.views
 
 import android.content.Context
 import android.support.v7.widget.CardView
 import android.util.AttributeSet
 import android.view.View
-import butterknife.BindView
-import butterknife.ButterKnife
+import android.view.ViewGroup
 import com.mumsapp.android.R
-import com.mumsapp.android.ui.views.BaseEditText
 
-class EditProductDetailsWidget : CardView {
-
-    @BindView(R.id.edit_product_details_description)
-    lateinit var descriptionInput: BaseEditText
+class AddPhotoButton : CardView {
 
     constructor(context: Context) : super(context) {
         setup(context, null)
@@ -27,8 +22,6 @@ class EditProductDetailsWidget : CardView {
     }
 
     private fun setup(context: Context, attrs: AttributeSet?) {
-        val view = View.inflate(context, R.layout.widget_edit_product_details, this)
-        ButterKnife.bind(view)
-        descriptionInput.enableScroll()
+        View.inflate(context, R.layout.view_add_photo_button, this)
     }
 }

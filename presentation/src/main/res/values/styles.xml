@@ -337,6 +337,11 @@
         <item name="android:scrollbarStyle">insideInset</item>
         <item name="android:scrollbars">vertical</item>
     </style>
+    
+    <style name="default_card_edit_text" parent="card_squared">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
 
     <!-- Card View -->
     <style name="cardview_default" parent="CardView">

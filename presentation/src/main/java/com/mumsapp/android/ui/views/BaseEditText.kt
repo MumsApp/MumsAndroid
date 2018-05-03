@@ -15,7 +15,7 @@ class BaseEditText : EditText {
 
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
     
-    fun enableSccroll() {
+    fun enableScroll() {
         setOnTouchListener { v, event ->
             v.parent.requestDisallowInterceptTouchEvent(true)
             when (event.action and MotionEvent.ACTION_MASK) {

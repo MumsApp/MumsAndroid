@@ -150,4 +150,10 @@
 
     <string name="create_post">Create post</string>
     <string name="done">Done</string>
+
+    <string name="title">Title</string>
+    <string name="insert_title">Insert title</string>
+    <string name="post">Post</string>
+    <string name="type_something">Type something</string>
+    <string name="photo">Photo</string>
 </resources>
