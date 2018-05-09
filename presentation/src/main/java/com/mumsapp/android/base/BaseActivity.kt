@@ -12,6 +12,8 @@ import com.mumsapp.android.R
 import com.mumsapp.android.common.features.HasComponent
 import com.mumsapp.android.di.components.ActivityComponent
 import com.mumsapp.android.util.KeyboardHelper
+import com.sembozdemir.permissionskt.askPermissions
+import com.sembozdemir.permissionskt.handlePermissionsResult
 import javax.inject.Inject
 
 abstract class BaseActivity: AppCompatActivity(), HasComponent<ActivityComponent> {
@@ -25,6 +27,10 @@ abstract class BaseActivity: AppCompatActivity(), HasComponent<ActivityComponent
         super.onCreate(savedInstanceState)
         createActivityComponent()
         makeInject()
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        handlePermissionsResult(requestCode, permissions, grantResults)
     }
 
     private fun createActivityComponent() {
@@ -77,4 +83,24 @@ abstract class BaseActivity: AppCompatActivity(), HasComponent<ActivityComponent
     fun showToast(text: String, length: Int) = Toast.makeText(this, text, length).show()
 
     fun showError(error: String) = showSnackbar(error)
+
+    fun askForPermissions(onGrantedCallback: () -> Unit, onDeniedCallback: (permissions: List<String>) -> Unit, vararg permissions: String) {
+        askPermissions(*permissions) {
+            onGranted {
+                onGrantedCallback.invoke()
+            }
+
+            onDenied {
+               onDeniedCallback.invoke(it)
+            }
+
+            onShowRationale {
+                it.retry()
+            }
+
+            onNeverAskAgain {
+                onDeniedCallback.invoke(permissions.asList())
+            }
+        }
+    }
 }

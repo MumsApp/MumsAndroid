@@ -142,6 +142,9 @@ dependencies {
     //https://github.com/stfalcon-studio/ChatKit Chat UI
     implementation 'com.github.stfalcon:chatkit:0.2.2'
 
+    //https://github.com/sembozdemir/PermissionsKt Android permissions based on Kotlin
+    implementation 'com.github.sembozdemir:PermissionsKt:1.0.0'
+
     // Testing
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'

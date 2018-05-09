@@ -113,4 +113,8 @@ abstract class BaseFragment : Fragment(), LifecycleView {
 
         return false
     }
+
+    override fun askForPermissions(onGrantedCallback: () -> Unit, onDeniedCallback: (permissions: List<String>) -> Unit, vararg permissions: String) {
+        (activity as BaseActivity).askForPermissions(onGrantedCallback, onDeniedCallback, *permissions)
+    }
 }

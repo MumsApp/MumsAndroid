@@ -15,4 +15,6 @@ interface LifecycleView : BaseView, LifecycleOwner {
     fun showBottomMenuButton() {}
 
     fun isBottomMenuButtonVisible() = false
+
+    fun askForPermissions(onGrantedCallback: () -> Unit, onDeniedCallback: (permissions: List<String>) -> Unit, vararg permissions: String)
 }

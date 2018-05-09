@@ -1,7 +1,7 @@
 package com.mumsapp.android.product
 
+import android.Manifest
 import android.net.Uri
-import android.util.Log
 import com.google.android.gms.location.places.Place
 import com.mumsapp.android.R
 import com.mumsapp.android.base.LifecyclePresenter
@@ -37,7 +37,11 @@ class AddProductPresenter : LifecyclePresenter<AddProductView> {
     }
 
     fun onAddPhotoClick() {
-        view?.showSelectImageSourceDialog()
+        view?.askForPermissions(onGrantedCallback = {
+            view?.showSelectImageSourceDialog()
+        }, onDeniedCallback = {
+            view?.showSnackbar(resourceRepository.getString(R.string.memory_permission_explanation))
+        }, permissions = *arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE))
     }
 
     fun onGalleryClick() {
