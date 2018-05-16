@@ -16,4 +16,17 @@ class UserProfilePresenter : LifecyclePresenter<UserProfileView> {
     fun onBackClick() {
         fragmentsNavigationService.popFragment()
     }
+
+    fun onRemoveContactClick() {
+
+    }
+
+    override fun start() {
+        showMockedData()
+    }
+
+    private fun showMockedData() {
+        view?.showProfileInfo("Template name", "Description")
+        view?.showNumberOfKids("Mother of one 1 year old.")
+    }
 }
