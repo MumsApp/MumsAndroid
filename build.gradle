@@ -14,7 +14,7 @@ def getVersionName = {
 
 buildscript {
     ext.kotlin_version = '1.2.31'
-    ext.android_plugin_version = '3.1.1'
+    ext.android_plugin_version = '3.1.2'
     ext.junitPlatformVersion = '1.0.2'
     ext.androidJunit5Version = '1.0.22'
     ext.spekVersion ='1.1.5'
@@ -41,7 +41,7 @@ buildscript {
         classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.2'
         classpath "org.junit.platform:junit-platform-gradle-plugin:$junitPlatformVersion"
         classpath "de.mannodermaus.gradle.plugins:android-junit5:$androidJunit5Version"
-        classpath 'io.fabric.tools:gradle:1.25.3'
+        classpath 'io.fabric.tools:gradle:1.25.4'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
