@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.mumsapp.android.ui.views.BaseEditText xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/default_edit_text"
+<com.mumsapp.android.ui.views.BaseTextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/text_normal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     android:gravity="top|start"
-    android:paddingBottom="@dimen/padding_default"
+    android:paddingBottom="@dimen/padding_medium"
     android:paddingEnd="@dimen/padding_default"
     android:paddingStart="@dimen/padding_default"
-    android:paddingTop="@dimen/padding_default"
-    android:textColorHint="@color/black" />
+    android:paddingTop="@dimen/padding_medium">
+
+</com.mumsapp.android.ui.views.BaseTextView>

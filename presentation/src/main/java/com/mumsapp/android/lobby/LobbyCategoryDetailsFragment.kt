@@ -73,12 +73,15 @@ class LobbyCategoryDetailsFragment : BaseFragment(), LobbyCategoryDetailsView {
         presenter.setArguments(lobbyCategoryId)
     }
 
-    override fun showPosts(posts: List<LobbyPost>, replyClickListener: (item: LobbyPost) -> Unit) {
+    override fun showPosts(posts: List<LobbyPost>, replyClickListener: (item: LobbyPost) -> Unit,
+                           userClickListener: (item: LobbyPost) -> Unit) {
         adapter.items = posts
         adapter.notifyDataSetChanged()
 
         if(recyclerView.adapter == null) {
             adapter.replyClickListener = replyClickListener
+            adapter.userClickListener = userClickListener
+
             recyclerView.adapter = adapter
         }
     }

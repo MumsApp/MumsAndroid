@@ -24,6 +24,7 @@ import com.mumsapp.android.product.MyProductsFragment
 import com.mumsapp.android.product.MyWishlistFragment
 import com.mumsapp.android.product.ProductFragment
 import com.mumsapp.android.profile.MyProfileFragment
+import com.mumsapp.android.profile.UserProfileFragment
 import com.mumsapp.android.shop.ShopFilterFragment
 import com.mumsapp.android.shop.ShopFragment
 import com.mumsapp.domain.model.chat.TemplateChatThread
@@ -196,6 +197,13 @@ class FragmentsNavigationService {
     }
 
     fun createCreatePostFragment(lobbyCategoryId: Int) = CreatePostFragment.getInstance(lobbyCategoryId)
+
+    fun openUserProfileFragment(addToBackStack: Boolean) {
+        val fragment = createUserProfileFragment()
+        openFragment(fragment, addToBackStack)
+    }
+
+    fun createUserProfileFragment() = UserProfileFragment.getInstance()
 
     fun popFragment() {
         fragmentManager.popBackStack()

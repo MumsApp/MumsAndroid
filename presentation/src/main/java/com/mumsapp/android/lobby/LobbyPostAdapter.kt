@@ -13,6 +13,7 @@ class LobbyPostAdapter : BaseRecyclerViewAdapter<LobbyPost, LobbyPostViewHolder>
     private val imagesLoader: ImagesLoader
 
     var replyClickListener: ((item: LobbyPost) -> Unit)? = null
+    var userClickListener: ((item: LobbyPost) -> Unit)? = null
 
     @Inject
     constructor(imagesLoader: ImagesLoader) {
@@ -27,8 +28,7 @@ class LobbyPostAdapter : BaseRecyclerViewAdapter<LobbyPost, LobbyPostViewHolder>
     override fun onBindViewHolder(holder: LobbyPostViewHolder, position: Int) {
         super.onBindViewHolder(holder, position)
 
-        if (replyClickListener != null) {
-            holder.setReplyListener(replyClickListener!!)
-        }
+        holder.setReplyListener(replyClickListener)
+        holder.setUserClickistener(userClickListener)
     }
 }

@@ -47,10 +47,14 @@ class LobbyCategoryDetailsPresenter : LifecyclePresenter<LobbyCategoryDetailsVie
         posts += LobbyPost(0, "John Conor", "8m", "Post title", "Post content")
         posts += LobbyPost(0, "John Conor", "8m", "Post title", "Post content")
 
-        view?.showPosts(posts, this::onReplyClick)
+        view?.showPosts(posts, this::onReplyClick, this::onUserClick)
     }
 
     private fun onReplyClick(post: LobbyPost) {
 
+    }
+
+    private fun onUserClick(post: LobbyPost) {
+        fragmentsNavigationService.openUserProfileFragment(true)
     }
 }

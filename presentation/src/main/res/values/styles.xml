@@ -215,6 +215,11 @@
         <item name="android:gravity">center_vertical|left</item>
     </style>
 
+    <style name="card_text_normal" parent="card_squared">
+        <item name="android:textSize">@dimen/text_size_normal</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
     <!-- Dividers -->
     <style name="divider_default">
         <item name="android:background">@color/default_divider</item>

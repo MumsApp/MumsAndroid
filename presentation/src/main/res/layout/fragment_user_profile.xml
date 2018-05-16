@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/default_layout">
+
+    <com.mumsapp.android.ui.views.TopBar
+        android:id="@+id/user_profile_top_bar"
+        style="@style/top_bar_back"
+        app:layout_constraintTop_toTopOf="parent"
+        app:topBarTitle="@string/user_profile" />
+
+    <include
+        android:id="@+id/user_profile_details"
+        style="@style/default_widget"
+        layout="@layout/view_user_profile_details"
+        app:layout_constraintTop_toBottomOf="@id/user_profile_top_bar" />
+
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/user_profile_kids_label"
+        style="@style/text_small_grey_light"
+        android:layout_marginStart="@dimen/padding_default"
+        android:layout_marginTop="@dimen/padding_default"
+        android:text="@string/number_of_kids"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/user_profile_details" />
+
+    <com.mumsapp.android.ui.views.CardsTextView
+        android:id="@+id/user_profile_kids_value"
+        style="@style/card_text_normal"
+        android:layout_marginEnd="@dimen/padding_default"
+        android:layout_marginStart="@dimen/padding_default"
+        android:layout_marginTop="@dimen/padding_default"
+        app:layout_constraintTop_toBottomOf="@id/user_profile_kids_label"
+        tools:text="Mother of one 1 year old." />
+
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/user_profile_remove_contact"
+        style="@style/text_normal_grey_light"
+        android:layout_marginTop="@dimen/padding_big"
+        app:layout_constraintTop_toBottomOf="@id/user_profile_kids_value"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="@string/remove_from_contacts"/>
+
+    <com.mumsapp.android.ui.widgets.LocationWidget
+        android:id="@+id/user_profile_location_widget"
+        style="@style/location_widget_without_buttons"
+        android:layout_marginTop="@dimen/padding_big"
+        app:layout_constraintTop_toBottomOf="@id/user_profile_remove_contact" />
+</android.support.constraint.ConstraintLayout>

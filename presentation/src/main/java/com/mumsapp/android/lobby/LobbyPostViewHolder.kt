@@ -31,7 +31,8 @@ class LobbyPostViewHolder : BaseViewHolder<LobbyPost> {
     @BindView(R.id.cell_lobby_post_content)
     lateinit var contentView: BaseTextView
 
-    private var listener: WeakReference<((item: LobbyPost) -> Unit)>? = null
+    private var replyListener: WeakReference<((item: LobbyPost) -> Unit)>? = null
+    private var avatarClickListener: WeakReference<((item: LobbyPost) -> Unit)>? = null
 
     private var item: LobbyPost? = null
 
@@ -49,12 +50,29 @@ class LobbyPostViewHolder : BaseViewHolder<LobbyPost> {
         contentView.text = item.content
     }
 
-    fun setReplyListener(listener: (item: LobbyPost) -> Unit) {
-        this.listener = WeakReference(listener)
+    fun setReplyListener(listener: ((item: LobbyPost) -> Unit)?) {
+        if(listener == null) {
+            return
+        }
+
+        replyListener = WeakReference(listener)
+    }
+
+    fun setUserClickistener(listener: ((item: LobbyPost) -> Unit)?) {
+        if(listener == null) {
+            return
+        }
+
+        avatarClickListener = WeakReference(listener)
     }
 
     @OnClick(R.id.cell_lobby_post_reply)
     fun onReplyClick() {
-        listener?.get()?.invoke(item!!)
+        replyListener?.get()?.invoke(item!!)
+    }
+
+    @OnClick(R.id.cell_lobby_post_avatar, R.id.cell_lobby_post_user_name)
+    fun onAvatarClick() {
+        avatarClickListener?.get()?.invoke(item!!)
     }
 }

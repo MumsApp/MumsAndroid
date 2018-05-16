@@ -19,6 +19,7 @@ import com.mumsapp.android.product.*
 import com.mumsapp.android.profile.AccountSettingsDialog
 import com.mumsapp.android.profile.MyProfileFragment
 import com.mumsapp.android.profile.UserDetailsSettingsDialog
+import com.mumsapp.android.profile.UserProfileFragment
 import com.mumsapp.android.shop.ShopFilterFragment
 import com.mumsapp.android.shop.ShopFragment
 import com.mumsapp.android.shop.ShopMenuDialog
@@ -91,4 +92,6 @@ interface ActivityComponent {
     fun inject(fragment: LobbyCategoryDetailsFragment)
 
     fun inject(fragment: CreatePostFragment)
+
+    fun inject(fragment: UserProfileFragment)
 }

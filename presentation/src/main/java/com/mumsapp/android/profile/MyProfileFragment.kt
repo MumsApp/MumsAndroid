@@ -29,7 +29,7 @@ import javax.inject.Inject
 class MyProfileFragment : BaseFragment(), MyProfileView {
 
     @Inject
-    lateinit var lifecyclePresenter: MyProfilePresenter
+    lateinit var presenter: MyProfilePresenter
 
     @Inject
     lateinit var imagesLoader: ImagesLoader
@@ -59,7 +59,7 @@ class MyProfileFragment : BaseFragment(), MyProfileView {
 
     private var userDetailsSettingsDialog: UserDetailsSettingsDialog? = null
 
-    override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter() = lifecyclePresenter as T
+    override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter() = presenter as T
 
     companion object {
         fun getInstance(): MyProfileFragment {
@@ -80,8 +80,8 @@ class MyProfileFragment : BaseFragment(), MyProfileView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        lifecyclePresenter.attachViewWithLifecycle(this)
-        topBar.setRightButtonClickListener { lifecyclePresenter.onSettingsClick() }
+        presenter.attachViewWithLifecycle(this)
+        topBar.setRightButtonClickListener { presenter.onSettingsClick() }
         configureLocationWidget()
     }
 
@@ -90,10 +90,10 @@ class MyProfileFragment : BaseFragment(), MyProfileView {
         if (requestCode == GOOGLE_PLACES_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
                 val place = PlaceAutocomplete.getPlace(context, data)
-                lifecyclePresenter.onLocationSelected(place)
+                presenter.onLocationSelected(place)
             } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
                 val status = PlaceAutocomplete.getStatus(context, data)
-                lifecyclePresenter.onLocationError(status)
+                presenter.onLocationError(status)
             }
         }
     }
@@ -109,7 +109,7 @@ class MyProfileFragment : BaseFragment(), MyProfileView {
 
     @OnClick(R.id.my_profile_change_name)
     fun onChangeClick() {
-        lifecyclePresenter.onChangeClick()
+        presenter.onChangeClick()
     }
 
     override fun showAccountSettingsDialog() {
@@ -130,11 +130,11 @@ class MyProfileFragment : BaseFragment(), MyProfileView {
 
     private fun configureLocationWidget() {
         locationWidget.setWidgetButtonListener {
-            lifecyclePresenter.onEditLocationClick()
+            presenter.onEditLocationClick()
         }
 
         locationWidget.setSwitchChangeListener({ _: CompoundButton, value: Boolean ->
-            lifecyclePresenter.onLocationSwitchChanged(value)
+            presenter.onLocationSwitchChanged(value)
         })
     }
 
