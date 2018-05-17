@@ -10,42 +10,60 @@
         app:layout_constraintTop_toTopOf="parent"
         app:topBarTitle="@string/user_profile" />
 
-    <include
-        android:id="@+id/user_profile_details"
-        style="@style/default_widget"
-        layout="@layout/view_user_profile_details"
-        app:layout_constraintTop_toBottomOf="@id/user_profile_top_bar" />
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/user_profile_top_bar">
 
-    <com.mumsapp.android.ui.views.BaseTextView
-        android:id="@+id/user_profile_kids_label"
-        style="@style/text_small_grey_light"
-        android:layout_marginStart="@dimen/padding_default"
-        android:layout_marginTop="@dimen/padding_default"
-        android:text="@string/number_of_kids"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/user_profile_details" />
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/padding_scroll_view_bottom">
 
-    <com.mumsapp.android.ui.views.CardsTextView
-        android:id="@+id/user_profile_kids_value"
-        style="@style/card_text_normal"
-        android:layout_marginEnd="@dimen/padding_default"
-        android:layout_marginStart="@dimen/padding_default"
-        android:layout_marginTop="@dimen/padding_default"
-        app:layout_constraintTop_toBottomOf="@id/user_profile_kids_label"
-        tools:text="Mother of one 1 year old." />
+            <include
+                android:id="@+id/user_profile_details"
+                style="@style/default_widget"
+                layout="@layout/view_user_profile_details"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <com.mumsapp.android.ui.views.BaseTextView
-        android:id="@+id/user_profile_remove_contact"
-        style="@style/text_normal_grey_light"
-        android:layout_marginTop="@dimen/padding_big"
-        app:layout_constraintTop_toBottomOf="@id/user_profile_kids_value"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:text="@string/remove_from_contacts"/>
+            <com.mumsapp.android.ui.views.BaseTextView
+                android:id="@+id/user_profile_kids_label"
+                style="@style/text_small_grey_light"
+                android:layout_marginStart="@dimen/padding_default"
+                android:layout_marginTop="@dimen/padding_default"
+                android:text="@string/number_of_kids"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/user_profile_details" />
 
-    <com.mumsapp.android.ui.widgets.LocationWidget
-        android:id="@+id/user_profile_location_widget"
-        style="@style/location_widget_without_buttons"
-        android:layout_marginTop="@dimen/padding_big"
-        app:layout_constraintTop_toBottomOf="@id/user_profile_remove_contact" />
+            <com.mumsapp.android.ui.views.CardsTextView
+                android:id="@+id/user_profile_kids_value"
+                style="@style/card_text_normal"
+                android:layout_marginEnd="@dimen/padding_default"
+                android:layout_marginStart="@dimen/padding_default"
+                android:layout_marginTop="@dimen/padding_default"
+                app:layout_constraintTop_toBottomOf="@id/user_profile_kids_label"
+                tools:text="Mother of one 1 year old." />
+
+            <com.mumsapp.android.ui.views.BaseTextView
+                android:id="@+id/user_profile_remove_contact"
+                style="@style/text_normal_grey_light"
+                android:layout_marginTop="@dimen/padding_big"
+                android:text="@string/remove_from_contacts"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/user_profile_kids_value" />
+
+            <com.mumsapp.android.ui.widgets.LocationWidget
+                android:id="@+id/user_profile_location_widget"
+                style="@style/location_widget_without_buttons"
+                android:layout_marginTop="@dimen/padding_big"
+                app:layout_constraintTop_toBottomOf="@id/user_profile_remove_contact" />
+
+            <View
+                style="@style/empty_view_below_card"
+                app:layout_constraintTop_toBottomOf="@id/user_profile_location_widget"/>
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v4.widget.NestedScrollView>
 </android.support.constraint.ConstraintLayout>
