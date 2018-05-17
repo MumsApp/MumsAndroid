@@ -162,4 +162,9 @@
     <string name="user_profile">User Profile</string>
     <string name="number_of_kids">Number of kids</string>
     <string name="remove_from_contacts">Remove from contacts</string>
+
+    <string name="are_you_sure_you_want_to_remove_from_your_contacts_question_mark">Are you sure to remove from your contacts?</string>
+    <string name="chats_with_this_user_will_be_lost">Chats with this user will be lost</string>
+    <string name="yes_coma_remove_this_contact">Yes, remove this contact</string>
+    <string name="no_coma_get_me_out_of_here">No, get me out of here</string>
 </resources>

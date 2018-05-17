@@ -1,5 +1,6 @@
 package com.mumsapp.android.profile
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +12,9 @@ import com.mumsapp.android.R
 import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.base.LifecycleView
+import com.mumsapp.android.common.dialogs.ConfirmationWithAvatarDialog
 import com.mumsapp.android.di.components.ActivityComponent
+import com.mumsapp.android.navigation.DialogsProvider
 import com.mumsapp.android.ui.views.BaseTextView
 import com.mumsapp.android.ui.views.CardsTextView
 import com.mumsapp.android.ui.views.CircleImageView
@@ -27,6 +30,9 @@ class UserProfileFragment : BaseFragment(), UserProfileView {
 
     @Inject
     lateinit var imagesLoader: ImagesLoader
+
+    @Inject
+    lateinit var dialogsProvider: DialogsProvider
 
     @BindView(R.id.user_profile_top_bar)
     lateinit var topBar: TopBar
@@ -45,6 +51,8 @@ class UserProfileFragment : BaseFragment(), UserProfileView {
 
     @BindView(R.id.user_profile_location_widget)
     lateinit var locationWidget: LocationWidget
+
+    private var confirmationDialog: ConfirmationWithAvatarDialog? = null
 
     override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter() = presenter as T
 
@@ -92,5 +100,16 @@ class UserProfileFragment : BaseFragment(), UserProfileView {
     override fun showLocation(latitude: String, longitude: String, name: String) {
         locationWidget.setMapCoordinates(latitude, longitude)
         locationWidget.setLocationName(name)
+    }
+
+    override fun showRemoveUserDialog(avatarUri: Uri?, name: String, title: String, description: String,
+                                      confirmButtonText: String, cancelButtonText: String,
+                                      confirmationListener: () -> Unit, cancelListener: () -> Unit) {
+        if(confirmationDialog == null) {
+            confirmationDialog = dialogsProvider.createConfirmationWithAvatarDialog()
+        }
+
+        confirmationDialog?.show(avatarUri, name, title, description, confirmButtonText,
+                cancelButtonText, confirmationListener, cancelListener)
     }
 }

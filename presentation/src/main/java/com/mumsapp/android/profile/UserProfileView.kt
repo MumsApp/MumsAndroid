@@ -1,5 +1,6 @@
 package com.mumsapp.android.profile
 
+import android.net.Uri
 import com.mumsapp.android.base.LifecycleView
 
 interface UserProfileView : LifecycleView {
@@ -11,4 +12,8 @@ interface UserProfileView : LifecycleView {
     fun showNumberOfKids(text: String)
 
     fun showLocation(latitude: String, longitude: String, name: String)
+
+    fun showRemoveUserDialog(avatarUri: Uri?, name: String, title: String, description: String,
+                             confirmButtonText: String, cancelButtonText: String,
+                             confirmationListener: () -> Unit, cancelListener: () -> Unit)
 }

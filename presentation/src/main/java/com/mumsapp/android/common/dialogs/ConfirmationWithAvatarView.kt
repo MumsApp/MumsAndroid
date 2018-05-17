@@ -5,8 +5,9 @@ import com.mumsapp.android.base.BaseView
 
 interface ConfirmationWithAvatarView : BaseView {
 
-    fun showAvatar(avatarUri: Uri, avatarTitle: String?)
-    fun setContent(title: String, description: String?, confirmButtonText: String,
+    fun showAvatar(avatarUri: Uri)
+
+    fun setContent(avatarTitle: String, title: String, description: String?, confirmButtonText: String,
                    cancelButtonText: String)
     fun dismissView()
 

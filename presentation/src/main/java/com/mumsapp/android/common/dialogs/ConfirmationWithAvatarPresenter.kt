@@ -7,7 +7,7 @@ import javax.inject.Inject
 class ConfirmationWithAvatarPresenter : BasePresenter<ConfirmationWithAvatarView> {
 
     var avatarUri: Uri? = null
-    var avatarTitle: String? = null
+    lateinit var avatarTitle: String
     lateinit var title: String
     var description: String? = null
     lateinit var confirmButtonText: String
@@ -16,7 +16,7 @@ class ConfirmationWithAvatarPresenter : BasePresenter<ConfirmationWithAvatarView
     @Inject
     constructor()
 
-    fun setArguments(avatarUri: Uri?, avatarTitle: String?, title: String, description: String?,
+    fun setArguments(avatarUri: Uri?, avatarTitle: String, title: String, description: String?,
                      confirmButtonText: String, cancelButtonText: String) {
         this.avatarUri = avatarUri
         this.avatarTitle = avatarTitle
@@ -28,10 +28,10 @@ class ConfirmationWithAvatarPresenter : BasePresenter<ConfirmationWithAvatarView
 
     override fun start() {
         if(avatarUri != null) {
-            view?.showAvatar(avatarUri!!, avatarTitle)
+            view?.showAvatar(avatarUri!!)
         }
 
-        view?.setContent(title, description, confirmButtonText, cancelButtonText)
+        view?.setContent(avatarTitle, title, description, confirmButtonText, cancelButtonText)
     }
 
     fun onCloseClick() {

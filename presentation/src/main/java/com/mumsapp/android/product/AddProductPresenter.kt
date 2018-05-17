@@ -87,7 +87,7 @@ class AddProductPresenter : LifecyclePresenter<AddProductView> {
         val confirmButtonText = resourceRepository.getString(R.string.back_to_search)
         val cancelButtonText = resourceRepository.getString(R.string.to_my_product_list)
 
-        view?.showConfirmationDialog(currentHeader?.uri, null, title, null,
+        view?.showConfirmationDialog(currentHeader?.uri, "", title, null,
                 confirmButtonText, cancelButtonText)
     }
 
