@@ -3,5 +3,5 @@
     <!-- Main Menu -->
     <dimen name="menu_row_1_radius">120dp</dimen>
     <dimen name="menu_row_2_radius">220dp</dimen>
-    <dimen name="menu_labels_text_size">8sp</dimen>
+    <dimen name="menu_labels_text_size">12sp</dimen>
 </resources>
