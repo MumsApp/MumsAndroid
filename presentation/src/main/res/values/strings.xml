@@ -43,8 +43,10 @@
     <string name="lets_talk">"Let's talk"</string>
     <string name="lobby">Lobby</string>
     <string name="shop">Shop</string>
-    <string name="where_can_i_find">Where can i find?</string>
     <string name="mumsapp_offers">MumsApp Offers</string>
+    <string name="holiday">Holiday</string>
+    <string name="mumsapp_health">MumsApp Health</string>
+    <string name="add_to_menu">Add to menu</string>
 
     <string name="my_profile">My Profile</string>
     <string name="change">Change</string>

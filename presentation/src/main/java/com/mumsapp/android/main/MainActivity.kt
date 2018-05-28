@@ -132,14 +132,9 @@ class MainActivity : BaseFragmentActivity(), MainView, HasOverlays {
         lifecyclePresenter.onCloseMenuClick()
     }
 
-    @OnClick(R.id.menu_where_find, R.id.menu_where_find_text)
-    fun onWhereFindClick() {
-        lifecyclePresenter.onWhereFindClick()
-    }
-
-    @OnClick(R.id.menu_talk, R.id.menu_talk_text)
-    fun onTalkClick() {
-        lifecyclePresenter.onTalkClick()
+    @OnClick(R.id.menu_me, R.id.menu_me_text)
+    fun onMeClick() {
+        lifecyclePresenter.onMeClick()
     }
 
     @OnClick(R.id.menu_lobby, R.id.menu_lobby_text)
@@ -147,14 +142,9 @@ class MainActivity : BaseFragmentActivity(), MainView, HasOverlays {
         lifecyclePresenter.onLobbyClick()
     }
 
-    @OnClick(R.id.menu_school, R.id.menu_school_text)
-    fun onSchoolClick() {
-
-    }
-
-    @OnClick(R.id.menu_me, R.id.menu_me_text)
-    fun onMeClick() {
-        lifecyclePresenter.onMeClick()
+    @OnClick(R.id.menu_talk, R.id.menu_talk_text)
+    fun onTalkClick() {
+        lifecyclePresenter.onTalkClick()
     }
 
     @OnClick(R.id.menu_shop, R.id.menu_shop_text)
@@ -165,5 +155,20 @@ class MainActivity : BaseFragmentActivity(), MainView, HasOverlays {
     @OnClick(R.id.menu_offers, R.id.menu_offers_text)
     fun onOffersClick() {
         lifecyclePresenter.onOffersClick()
+    }
+
+    @OnClick(R.id.menu_holiday, R.id.menu_holiday_text)
+    fun onHolidayClick() {
+        lifecyclePresenter.onHolidayClick()
+    }
+
+    @OnClick(R.id.menu_health, R.id.menu_health_text)
+    fun onHealthClick() {
+        lifecyclePresenter.onHealthClick()
+    }
+
+    @OnClick(R.id.menu_add, R.id.menu_add_text)
+    fun onAddClick() {
+        lifecyclePresenter.onAddClick()
     }
 }

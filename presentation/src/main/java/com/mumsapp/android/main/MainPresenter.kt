@@ -47,13 +47,9 @@ class MainPresenter : LifecyclePresenter<MainView> {
         view?.hideMenu()
     }
 
-    fun onWhereFindClick() {
-
-    }
-
-    fun onTalkClick() {
+    fun onMeClick() {
         fragmentsNavigationService.popFragmentsToRoot()
-        fragmentsNavigationService.openChatListFragment(true)
+        fragmentsNavigationService.openMyProfileFragment(true)
         view?.hideMenu()
     }
 
@@ -63,13 +59,9 @@ class MainPresenter : LifecyclePresenter<MainView> {
         view?.hideMenu()
     }
 
-    fun onSchoolClick() {
-
-    }
-
-    fun onMeClick() {
+    fun onTalkClick() {
         fragmentsNavigationService.popFragmentsToRoot()
-        fragmentsNavigationService.openMyProfileFragment(true)
+        fragmentsNavigationService.openChatListFragment(true)
         view?.hideMenu()
     }
 
@@ -83,5 +75,17 @@ class MainPresenter : LifecyclePresenter<MainView> {
         fragmentsNavigationService.popFragmentsToRoot()
         fragmentsNavigationService.openMumsAppOffersFragment(true)
         view?.hideMenu()
+    }
+
+    fun onHolidayClick() {
+
+    }
+
+    fun onHealthClick() {
+
+    }
+
+    fun onAddClick() {
+
     }
 }

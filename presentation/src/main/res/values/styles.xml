@@ -11,7 +11,7 @@
     <style name="default_layout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:background">@color/main_background</item>
+        <item name="android:background">@drawable/main_background</item>
     </style>
 
     <style name="default_dialog_layout" parent="default_layout">
@@ -372,7 +372,7 @@
     </style>
 
     <style name="main_menu_button" parent="default_image_button">
-        <item name="android:layout_marginTop">@dimen/padding_big</item>
+        <item name="android:layout_marginTop">@dimen/padding_menu_button</item>
     </style>
 
     <style name="topbar_button" parent="default_image_button">
