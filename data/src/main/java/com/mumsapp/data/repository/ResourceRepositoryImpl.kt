@@ -51,4 +51,8 @@ class ResourceRepositoryImpl : ResourceRepository {
     override fun getInteger(@IntegerRes resId: Int): Int {
         return context.resources.getInteger(resId)
     }
+
+    override fun getDimen(dimenId: Int): Int {
+        return context.resources.getDimensionPixelSize(dimenId)
+    }
 }

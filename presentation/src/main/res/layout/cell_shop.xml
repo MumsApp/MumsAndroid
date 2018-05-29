@@ -5,30 +5,41 @@
     style="@style/card_squared">
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/shop_cell_root_layout"
         style="@style/widget_layout"
         android:paddingBottom="@dimen/padding_default"
-        android:paddingTop="@dimen/padding_default">
+        android:paddingEnd="0dp"
+        android:paddingTop="0dp">
 
         <com.mumsapp.android.ui.views.RoundedCornersImageView
             android:id="@+id/shop_cell_image"
             android:layout_width="@dimen/shop_item_image_size"
             android:layout_height="0dp"
+            android:layout_marginTop="@dimen/padding_default"
             android:src="@drawable/ic_image_placeholder"
             app:layout_constraintTop_toTopOf="@+id/shop_cell_name"
             app:layout_constraintBottom_toBottomOf="@+id/shop_cell_distance"
             android:scaleType="centerCrop"/>
 
+        <com.mumsapp.android.ui.views.BaseImageView
+            android:id="@+id/shop_cell_ad_icon"
+            style="@style/default_image_view"
+            android:src="@drawable/ic_ad"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
         <com.mumsapp.android.ui.views.BaseCheckbox
             android:id="@+id/shop_cell_favourite_checkbox"
             style="@style/heart_checkbox"
             android:layout_marginTop="@dimen/padding_small"
-            android:layout_marginRight="@dimen/padding_small"
+            android:layout_marginEnd="@dimen/padding_small"
             app:layout_constraintTop_toTopOf="@id/shop_cell_image"
             app:layout_constraintRight_toRightOf="@id/shop_cell_image"/>
 
         <com.mumsapp.android.ui.views.BaseTextView
             android:id="@+id/shop_cell_name"
             style="@style/text_normal"
+            android:layout_marginTop="@dimen/padding_default"
             android:layout_marginStart="@dimen/padding_12dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toRightOf="@id/shop_cell_image"
@@ -70,6 +81,7 @@
             android:id="@+id/shop_cell_avatar"
             style="@style/tiny_avatar_image_view"
             android:layout_marginTop="@dimen/padding_medium"
+            android:layout_marginRight="@dimen/padding_default"
             app:layout_constraintTop_toBottomOf="@id/shop_cell_price_divider"
             app:layout_constraintRight_toRightOf="parent"/>
 

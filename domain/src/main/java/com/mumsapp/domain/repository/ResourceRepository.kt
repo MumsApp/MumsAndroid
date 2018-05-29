@@ -17,4 +17,6 @@ interface ResourceRepository {
     fun getColor(colorResId: Int): Int
 
     fun getInteger(resId: Int): Int
+
+    fun getDimen(dimenId: Int): Int
 }
