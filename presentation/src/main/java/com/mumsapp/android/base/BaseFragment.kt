@@ -2,6 +2,7 @@ package com.mumsapp.android.base
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,8 @@ import com.mumsapp.android.common.features.HasOverlays
 abstract class BaseFragment : Fragment(), LifecycleView {
 
     private var unbinder: Unbinder? = null
+
+    private var retainedChildFragmentManager: FragmentManager? = null
 
     protected fun setUnbinder(unbinder: Unbinder) {
         this.unbinder = unbinder
@@ -116,5 +119,13 @@ abstract class BaseFragment : Fragment(), LifecycleView {
 
     override fun askForPermissions(onGrantedCallback: () -> Unit, onDeniedCallback: (permissions: List<String>) -> Unit, vararg permissions: String) {
         (activity as BaseActivity).askForPermissions(onGrantedCallback, onDeniedCallback, *permissions)
+    }
+
+    protected fun safeChildFragmentManager(): FragmentManager {
+        if (retainedChildFragmentManager == null) {
+            retainedChildFragmentManager = childFragmentManager
+        } else {
+        }
+        return retainedChildFragmentManager!!
     }
 }

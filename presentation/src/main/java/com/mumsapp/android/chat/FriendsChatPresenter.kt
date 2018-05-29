@@ -8,7 +8,7 @@ import com.mumsapp.domain.model.chat.ChatThreadResponse
 import com.mumsapp.domain.model.chat.TemplateChatThread
 import javax.inject.Inject
 
-class ChatListPresenter : LifecyclePresenter<ChatListView> {
+class FriendsChatPresenter : LifecyclePresenter<ChatListView> {
 
     private val getChatThreadsUseCase: GetChatThreadsUseCase
     private val fragmentsNavigationService: FragmentsNavigationService

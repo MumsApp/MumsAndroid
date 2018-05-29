@@ -15,13 +15,12 @@ import com.mumsapp.android.navigation.DialogsProvider
 import com.mumsapp.android.ui.views.CardsRecyclerView
 import com.mumsapp.android.ui.views.TopBar
 import com.mumsapp.domain.model.chat.TemplateChatThread
-import kotlinx.android.synthetic.main.fragment_chat_list.*
 import javax.inject.Inject
 
-class ChatListFragment : BaseFragment(), ChatListView {
+class FriendsChatFragment : BaseFragment(), ChatListView {
 
     @Inject
-    lateinit var presenter: ChatListPresenter
+    lateinit var presenter: FriendsChatPresenter
 
     @Inject
     lateinit var dialogsProvider: DialogsProvider
@@ -40,8 +39,8 @@ class ChatListFragment : BaseFragment(), ChatListView {
     override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter() = presenter as T
 
     companion object {
-        fun getInstance() : ChatListFragment {
-            return ChatListFragment()
+        fun getInstance() : FriendsChatFragment {
+            return FriendsChatFragment()
         }
     }
 

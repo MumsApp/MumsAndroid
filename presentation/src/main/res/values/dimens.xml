@@ -106,4 +106,8 @@
 
     <!-- Edit Product Details Widget -->
     <dimen name="edit_product_details_description_height">200dp</dimen>
+
+
+    <!-- Tab Layout -->
+    <dimen name="tab_layout_tab_indicator_height">4dp</dimen>
 </resources>

@@ -10,7 +10,8 @@ import com.mumsapp.android.authentication.CreatePageFragment
 import com.mumsapp.android.authentication.SignInFragment
 import com.mumsapp.android.authentication.SignUpFragment
 import com.mumsapp.android.base.BaseFragment
-import com.mumsapp.android.chat.ChatListFragment
+import com.mumsapp.android.chat.ChatFragment
+import com.mumsapp.android.chat.FriendsChatFragment
 import com.mumsapp.android.chat.ChatThreadFragment
 import com.mumsapp.android.di.qualifiers.FragmentContainerId
 import com.mumsapp.android.lobby.CreatePostFragment
@@ -87,12 +88,26 @@ class FragmentsNavigationService {
 
     fun createLobbyFragment() = LobbyFragment.getInstance()
 
-    fun openChatListFragment(addToBackStack: Boolean) {
-        val fragment = createChatListFragment()
+    fun openChatFragment(addToBackStack: Boolean) {
+        val fragment = createChatFragment()
         openFragment(fragment, addToBackStack)
     }
 
-    fun createChatListFragment() = ChatListFragment.getInstance()
+    fun createChatFragment() = ChatFragment.getInstance()
+
+    fun openFriendsChatFragment(addToBackStack: Boolean) {
+        val fragment = createFriendsChatFragment()
+        openFragment(fragment, addToBackStack)
+    }
+
+    fun createFriendsChatFragment() = FriendsChatFragment.getInstance()
+
+    fun openChatThreadFragment(thread: TemplateChatThread, addToBackStack: Boolean) {
+        val fragment = createChatThreadFragment(thread)
+        openFragment(fragment, addToBackStack)
+    }
+
+    fun createChatThreadFragment(thread: TemplateChatThread) = ChatThreadFragment.getInstance(thread)
 
     fun openShopFragment(addToBackStack: Boolean) {
         val fragment = createShopFragment()
@@ -155,13 +170,6 @@ class FragmentsNavigationService {
     fun createGalleryIntent(): Intent {
         return Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
     }
-
-    fun openChatThreadFragment(thread: TemplateChatThread, addToBackStack: Boolean) {
-        val fragment = createChatThreadFragment(thread)
-        openFragment(fragment, addToBackStack)
-    }
-
-    fun createChatThreadFragment(thread: TemplateChatThread) = ChatThreadFragment.getInstance(thread)
 
     fun openOrganisationDetailsFragment(organisationId: String, addToBackStack: Boolean) {
         val fragment = createOrganisationDetailsFragment(organisationId)

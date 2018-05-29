@@ -1,7 +1,8 @@
 package com.mumsapp.android.di.components
 
 import com.mumsapp.android.authentication.*
-import com.mumsapp.android.chat.ChatListFragment
+import com.mumsapp.android.chat.ChatFragment
+import com.mumsapp.android.chat.FriendsChatFragment
 import com.mumsapp.android.chat.ChatSettingsDialog
 import com.mumsapp.android.chat.ChatThreadFragment
 import com.mumsapp.android.common.dialogs.ConfirmationDialog
@@ -53,7 +54,7 @@ interface ActivityComponent {
 
     fun inject(fragment: LobbyFragment)
 
-    fun inject(fragment: ChatListFragment)
+    fun inject(fragment: FriendsChatFragment)
 
     fun inject(dialog: ChatSettingsDialog)
 
@@ -94,4 +95,6 @@ interface ActivityComponent {
     fun inject(fragment: CreatePostFragment)
 
     fun inject(fragment: UserProfileFragment)
+
+    fun inject(fragment: ChatFragment)
 }
