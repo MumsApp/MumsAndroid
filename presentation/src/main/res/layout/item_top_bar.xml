@@ -46,31 +46,6 @@
         style="@style/divider_horizontal"
         app:layout_constraintTop_toBottomOf="@id/top_bar_title" />
 
-    <com.mumsapp.android.ui.views.BaseEditText
-        android:id="@+id/top_bar_search_input"
-        style="@style/default_edit_text"
-        android:layout_width="0dp"
-        android:background="@android:color/transparent"
-        android:hint="@string/search"
-        android:paddingBottom="@dimen/padding_medium"
-        android:paddingStart="@dimen/padding_default"
-        android:paddingTop="@dimen/padding_medium"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/top_bar_search_button"
-        app:layout_constraintTop_toBottomOf="@id/top_bar_title_divider" />
-
-    <com.mumsapp.android.ui.views.BaseImageButton
-        android:id="@+id/top_bar_search_button"
-        style="@style/topbar_button"
-        android:paddingEnd="@dimen/padding_default"
-        android:paddingStart="@dimen/padding_default"
-        android:src="@drawable/ic_search_grey"
-        app:layout_constraintBottom_toBottomOf="@id/top_bar_search_input"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/top_bar_search_input" />
-
-    <View
-        android:id="@+id/top_bar_search_divider"
-        style="@style/divider_horizontal"
-        app:layout_constraintTop_toBottomOf="@id/top_bar_search_input" />
+    <include
+        layout="@layout/item_search_bar"/>
 </android.support.constraint.ConstraintLayout>

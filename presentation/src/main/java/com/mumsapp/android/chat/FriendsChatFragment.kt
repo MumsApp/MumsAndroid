@@ -28,9 +28,6 @@ class FriendsChatFragment : BaseFragment(), ChatListView {
     @Inject
     lateinit var adapter: ChatListAdapter
 
-    @BindView(R.id.chat_list_top_bar)
-    lateinit var topBar: TopBar
-
     @BindView(R.id.chat_list_recycler_view)
     lateinit var recyclerView: CardsRecyclerView
 
@@ -58,9 +55,9 @@ class FriendsChatFragment : BaseFragment(), ChatListView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter.attachViewWithLifecycle(this)
-        topBar.setLeftButtonClickListener { presenter.onFiltersButtonClick() }
-        topBar.setRightButtonClickListener { presenter.onSettingsButtonClick() }
-        topBar.setSearchListener(presenter::onSearch)
+//        topBar.setLeftButtonClickListener { presenter.onFiltersButtonClick() }
+//        topBar.setRightButtonClickListener { presenter.onSettingsButtonClick() }
+//        topBar.setSearchListener(presenter::onSearch)
     }
 
     override fun openChatSettingsDialog() {

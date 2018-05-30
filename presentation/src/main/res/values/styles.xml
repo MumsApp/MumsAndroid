@@ -282,9 +282,12 @@
         <item name="searchVisible">true</item>
     </style>
 
-    <style name="top_bar_filters_settings_search" parent="top_bar_settings">
+    <style name="top_bar_filters_settings" parent="top_bar_settings">
         <item name="topBarLeftButtonVisible">true</item>
         <item name="topBarLeftIcon">@drawable/ic_switches</item>
+    </style>
+
+    <style name="top_bar_filters_settings_search" parent="top_bar_filters_settings">
         <item name="searchVisible">true</item>
     </style>
 
