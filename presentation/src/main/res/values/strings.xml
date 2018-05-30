@@ -169,4 +169,8 @@
     <string name="chats_with_this_user_will_be_lost">Chats with this user will be lost</string>
     <string name="yes_coma_remove_this_contact">Yes, remove this contact</string>
     <string name="no_coma_get_me_out_of_here">No, get me out of here</string>
+
+    <string name="add_female">Add female</string>
+    <string name="add_male">Add male</string>
+    <string name="add_to_come">Add to come</string>
 </resources>
