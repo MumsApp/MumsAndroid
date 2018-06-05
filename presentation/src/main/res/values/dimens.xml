@@ -81,6 +81,7 @@
     <dimen name="menu_row_1_radius">140dp</dimen>
     <dimen name="menu_row_2_radius">250dp</dimen>
     <dimen name="menu_labels_text_size">15sp</dimen>
+    <dimen name="menu_label_max_width">90dp</dimen>
 
 
     <!-- Location Widget -->

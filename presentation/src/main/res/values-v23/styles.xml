@@ -7,5 +7,7 @@
         <item name="android:textSize">@dimen/menu_labels_text_size</item>
         <item name="android:breakStrategy">simple</item>
         <item name="android:layout_marginTop">@dimen/padding_medium</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:maxWidth">@dimen/menu_label_max_width</item>
     </style>
 </resources>

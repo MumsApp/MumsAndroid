@@ -8,7 +8,7 @@
         android:id="@+id/mums_app_offers_top_bar"
         style="@style/top_bar_title"
         app:layout_constraintTop_toTopOf="parent"
-        app:topBarTitle="@string/mumsapp_offers" />
+        app:topBarTitle="@string/mumsapp_offers_and_services" />
 
     <android.support.v4.widget.NestedScrollView
         style="@style/scroll_with_recycler"

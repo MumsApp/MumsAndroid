@@ -10,11 +10,15 @@ import com.mumsapp.android.R
 import com.mumsapp.android.common.features.HasComponent
 import com.mumsapp.android.di.components.ActivityComponent
 import com.mumsapp.android.ui.views.BaseButton
+import com.mumsapp.android.ui.views.BaseTextView
 import com.mumsapp.android.ui.views.GridRecyclerView
 import com.mumsapp.domain.model.chat.TemplateChatRecipient
 import javax.inject.Inject
 
 class MembersWidget : CardView {
+
+    @BindView(R.id.members_title)
+    lateinit var titleView: BaseTextView
 
     @BindView(R.id.members_recycler_view)
     lateinit var recyclerView: GridRecyclerView
@@ -43,6 +47,26 @@ class MembersWidget : CardView {
 
         if(context is HasComponent<*>) {
             (context as HasComponent<ActivityComponent>).getComponent().inject(this)
+        }
+
+        setupAttributes(context, attrs)
+    }
+
+    private fun setupAttributes(context: Context, attrs: AttributeSet?) {
+        val array = context.obtainStyledAttributes(attrs, R.styleable.TextValues)
+
+        val title = array.getString(R.styleable.TextValues_title)
+        showTitle(title)
+
+        array.recycle()
+    }
+
+    fun showTitle(title: String?) {
+        if(title == null) {
+            titleView.visibility = View.GONE
+        } else {
+            titleView.visibility = View.VISIBLE
+            titleView.text = title
         }
     }
 

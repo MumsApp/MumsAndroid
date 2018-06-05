@@ -31,7 +31,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/create_page_school"
         app:layout_constraintTop_toBottomOf="@id/create_page_title"
-        app:text="@string/advertise" />
+        android:text="@string/advertise" />
 
     <com.mumsapp.android.ui.views.SquareButton
         android:id="@+id/create_page_school"
@@ -41,7 +41,7 @@
         app:layout_constraintLeft_toRightOf="@id/create_page_advertise"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@id/create_page_advertise"
-        app:text="@string/school" />
+        android:text="@string/school" />
 
     <com.mumsapp.android.ui.views.BaseTextView
         android:id="@+id/create_page_description"

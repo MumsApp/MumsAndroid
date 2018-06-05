@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/default_layout"
+    style="@style/cell_layout"
     android:layout_height="wrap_content"
     android:paddingTop="@dimen/padding_medium"
     android:paddingBottom="@dimen/padding_medium">

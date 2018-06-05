@@ -22,14 +22,15 @@
             <android.support.constraint.ConstraintLayout
                 style="@style/default_layout"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/padding_default">
+                android:layout_marginTop="@dimen/padding_default"
+                android:background="@android:color/transparent">
 
                 <com.mumsapp.android.ui.views.BaseTextView
                     android:id="@+id/shop_filter_category"
                     style="@style/text_filter"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toLeftOf="@id/shop_filter_category_divider"
-                    tools:text="Baby clothing" />
+                    android:text="Baby clothing" />
 
                 <View
                     android:id="@+id/shop_filter_category_divider"
@@ -45,7 +46,7 @@
                     android:gravity="center"
                     app:layout_constraintLeft_toRightOf="@id/shop_filter_category_divider"
                     app:layout_constraintRight_toLeftOf="@id/shop_filter_price_divider"
-                    tools:text="Price 45-150" />
+                    android:text="Price 45-150" />
 
                 <View
                     android:id="@+id/shop_filter_price_divider"
@@ -61,7 +62,7 @@
                     android:gravity="end"
                     app:layout_constraintLeft_toRightOf="@id/shop_filter_price_divider"
                     app:layout_constraintRight_toRightOf="parent"
-                    tools:text="1-30 Miles" />
+                    android:text="1-30\n Miles" />
             </android.support.constraint.ConstraintLayout>
 
             <com.mumsapp.android.ui.views.BaseButton

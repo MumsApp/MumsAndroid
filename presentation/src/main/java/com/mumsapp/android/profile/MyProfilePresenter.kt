@@ -10,6 +10,8 @@ import com.mumsapp.domain.utils.SessionManager
 import com.mumsapp.domain.interactor.user.GetUserProfileUseCase.Params
 import com.mumsapp.domain.interactor.user.UpdateUserDetailsUseCase
 import com.mumsapp.domain.interactor.user.UpdateUserLocationUseCase
+import com.mumsapp.domain.model.chat.TemplateChatRecipient
+import com.mumsapp.domain.model.mums_app_offers.TemplateMumsAppOffer
 import com.mumsapp.domain.model.user.UpdateLocationRequest
 import com.mumsapp.domain.model.user.UpdateUserDetailsRequest
 import com.mumsapp.domain.repository.ImagesRepository
@@ -42,6 +44,8 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
 
     override fun start() {
         loadAndUpdateUserProfile()
+        showMockedOffers()
+        showMockedFriends()
     }
 
     fun onSettingsClick() {
@@ -127,5 +131,36 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
     private fun handleUpdateLocationSuccess(response: UserResponse) {
         val location = response.data.location
         view?.showNewLocation(location.latitude!!, location.longitude!!, location.formattedAddress!!)
+    }
+
+    private fun showMockedOffers() {
+        val offers = ArrayList<TemplateMumsAppOffer>()
+        offers += TemplateMumsAppOffer("Kid's activities", true)
+        offers += TemplateMumsAppOffer("Strollers", true)
+        offers += TemplateMumsAppOffer("Nannies", false)
+        offers += TemplateMumsAppOffer("Clothes", false)
+
+
+        view?.showOffers(offers)
+    }
+
+    private fun showMockedFriends() {
+        val members = ArrayList<TemplateChatRecipient>()
+        members += TemplateChatRecipient("1", "John Towar")
+        members += TemplateChatRecipient("1", "John Towar")
+        members += TemplateChatRecipient("1", "John Towar")
+        members += TemplateChatRecipient("1", "John Towar")
+        members += TemplateChatRecipient("1", "John Towar")
+        members += TemplateChatRecipient("1", "John Towar")
+        members += TemplateChatRecipient("1", "John Towar")
+        members += TemplateChatRecipient("1", "John Towar")
+        members += TemplateChatRecipient("1", "John Towar")
+        members += TemplateChatRecipient("1", "John Towar")
+        members += TemplateChatRecipient("1", "John Towar")
+        members += TemplateChatRecipient("1", "John Towar")
+        members += TemplateChatRecipient("1", "John Towar")
+        members += TemplateChatRecipient("1", "John Towar")
+
+        view?.showFriends(members)
     }
 }

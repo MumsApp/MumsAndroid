@@ -88,7 +88,7 @@
             <com.mumsapp.android.ui.views.BaseTextView
                 android:id="@+id/menu_offers_text"
                 style="@style/main_menu_button_text"
-                android:text="@string/mumsapp_offers"
+                android:text="@string/mumsapp_offers_and_services"
                 app:layout_constraintTop_toBottomOf="@id/menu_offers"
                 app:layout_constraintLeft_toLeftOf="@id/menu_offers"
                 app:layout_constraintRight_toRightOf="@id/menu_offers" />

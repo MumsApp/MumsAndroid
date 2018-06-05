@@ -25,6 +25,10 @@
         <item name="android:paddingBottom">@dimen/padding_big</item>
     </style>
 
+    <style name="cell_layout" parent="default_layout">
+        <item name="android:background">@color/white</item>
+    </style>
+
     <!-- Buttons -->
     <style name="button_default">
         <item name="android:layout_width">match_parent</item>
@@ -194,6 +198,8 @@
         <item name="android:textAllCaps">true</item>
         <item name="android:textSize">@dimen/menu_labels_text_size</item>
         <item name="android:layout_marginTop">@dimen/padding_medium</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:maxWidth">@dimen/menu_label_max_width</item>
     </style>
 
     <style name="default_text_container">

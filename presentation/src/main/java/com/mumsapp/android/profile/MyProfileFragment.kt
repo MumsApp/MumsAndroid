@@ -22,8 +22,12 @@ import com.mumsapp.android.ui.views.BaseTextView
 import com.mumsapp.android.ui.views.CircleImageView
 import com.mumsapp.android.ui.widgets.LocationWidget
 import com.mumsapp.android.ui.views.TopBar
+import com.mumsapp.android.ui.widgets.members.MembersWidget
+import com.mumsapp.android.ui.widgets.mums_app_offers.MumsAppOffersWidget
 import com.mumsapp.android.util.GOOGLE_PLACES_REQUEST_CODE
 import com.mumsapp.android.util.ImagesLoader
+import com.mumsapp.domain.model.chat.TemplateChatRecipient
+import com.mumsapp.domain.model.mums_app_offers.TemplateMumsAppOffer
 import javax.inject.Inject
 
 class MyProfileFragment : BaseFragment(), MyProfileView {
@@ -54,6 +58,12 @@ class MyProfileFragment : BaseFragment(), MyProfileView {
 
     @BindView(R.id.my_profile_location_widget)
     lateinit var locationWidget: LocationWidget
+
+    @BindView(R.id.my_profile_mums_app_offers_widget)
+    lateinit var offersWidget: MumsAppOffersWidget
+
+    @BindView(R.id.my_profile_friends)
+    lateinit var membersWidget: MembersWidget
 
     private var accountSettingsDialog: AccountSettingsDialog? = null
 
@@ -155,5 +165,13 @@ class MyProfileFragment : BaseFragment(), MyProfileView {
 
     override fun hideLocation() {
         locationWidget.setMapVisibility(false)
+    }
+
+    override fun showOffers(offers: List<TemplateMumsAppOffer>) {
+        offersWidget.setOffers(offers)
+    }
+
+    override fun showFriends(users: List<TemplateChatRecipient>) {
+        membersWidget.setMembers(users)
     }
 }

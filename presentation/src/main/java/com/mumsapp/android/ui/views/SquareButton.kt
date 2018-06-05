@@ -37,12 +37,12 @@ class SquareButton: CardView {
 
     private fun setupAttributes(context: Context, attrs: AttributeSet?) {
         val buttonArray = context.obtainStyledAttributes(attrs, R.styleable.SquareButton)
-        val textArray = context.obtainStyledAttributes(attrs, R.styleable.TextAttributes)
+        val textArray = context.obtainStyledAttributes(attrs, R.styleable.TextValues)
 
         val image = buttonArray.getDrawable(R.styleable.SquareButton_image)
         setImage(image)
 
-        val text = textArray.getString(R.styleable.TextAttributes_text)
+        val text = textArray.getString(R.styleable.TextValues_android_text)
         setText(text)
 
         buttonArray.recycle()

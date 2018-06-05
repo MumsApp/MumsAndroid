@@ -7,11 +7,20 @@
     android:paddingEnd="0dp"
     android:paddingStart="0dp">
 
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/members_title"
+        style="@style/text_normal_bold"
+        android:layout_marginStart="@dimen/padding_default"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/friends" />
+
     <com.mumsapp.android.ui.views.GridRecyclerView
         android:id="@+id/members_recycler_view"
         style="@style/default_grid_recycler"
         app:columnsCount="6"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/members_title"
+        android:layout_marginTop="@dimen/padding_default"
         tools:itemCount="9"
         tools:listitem="@layout/cell_members_widget" />
 
@@ -23,9 +32,9 @@
     <com.mumsapp.android.ui.views.BaseButton
         android:id="@+id/members_button"
         style="@style/button_white_background"
-        android:paddingStart="@dimen/padding_medium"
-        android:paddingEnd="@dimen/padding_medium"
-        android:text="@string/send_a_message"
         android:drawableStart="@drawable/ic_latter"
+        android:paddingEnd="@dimen/padding_medium"
+        android:paddingStart="@dimen/padding_medium"
+        android:text="@string/send_a_message"
         app:layout_constraintTop_toBottomOf="@id/members_divider" />
 </android.support.constraint.ConstraintLayout>

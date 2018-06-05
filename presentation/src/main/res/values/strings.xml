@@ -43,7 +43,7 @@
     <string name="lets_talk">"Let's talk"</string>
     <string name="lobby">Lobby</string>
     <string name="shop">Shop</string>
-    <string name="mumsapp_offers">MumsApp Offers</string>
+    <string name="mumsapp_offers_and_services">MumsApp Offers and Services</string>
     <string name="holiday">Holiday</string>
     <string name="mumsapp_health">MumsApp Health</string>
     <string name="add_to_menu">Add to menu</string>
@@ -173,4 +173,6 @@
     <string name="add_female">Add female</string>
     <string name="add_male">Add male</string>
     <string name="add_to_come">Add to come</string>
+
+    <string name="friends">Friends</string>
 </resources>
