@@ -7,4 +7,8 @@ interface MainView : LifecycleView {
     fun showMenu()
 
     fun hideMenu()
+
+    fun showEmergencyButton()
+
+    fun hideEmergencyButton()
 }

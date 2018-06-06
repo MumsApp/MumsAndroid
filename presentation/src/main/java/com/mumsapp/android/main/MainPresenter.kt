@@ -3,18 +3,27 @@ package com.mumsapp.android.main
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.navigation.ActivitiesNavigationService
 import com.mumsapp.android.navigation.FragmentsNavigationService
+import com.mumsapp.android.util.EMERGENCY_BUTTON_VALUE_KEY
+import com.mumsapp.domain.utils.SharedPreferencesManager
 import javax.inject.Inject
 
 class MainPresenter : LifecyclePresenter<MainView> {
 
     private val fragmentsNavigationService: FragmentsNavigationService
     private val activityNavigationService: ActivitiesNavigationService
+    private val sharedPreferencesManager: SharedPreferencesManager
 
     @Inject
     constructor(fragmentsNavigationService: FragmentsNavigationService,
-                activityNavigationService: ActivitiesNavigationService) {
+                activityNavigationService: ActivitiesNavigationService,
+                sharedPreferencesManager: SharedPreferencesManager) {
         this.fragmentsNavigationService = fragmentsNavigationService
         this.activityNavigationService = activityNavigationService
+        this.sharedPreferencesManager = sharedPreferencesManager
+    }
+
+    override fun start() {
+        setupEmergencyButton()
     }
 
     fun handleBackOrDelegateToSystem(): Boolean {
@@ -41,10 +50,12 @@ class MainPresenter : LifecyclePresenter<MainView> {
 
     fun onOpenMenuClick() {
         view?.showMenu()
+        view?.hideEmergencyButton()
     }
 
     fun onCloseMenuClick() {
         view?.hideMenu()
+        view?.showEmergencyButton()
     }
 
     fun onMeClick() {
@@ -87,5 +98,15 @@ class MainPresenter : LifecyclePresenter<MainView> {
 
     fun onAddClick() {
 
+    }
+
+    private fun setupEmergencyButton() {
+        val enabled = sharedPreferencesManager.getBoolean(EMERGENCY_BUTTON_VALUE_KEY, true)
+
+        if(enabled) {
+            view?.showEmergencyButton()
+        } else {
+            view?.hideEmergencyButton()
+        }
     }
 }

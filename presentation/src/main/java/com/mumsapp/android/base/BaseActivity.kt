@@ -1,5 +1,6 @@
 package com.mumsapp.android.base
 
+import android.content.Context
 import android.os.Bundle
 import android.support.annotation.MainThread
 import android.support.design.widget.CoordinatorLayout
@@ -14,6 +15,7 @@ import com.mumsapp.android.di.components.ActivityComponent
 import com.mumsapp.android.util.KeyboardHelper
 import com.sembozdemir.permissionskt.askPermissions
 import com.sembozdemir.permissionskt.handlePermissionsResult
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import javax.inject.Inject
 
 abstract class BaseActivity: AppCompatActivity(), HasComponent<ActivityComponent> {
@@ -27,6 +29,10 @@ abstract class BaseActivity: AppCompatActivity(), HasComponent<ActivityComponent
         super.onCreate(savedInstanceState)
         createActivityComponent()
         makeInject()
+    }
+
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {

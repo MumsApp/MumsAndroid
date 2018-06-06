@@ -14,3 +14,6 @@ const val LOBBY_CATEGORY_ID_KEY = "LOBBY_CATEGORY_ID"
 
 //Members Widget
 const val MAX_VISIBLE_MEMBERS = 9
+
+//Shared Preference Keys
+const val EMERGENCY_BUTTON_VALUE_KEY = "EMERGENCY_BUTTON_VALUE"

@@ -26,6 +26,9 @@ class MainActivity : BaseFragmentActivity(), MainView, HasOverlays {
     @BindView(R.id.menu_open)
     lateinit var menuOpenButton: BaseImageButton
 
+    @BindView(R.id.btn_emergency)
+    lateinit var emergencyButton: BaseImageButton
+
     @BindView(R.id.main_menu)
     lateinit var menuLayout: ConstraintLayout
 
@@ -105,6 +108,14 @@ class MainActivity : BaseFragmentActivity(), MainView, HasOverlays {
         menuLayout.animate().translationY(menuLayout.height.toFloat()).withEndAction({
             menuLayout.visibility = View.GONE
         })
+    }
+
+    override fun showEmergencyButton() {
+        emergencyButton.visibility = View.VISIBLE
+    }
+
+    override fun hideEmergencyButton() {
+        emergencyButton.visibility = View.GONE
     }
 
     override fun hideBottomMenuButton() {

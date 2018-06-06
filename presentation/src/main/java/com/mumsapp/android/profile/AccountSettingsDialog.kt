@@ -5,10 +5,12 @@ import android.os.Bundle
 import android.view.View
 import butterknife.BindView
 import butterknife.ButterKnife
+import butterknife.OnCheckedChanged
 import butterknife.OnClick
 import com.mumsapp.android.R
 import com.mumsapp.android.base.*
 import com.mumsapp.android.di.components.ActivityComponent
+import com.mumsapp.android.ui.views.BaseSwitch
 import com.mumsapp.android.ui.views.NonCLickableFrameLayout
 import com.mumsapp.android.ui.views.TopBar
 import javax.inject.Inject
@@ -23,6 +25,9 @@ class AccountSettingsDialog(context: Context) : BaseDialog(context), AccountSett
 
     @BindView(R.id.account_settings_top_bar)
     lateinit var topBar: TopBar
+
+    @BindView(R.id.account_settings_emergency_button)
+    lateinit var emergencySwitch: BaseSwitch
 
     override fun <T : BasePresenter<BaseView>> getPresenter(): T = presenter as T
 
@@ -42,6 +47,11 @@ class AccountSettingsDialog(context: Context) : BaseDialog(context), AccountSett
         presenter.attachView(this)
     }
 
+    @OnCheckedChanged(R.id.account_settings_emergency_button)
+    fun onEmergencyButtonValueChanged(value: Boolean) {
+        presenter.onEmergencyButtonValueChanged(value)
+    }
+
     @OnClick(R.id.account_settings_logout)
     fun onLogOutClick() {
         presenter.onLogOutClick()
@@ -49,6 +59,10 @@ class AccountSettingsDialog(context: Context) : BaseDialog(context), AccountSett
 
     override fun dismissView() {
         dismiss()
+    }
+
+    override fun setEmergencyButtonValue(value: Boolean) {
+        emergencySwitch.isChecked = value
     }
 
     override fun showLoading() {

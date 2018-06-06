@@ -12,6 +12,7 @@ import com.mumsapp.android.di.modules.AppModule
 import io.fabric.sdk.android.Fabric
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig
 
+
 class MainApplication : MultiDexApplication() {
 
     val appComponent: AppComponent by lazy {
@@ -49,7 +50,7 @@ class MainApplication : MultiDexApplication() {
 
     private fun setupDefaultFont() {
         CalligraphyConfig.initDefault(CalligraphyConfig.Builder()
-                .setDefaultFontPath("fonts/Poppins-Regular.ttf")
+                .setDefaultFontPath("fonts/Comic-Sans-MS.ttf")
                 .setFontAttrId(R.attr.fontPath)
                 .build()
         )
