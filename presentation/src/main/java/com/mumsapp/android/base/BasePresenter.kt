@@ -57,7 +57,7 @@ abstract class BasePresenter<View: BaseView> {
                     .onErrorResumeNext({ throwable: Throwable ->
                         if(throwable is InvalidRefreshTokenException) {
                             view?.showSessionExpired()
-                            Observable.empty<T>()
+                            return@onErrorResumeNext Observable.empty<T>()
                         }
 
                         Observable.error<T>(throwable)

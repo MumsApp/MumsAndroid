@@ -37,9 +37,7 @@ class AuthorizationTransformerProvider : UseCaseTransformerProvider {
                 return userRepository
                         .refreshToken(request)
                         .map({ newToken ->
-                            if (newToken != null) {
-                                tokenPersistenceService.saveToken(newToken)
-                            }
+                            tokenPersistenceService.saveToken(newToken)
 
                             throw RetryForcedException()
                         })

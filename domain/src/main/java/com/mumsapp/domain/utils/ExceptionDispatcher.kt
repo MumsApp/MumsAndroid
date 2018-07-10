@@ -8,6 +8,8 @@ interface ExceptionDispatcher {
 
     fun isBadRequest(throwable: Throwable): Boolean
 
+    fun isUnAuthorized(throwable: Throwable): Boolean
+
     fun isBadRequest(responseCode: Int): Boolean
 
     fun isUnAuthorized(responseCode: Int): Boolean
