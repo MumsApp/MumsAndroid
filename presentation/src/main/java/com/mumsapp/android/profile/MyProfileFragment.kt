@@ -108,7 +108,7 @@ class MyProfileFragment : BaseFragment(), MyProfileView {
         }
     }
 
-    override fun showProfileInfo(name: String, description: String) {
+    override fun showProfileInfo(name: String, description: String?) {
         nameView.text = name
         descriptionView.text = description
     }
@@ -164,6 +164,7 @@ class MyProfileFragment : BaseFragment(), MyProfileView {
     }
 
     override fun hideLocation() {
+        locationWidget.setLocationName(null)
         locationWidget.setMapVisibility(false)
     }
 

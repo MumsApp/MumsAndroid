@@ -6,7 +6,7 @@ import com.mumsapp.domain.model.mums_app_offers.TemplateMumsAppOffer
 
 interface MyProfileView : LifecycleView {
 
-    fun showProfileInfo(name: String, description: String)
+    fun showProfileInfo(name: String, description: String?)
 
     fun loadAvatar(url: String)
 

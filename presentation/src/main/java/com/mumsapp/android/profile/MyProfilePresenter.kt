@@ -75,6 +75,10 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
             val url = imagesRepository.getApiImageUrl(user.photo.src!!)
             view?.loadAvatar(url)
         }
+
+        if(user.location.enabled != null && user.location.enabled!!) {
+            view?.showNewLocation(user.location.latitude!!, user.location.longitude!!, user.location.name!!)
+        }
     }
 
     fun onChangeClick() {
@@ -101,6 +105,16 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
     }
 
     fun onLocationSwitchChanged(value: Boolean) {
+        val loggedUser = sessionManager.loadLoggedUser()
+
+        if(loggedUser?.data?.location?.placeId != null) {
+
+            val location = loggedUser.data.location
+
+            updateLocationOnServer(location.name!!, location.placeId!!, location.latitude!!.toDouble(),
+                    location.longitude!!.toDouble(), location.formattedAddress!!, value)
+        }
+
         if (value) {
             view?.showLocation()
         } else {
@@ -109,17 +123,23 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
     }
 
     fun onLocationSelected(place: Place) {
-        updateLocationOnServer(place)
+        updateLocationOnServer(place, true)
     }
 
     fun onLocationError(status: Status) {
         view?.showToast(resourceRepository.getString(R.string.location_choose_error))
     }
 
-    private fun updateLocationOnServer(place: Place) {
-        val request = UpdateLocationRequest(place.name.toString(), place.id,
+    private fun updateLocationOnServer(place: Place, enabled: Boolean) {
+        updateLocationOnServer(place.name.toString(), place.id,
                 place.latLng.latitude, place.latLng.longitude,
-                place.address.toString())
+                place.address.toString(), enabled)
+    }
+
+    private fun updateLocationOnServer(name: String, placeId: String, latitude: Double,
+                                       longitude: Double, address: String, enabled: Boolean) {
+        val request = UpdateLocationRequest(name, placeId, latitude, longitude, address, enabled)
+
         addDisposable(
                 updateUserLocationUseCase
                         .execute(request)
@@ -129,8 +149,12 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
     }
 
     private fun handleUpdateLocationSuccess(response: UserResponse) {
-        val location = response.data.location
-        view?.showNewLocation(location.latitude!!, location.longitude!!, location.formattedAddress!!)
+        if(response.data.location.enabled != null && response.data.location.enabled!!) {
+            val location = response.data.location
+            view?.showNewLocation(location.latitude!!, location.longitude!!, location.formattedAddress!!)
+        } else {
+            view?.hideLocation()
+        }
     }
 
     private fun showMockedOffers() {

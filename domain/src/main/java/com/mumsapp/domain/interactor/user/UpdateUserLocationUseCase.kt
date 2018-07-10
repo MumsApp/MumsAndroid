@@ -24,7 +24,7 @@ class UpdateUserLocationUseCase(val repository: UserRepository, val sessionManag
                 .map {
                     val user = sessionManager.loadLoggedUser()
                     val location = UserResponse.Location(param.name, param.placeId, param.latitude.toString(),
-                            param.longitude.toString(), param.formattedAddress)
+                            param.longitude.toString(), param.formattedAddress, param.enabled)
                     user!!.data.location = location
                     sessionManager.saveLoggedUser(user)
                     user

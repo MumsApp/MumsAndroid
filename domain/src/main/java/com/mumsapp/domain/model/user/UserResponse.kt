@@ -9,14 +9,15 @@ data class UserResponse(@SerializedName("status") var status: String,
     data class User(@SerializedName("id") var id: Int,
                     @SerializedName("name") var firstName: String,
                     @SerializedName("surname") var lastName: String,
-                    @SerializedName("description") var description: String,
-                    @SerializedName("children") var children: Children,
+                    @SerializedName("description") var description: String?,
+                    @SerializedName("children") var children: List<Child>,
                     @SerializedName("photo") var photo: Photo,
                     @SerializedName("location") var location: Location) : BaseResponse()
 
-    data class Children(@SerializedName("number") var number: Int?,
-                        @SerializedName("ageRangeFrom") var ageRangeFrom: Int?,
-                        @SerializedName("ageRangeTo") var ageRangeTo: Int?) : BaseResponse()
+    data class Child(@SerializedName("id") var id: Int?,
+                     @SerializedName("age") var age: Int?,
+                     @SerializedName("ageUnit") var ageUnit: Int?,
+                     @SerializedName("sex") var sex: Int?) : BaseResponse()
 
     data class Photo(@SerializedName("src") var src: String?) : BaseResponse()
 
@@ -24,6 +25,7 @@ data class UserResponse(@SerializedName("status") var status: String,
                         @SerializedName("placeID") var placeId: String?,
                         @SerializedName("lat") var latitude: String?,
                         @SerializedName("lon") var longitude: String?,
-                        @SerializedName("formattedAddress") var formattedAddress: String?)
+                        @SerializedName("formattedAddress") var formattedAddress: String?,
+                        @SerializedName("enabled") var enabled: Boolean?)
         : BaseResponse()
 }
