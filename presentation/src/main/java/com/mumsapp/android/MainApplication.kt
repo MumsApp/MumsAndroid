@@ -10,6 +10,8 @@ import com.mumsapp.android.di.components.DaggerAppComponent
 import com.mumsapp.android.di.modules.ActivityModule
 import com.mumsapp.android.di.modules.AppModule
 import io.fabric.sdk.android.Fabric
+import io.reactivex.functions.Function
+import io.reactivex.plugins.RxJavaPlugins
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig
 
 
@@ -23,6 +25,15 @@ class MainApplication : MultiDexApplication() {
         super.onCreate()
         setupFabric()
         setupDefaultFont()
+
+        RxJavaPlugins.setOnObservableAssembly( {
+            println("on assembly ${it.javaClass.simpleName}")
+            it
+        })
+        RxJavaPlugins.setOnSingleAssembly( {
+            println("on assembly ${it.javaClass.simpleName}")
+            it
+        })
     }
 
     companion object {

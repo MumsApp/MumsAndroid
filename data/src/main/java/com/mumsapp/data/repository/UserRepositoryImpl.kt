@@ -12,6 +12,7 @@ import com.mumsapp.domain.repository.UserRepository
 import com.mumsapp.domain.utils.ExceptionDispatcher
 import com.mumsapp.domain.utils.SerializationHelper
 import io.reactivex.Observable
+import io.reactivex.ObservableSource
 import io.reactivex.functions.Function
 import javax.inject.Inject
 
@@ -37,13 +38,13 @@ class UserRepositoryImpl : BaseRestRepository, UserRepository {
 
     override fun refreshToken(request: RefreshTokenRequest): Observable<Token> {
         return restApi.tokenRefresh(request)
-                .onErrorResumeNext(Function {
-                    if(exceptionDispatcher.isBadRequest(it)) {
-                        val message = resourceRepository.getString(R.string.error_refresh_token_invalid_or_expired)
-                        Observable.error<InvalidRefreshTokenException>(InvalidRefreshTokenException(message))
+                .onErrorResumeNext(Function { throwable ->
+                    if (exceptionDispatcher.isUnAuthorized(throwable)) {
+                        val errorMessage = resourceRepository.getString(R.string.error_refresh_token_invalid_or_expired)
+                        return@Function Observable.error(InvalidRefreshTokenException(errorMessage))
                     }
 
-                    Observable.error(it)
+                    return@Function Observable.error(throwable)
                 })
     }
 
