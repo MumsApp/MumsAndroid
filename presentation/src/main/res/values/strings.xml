@@ -175,4 +175,25 @@
     <string name="add_to_come">Add to come</string>
 
     <string name="friends">Friends</string>
+    
+    <string name="child_readable_pattern">%s %s old</string>
+
+    <plurals name="week_plural">
+        <item quantity="one">%d week</item>
+        <item quantity="other">%d weeks</item>
+    </plurals>
+
+    <plurals name="month_plural">
+        <item quantity="one">%d month</item>
+        <item quantity="other">%d months</item>
+    </plurals>
+
+    <plurals name="year_plural">
+        <item quantity="one">%d year</item>
+        <item quantity="other">%d years</item>
+    </plurals>
+
+    <string name="girl">Girl</string>
+    <string name="boy">Boy</string>
+    <string name="to_come">To come</string>
 </resources>

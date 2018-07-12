@@ -17,3 +17,13 @@ const val MAX_VISIBLE_MEMBERS = 9
 
 //Shared Preference Keys
 const val EMERGENCY_BUTTON_VALUE_KEY = "EMERGENCY_BUTTON_VALUE"
+
+//Age units
+const val AGE_UNIT_WEEK = 1
+const val AGE_UNIT_MONTH = 2
+const val AGE_UNIT_YEAR = 3
+
+//Sexes
+const val SEX_MALE = 1
+const val SEX_FEMALE = 2
+const val SEX_TO_COME = 3

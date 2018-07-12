@@ -1,6 +1,10 @@
 package com.mumsapp.android.base
 
 import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.mumsapp.android.R
 import com.mumsapp.domain.model.BaseResponse
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
@@ -24,5 +28,9 @@ abstract class BaseRecyclerViewAdapter<T : BaseResponse, VH : BaseViewHolder<T>>
 
     fun setItemsClickListener(listener: (item: T) -> Unit) {
         onItemClickListener = listener
+    }
+
+    protected fun inflate(parent: ViewGroup, layoutResId: Int): View {
+        return LayoutInflater.from(parent.context).inflate(layoutResId, parent, false)
     }
 }

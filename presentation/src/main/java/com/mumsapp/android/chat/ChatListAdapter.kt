@@ -1,6 +1,5 @@
 package com.mumsapp.android.chat
 
-import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.mumsapp.android.R
 import com.mumsapp.android.base.BaseRecyclerViewAdapter
@@ -18,7 +17,7 @@ class ChatListAdapter : BaseRecyclerViewAdapter<TemplateChatThread, ChatListView
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatListViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.cell_chat_list, parent, false)
+        val itemView = inflate(parent, R.layout.cell_chat_list)
         return ChatListViewHolder(imagesLoader, itemView)
     }
 }

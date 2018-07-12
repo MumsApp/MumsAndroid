@@ -1,4 +1,4 @@
-package com.mumsapp.android.ui.widgets
+package com.mumsapp.android.ui.widgets.children_selection
 
 import android.content.Context
 import android.support.v7.widget.CardView
