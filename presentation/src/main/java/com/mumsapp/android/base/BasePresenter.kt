@@ -79,11 +79,11 @@ abstract class BasePresenter<View: BaseView> {
     }
 
     protected open fun stop() {
-        resetDisposables()
+
     }
 
     protected open fun destroy() {
-
+        resetDisposables()
     }
 
     open fun pause() {}
