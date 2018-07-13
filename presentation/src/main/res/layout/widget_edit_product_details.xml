@@ -39,7 +39,7 @@
 
     <com.mumsapp.android.ui.views.BaseEditText
         android:id="@+id/edit_product_details_description"
-        style="@style/form_with_borders_background"
+        style="@style/big_form_with_borders_background"
         android:layout_width="match_parent"
         android:layout_height="@dimen/edit_product_details_description_height"
         android:layout_marginStart="0dp"

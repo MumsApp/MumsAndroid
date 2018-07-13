@@ -23,6 +23,7 @@
     <style name="default_dialog_layout" parent="default_layout">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:paddingBottom">@dimen/padding_big</item>
+        <item name="android:background">@color/white</item>
     </style>
 
     <style name="cell_layout" parent="default_layout">
@@ -353,8 +354,8 @@
         <item name="android:textSize">@dimen/text_size_normal</item>
     </style>
 
-    <style name="form_with_borders_background" parent="default_form">
-        <item name="android:background">@drawable/input_with_border_background</item>
+    <style name="big_form_with_borders_background" parent="default_form">
+        <item name="android:background">@drawable/input_with_border_left_right_radius_background</item>
         <item name="android:padding">@dimen/padding_medium</item>
         <item name="android:gravity">left|top</item>
         <item name="android:overScrollMode">always</item>
@@ -596,6 +597,13 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/padding_small</item>
         <item name="android:layout_marginTop">@dimen/padding_medium</item>
+    </style>
+
+    <style name="default_number_incrementer">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="minValue">0</item>
+        <item name="maxValue">99</item>
     </style>
 
 

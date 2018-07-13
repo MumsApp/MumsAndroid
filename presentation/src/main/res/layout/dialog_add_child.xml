@@ -1,6 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/default_dialog_layout">
 
+    <com.mumsapp.android.ui.views.TopBar
+        android:id="@+id/add_child_top_bar"
+        style="@style/top_bar_close"
+        app:topBarTitle="@string/add_child" />
+
+    <com.mumsapp.android.ui.views.BaseImageView
+        android:id="@+id/add_child_image"
+        style="@style/default_image_view"
+        android:layout_marginTop="@dimen/padding_default"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/add_child_top_bar"
+        tools:src="@drawable/ic_male" />
+
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/add_child_sex"
+        style="@style/text_normal"
+        android:layout_marginTop="@dimen/padding_medium"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/add_child_image"
+        tools:text="Male" />
+
+    <com.mumsapp.android.ui.views.NumberIncrementer
+        android:id="@+id/add_child_age_incrementer"
+        style="@style/default_number_incrementer"
+        android:layout_marginTop="@dimen/padding_default"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/add_child_sex" />
+
+    <com.mumsapp.android.ui.views.BaseTextView
+        style="@style/text_small_grey_light"
+        android:layout_marginEnd="@dimen/padding_medium"
+        android:text="@string/age"
+        app:layout_constraintBottom_toBottomOf="@id/add_child_age_incrementer"
+        app:layout_constraintRight_toLeftOf="@id/add_child_age_incrementer"
+        app:layout_constraintTop_toTopOf="@id/add_child_age_incrementer" />
+
+    <RadioGroup
+        android:id="@+id/add_child_radio_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_big"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/add_child_age_incrementer">
+
+        <com.mumsapp.android.ui.views.BaseCheckbox
+            android:id="@+id/add_child_checkbox_week"
+            style="@style/checkbox_default"
+            android:text="@string/weeks" />
+
+        <com.mumsapp.android.ui.views.BaseCheckbox
+            android:id="@+id/add_child_checkbox_months"
+            style="@style/checkbox_default"
+            android:layout_marginEnd="@dimen/padding_default"
+            android:layout_marginStart="@dimen/padding_default"
+            android:text="@string/months" />
+
+        <com.mumsapp.android.ui.views.BaseCheckbox
+            android:id="@+id/add_child_checkbox_years"
+            style="@style/checkbox_default"
+            android:text="@string/years" />
+    </RadioGroup>
+
+    <com.mumsapp.android.ui.views.BaseButton
+        android:id="@+id/add_child_save"
+        style="@style/button_green"
+        android:layout_marginEnd="@dimen/padding_default"
+        android:layout_marginStart="@dimen/padding_default"
+        android:layout_marginTop="@dimen/padding_big"
+        android:text="@string/save"
+        app:layout_constraintTop_toBottomOf="@id/add_child_radio_group" />
 </android.support.constraint.ConstraintLayout>
