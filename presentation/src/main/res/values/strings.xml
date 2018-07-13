@@ -195,13 +195,18 @@
 
     <string name="girl">Girl</string>
     <string name="boy">Boy</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
     <string name="to_come">To come</string>
 
     <string name="add_child">Add child</string>
+    <string name="edit_child">Edit child</string>
 
     <string name="age">Age</string>
 
     <string name="weeks">weeks</string>
     <string name="months">months</string>
     <string name="years">years</string>
+
+    <string name="please_choose_the_type_of_age">Please choose the type of age.</string>
 </resources>

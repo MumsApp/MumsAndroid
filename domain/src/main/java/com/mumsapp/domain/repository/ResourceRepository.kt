@@ -1,5 +1,7 @@
 package com.mumsapp.domain.repository
 
+import android.graphics.drawable.Drawable
+
 interface ResourceRepository {
 
     fun getString(stringResId: Int): String
@@ -19,4 +21,6 @@ interface ResourceRepository {
     fun getInteger(resId: Int): Int
 
     fun getDimen(dimenId: Int): Int
+
+    fun getDrawable(drawableId: Int): Drawable
 }

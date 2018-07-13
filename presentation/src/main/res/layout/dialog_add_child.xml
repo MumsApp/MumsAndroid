@@ -7,7 +7,7 @@
     <com.mumsapp.android.ui.views.TopBar
         android:id="@+id/add_child_top_bar"
         style="@style/top_bar_close"
-        app:topBarTitle="@string/add_child" />
+        tools:topBarTitle="@string/add_child" />
 
     <com.mumsapp.android.ui.views.BaseImageView
         android:id="@+id/add_child_image"
@@ -43,33 +43,30 @@
         app:layout_constraintRight_toLeftOf="@id/add_child_age_incrementer"
         app:layout_constraintTop_toTopOf="@id/add_child_age_incrementer" />
 
-    <RadioGroup
-        android:id="@+id/add_child_radio_group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <com.mumsapp.android.ui.views.BaseCheckbox
+        android:id="@+id/add_child_checkbox_week"
+        style="@style/checkbox_default"
         android:layout_marginTop="@dimen/padding_big"
-        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/add_child_age_incrementer"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/add_child_checkbox_month"
+        android:text="@string/weeks" />
+
+    <com.mumsapp.android.ui.views.BaseCheckbox
+        android:id="@+id/add_child_checkbox_month"
+        style="@style/checkbox_default"
+        app:layout_constraintTop_toTopOf="@id/add_child_checkbox_week"
+        app:layout_constraintLeft_toRightOf="@id/add_child_checkbox_week"
+        app:layout_constraintRight_toLeftOf="@id/add_child_checkbox_year"
+        android:text="@string/months" />
+
+    <com.mumsapp.android.ui.views.BaseCheckbox
+        android:id="@+id/add_child_checkbox_year"
+        style="@style/checkbox_default"
+        app:layout_constraintTop_toTopOf="@id/add_child_checkbox_week"
+        app:layout_constraintLeft_toRightOf="@id/add_child_checkbox_month"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/add_child_age_incrementer">
-
-        <com.mumsapp.android.ui.views.BaseCheckbox
-            android:id="@+id/add_child_checkbox_week"
-            style="@style/checkbox_default"
-            android:text="@string/weeks" />
-
-        <com.mumsapp.android.ui.views.BaseCheckbox
-            android:id="@+id/add_child_checkbox_months"
-            style="@style/checkbox_default"
-            android:layout_marginEnd="@dimen/padding_default"
-            android:layout_marginStart="@dimen/padding_default"
-            android:text="@string/months" />
-
-        <com.mumsapp.android.ui.views.BaseCheckbox
-            android:id="@+id/add_child_checkbox_years"
-            style="@style/checkbox_default"
-            android:text="@string/years" />
-    </RadioGroup>
+        android:text="@string/years" />
 
     <com.mumsapp.android.ui.views.BaseButton
         android:id="@+id/add_child_save"
@@ -78,5 +75,5 @@
         android:layout_marginStart="@dimen/padding_default"
         android:layout_marginTop="@dimen/padding_big"
         android:text="@string/save"
-        app:layout_constraintTop_toBottomOf="@id/add_child_radio_group" />
+        app:layout_constraintTop_toBottomOf="@id/add_child_checkbox_week" />
 </android.support.constraint.ConstraintLayout>

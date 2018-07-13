@@ -1,5 +1,6 @@
 package com.mumsapp.android.profile
 
+import android.util.Log
 import com.google.android.gms.common.api.Status
 import com.google.android.gms.location.places.Place
 import com.mumsapp.android.R
@@ -153,11 +154,11 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
     }
 
     private fun onEditChildClick(child: Child) {
-        view?.showAddChildDialog(SEX_MALE, child, this::onSaveChildClick)
+        view?.showAddChildDialog(child.sex!!, child, this::onSaveChildClick)
     }
 
     private fun onSaveChildClick(child: Child) {
-
+        Log.e("onSave", child.toString())
     }
 
     private fun updateLocationOnServer(place: Place, enabled: Boolean) {

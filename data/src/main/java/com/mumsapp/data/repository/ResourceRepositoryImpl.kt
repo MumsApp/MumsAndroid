@@ -55,4 +55,8 @@ class ResourceRepositoryImpl : ResourceRepository {
     override fun getDimen(dimenId: Int): Int {
         return context.resources.getDimensionPixelSize(dimenId)
     }
+
+    override fun getDrawable(drawableId: Int): Drawable {
+        return ContextCompat.getDrawable(context, drawableId)!!
+    }
 }

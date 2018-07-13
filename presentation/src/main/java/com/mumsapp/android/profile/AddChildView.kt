@@ -2,6 +2,7 @@ package com.mumsapp.android.profile
 
 import android.graphics.drawable.Drawable
 import com.mumsapp.android.base.BaseView
+import com.mumsapp.domain.model.user.UserResponse.Child
 
 interface AddChildView : BaseView {
 
@@ -11,7 +12,9 @@ interface AddChildView : BaseView {
 
     fun setSex(image: Drawable, sexName: String)
 
-    fun setAge(age: String)
+    fun setAge(age: Int)
 
     fun setAgeUnitCheck(weeksChecked: Boolean, monthsChecked: Boolean, yearsChecked: Boolean)
+
+    fun deliverAction(child: Child)
 }
