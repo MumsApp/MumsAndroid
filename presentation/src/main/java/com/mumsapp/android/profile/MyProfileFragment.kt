@@ -22,12 +22,14 @@ import com.mumsapp.android.ui.views.BaseTextView
 import com.mumsapp.android.ui.views.CircleImageView
 import com.mumsapp.android.ui.widgets.LocationWidget
 import com.mumsapp.android.ui.views.TopBar
+import com.mumsapp.android.ui.widgets.children_selection.ChildrenSelectionWidget
 import com.mumsapp.android.ui.widgets.members.MembersWidget
 import com.mumsapp.android.ui.widgets.mums_app_offers.MumsAppOffersWidget
 import com.mumsapp.android.util.GOOGLE_PLACES_REQUEST_CODE
 import com.mumsapp.android.util.ImagesLoader
 import com.mumsapp.domain.model.chat.TemplateChatRecipient
 import com.mumsapp.domain.model.mums_app_offers.TemplateMumsAppOffer
+import com.mumsapp.domain.model.user.UserResponse
 import javax.inject.Inject
 
 class MyProfileFragment : BaseFragment(), MyProfileView {
@@ -58,6 +60,9 @@ class MyProfileFragment : BaseFragment(), MyProfileView {
 
     @BindView(R.id.my_profile_location_widget)
     lateinit var locationWidget: LocationWidget
+
+    @BindView(R.id.my_profile_children_selection_widget)
+    lateinit var childrenSelectionWidget: ChildrenSelectionWidget
 
     @BindView(R.id.my_profile_mums_app_offers_widget)
     lateinit var offersWidget: MumsAppOffersWidget
@@ -93,6 +98,7 @@ class MyProfileFragment : BaseFragment(), MyProfileView {
         presenter.attachViewWithLifecycle(this)
         topBar.setRightButtonClickListener { presenter.onSettingsClick() }
         configureLocationWidget()
+        configureChildrenSelectionWidget()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -148,6 +154,12 @@ class MyProfileFragment : BaseFragment(), MyProfileView {
         })
     }
 
+    private fun configureChildrenSelectionWidget() {
+        childrenSelectionWidget.addMaleListener = presenter::onAddMaleClick
+        childrenSelectionWidget.addFemaleListener = presenter::onAddFemaleClick
+        childrenSelectionWidget.addToComeListener = presenter::onAddToComeClick
+    }
+
     override fun showEditLocationScreen() {
         activitiesNavigationService.openGooglePlacesOverlayActivity(this, GOOGLE_PLACES_REQUEST_CODE)
     }
@@ -166,6 +178,14 @@ class MyProfileFragment : BaseFragment(), MyProfileView {
     override fun hideLocation() {
         locationWidget.setLocationName(null)
         locationWidget.setMapVisibility(false)
+    }
+
+    override fun showChildren(items: List<UserResponse.Child>, editListener: (item: UserResponse.Child) -> Unit) {
+        childrenSelectionWidget.showChildren(items, editListener)
+    }
+
+    override fun hideChildren() {
+        childrenSelectionWidget.hideChildren()
     }
 
     override fun showOffers(offers: List<TemplateMumsAppOffer>) {

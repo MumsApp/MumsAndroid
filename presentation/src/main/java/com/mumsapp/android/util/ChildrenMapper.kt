@@ -32,9 +32,9 @@ class ChildrenMapper {
 
     fun getReadableAge(child: Child) : String {
         return when(child.ageUnit) {
-            AGE_UNIT_WEEK -> resourceRepository.getQuantityString(R.plurals.week_plural, child.ageUnit!!)
-            AGE_UNIT_MONTH -> resourceRepository.getQuantityString(R.plurals.month_plural, child.ageUnit!!)
-            AGE_UNIT_YEAR -> resourceRepository.getQuantityString(R.plurals.year_plural, child.ageUnit!!)
+            AGE_UNIT_WEEK -> resourceRepository.getQuantityString(R.plurals.week_plural, child.ageUnit!!, child.ageUnit!!)
+            AGE_UNIT_MONTH -> resourceRepository.getQuantityString(R.plurals.month_plural, child.ageUnit!!, child.ageUnit!!)
+            AGE_UNIT_YEAR -> resourceRepository.getQuantityString(R.plurals.year_plural, child.ageUnit!!, child.ageUnit!!)
             else -> throw IllegalStateException("Wrong sex value")
         }
     }

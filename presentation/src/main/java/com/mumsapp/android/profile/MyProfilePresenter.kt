@@ -79,6 +79,12 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
         if(user.location.enabled != null && user.location.enabled!!) {
             view?.showNewLocation(user.location.latitude!!, user.location.longitude!!, user.location.name!!)
         }
+
+        if(user.children.isEmpty()) {
+           view?.hideChildren()
+        } else {
+            view?.showChildren(user.children, this::onEditChildClick)
+        }
     }
 
     fun onChangeClick() {
@@ -128,6 +134,22 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
 
     fun onLocationError(status: Status) {
         view?.showToast(resourceRepository.getString(R.string.location_choose_error))
+    }
+
+    fun onAddMaleClick() {
+
+    }
+
+    fun onAddFemaleClick() {
+
+    }
+
+    fun onAddToComeClick() {
+
+    }
+
+    private fun onEditChildClick(child: UserResponse.Child) {
+
     }
 
     private fun updateLocationOnServer(place: Place, enabled: Boolean) {

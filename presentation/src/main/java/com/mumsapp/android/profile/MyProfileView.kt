@@ -3,6 +3,7 @@ package com.mumsapp.android.profile
 import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.domain.model.chat.TemplateChatRecipient
 import com.mumsapp.domain.model.mums_app_offers.TemplateMumsAppOffer
+import com.mumsapp.domain.model.user.UserResponse
 
 interface MyProfileView : LifecycleView {
 
@@ -22,6 +23,10 @@ interface MyProfileView : LifecycleView {
     fun showNewLocation(latitude: String, longitude: String, name: String)
 
     fun hideLocation()
+
+    fun showChildren(items: List<UserResponse.Child>, editListener: (item: UserResponse.Child) -> Unit)
+
+    fun hideChildren()
 
     fun showOffers(offers: List<TemplateMumsAppOffer>)
 

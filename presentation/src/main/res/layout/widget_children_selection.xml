@@ -93,7 +93,7 @@
         app:layout_constraintTop_toBottomOf="@id/children_selection_widget_add_come_text"/>
 
     <com.mumsapp.android.ui.views.BaseRecyclerView
-        android:id="@+id/mums_app_offers_widget_recycler_view"
+        android:id="@+id/children_selection_widget_recycler"
         style="@style/recycler_default"
         android:paddingEnd="@dimen/padding_default"
         android:paddingStart="@dimen/padding_default"

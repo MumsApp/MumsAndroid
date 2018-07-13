@@ -75,7 +75,11 @@ class MembersWidget : CardView {
     }
 
     fun setMembers(members: List<TemplateChatRecipient>) {
+        if(recyclerView.adapter == null) {
+            recyclerView.adapter = adapter
+        }
+
         adapter.items = members
-        recyclerView.adapter = adapter
+        adapter.notifyDataSetChanged()
     }
 }

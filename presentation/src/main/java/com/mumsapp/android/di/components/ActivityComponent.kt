@@ -25,6 +25,7 @@ import com.mumsapp.android.shop.ShopFilterFragment
 import com.mumsapp.android.shop.ShopFragment
 import com.mumsapp.android.shop.ShopMenuDialog
 import com.mumsapp.android.ui.widgets.LocationWidget
+import com.mumsapp.android.ui.widgets.children_selection.ChildrenSelectionWidget
 import com.mumsapp.android.ui.widgets.members.MembersWidget
 import com.mumsapp.android.ui.widgets.mums_app_offers.MumsAppOffersWidget
 import dagger.Subcomponent
@@ -100,4 +101,6 @@ interface ActivityComponent {
     fun inject(fragment: ChatFragment)
 
     fun inject(widget: MumsAppOffersWidget)
+
+    fun inject(widget: ChildrenSelectionWidget)
 }

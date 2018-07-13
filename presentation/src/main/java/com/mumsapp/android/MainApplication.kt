@@ -25,15 +25,6 @@ class MainApplication : MultiDexApplication() {
         super.onCreate()
         setupFabric()
         setupDefaultFont()
-
-        RxJavaPlugins.setOnObservableAssembly( {
-            println("on assembly ${it.javaClass.simpleName}")
-            it
-        })
-        RxJavaPlugins.setOnSingleAssembly( {
-            println("on assembly ${it.javaClass.simpleName}")
-            it
-        })
     }
 
     companion object {
