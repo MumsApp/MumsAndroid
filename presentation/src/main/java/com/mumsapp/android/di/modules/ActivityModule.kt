@@ -96,8 +96,4 @@ class ActivityModule(private val activity: BaseActivity) {
                                       tokenPersistenceService: TokenPersistenceService, getUserProfileUseCase: GetUserProfileUseCase, schedulerProvider: SchedulerProvider): GoogleSignUpUseCase {
         return GoogleSignUpUseCase(googleRepository, userRepository, tokenPersistenceService, getUserProfileUseCase, schedulerProvider)
     }
-
-    @Provides
-    @ActivityScope
-    fun provideAccountSettingsDialog() = AccountSettingsDialog(activity)
 }

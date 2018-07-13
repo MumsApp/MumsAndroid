@@ -17,10 +17,7 @@ import com.mumsapp.android.mums_app_offers.MumsAppOfferDetailsFragment
 import com.mumsapp.android.mums_app_offers.MumsAppOffersFragment
 import com.mumsapp.android.organisation.OrganisationDetailsFragment
 import com.mumsapp.android.product.*
-import com.mumsapp.android.profile.AccountSettingsDialog
-import com.mumsapp.android.profile.MyProfileFragment
-import com.mumsapp.android.profile.UserDetailsSettingsDialog
-import com.mumsapp.android.profile.UserProfileFragment
+import com.mumsapp.android.profile.*
 import com.mumsapp.android.shop.ShopFilterFragment
 import com.mumsapp.android.shop.ShopFragment
 import com.mumsapp.android.shop.ShopMenuDialog
@@ -103,4 +100,6 @@ interface ActivityComponent {
     fun inject(widget: MumsAppOffersWidget)
 
     fun inject(widget: ChildrenSelectionWidget)
+
+    fun inject(dialog: AddChildDialog)
 }

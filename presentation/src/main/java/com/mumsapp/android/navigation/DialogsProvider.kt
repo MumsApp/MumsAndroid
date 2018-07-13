@@ -7,8 +7,10 @@ import com.mumsapp.android.common.dialogs.ConfirmationWithAvatarDialog
 import com.mumsapp.android.product.RemoveProductDialog
 import com.mumsapp.android.product.SelectImageSourceDialog
 import com.mumsapp.android.profile.AccountSettingsDialog
+import com.mumsapp.android.profile.AddChildDialog
 import com.mumsapp.android.profile.UserDetailsSettingsDialog
 import com.mumsapp.android.shop.ShopMenuDialog
+import com.mumsapp.domain.model.user.UserResponse
 import javax.inject.Inject
 
 class DialogsProvider {
@@ -35,4 +37,6 @@ class DialogsProvider {
     fun createConfirmationWithAvatarDialog() = ConfirmationWithAvatarDialog(activity)
 
     fun createConfirmationDialog() = ConfirmationDialog(activity)
+
+    fun createAddChildDialog() = AddChildDialog(activity)
 }

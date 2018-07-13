@@ -28,6 +28,9 @@ interface MyProfileView : LifecycleView {
 
     fun hideChildren()
 
+    fun showAddChildDialog(sex: Int, selectedChild: UserResponse.Child?,
+                           actionListener: (child: UserResponse.Child) -> Unit)
+
     fun showOffers(offers: List<TemplateMumsAppOffer>)
 
     fun showFriends(users: List<TemplateChatRecipient>)

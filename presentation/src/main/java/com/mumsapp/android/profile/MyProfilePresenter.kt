@@ -4,8 +4,12 @@ import com.google.android.gms.common.api.Status
 import com.google.android.gms.location.places.Place
 import com.mumsapp.android.R
 import com.mumsapp.android.base.LifecyclePresenter
+import com.mumsapp.android.util.SEX_FEMALE
+import com.mumsapp.android.util.SEX_MALE
+import com.mumsapp.android.util.SEX_TO_COME
 import com.mumsapp.domain.interactor.user.GetUserProfileUseCase
 import com.mumsapp.domain.model.user.UserResponse
+import com.mumsapp.domain.model.user.UserResponse.Child
 import com.mumsapp.domain.utils.SessionManager
 import com.mumsapp.domain.interactor.user.GetUserProfileUseCase.Params
 import com.mumsapp.domain.interactor.user.UpdateUserDetailsUseCase
@@ -137,18 +141,22 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
     }
 
     fun onAddMaleClick() {
-
+        view?.showAddChildDialog(SEX_MALE, null, this::onSaveChildClick)
     }
 
     fun onAddFemaleClick() {
-
+        view?.showAddChildDialog(SEX_FEMALE, null, this::onSaveChildClick)
     }
 
     fun onAddToComeClick() {
-
+        view?.showAddChildDialog(SEX_TO_COME, null, this::onSaveChildClick)
     }
 
-    private fun onEditChildClick(child: UserResponse.Child) {
+    private fun onEditChildClick(child: Child) {
+        view?.showAddChildDialog(SEX_MALE, child, this::onSaveChildClick)
+    }
+
+    private fun onSaveChildClick(child: Child) {
 
     }
 

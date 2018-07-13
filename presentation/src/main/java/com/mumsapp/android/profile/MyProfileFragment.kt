@@ -74,6 +74,8 @@ class MyProfileFragment : BaseFragment(), MyProfileView {
 
     private var userDetailsSettingsDialog: UserDetailsSettingsDialog? = null
 
+    private var addChildDialog: AddChildDialog? = null
+
     override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter() = presenter as T
 
     companion object {
@@ -186,6 +188,14 @@ class MyProfileFragment : BaseFragment(), MyProfileView {
 
     override fun hideChildren() {
         childrenSelectionWidget.hideChildren()
+    }
+
+    override fun showAddChildDialog(sex: Int, selectedChild: UserResponse.Child?, actionListener: (child: UserResponse.Child) -> Unit) {
+        if(addChildDialog == null) {
+            addChildDialog = dialogsProvider.createAddChildDialog()
+        }
+
+        addChildDialog?.show(sex, selectedChild, actionListener)
     }
 
     override fun showOffers(offers: List<TemplateMumsAppOffer>) {
