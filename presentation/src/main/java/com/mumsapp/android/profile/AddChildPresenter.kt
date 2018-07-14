@@ -3,9 +3,7 @@ package com.mumsapp.android.profile
 import android.graphics.drawable.Drawable
 import com.mumsapp.android.R
 import com.mumsapp.android.base.BasePresenter
-import com.mumsapp.android.util.SEX_FEMALE
-import com.mumsapp.android.util.SEX_MALE
-import com.mumsapp.android.util.SEX_TO_COME
+import com.mumsapp.android.util.*
 import com.mumsapp.domain.model.user.UserResponse.Child
 import com.mumsapp.domain.repository.ResourceRepository
 import javax.inject.Inject
@@ -27,6 +25,10 @@ class AddChildPresenter : BasePresenter<AddChildView> {
         this.selectedChild = selectedChild
         showTitle()
         showSexDetails()
+
+        if(selectedChild != null) {
+            showAgeDetails()
+        }
     }
 
     fun onCloseClick() {
@@ -77,6 +79,22 @@ class AddChildPresenter : BasePresenter<AddChildView> {
         }
 
         view?.setSex(drawable, sexName)
+    }
+
+    private fun showAgeDetails() {
+        view?.setAge(selectedChild!!.age!!)
+
+        when(selectedChild!!.ageUnit!!) {
+            AGE_UNIT_WEEK -> {
+                view?.setAgeUnitCheck(true, false, false)
+            }
+            AGE_UNIT_MONTH -> {
+                view?.setAgeUnitCheck(false, true, false)
+            }
+            AGE_UNIT_YEAR -> {
+                view?.setAgeUnitCheck(false, false, true)
+            }
+        }
     }
 
     private fun constructChild(age: Int, weeksChecked: Boolean, monthsChecked: Boolean, yearsChecked: Boolean): Child {
