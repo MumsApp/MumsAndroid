@@ -75,4 +75,16 @@ class UserRepositoryImpl : BaseRestRepository, UserRepository {
     override fun updateUserDetails(id: Int, request: UpdateUserDetailsRequest): Observable<EmptyResponse> {
         return requestWithErrorMapping(restApi.putUser(id, request))
     }
+
+    override fun createChild(userId: Int, request: ChildRequest): Observable<EmptyResponse> {
+        return requestWithErrorMapping(restApi.postUserChild(userId, request))
+    }
+
+    override fun updateChild(userId: Int, childId: Int, request: ChildRequest): Observable<EmptyResponse> {
+        return requestWithErrorMapping(restApi.putUserChild(userId, childId, request))
+    }
+
+    override fun deleteChild(userId: Int, childId: Int): Observable<EmptyResponse> {
+        return requestWithErrorMapping(restApi.deleteUserChild(userId, childId))
+    }
 }

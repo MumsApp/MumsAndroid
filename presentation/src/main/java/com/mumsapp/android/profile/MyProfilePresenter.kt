@@ -1,6 +1,5 @@
 package com.mumsapp.android.profile
 
-import android.util.Log
 import com.google.android.gms.common.api.Status
 import com.google.android.gms.location.places.Place
 import com.mumsapp.android.R
@@ -8,19 +7,19 @@ import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.util.SEX_FEMALE
 import com.mumsapp.android.util.SEX_MALE
 import com.mumsapp.android.util.SEX_TO_COME
-import com.mumsapp.domain.interactor.user.GetUserProfileUseCase
-import com.mumsapp.domain.model.user.UserResponse
-import com.mumsapp.domain.model.user.UserResponse.Child
-import com.mumsapp.domain.utils.SessionManager
+import com.mumsapp.domain.interactor.user.*
 import com.mumsapp.domain.interactor.user.GetUserProfileUseCase.Params
-import com.mumsapp.domain.interactor.user.UpdateUserDetailsUseCase
-import com.mumsapp.domain.interactor.user.UpdateUserLocationUseCase
 import com.mumsapp.domain.model.chat.TemplateChatRecipient
 import com.mumsapp.domain.model.mums_app_offers.TemplateMumsAppOffer
+import com.mumsapp.domain.model.user.ChildRequest
 import com.mumsapp.domain.model.user.UpdateLocationRequest
 import com.mumsapp.domain.model.user.UpdateUserDetailsRequest
+import com.mumsapp.domain.model.user.UserResponse
+import com.mumsapp.domain.model.user.UserResponse.Child
 import com.mumsapp.domain.repository.ImagesRepository
 import com.mumsapp.domain.repository.ResourceRepository
+import com.mumsapp.domain.utils.SessionManager
+import java.util.function.Consumer
 import javax.inject.Inject
 
 class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
@@ -31,6 +30,11 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
     private val imagesRepository: ImagesRepository
     private val updateUserLocationUseCase: UpdateUserLocationUseCase
     private val updateUserDetailsUseCase: UpdateUserDetailsUseCase
+    private val createUserChildUseCase: CreateUserChildUseCase
+    private val updateUserChildUseCase: UpdateUserChildUseCase
+    private val deleteUserChildUseCase: DeleteUserChildUseCase
+
+    lateinit var currentUser: UserResponse.User
 
 
     @Inject
@@ -38,13 +42,19 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
                 resourceRepository: ResourceRepository,
                 imagesRepository: ImagesRepository,
                 updateUserLocationUseCase: UpdateUserLocationUseCase,
-                updateUserDetailsUseCase: UpdateUserDetailsUseCase) {
+                updateUserDetailsUseCase: UpdateUserDetailsUseCase,
+                createUserChildUseCase: CreateUserChildUseCase,
+                updateUserChildUseCase: UpdateUserChildUseCase,
+                deleteUserChildUseCase: DeleteUserChildUseCase) {
         this.getUserProfileUseCase = getUserProfileUseCase
         this.sessionManager = sessionManager
         this.resourceRepository = resourceRepository
         this.imagesRepository = imagesRepository
         this.updateUserLocationUseCase = updateUserLocationUseCase
         this.updateUserDetailsUseCase = updateUserDetailsUseCase
+        this.createUserChildUseCase = createUserChildUseCase
+        this.updateUserChildUseCase = updateUserChildUseCase
+        this.deleteUserChildUseCase = deleteUserChildUseCase
     }
 
     override fun start() {
@@ -67,6 +77,7 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
     }
 
     private fun handleUserLoadSuccess(user: UserResponse) {
+        currentUser = user.data
         showUserDetails(user.data)
     }
 
@@ -88,7 +99,7 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
         if(user.children.isEmpty()) {
            view?.hideChildren()
         } else {
-            view?.showChildren(user.children, this::onEditChildClick)
+            view?.showChildren(user.children.toList(), this::onEditChildClick)
         }
     }
 
@@ -158,7 +169,11 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
     }
 
     private fun onSaveChildClick(child: Child) {
-        Log.e("onSave", child.toString())
+        if(child.id == null) {
+            createChild(child)
+        } else {
+            updateChild(child)
+        }
     }
 
     private fun updateLocationOnServer(place: Place, enabled: Boolean) {
@@ -186,6 +201,44 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
         } else {
             view?.hideLocation()
         }
+    }
+
+    private fun updateChild(child: Child) {
+        val request = ChildRequest(currentUser.id, child.id, child.age!!, child.ageUnit!!, child.sex!!)
+        addDisposable(
+                updateUserChildUseCase
+                        .execute(request)
+                        .compose(applyOverlaysToObservable())
+                        .subscribe(this::handleUpdateChildSuccess, this::handleApiError)
+        )
+    }
+
+    private fun handleUpdateChildSuccess(child: Child) {
+        val children: MutableCollection<Child> = currentUser.children
+        children.forEach{
+            if(it.id == child.id) {
+                children.remove(it)
+            }
+        }
+
+        children.add(child)
+        view?.showChildren(children.toList(), this::onEditChildClick)
+    }
+
+    private fun createChild(child: Child) {
+        val request = ChildRequest(currentUser.id, child.id, child.age!!, child.ageUnit!!, child.sex!!)
+        addDisposable(
+                createUserChildUseCase
+                        .execute(request)
+                        .compose(applyOverlaysToObservable())
+                        .subscribe(this::handleCreateChildSuccess, this::handleApiError)
+        )
+    }
+
+    private fun handleCreateChildSuccess(child: Child) {
+        val children: MutableCollection<Child> = currentUser.children
+        children.add(child)
+        view?.showChildren(children.toList(), this::onEditChildClick)
     }
 
     private fun showMockedOffers() {

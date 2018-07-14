@@ -10,7 +10,7 @@ data class UserResponse(@SerializedName("status") var status: String,
                     @SerializedName("name") var firstName: String,
                     @SerializedName("surname") var lastName: String,
                     @SerializedName("description") var description: String?,
-                    @SerializedName("children") var children: List<Child>,
+                    @SerializedName("children") var children: MutableCollection<Child>,
                     @SerializedName("photo") var photo: Photo,
                     @SerializedName("location") var location: Location) : BaseResponse()
 

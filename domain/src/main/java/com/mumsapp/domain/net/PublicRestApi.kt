@@ -39,4 +39,13 @@ interface PublicRestApi {
 
     @PUT("user/{id}")
     fun putUser(@Path("id") id: Int, @Body param: UpdateUserDetailsRequest): Observable<Response<EmptyResponse>>
+
+    @POST("user/{user_id}/child")
+    fun postUserChild(@Path("user_id") userId: Int, @Body param: ChildRequest): Observable<Response<EmptyResponse>>
+
+    @PUT("user/{user_id}/child/{child_id}")
+    fun putUserChild(@Path("user_id") userId: Int, @Path("child_id") childId: Int, @Body param: ChildRequest): Observable<Response<EmptyResponse>>
+
+    @DELETE("user/{user_id}/child/{child_id}")
+    fun deleteUserChild(@Path("user_id") userId: Int, @Path("child_id") childId: Int): Observable<Response<EmptyResponse>>
 }

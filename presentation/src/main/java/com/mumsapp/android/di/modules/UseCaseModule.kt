@@ -87,4 +87,25 @@ class UseCaseModule {
     @Provides
     @Singleton
     fun providesGetChatThreadsUseCase(schedulerProvider: SchedulerProvider) = GetChatThreadsUseCase(schedulerProvider)
+
+    @Provides
+    @Singleton
+    fun providesCreateUserChildUseCase(userRepository: UserRepository,
+                                       @AuthorizationTransformer transformerProvider: UseCaseTransformerProvider,
+                                       schedulerProvider: SchedulerProvider)
+            = CreateUserChildUseCase(userRepository, transformerProvider, schedulerProvider)
+
+    @Provides
+    @Singleton
+    fun providesUpdateUserChildUseCase(userRepository: UserRepository,
+                                       @AuthorizationTransformer transformerProvider: UseCaseTransformerProvider,
+                                       schedulerProvider: SchedulerProvider)
+            = UpdateUserChildUseCase(userRepository, transformerProvider, schedulerProvider)
+
+    @Provides
+    @Singleton
+    fun providesDeleteUserChildUseCase(userRepository: UserRepository,
+                                       @AuthorizationTransformer transformerProvider: UseCaseTransformerProvider,
+                                       schedulerProvider: SchedulerProvider)
+            = DeleteUserChildUseCase(userRepository, transformerProvider, schedulerProvider)
 }

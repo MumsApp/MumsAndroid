@@ -38,6 +38,7 @@ open class BaseRetrofitApiProvider<A>(endpoint: String, timeout: Long, apiClass:
         }
 
         builder.addInterceptor(loggingInterceptor)
+        builder.addNetworkInterceptor(loggingInterceptor)
 
         return builder.build()
     }

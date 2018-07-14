@@ -28,4 +28,10 @@ interface UserRepository {
     fun updateUserLocation(id: Int, request: UpdateLocationRequest): Observable<EmptyResponse>
 
     fun updateUserDetails(id: Int, request: UpdateUserDetailsRequest): Observable<EmptyResponse>
+
+    fun createChild(userId: Int, request: ChildRequest): Observable<EmptyResponse>
+
+    fun updateChild(userId: Int, childId: Int, request: ChildRequest): Observable<EmptyResponse>
+
+    fun deleteChild(userId: Int, childId: Int): Observable<EmptyResponse>
 }
