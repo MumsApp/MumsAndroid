@@ -122,12 +122,12 @@ class AddProductFragment : BaseFragment(), AddProductView {
         presenter.onUploadButtonClick()
     }
 
-    override fun showSelectImageSourceDialog() {
+    override fun showSelectImageSourceDialog(galleryClickListener: () -> Unit, cameraClickListener: () -> Unit) {
         if (selectImageSourceDialog == null) {
             selectImageSourceDialog = dialogsProvider.createSelectImageSourceDialog()
         }
 
-        selectImageSourceDialog?.show(presenter::onGalleryClick, presenter::onCameraClick)
+        selectImageSourceDialog?.show(galleryClickListener, cameraClickListener)
     }
 
     override fun hideImageSlider() {

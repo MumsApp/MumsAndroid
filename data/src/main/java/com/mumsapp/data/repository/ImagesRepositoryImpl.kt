@@ -4,14 +4,14 @@ import com.mumsapp.domain.repository.ImagesRepository
 
 class ImagesRepositoryImpl : ImagesRepository {
 
-    private val apiUrl: String
+    private val rootUrl: String
 
-    constructor(apiUrl: String) {
-        this.apiUrl = apiUrl
+    constructor(rootUrl: String) {
+        this.rootUrl = rootUrl
     }
 
 
     override fun getApiImageUrl(path: String): String {
-        return apiUrl + path
+        return rootUrl + path
     }
 }

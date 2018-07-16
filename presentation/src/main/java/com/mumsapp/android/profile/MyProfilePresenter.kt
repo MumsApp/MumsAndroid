@@ -1,13 +1,13 @@
 package com.mumsapp.android.profile
 
+import android.Manifest
+import android.net.Uri
 import com.google.android.gms.common.api.Status
 import com.google.android.gms.location.places.Place
 import com.mumsapp.android.R
 import com.mumsapp.android.base.LifecyclePresenter
-import com.mumsapp.android.util.ChildrenMapper
-import com.mumsapp.android.util.SEX_FEMALE
-import com.mumsapp.android.util.SEX_MALE
-import com.mumsapp.android.util.SEX_TO_COME
+import com.mumsapp.android.navigation.FragmentsNavigationService
+import com.mumsapp.android.util.*
 import com.mumsapp.domain.interactor.user.*
 import com.mumsapp.domain.interactor.user.GetUserProfileUseCase.Params
 import com.mumsapp.domain.model.chat.TemplateChatRecipient
@@ -19,7 +19,9 @@ import com.mumsapp.domain.model.user.UserResponse
 import com.mumsapp.domain.model.user.UserResponse.Child
 import com.mumsapp.domain.repository.ImagesRepository
 import com.mumsapp.domain.repository.ResourceRepository
+import com.mumsapp.domain.utils.FilesHelper
 import com.mumsapp.domain.utils.SessionManager
+import java.io.File
 import javax.inject.Inject
 
 class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
@@ -34,8 +36,11 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
     private val updateUserChildUseCase: UpdateUserChildUseCase
     private val deleteUserChildUseCase: DeleteUserChildUseCase
     private val childrenMapper: ChildrenMapper
+    private val filesHelper: FilesHelper
+    private val fragmentsNavigationService: FragmentsNavigationService
 
-    lateinit var currentUser: UserResponse.User
+    private var tmpCameraFile: File? = null
+    private lateinit var currentUser: UserResponse.User
 
 
     @Inject
@@ -47,7 +52,9 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
                 createUserChildUseCase: CreateUserChildUseCase,
                 updateUserChildUseCase: UpdateUserChildUseCase,
                 deleteUserChildUseCase: DeleteUserChildUseCase,
-                childrenMapper: ChildrenMapper) {
+                childrenMapper: ChildrenMapper,
+                filesHelper: FilesHelper,
+                fragmentsNavigationService: FragmentsNavigationService) {
         this.getUserProfileUseCase = getUserProfileUseCase
         this.sessionManager = sessionManager
         this.resourceRepository = resourceRepository
@@ -58,6 +65,8 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
         this.updateUserChildUseCase = updateUserChildUseCase
         this.deleteUserChildUseCase = deleteUserChildUseCase
         this.childrenMapper = childrenMapper
+        this.filesHelper = filesHelper
+        this.fragmentsNavigationService = fragmentsNavigationService
     }
 
     override fun start() {
@@ -104,6 +113,22 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
         } else {
             view?.showChildren(user.children.toList(), this::onEditChildClick, this::onDeleteChildClick)
         }
+    }
+
+    fun onAvatarClick() {
+        view?.askForPermissions(onGrantedCallback = {
+            view?.showSelectImageSourceDialog(this::onGalleryClick, this::onCameraClick)
+        }, onDeniedCallback = {
+            view?.showSnackbar(resourceRepository.getString(R.string.memory_permission_explanation))
+        }, permissions = *arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE))
+    }
+
+    fun onGalleryImageReceived(uri: Uri) {
+        view?.showToast("Gallery image received")
+    }
+
+    fun onCameraImageReceived() {
+        view?.showToast("Camera image received")
     }
 
     fun onChangeClick() {
@@ -167,8 +192,23 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
         view?.showAddChildDialog(SEX_TO_COME, null, this::onSaveChildClick)
     }
 
+    private fun onGalleryClick() {
+        fragmentsNavigationService.openGalleryActivityForResults(GALLERY_REQUEST_CODE)
+    }
+
+    private fun onCameraClick() {
+        tmpCameraFile = createTemporaryFile()
+        val uri = Uri.parse(filesHelper.getExportedUri(tmpCameraFile!!))
+
+        fragmentsNavigationService.openCameraActivityForResults(uri, CAMERA_REQUEST_CODE)
+    }
+
     private fun onEditChildClick(child: Child) {
         view?.showAddChildDialog(child.sex!!, child, this::onSaveChildClick)
+    }
+
+    private fun createTemporaryFile(): File {
+        return filesHelper.createTemporaryFile("avatar", ".jpg")
     }
 
     private fun onDeleteChildClick(child: Child) {

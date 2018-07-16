@@ -124,7 +124,7 @@ class AppModule(private val context: MainApplication) {
     @Provides
     @Singleton
     fun provideImagesRepository(): ImagesRepository {
-        return ImagesRepositoryImpl(BuildConfig.API_URL)
+        return ImagesRepositoryImpl(BuildConfig.ROOT_URL)
     }
 
     @Provides

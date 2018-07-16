@@ -38,21 +38,10 @@ class AddProductPresenter : LifecyclePresenter<AddProductView> {
 
     fun onAddPhotoClick() {
         view?.askForPermissions(onGrantedCallback = {
-            view?.showSelectImageSourceDialog()
+            view?.showSelectImageSourceDialog(this::onGalleryClick, this::onCameraClick)
         }, onDeniedCallback = {
             view?.showSnackbar(resourceRepository.getString(R.string.memory_permission_explanation))
         }, permissions = *arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE))
-    }
-
-    fun onGalleryClick() {
-        fragmentsNavigationService.openGalleryActivityForResults(GALLERY_REQUEST_CODE)
-    }
-
-    fun onCameraClick() {
-        tmpCameraFile = createTemporaryFile()
-        val uri = Uri.parse(filesHelper.getExportedUri(tmpCameraFile!!))
-
-        fragmentsNavigationService.openCameraActivityForResults(uri, CAMERA_REQUEST_CODE)
     }
 
     fun onGalleryImageReceived(uri: Uri) {
@@ -98,6 +87,17 @@ class AddProductPresenter : LifecyclePresenter<AddProductView> {
 
     fun onCancelDialogButtonClick() {
         fragmentsNavigationService.popFragment()
+    }
+
+    private fun onGalleryClick() {
+        fragmentsNavigationService.openGalleryActivityForResults(GALLERY_REQUEST_CODE)
+    }
+
+    private fun onCameraClick() {
+        tmpCameraFile = createTemporaryFile()
+        val uri = Uri.parse(filesHelper.getExportedUri(tmpCameraFile!!))
+
+        fragmentsNavigationService.openCameraActivityForResults(uri, CAMERA_REQUEST_CODE)
     }
 
     private fun createTemporaryFile(): File {

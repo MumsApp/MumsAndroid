@@ -24,7 +24,9 @@ android {
     buildTypes {
         debug {
             buildConfigField 'boolean', 'USE_CRASHLYTICS', 'true'
-            buildConfigField 'String', 'API_URL', '\"https://devmumsapp.atomdev.eu/api/\"'
+            def rootUrl = 'https://devmumsapp.atomdev.eu'
+            buildConfigField 'String', 'ROOT_URL', "\"$rootUrl\""
+            buildConfigField 'String', 'API_URL', "\"$rootUrl/api/\""
             buildConfigField 'String', 'GOOGLE_SIGN_IN_KEY', '\"158500825071-3mcog1848m2j4pn1k53ckmml6an0fq7j.apps.googleusercontent.com\"'
             resValue 'string', 'google_maps_key', '\"AIzaSyAHhieydz0ZK8YnP-1qeVJfhRtgm880CEw\"'
 

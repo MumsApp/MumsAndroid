@@ -19,6 +19,7 @@ import com.mumsapp.android.common.dialogs.ConfirmationDialog
 import com.mumsapp.android.di.components.ActivityComponent
 import com.mumsapp.android.navigation.ActivitiesNavigationService
 import com.mumsapp.android.navigation.DialogsProvider
+import com.mumsapp.android.product.SelectImageSourceDialog
 import com.mumsapp.android.ui.views.BaseTextView
 import com.mumsapp.android.ui.views.CircleImageView
 import com.mumsapp.android.ui.widgets.LocationWidget
@@ -26,6 +27,8 @@ import com.mumsapp.android.ui.views.TopBar
 import com.mumsapp.android.ui.widgets.children_selection.ChildrenSelectionWidget
 import com.mumsapp.android.ui.widgets.members.MembersWidget
 import com.mumsapp.android.ui.widgets.mums_app_offers.MumsAppOffersWidget
+import com.mumsapp.android.util.CAMERA_REQUEST_CODE
+import com.mumsapp.android.util.GALLERY_REQUEST_CODE
 import com.mumsapp.android.util.GOOGLE_PLACES_REQUEST_CODE
 import com.mumsapp.android.util.ImagesLoader
 import com.mumsapp.domain.model.chat.TemplateChatRecipient
@@ -79,6 +82,8 @@ class MyProfileFragment : BaseFragment(), MyProfileView {
 
     private var confirmationDialog: ConfirmationDialog? = null
 
+    private var selectImageSourceDialog: SelectImageSourceDialog? = null
+
     override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter() = presenter as T
 
     companion object {
@@ -117,6 +122,28 @@ class MyProfileFragment : BaseFragment(), MyProfileView {
                 presenter.onLocationError(status)
             }
         }
+
+        if (resultCode == Activity.RESULT_OK) {
+            when (requestCode) {
+                GALLERY_REQUEST_CODE -> {
+                    presenter.onGalleryImageReceived(data!!.data)
+                }
+
+                CAMERA_REQUEST_CODE -> {
+                    presenter.onCameraImageReceived()
+                }
+
+                GOOGLE_PLACES_REQUEST_CODE -> {
+                    val place = PlaceAutocomplete.getPlace(context, data)
+                    presenter.onLocationSelected(place)
+                }
+            }
+        } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
+            if (resultCode == GOOGLE_PLACES_REQUEST_CODE) {
+                val status = PlaceAutocomplete.getStatus(context, data)
+                presenter.onLocationError(status)
+            }
+        }
     }
 
     override fun showProfileInfo(name: String, description: String?) {
@@ -126,6 +153,11 @@ class MyProfileFragment : BaseFragment(), MyProfileView {
 
     override fun loadAvatar(url: String) {
         imagesLoader.load(url, avatarView)
+    }
+
+    @OnClick(R.id.my_profile_avatar)
+    fun onAvatarClick() {
+        presenter.onAvatarClick()
     }
 
     @OnClick(R.id.my_profile_change_name)
@@ -203,7 +235,7 @@ class MyProfileFragment : BaseFragment(), MyProfileView {
     }
 
     override fun showAddChildDialog(sex: Int, selectedChild: UserResponse.Child?, actionListener: (child: UserResponse.Child) -> Unit) {
-        if(addChildDialog == null) {
+        if (addChildDialog == null) {
             addChildDialog = dialogsProvider.createAddChildDialog()
         }
 
@@ -219,10 +251,18 @@ class MyProfileFragment : BaseFragment(), MyProfileView {
     }
 
     override fun showConfirmationDialog(title: String, description: String, confirmButtonText: String, confirmButtonListener: () -> Unit) {
-        if(confirmationDialog == null) {
+        if (confirmationDialog == null) {
             confirmationDialog = dialogsProvider.createConfirmationDialog()
         }
 
         confirmationDialog?.show(title, description, confirmButtonText, confirmButtonListener)
+    }
+
+    override fun showSelectImageSourceDialog(galleryClickListener: () -> Unit, cameraClickListener: () -> Unit) {
+        if (selectImageSourceDialog == null) {
+            selectImageSourceDialog = dialogsProvider.createSelectImageSourceDialog()
+        }
+
+        selectImageSourceDialog?.show(galleryClickListener, cameraClickListener)
     }
 }

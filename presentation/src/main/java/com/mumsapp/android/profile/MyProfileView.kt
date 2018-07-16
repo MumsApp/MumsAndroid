@@ -41,4 +41,6 @@ interface MyProfileView : LifecycleView {
     fun showFriends(users: List<TemplateChatRecipient>)
 
     fun showConfirmationDialog(title: String, description: String, confirmButtonText: String, confirmButtonListener: () -> Unit)
+
+    fun showSelectImageSourceDialog(galleryClickListener: () -> Unit, cameraClickListener: () -> Unit)
 }
