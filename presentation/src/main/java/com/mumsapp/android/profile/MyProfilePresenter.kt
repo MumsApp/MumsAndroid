@@ -4,6 +4,7 @@ import com.google.android.gms.common.api.Status
 import com.google.android.gms.location.places.Place
 import com.mumsapp.android.R
 import com.mumsapp.android.base.LifecyclePresenter
+import com.mumsapp.android.util.ChildrenMapper
 import com.mumsapp.android.util.SEX_FEMALE
 import com.mumsapp.android.util.SEX_MALE
 import com.mumsapp.android.util.SEX_TO_COME
@@ -19,7 +20,6 @@ import com.mumsapp.domain.model.user.UserResponse.Child
 import com.mumsapp.domain.repository.ImagesRepository
 import com.mumsapp.domain.repository.ResourceRepository
 import com.mumsapp.domain.utils.SessionManager
-import java.util.function.Consumer
 import javax.inject.Inject
 
 class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
@@ -33,6 +33,7 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
     private val createUserChildUseCase: CreateUserChildUseCase
     private val updateUserChildUseCase: UpdateUserChildUseCase
     private val deleteUserChildUseCase: DeleteUserChildUseCase
+    private val childrenMapper: ChildrenMapper
 
     lateinit var currentUser: UserResponse.User
 
@@ -45,7 +46,8 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
                 updateUserDetailsUseCase: UpdateUserDetailsUseCase,
                 createUserChildUseCase: CreateUserChildUseCase,
                 updateUserChildUseCase: UpdateUserChildUseCase,
-                deleteUserChildUseCase: DeleteUserChildUseCase) {
+                deleteUserChildUseCase: DeleteUserChildUseCase,
+                childrenMapper: ChildrenMapper) {
         this.getUserProfileUseCase = getUserProfileUseCase
         this.sessionManager = sessionManager
         this.resourceRepository = resourceRepository
@@ -55,6 +57,7 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
         this.createUserChildUseCase = createUserChildUseCase
         this.updateUserChildUseCase = updateUserChildUseCase
         this.deleteUserChildUseCase = deleteUserChildUseCase
+        this.childrenMapper = childrenMapper
     }
 
     override fun start() {
@@ -169,7 +172,12 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
     }
 
     private fun onDeleteChildClick(child: Child) {
-        view?.showToast("Delete child, id: " + child.id)
+        val title = resourceRepository.getString(R.string.are_you_sure_you_want_to_remove)
+        val readableChild = childrenMapper.getReadableName(child)
+        val description = resourceRepository.getString(R.string.from_your_children_list_question_mark, readableChild)
+        val buttonText = resourceRepository.getString(R.string.yes_coma_remove)
+
+        view?.showConfirmationDialog(title, description, buttonText, {deleteChild(child)})
     }
 
     private fun onSaveChildClick(child: Child) {
@@ -242,7 +250,33 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
     private fun handleCreateChildSuccess(child: Child) {
         val children: MutableCollection<Child> = currentUser.children
         children.add(child)
-        view?.showChildren(children.toList(), this::onEditChildClick, this::onDeleteChildClick)
+        view?.notifyChildAdded(children.toList(), children.size - 1)
+    }
+
+    private fun deleteChild(child: Child) {
+        val request = ChildRequest(currentUser.id, child.id, child.age!!, child.ageUnit!!, child.sex!!)
+        addDisposable(deleteUserChildUseCase
+                .execute(request)
+                .compose(applyOverlaysToObservable())
+                .subscribe({handleChildDeleted(child)}, this::handleApiError)
+        )
+    }
+
+    private fun handleChildDeleted(child: Child) {
+        val children: MutableCollection<Child> = currentUser.children
+        val position = getPositionInArray(children, child)
+        children.remove(child)
+        view?.notifyChildRemoved(children.toList(), position)
+    }
+
+    private fun getPositionInArray(children: MutableCollection<Child>, child: Child) : Int {
+        children.forEachIndexed( { i: Int, currentChild: Child ->
+            if(child == currentChild) {
+                return i
+            }
+        })
+
+        throw IllegalStateException("Wrong child")
     }
 
     private fun showMockedOffers() {

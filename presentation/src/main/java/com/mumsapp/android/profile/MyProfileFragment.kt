@@ -15,6 +15,7 @@ import com.mumsapp.android.R
 import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.base.LifecycleView
+import com.mumsapp.android.common.dialogs.ConfirmationDialog
 import com.mumsapp.android.di.components.ActivityComponent
 import com.mumsapp.android.navigation.ActivitiesNavigationService
 import com.mumsapp.android.navigation.DialogsProvider
@@ -75,6 +76,8 @@ class MyProfileFragment : BaseFragment(), MyProfileView {
     private var userDetailsSettingsDialog: UserDetailsSettingsDialog? = null
 
     private var addChildDialog: AddChildDialog? = null
+
+    private var confirmationDialog: ConfirmationDialog? = null
 
     override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter() = presenter as T
 
@@ -191,6 +194,14 @@ class MyProfileFragment : BaseFragment(), MyProfileView {
         childrenSelectionWidget.hideChildren()
     }
 
+    override fun notifyChildAdded(items: List<UserResponse.Child>, position: Int) {
+        childrenSelectionWidget.notifyChildAdded(items, position)
+    }
+
+    override fun notifyChildRemoved(items: List<UserResponse.Child>, position: Int) {
+        childrenSelectionWidget.notifyChildRemoved(items, position)
+    }
+
     override fun showAddChildDialog(sex: Int, selectedChild: UserResponse.Child?, actionListener: (child: UserResponse.Child) -> Unit) {
         if(addChildDialog == null) {
             addChildDialog = dialogsProvider.createAddChildDialog()
@@ -205,5 +216,13 @@ class MyProfileFragment : BaseFragment(), MyProfileView {
 
     override fun showFriends(users: List<TemplateChatRecipient>) {
         membersWidget.setMembers(users)
+    }
+
+    override fun showConfirmationDialog(title: String, description: String, confirmButtonText: String, confirmButtonListener: () -> Unit) {
+        if(confirmationDialog == null) {
+            confirmationDialog = dialogsProvider.createConfirmationDialog()
+        }
+
+        confirmationDialog?.show(title, description, confirmButtonText, confirmButtonListener)
     }
 }

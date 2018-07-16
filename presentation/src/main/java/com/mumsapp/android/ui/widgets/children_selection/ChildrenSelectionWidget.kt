@@ -11,7 +11,7 @@ import com.mumsapp.android.R
 import com.mumsapp.android.common.features.HasComponent
 import com.mumsapp.android.di.components.ActivityComponent
 import com.mumsapp.android.ui.views.BaseRecyclerView
-import com.mumsapp.domain.model.user.UserResponse
+import com.mumsapp.domain.model.user.UserResponse.Child
 import javax.inject.Inject
 
 class ChildrenSelectionWidget : CardView {
@@ -54,7 +54,7 @@ class ChildrenSelectionWidget : CardView {
     private fun configureViews() {
     }
 
-    fun showChildren(items: List<UserResponse.Child>, editListener: (item: UserResponse.Child) -> Unit, longClickListener: (item: UserResponse.Child) -> Unit) {
+    fun showChildren(items: List<Child>, editListener: (item: Child) -> Unit, longClickListener: (item: Child) -> Unit) {
         divider.visibility = View.VISIBLE
         recycler.visibility = View.VISIBLE
 
@@ -66,6 +66,16 @@ class ChildrenSelectionWidget : CardView {
         adapter.editClickListener = editListener
         adapter.setItemsLongClickListener(longClickListener)
         adapter.notifyDataSetChanged()
+    }
+
+    fun notifyChildAdded(items: List<Child>, position: Int) {
+        adapter.items = items
+        adapter.notifyItemInserted(position)
+    }
+
+    fun notifyChildRemoved(items: List<Child>, position: Int) {
+        adapter.items = items
+        adapter.notifyItemRemoved(position)
     }
 
     fun hideChildren() {

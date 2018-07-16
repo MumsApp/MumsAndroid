@@ -3,7 +3,7 @@ package com.mumsapp.android.profile
 import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.domain.model.chat.TemplateChatRecipient
 import com.mumsapp.domain.model.mums_app_offers.TemplateMumsAppOffer
-import com.mumsapp.domain.model.user.UserResponse
+import com.mumsapp.domain.model.user.UserResponse.Child
 
 interface MyProfileView : LifecycleView {
 
@@ -24,15 +24,21 @@ interface MyProfileView : LifecycleView {
 
     fun hideLocation()
 
-    fun showChildren(items: List<UserResponse.Child>, editListener: (item: UserResponse.Child) -> Unit,
-                     deleteListener: (item: UserResponse.Child) -> Unit)
+    fun showChildren(items: List<Child>, editListener: (item: Child) -> Unit,
+                     deleteListener: (item: Child) -> Unit)
 
     fun hideChildren()
 
-    fun showAddChildDialog(sex: Int, selectedChild: UserResponse.Child?,
-                           actionListener: (child: UserResponse.Child) -> Unit)
+    fun notifyChildAdded(items: List<Child>, position: Int)
+
+    fun notifyChildRemoved(items: List<Child>, position: Int)
+
+    fun showAddChildDialog(sex: Int, selectedChild: Child?,
+                           actionListener: (child: Child) -> Unit)
 
     fun showOffers(offers: List<TemplateMumsAppOffer>)
 
     fun showFriends(users: List<TemplateChatRecipient>)
+
+    fun showConfirmationDialog(title: String, description: String, confirmButtonText: String, confirmButtonListener: () -> Unit)
 }

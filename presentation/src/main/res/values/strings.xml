@@ -209,4 +209,6 @@
     <string name="years">years</string>
 
     <string name="please_choose_the_type_of_age">Please choose the type of age.</string>
+
+    <string name="from_your_children_list_question_mark">%s from your children list?</string>
 </resources>
