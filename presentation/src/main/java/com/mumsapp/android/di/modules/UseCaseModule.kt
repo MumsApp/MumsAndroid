@@ -108,4 +108,11 @@ class UseCaseModule {
                                        @AuthorizationTransformer transformerProvider: UseCaseTransformerProvider,
                                        schedulerProvider: SchedulerProvider)
             = DeleteUserChildUseCase(userRepository, transformerProvider, schedulerProvider)
+
+    @Provides
+    @Singleton
+    fun providesUpdateAvatarUseCase(userRepository: UserRepository,
+                                    @AuthorizationTransformer transformerProvider: UseCaseTransformerProvider,
+                                    schedulerProvider: SchedulerProvider)
+            = UpdateAvatarUseCase(userRepository, transformerProvider, schedulerProvider)
 }

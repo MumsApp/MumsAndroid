@@ -10,12 +10,10 @@ import com.mumsapp.android.navigation.FragmentsNavigationService
 import com.mumsapp.android.util.*
 import com.mumsapp.domain.interactor.user.*
 import com.mumsapp.domain.interactor.user.GetUserProfileUseCase.Params
+import com.mumsapp.domain.model.EmptyResponse
 import com.mumsapp.domain.model.chat.TemplateChatRecipient
 import com.mumsapp.domain.model.mums_app_offers.TemplateMumsAppOffer
-import com.mumsapp.domain.model.user.ChildRequest
-import com.mumsapp.domain.model.user.UpdateLocationRequest
-import com.mumsapp.domain.model.user.UpdateUserDetailsRequest
-import com.mumsapp.domain.model.user.UserResponse
+import com.mumsapp.domain.model.user.*
 import com.mumsapp.domain.model.user.UserResponse.Child
 import com.mumsapp.domain.repository.ImagesRepository
 import com.mumsapp.domain.repository.ResourceRepository
@@ -38,6 +36,7 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
     private val childrenMapper: ChildrenMapper
     private val filesHelper: FilesHelper
     private val fragmentsNavigationService: FragmentsNavigationService
+    private val updateAvatarUseCase: UpdateAvatarUseCase
 
     private var tmpCameraFile: File? = null
     private lateinit var currentUser: UserResponse.User
@@ -54,7 +53,8 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
                 deleteUserChildUseCase: DeleteUserChildUseCase,
                 childrenMapper: ChildrenMapper,
                 filesHelper: FilesHelper,
-                fragmentsNavigationService: FragmentsNavigationService) {
+                fragmentsNavigationService: FragmentsNavigationService,
+                updateAvatarUseCase: UpdateAvatarUseCase) {
         this.getUserProfileUseCase = getUserProfileUseCase
         this.sessionManager = sessionManager
         this.resourceRepository = resourceRepository
@@ -67,6 +67,7 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
         this.childrenMapper = childrenMapper
         this.filesHelper = filesHelper
         this.fragmentsNavigationService = fragmentsNavigationService
+        this.updateAvatarUseCase = updateAvatarUseCase
     }
 
     override fun start() {
@@ -124,11 +125,12 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
     }
 
     fun onGalleryImageReceived(uri: Uri) {
-        view?.showToast("Gallery image received")
+        val file = filesHelper.getFileFromGalleryUri(uri.toString())
+        updateAvatar(file)
     }
 
     fun onCameraImageReceived() {
-        view?.showToast("Camera image received")
+        updateAvatar(tmpCameraFile!!)
     }
 
     fun onChangeClick() {
@@ -201,6 +203,19 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
         val uri = Uri.parse(filesHelper.getExportedUri(tmpCameraFile!!))
 
         fragmentsNavigationService.openCameraActivityForResults(uri, CAMERA_REQUEST_CODE)
+    }
+
+    private fun updateAvatar(file: File) {
+        val request = UpdateAvatarRequest(currentUser.id, file)
+        addDisposable(
+                updateAvatarUseCase.execute(request)
+                        .compose(applyOverlaysToObservable())
+                        .subscribe(this::handleUpdateAvatarSuccess, this::handleApiError)
+        )
+    }
+
+    private fun handleUpdateAvatarSuccess(response: EmptyResponse) {
+        loadAndUpdateUserProfile()
     }
 
     private fun onEditChildClick(child: Child) {

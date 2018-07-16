@@ -5,6 +5,7 @@ import com.mumsapp.domain.model.identity.RefreshTokenRequest
 import com.mumsapp.domain.model.identity.Token
 import com.mumsapp.domain.model.user.*
 import io.reactivex.Observable
+import java.io.File
 import java.util.*
 
 interface UserRepository {
@@ -34,4 +35,6 @@ interface UserRepository {
     fun updateChild(userId: Int, childId: Int, request: ChildRequest): Observable<EmptyResponse>
 
     fun deleteChild(userId: Int, childId: Int): Observable<EmptyResponse>
+
+    fun updateAvatar(userId: Int, file: File): Observable<EmptyResponse>
 }

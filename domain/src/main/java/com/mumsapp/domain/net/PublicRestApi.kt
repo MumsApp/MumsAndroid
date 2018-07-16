@@ -5,6 +5,7 @@ import com.mumsapp.domain.model.identity.RefreshTokenRequest
 import com.mumsapp.domain.model.identity.Token
 import com.mumsapp.domain.model.user.*
 import io.reactivex.Observable
+import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -48,4 +49,8 @@ interface PublicRestApi {
 
     @DELETE("user/{user_id}/child/{child_id}")
     fun deleteUserChild(@Path("user_id") userId: Int, @Path("child_id") childId: Int): Observable<Response<EmptyResponse>>
+
+    @Multipart
+    @POST("user/{user_id}/photo")
+    fun postUserPhoto(@Path("user_id") userId: Int, @Part filePart: MultipartBody.Part): Observable<Response<EmptyResponse>>
 }

@@ -14,6 +14,10 @@ import com.mumsapp.domain.utils.SerializationHelper
 import io.reactivex.Observable
 import io.reactivex.ObservableSource
 import io.reactivex.functions.Function
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import java.io.File
 import javax.inject.Inject
 
 class UserRepositoryImpl : BaseRestRepository, UserRepository {
@@ -86,5 +90,10 @@ class UserRepositoryImpl : BaseRestRepository, UserRepository {
 
     override fun deleteChild(userId: Int, childId: Int): Observable<EmptyResponse> {
         return requestWithErrorMapping(restApi.deleteUserChild(userId, childId))
+    }
+
+    override fun updateAvatar(userId: Int, file: File): Observable<EmptyResponse> {
+        val filePart = MultipartBody.Part.createFormData("file", file.name, RequestBody.create(MediaType.parse("image/*"), file))
+        return requestWithErrorMapping(restApi.postUserPhoto(userId, filePart))
     }
 }
