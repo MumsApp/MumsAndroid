@@ -24,7 +24,8 @@ interface MyProfileView : LifecycleView {
 
     fun hideLocation()
 
-    fun showChildren(items: List<UserResponse.Child>, editListener: (item: UserResponse.Child) -> Unit)
+    fun showChildren(items: List<UserResponse.Child>, editListener: (item: UserResponse.Child) -> Unit,
+                     deleteListener: (item: UserResponse.Child) -> Unit)
 
     fun hideChildren()
 

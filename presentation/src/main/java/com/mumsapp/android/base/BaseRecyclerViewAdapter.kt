@@ -15,6 +15,7 @@ abstract class BaseRecyclerViewAdapter<T : BaseResponse, VH : BaseViewHolder<T>>
     var items: List<T> = ArrayList()
 
     private var onItemClickListener: ((item: T) -> Unit)? = null
+    private var onItemLongClickListener: ((item: T) -> Unit)? = null
 
     override fun getItemCount() = items.size
 
@@ -24,10 +25,18 @@ abstract class BaseRecyclerViewAdapter<T : BaseResponse, VH : BaseViewHolder<T>>
         holder.itemView.setOnClickListener{
             onItemClickListener?.invoke(items[position])
         }
+        holder.itemView.setOnLongClickListener {
+            onItemLongClickListener?.invoke(items[position])
+            onItemLongClickListener != null
+        }
     }
 
     fun setItemsClickListener(listener: (item: T) -> Unit) {
         onItemClickListener = listener
+    }
+
+    fun setItemsLongClickListener(listener: (item: T) -> Unit) {
+        onItemLongClickListener = listener
     }
 
     protected fun inflate(parent: ViewGroup, layoutResId: Int): View {

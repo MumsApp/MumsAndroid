@@ -26,38 +26,38 @@ abstract class BaseDialog(context: Context) : Dialog(context), BaseView {
 
 
     override fun hideKeyboard() {
-        if(context is BaseActivity) {
-            (context as BaseActivity).hideKeyboard()
+        if(ownerActivity is BaseActivity) {
+            (ownerActivity as BaseActivity).hideKeyboard()
         }
     }
 
     override fun showError(error: String) {
-        if(context is BaseActivity) {
-            (context as BaseActivity).showError(error)
+        if(ownerActivity is BaseActivity) {
+            (ownerActivity as BaseActivity).showError(error)
         }
     }
 
     override fun showToast(text: String) {
-        if(context is BaseActivity) {
-            (context as BaseActivity).showToast(text)
+        if(ownerActivity is BaseActivity) {
+            (ownerActivity as BaseActivity).showToast(text)
         }
     }
 
     override fun showToast(text: String, length: Int) {
-        if(context is BaseActivity) {
-            (context as BaseActivity).showToast(text, length)
+        if(ownerActivity is BaseActivity) {
+            (ownerActivity as BaseActivity).showToast(text, length)
         }
     }
 
     override fun showSnackbar(message: String) {
-        if(context is BaseActivity) {
-            (context as BaseActivity).showSnackbar(message)
+        if(ownerActivity is BaseActivity) {
+            (ownerActivity as BaseActivity).showSnackbar(message)
         }
     }
 
     override fun showSnackbarSticky(message: String, text: CharSequence, clickListener: View.OnClickListener) {
-        if(context is BaseActivity) {
-            (context as BaseActivity).showSnackbarSticky(message, text, clickListener)
+        if(ownerActivity is BaseActivity) {
+            (ownerActivity as BaseActivity).showSnackbarSticky(message, text, clickListener)
         }
     }
 

@@ -182,8 +182,9 @@ class MyProfileFragment : BaseFragment(), MyProfileView {
         locationWidget.setMapVisibility(false)
     }
 
-    override fun showChildren(items: List<UserResponse.Child>, editListener: (item: UserResponse.Child) -> Unit) {
-        childrenSelectionWidget.showChildren(items, editListener)
+    override fun showChildren(items: List<UserResponse.Child>, editListener: (item: UserResponse.Child) -> Unit,
+                              deleteListener: (item: UserResponse.Child) -> Unit) {
+        childrenSelectionWidget.showChildren(items, editListener, deleteListener)
     }
 
     override fun hideChildren() {

@@ -54,7 +54,7 @@ class ChildrenSelectionWidget : CardView {
     private fun configureViews() {
     }
 
-    fun showChildren(items: List<UserResponse.Child>, editListener: (item: UserResponse.Child) -> Unit) {
+    fun showChildren(items: List<UserResponse.Child>, editListener: (item: UserResponse.Child) -> Unit, longClickListener: (item: UserResponse.Child) -> Unit) {
         divider.visibility = View.VISIBLE
         recycler.visibility = View.VISIBLE
 
@@ -64,6 +64,7 @@ class ChildrenSelectionWidget : CardView {
 
         adapter.items = items
         adapter.editClickListener = editListener
+        adapter.setItemsLongClickListener(longClickListener)
         adapter.notifyDataSetChanged()
     }
 

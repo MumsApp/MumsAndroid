@@ -99,7 +99,7 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
         if(user.children.isEmpty()) {
            view?.hideChildren()
         } else {
-            view?.showChildren(user.children.toList(), this::onEditChildClick)
+            view?.showChildren(user.children.toList(), this::onEditChildClick, this::onDeleteChildClick)
         }
     }
 
@@ -168,6 +168,10 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
         view?.showAddChildDialog(child.sex!!, child, this::onSaveChildClick)
     }
 
+    private fun onDeleteChildClick(child: Child) {
+        view?.showToast("Delete child, id: " + child.id)
+    }
+
     private fun onSaveChildClick(child: Child) {
         if(child.id == null) {
             createChild(child)
@@ -222,7 +226,7 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
         }
 
         children.add(child)
-        view?.showChildren(children.toList(), this::onEditChildClick)
+        view?.showChildren(children.toList(), this::onEditChildClick, this::onDeleteChildClick)
     }
 
     private fun createChild(child: Child) {
@@ -238,7 +242,7 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
     private fun handleCreateChildSuccess(child: Child) {
         val children: MutableCollection<Child> = currentUser.children
         children.add(child)
-        view?.showChildren(children.toList(), this::onEditChildClick)
+        view?.showChildren(children.toList(), this::onEditChildClick, this::onDeleteChildClick)
     }
 
     private fun showMockedOffers() {
