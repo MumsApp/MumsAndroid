@@ -14,7 +14,7 @@ import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.di.components.ActivityComponent
 import com.mumsapp.android.ui.views.CardsRecyclerView
 import com.mumsapp.android.ui.views.TopBar
-import com.mumsapp.domain.model.lobby.LobbyItem
+import com.mumsapp.domain.model.lobby.LobbyRoom
 import javax.inject.Inject
 
 class LobbyFragment : BaseFragment(), LobbyView {
@@ -62,7 +62,7 @@ class LobbyFragment : BaseFragment(), LobbyView {
         lifecyclePresenter.onAddCategoryClick()
     }
 
-    override fun showItems(items: List<LobbyItem>, switchChangeListener: (item: LobbyItem, value: Boolean) -> Unit) {
+    override fun showItems(items: List<LobbyRoom>, switchChangeListener: (item: LobbyRoom, value: Boolean) -> Unit) {
         adapter.items = items
         adapter.notifyDataSetChanged()
 

@@ -11,11 +11,13 @@ import com.mumsapp.android.MainApplication
 import com.mumsapp.android.di.qualifiers.ApplicationId
 import com.mumsapp.android.util.KeyboardHelper
 import com.mumsapp.data.net.PublicRestApiProviderImpl
+import com.mumsapp.data.repository.AppRepositoryImpl
 import com.mumsapp.data.repository.ImagesRepositoryImpl
 import com.mumsapp.data.repository.ResourceRepositoryImpl
 import com.mumsapp.data.repository.UserRepositoryImpl
 import com.mumsapp.data.utils.*
 import com.mumsapp.domain.net.PublicRestApiProvider
+import com.mumsapp.domain.repository.AppRepository
 import com.mumsapp.domain.repository.ImagesRepository
 import com.mumsapp.domain.repository.ResourceRepository
 import com.mumsapp.domain.repository.UserRepository
@@ -135,4 +137,10 @@ class AppModule(private val context: MainApplication) {
     @Singleton
     @ApplicationId
     fun providesAppId() = BuildConfig.APPLICATION_ID
+
+    @Provides
+    @Singleton
+    fun providesAppRepository(impl: AppRepositoryImpl): AppRepository {
+        return impl
+    }
 }

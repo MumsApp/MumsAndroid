@@ -2,20 +2,19 @@ package com.mumsapp.android.lobby
 
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.navigation.FragmentsNavigationService
-import com.mumsapp.domain.interactor.lobby.GetLobbyItemsUseCase
-import com.mumsapp.domain.model.BaseRequest
+import com.mumsapp.domain.interactor.lobby.GetLobbyRoomsUseCase
 import com.mumsapp.domain.model.EmptyRequest
-import com.mumsapp.domain.model.lobby.LobbyItem
+import com.mumsapp.domain.model.lobby.LobbyRoom
 import com.mumsapp.domain.model.lobby.LobbyResponse
 import javax.inject.Inject
 
 class LobbyPresenter : LifecyclePresenter<LobbyView> {
 
-    private val getLobbyItemsUseCase: GetLobbyItemsUseCase
+    private val getLobbyItemsUseCase: GetLobbyRoomsUseCase
     private val fragmentsNavigationService: FragmentsNavigationService
 
     @Inject
-    constructor(getLobbyItemsUseCace: GetLobbyItemsUseCase,
+    constructor(getLobbyItemsUseCace: GetLobbyRoomsUseCase,
                 fragmentsNavigationService: FragmentsNavigationService) {
         this.getLobbyItemsUseCase = getLobbyItemsUseCace
         this.fragmentsNavigationService = fragmentsNavigationService
@@ -33,7 +32,7 @@ class LobbyPresenter : LifecyclePresenter<LobbyView> {
 
     }
 
-    fun onLobbyItemClick(item: LobbyItem) {
+    fun onLobbyItemClick(item: LobbyRoom) {
         fragmentsNavigationService.openLobbyCategoryDetailsFragment(item.id, true)
     }
 
@@ -50,10 +49,10 @@ class LobbyPresenter : LifecyclePresenter<LobbyView> {
     }
 
     private fun handleLoadLobbySuccess(response: LobbyResponse) {
-        view?.showItems(response.items, this::onLobbySwitchChanged)
+        view?.showItems(response.data, this::onLobbySwitchChanged)
     }
 
-    private fun onLobbySwitchChanged(item: LobbyItem, value: Boolean) {
+    private fun onLobbySwitchChanged(item: LobbyRoom, value: Boolean) {
 
     }
 }

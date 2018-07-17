@@ -1,12 +1,13 @@
 package com.mumsapp.android.di.modules
 
 import com.mumsapp.domain.interactor.chat.GetChatThreadsUseCase
-import com.mumsapp.domain.interactor.lobby.GetLobbyItemsUseCase
+import com.mumsapp.domain.interactor.lobby.GetLobbyRoomsUseCase
 import com.mumsapp.domain.interactor.shop.GetShopItemsUseCase
 import com.mumsapp.domain.interactor.transformers.qualifiers.AuthorizationTransformer
 import com.mumsapp.domain.interactor.transformers.AuthorizationTransformerProvider
 import com.mumsapp.domain.interactor.transformers.UseCaseTransformerProvider
 import com.mumsapp.domain.interactor.user.*
+import com.mumsapp.domain.repository.AppRepository
 import com.mumsapp.domain.repository.UserRepository
 import com.mumsapp.domain.utils.SchedulerProvider
 import com.mumsapp.domain.utils.SessionManager
@@ -74,8 +75,10 @@ class UseCaseModule {
 
     @Provides
     @Singleton
-    fun providesGetLobbyItemsUseCase(schedulerProvider: SchedulerProvider): GetLobbyItemsUseCase {
-        return GetLobbyItemsUseCase(schedulerProvider)
+    fun providesGetLobbyItemsUseCase(repository: AppRepository,
+                                     @AuthorizationTransformer transformerProvider: UseCaseTransformerProvider,
+                                     schedulerProvider: SchedulerProvider): GetLobbyRoomsUseCase {
+        return GetLobbyRoomsUseCase(repository, transformerProvider, schedulerProvider)
     }
 
     @Provides

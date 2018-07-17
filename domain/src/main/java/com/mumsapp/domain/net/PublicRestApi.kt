@@ -3,6 +3,7 @@ package com.mumsapp.domain.net
 import com.mumsapp.domain.model.EmptyResponse
 import com.mumsapp.domain.model.identity.RefreshTokenRequest
 import com.mumsapp.domain.model.identity.Token
+import com.mumsapp.domain.model.lobby.LobbyResponse
 import com.mumsapp.domain.model.user.*
 import io.reactivex.Observable
 import okhttp3.MultipartBody
@@ -53,4 +54,7 @@ interface PublicRestApi {
     @Multipart
     @POST("user/{user_id}/photo")
     fun postUserPhoto(@Path("user_id") userId: Int, @Part filePart: MultipartBody.Part): Observable<Response<EmptyResponse>>
+
+    @GET("lobby/room/page/{page}/{perPage}")
+    fun getLobbyRoomPage(@Path("page") page: Int, @Path("perPage") perPage: Int): Observable<Response<LobbyResponse>>
 }
