@@ -57,4 +57,9 @@ interface PublicRestApi {
 
     @GET("lobby/room/page/{page}/{perPage}")
     fun getLobbyRoomPage(@Path("page") page: Int, @Path("perPage") perPage: Int): Observable<Response<LobbyResponse>>
+
+    @GET("lobby/room/page/{page}/{perPage}")
+    fun getLobbyRoomSearch(@Path("page") page: Int, @Path("perPage") perPage: Int,
+                           @Query("searchTerm") searchTerm: String,
+                           @Query("withDescription") withDescription: Boolean): Observable<Response<LobbyResponse>>
 }

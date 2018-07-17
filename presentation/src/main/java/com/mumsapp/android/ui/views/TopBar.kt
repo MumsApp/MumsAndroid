@@ -3,8 +3,11 @@ package com.mumsapp.android.ui.views
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.support.constraint.ConstraintLayout
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.mumsapp.android.R
@@ -127,9 +130,16 @@ class TopBar: ConstraintLayout {
     }
 
     fun setSearchListener(listener: (value: String) -> Unit) {
-        searchButton.setOnClickListener({
+        searchButton.setOnClickListener {
             listener.invoke(searchInput.text.toString())
-        })
+        }
+        searchInput.setOnEditorActionListener { view, actionId, event ->
+            if(actionId == EditorInfo.IME_ACTION_DONE) {
+                listener.invoke(searchInput.text.toString())
+                true
+            }
+            false
+        }
     }
 
     fun requestSearchFocus() {

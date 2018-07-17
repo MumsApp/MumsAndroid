@@ -1,6 +1,7 @@
 package com.mumsapp.data.repository
 
 import com.mumsapp.domain.model.lobby.LobbyResponse
+import com.mumsapp.domain.model.lobby.SearchLobbyRequest
 import com.mumsapp.domain.net.PublicRestApi
 import com.mumsapp.domain.repository.AppRepository
 import com.mumsapp.domain.repository.ResourceRepository
@@ -22,5 +23,10 @@ class AppRepositoryImpl : BaseRestRepository, AppRepository {
 
     override fun getLobbyRooms(page: Int, perPage: Int): Observable<LobbyResponse> {
         return requestWithErrorMapping(restApi.getLobbyRoomPage(page, perPage))
+    }
+
+    override fun searchLobbyRooms(request: SearchLobbyRequest, page: Int, perPage: Int): Observable<LobbyResponse> {
+        return requestWithErrorMapping(restApi.getLobbyRoomSearch(page, perPage, request.searchTerm,
+                request.withDescription))
     }
 }

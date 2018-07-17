@@ -13,7 +13,9 @@
         android:paddingTop="@dimen/padding_medium"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/top_bar_search_button"
-        app:layout_constraintTop_toBottomOf="@id/top_bar_title_divider" />
+        app:layout_constraintTop_toBottomOf="@id/top_bar_title_divider"
+        android:imeOptions="actionDone"
+        android:inputType="text"/>
 
     <com.mumsapp.android.ui.views.BaseImageButton
         android:id="@+id/top_bar_search_button"

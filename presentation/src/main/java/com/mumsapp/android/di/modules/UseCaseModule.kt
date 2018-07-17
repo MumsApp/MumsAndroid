@@ -2,6 +2,7 @@ package com.mumsapp.android.di.modules
 
 import com.mumsapp.domain.interactor.chat.GetChatThreadsUseCase
 import com.mumsapp.domain.interactor.lobby.GetLobbyRoomsUseCase
+import com.mumsapp.domain.interactor.lobby.SearchLobbyRoomsUseCase
 import com.mumsapp.domain.interactor.shop.GetShopItemsUseCase
 import com.mumsapp.domain.interactor.transformers.qualifiers.AuthorizationTransformer
 import com.mumsapp.domain.interactor.transformers.AuthorizationTransformerProvider
@@ -75,14 +76,6 @@ class UseCaseModule {
 
     @Provides
     @Singleton
-    fun providesGetLobbyItemsUseCase(repository: AppRepository,
-                                     @AuthorizationTransformer transformerProvider: UseCaseTransformerProvider,
-                                     schedulerProvider: SchedulerProvider): GetLobbyRoomsUseCase {
-        return GetLobbyRoomsUseCase(repository, transformerProvider, schedulerProvider)
-    }
-
-    @Provides
-    @Singleton
     fun providesGetShopItemsUseCase(schedulerProvider: SchedulerProvider): GetShopItemsUseCase {
         return GetShopItemsUseCase(schedulerProvider)
     }
@@ -118,4 +111,21 @@ class UseCaseModule {
                                     @AuthorizationTransformer transformerProvider: UseCaseTransformerProvider,
                                     schedulerProvider: SchedulerProvider)
             = UpdateAvatarUseCase(userRepository, transformerProvider, schedulerProvider)
+
+    @Provides
+    @Singleton
+    fun providesGetLobbyroomsUseCase(repository: AppRepository,
+                                     @AuthorizationTransformer transformerProvider: UseCaseTransformerProvider,
+                                     schedulerProvider: SchedulerProvider): GetLobbyRoomsUseCase {
+        return GetLobbyRoomsUseCase(repository, transformerProvider, schedulerProvider)
+    }
+
+
+    @Provides
+    @Singleton
+    fun providesSearchLobbyRoomsUseCase(repository: AppRepository,
+                                     @AuthorizationTransformer transformerProvider: UseCaseTransformerProvider,
+                                     schedulerProvider: SchedulerProvider): SearchLobbyRoomsUseCase {
+        return SearchLobbyRoomsUseCase(repository, transformerProvider, schedulerProvider)
+    }
 }
