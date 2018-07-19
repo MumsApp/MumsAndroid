@@ -1,5 +1,6 @@
 package com.mumsapp.domain.net
 
+import com.mumsapp.domain.model.BaseResponse
 import com.mumsapp.domain.model.EmptyResponse
 import com.mumsapp.domain.model.identity.RefreshTokenRequest
 import com.mumsapp.domain.model.identity.Token
@@ -62,4 +63,10 @@ interface PublicRestApi {
     fun getLobbyRoomSearch(@Path("page") page: Int, @Path("perPage") perPage: Int,
                            @Query("searchTerm") searchTerm: String,
                            @Query("withDescription") withDescription: Boolean): Observable<Response<LobbyResponse>>
+
+    @POST("lobby/room/{id}/favourite")
+    fun postLobbyRoomIdFavourite(@Path("id") id: Int): Observable<Response<EmptyResponse>>
+
+    @DELETE("lobby/room/{id}/favourite")
+    fun deleteLobbyRoomIdFavourite(@Path("id") id: Int): Observable<Response<EmptyResponse>>
 }

@@ -6,11 +6,12 @@
 
     <android.support.constraint.ConstraintLayout
         style="@style/widget_layout"
-        android:paddingBottom="@dimen/padding_big"
-        android:paddingTop="@dimen/padding_big">
+        android:paddingBottom="@dimen/padding_big">
 
         <com.mumsapp.android.ui.views.CircleImageView
             android:id="@+id/lobby_cell_image"
+            android:layout_marginTop="@dimen/padding_default"
+            app:layout_constraintTop_toTopOf="parent"
             style="@style/avatar_image_view" />
 
         <com.mumsapp.android.ui.views.BaseTextView
@@ -18,16 +19,19 @@
             style="@style/text_normal"
             android:layout_width="0dp"
             android:layout_marginStart="@dimen/padding_default"
+            app:layout_constraintTop_toTopOf="@id/lobby_cell_image"
             app:layout_constraintLeft_toRightOf="@id/lobby_cell_image"
-            app:layout_constraintRight_toLeftOf="@id/lobby_cell_switch"
+            app:layout_constraintRight_toLeftOf="@id/lobby_cell_checkbox"
             tools:text="Expectant Moms" />
 
-        <com.mumsapp.android.ui.views.BaseSwitch
-            android:id="@+id/lobby_cell_switch"
-            style="@style/switch_green"
-            app:layout_constraintBottom_toBottomOf="@id/lobby_cell_title"
+        <com.mumsapp.android.ui.views.BaseCheckbox
+            android:id="@+id/lobby_cell_checkbox"
+            style="@style/star_checkbox"
+            android:layout_marginTop="@dimen/padding_small"
+            app:layout_constraintTop_toBottomOf="@id/lobby_cell_title"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/lobby_cell_title" />
+            app:layout_constraintBottom_toTopOf="@id/lobby_cell_title"
+            tools:checked="true"/>
 
         <com.mumsapp.android.ui.views.BaseTextView
             android:id="@+id/lobby_cell_description"

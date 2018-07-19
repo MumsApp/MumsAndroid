@@ -6,6 +6,7 @@ import butterknife.ButterKnife
 import butterknife.OnCheckedChanged
 import com.mumsapp.android.R
 import com.mumsapp.android.base.BaseViewHolder
+import com.mumsapp.android.ui.views.BaseCheckbox
 import com.mumsapp.android.ui.views.BaseSwitch
 import com.mumsapp.android.ui.views.BaseTextView
 import com.mumsapp.android.ui.views.CircleImageView
@@ -29,8 +30,8 @@ class LobbyViewHolder : BaseViewHolder<LobbyRoom> {
     @BindView(R.id.lobby_cell_description)
     lateinit var descriptionView: BaseTextView
 
-    @BindView(R.id.lobby_cell_switch)
-    lateinit var switchView: BaseSwitch
+    @BindView(R.id.lobby_cell_checkbox)
+    lateinit var switchView: BaseCheckbox
 
     private var listener: WeakReference<((item: LobbyRoom, value: Boolean) -> Unit)>? = null
 
@@ -58,7 +59,7 @@ class LobbyViewHolder : BaseViewHolder<LobbyRoom> {
         this.listener = WeakReference(listener)
     }
 
-    @OnCheckedChanged(R.id.lobby_cell_switch)
+    @OnCheckedChanged(R.id.lobby_cell_checkbox)
     fun onCheckedChanged(value: Boolean) {
         listener?.get()?.invoke(item!!, value)
     }
