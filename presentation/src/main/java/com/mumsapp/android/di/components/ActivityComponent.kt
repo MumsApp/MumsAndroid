@@ -9,6 +9,7 @@ import com.mumsapp.android.common.dialogs.ConfirmationDialog
 import com.mumsapp.android.common.dialogs.ConfirmationWithAvatarDialog
 import com.mumsapp.android.di.modules.ActivityModule
 import com.mumsapp.android.di.scopes.ActivityScope
+import com.mumsapp.android.lobby.CreateLobbyCategoryFragment
 import com.mumsapp.android.lobby.CreatePostFragment
 import com.mumsapp.android.lobby.LobbyCategoryDetailsFragment
 import com.mumsapp.android.lobby.LobbyFragment
@@ -102,4 +103,6 @@ interface ActivityComponent {
     fun inject(widget: ChildrenSelectionWidget)
 
     fun inject(dialog: AddChildDialog)
+
+    fun inject(fragment: CreateLobbyCategoryFragment)
 }

@@ -48,7 +48,7 @@ class LobbyPresenter : LifecyclePresenter<LobbyView> {
     }
 
     fun onAddCategoryClick() {
-
+        fragmentsNavigationService.openCreateLobbyCategoryFragment(true)
     }
 
     fun onLobbyItemClick(item: LobbyRoom) {

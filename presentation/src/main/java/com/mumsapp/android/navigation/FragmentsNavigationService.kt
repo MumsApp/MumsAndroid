@@ -14,6 +14,7 @@ import com.mumsapp.android.chat.ChatFragment
 import com.mumsapp.android.chat.FriendsChatFragment
 import com.mumsapp.android.chat.ChatThreadFragment
 import com.mumsapp.android.di.qualifiers.FragmentContainerId
+import com.mumsapp.android.lobby.CreateLobbyCategoryFragment
 import com.mumsapp.android.lobby.CreatePostFragment
 import com.mumsapp.android.lobby.LobbyCategoryDetailsFragment
 import com.mumsapp.android.lobby.LobbyFragment
@@ -212,6 +213,13 @@ class FragmentsNavigationService {
     }
 
     fun createUserProfileFragment() = UserProfileFragment.getInstance()
+
+    fun openCreateLobbyCategoryFragment(addToBackStack: Boolean) {
+        val fragment = createCreateLobbyCategoryFragment()
+        openFragment(fragment, addToBackStack)
+    }
+
+    fun createCreateLobbyCategoryFragment() = CreateLobbyCategoryFragment.getInstance()
 
     fun popFragment() {
         fragmentManager.popBackStack()
