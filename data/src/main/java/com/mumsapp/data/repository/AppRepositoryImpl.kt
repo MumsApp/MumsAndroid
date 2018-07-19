@@ -1,6 +1,5 @@
 package com.mumsapp.data.repository
 
-import com.mumsapp.domain.model.BaseResponse
 import com.mumsapp.domain.model.EmptyResponse
 import com.mumsapp.domain.model.lobby.LobbyResponse
 import com.mumsapp.domain.model.lobby.SearchLobbyRequest
@@ -38,5 +37,13 @@ class AppRepositoryImpl : BaseRestRepository, AppRepository {
 
     override fun removeLobbyFromFavourite(id: Int): Observable<EmptyResponse> {
         return requestWithErrorMapping(restApi.deleteLobbyRoomIdFavourite(id))
+    }
+
+    override fun joinLobbyRoom(id: Int): Observable<EmptyResponse> {
+        return requestWithErrorMapping(restApi.postLobbyRoomIdJoin(id))
+    }
+
+    override fun leaveLobbyRoom(id: Int): Observable<EmptyResponse> {
+        return requestWithErrorMapping(restApi.deleteLobbyRoomIdJoin(id))
     }
 }

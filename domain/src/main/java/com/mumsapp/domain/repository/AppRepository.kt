@@ -14,4 +14,8 @@ interface AppRepository {
     fun addLobbyToFavourite(id: Int): Observable<EmptyResponse>
 
     fun removeLobbyFromFavourite(id: Int): Observable<EmptyResponse>
+
+    fun joinLobbyRoom(id: Int): Observable<EmptyResponse>
+
+    fun leaveLobbyRoom(id: Int): Observable<EmptyResponse>
 }

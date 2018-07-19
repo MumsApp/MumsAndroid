@@ -1,10 +1,7 @@
 package com.mumsapp.android.di.modules
 
 import com.mumsapp.domain.interactor.chat.GetChatThreadsUseCase
-import com.mumsapp.domain.interactor.lobby.AddLobbyToFavouriteUseCase
-import com.mumsapp.domain.interactor.lobby.GetLobbyRoomsUseCase
-import com.mumsapp.domain.interactor.lobby.RemoveLobbyFromFavouriteUseCase
-import com.mumsapp.domain.interactor.lobby.SearchLobbyRoomsUseCase
+import com.mumsapp.domain.interactor.lobby.*
 import com.mumsapp.domain.interactor.shop.GetShopItemsUseCase
 import com.mumsapp.domain.interactor.transformers.qualifiers.AuthorizationTransformer
 import com.mumsapp.domain.interactor.transformers.AuthorizationTransformerProvider
@@ -145,5 +142,21 @@ class UseCaseModule {
                                            @AuthorizationTransformer transformerProvider: UseCaseTransformerProvider,
                                            schedulerProvider: SchedulerProvider): RemoveLobbyFromFavouriteUseCase {
         return RemoveLobbyFromFavouriteUseCase(repository, transformerProvider, schedulerProvider)
+    }
+
+    @Provides
+    @Singleton
+    fun providesJoinLobbyRoomUseCase(repository: AppRepository,
+                                                @AuthorizationTransformer transformerProvider: UseCaseTransformerProvider,
+                                                schedulerProvider: SchedulerProvider): JoinLobbyRoomUseCase {
+        return JoinLobbyRoomUseCase(repository, transformerProvider, schedulerProvider)
+    }
+
+    @Provides
+    @Singleton
+    fun providesLeaveLobbyRoomUseCase(repository: AppRepository,
+                                     @AuthorizationTransformer transformerProvider: UseCaseTransformerProvider,
+                                     schedulerProvider: SchedulerProvider): LeaveLobbyRoomUseCase {
+        return LeaveLobbyRoomUseCase(repository, transformerProvider, schedulerProvider)
     }
 }

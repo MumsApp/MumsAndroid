@@ -69,4 +69,10 @@ interface PublicRestApi {
 
     @DELETE("lobby/room/{id}/favourite")
     fun deleteLobbyRoomIdFavourite(@Path("id") id: Int): Observable<Response<EmptyResponse>>
+
+    @POST("lobby/room/{id}/join")
+    fun postLobbyRoomIdJoin(@Path("id") id: Int): Observable<Response<EmptyResponse>>
+
+    @DELETE("lobby/room/{id}/join")
+    fun deleteLobbyRoomIdJoin(@Path("id") id: Int): Observable<Response<EmptyResponse>>
 }

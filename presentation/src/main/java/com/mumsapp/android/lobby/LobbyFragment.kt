@@ -11,7 +11,9 @@ import com.mumsapp.android.R
 import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.base.LifecycleView
+import com.mumsapp.android.common.dialogs.ConfirmationDialog
 import com.mumsapp.android.di.components.ActivityComponent
+import com.mumsapp.android.navigation.DialogsProvider
 import com.mumsapp.android.ui.views.CardsRecyclerView
 import com.mumsapp.android.ui.views.TopBar
 import com.mumsapp.domain.model.lobby.LobbyRoom
@@ -25,11 +27,16 @@ class LobbyFragment : BaseFragment(), LobbyView {
     @Inject
     lateinit var adapter: LobbyItemsAdapter
 
+    @Inject
+    lateinit var dialogsProvider: DialogsProvider
+
     @BindView(R.id.lobby_top_bar)
     lateinit var topBar: TopBar
 
     @BindView(R.id.lobby_recycler_view)
     lateinit var recyclerView: CardsRecyclerView
+
+    private var confirmationDialog: ConfirmationDialog? = null
 
     override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter() = lifecyclePresenter as T
 
@@ -62,14 +69,25 @@ class LobbyFragment : BaseFragment(), LobbyView {
         lifecyclePresenter.onAddCategoryClick()
     }
 
-    override fun showItems(items: List<LobbyRoom>, switchChangeListener: (item: LobbyRoom, value: Boolean) -> Unit) {
+    override fun showItems(items: List<LobbyRoom>, switchChangeListener: (item: LobbyRoom, value: Boolean) -> Unit,
+                           leaveListener: (item: LobbyRoom) -> Unit) {
         adapter.items = items
         adapter.notifyDataSetChanged()
 
         if(recyclerView.adapter == null) {
+            adapter.setItemsLongClickListener(leaveListener)
             adapter.switchChangeListener = switchChangeListener
             adapter.setItemsClickListener(lifecyclePresenter::onLobbyItemClick)
             recyclerView.adapter = adapter
         }
+    }
+
+    override fun showConfirmationDialog(title: String, description: String, confirmButtonText: String,
+                                        confirmButtonListener: () -> Unit) {
+        if (confirmationDialog == null) {
+            confirmationDialog = dialogsProvider.createConfirmationDialog()
+        }
+
+        confirmationDialog?.show(title, description, confirmButtonText, confirmButtonListener)
     }
 }
