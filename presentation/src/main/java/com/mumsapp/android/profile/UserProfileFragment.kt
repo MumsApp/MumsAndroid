@@ -16,7 +16,7 @@ import com.mumsapp.android.common.dialogs.ConfirmationWithAvatarDialog
 import com.mumsapp.android.di.components.ActivityComponent
 import com.mumsapp.android.navigation.DialogsProvider
 import com.mumsapp.android.ui.views.BaseTextView
-import com.mumsapp.android.ui.views.CardsTextView
+import com.mumsapp.android.ui.views.CardTextView
 import com.mumsapp.android.ui.views.CircleImageView
 import com.mumsapp.android.ui.views.TopBar
 import com.mumsapp.android.ui.widgets.LocationWidget
@@ -47,7 +47,7 @@ class UserProfileFragment : BaseFragment(), UserProfileView {
     lateinit var descriptionView: BaseTextView
 
     @BindView(R.id.user_profile_kids_value)
-    lateinit var kidsView: CardsTextView
+    lateinit var kidsView: CardTextView
 
     @BindView(R.id.user_profile_location_widget)
     lateinit var locationWidget: LocationWidget

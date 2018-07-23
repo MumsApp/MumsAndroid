@@ -37,7 +37,7 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/user_profile_details" />
 
-            <com.mumsapp.android.ui.views.CardsTextView
+            <com.mumsapp.android.ui.views.CardTextView
                 android:id="@+id/user_profile_kids_value"
                 style="@style/card_text_normal"
                 android:layout_marginEnd="@dimen/padding_default"

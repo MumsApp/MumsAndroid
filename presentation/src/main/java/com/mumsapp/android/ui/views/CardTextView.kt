@@ -10,7 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.mumsapp.android.R
 
-class CardsTextView : CardView {
+class CardTextView : CardView {
 
     lateinit var textView: BaseTextView
 

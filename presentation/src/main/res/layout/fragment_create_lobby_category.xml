@@ -18,13 +18,21 @@
         <android.support.constraint.ConstraintLayout
             style="@style/default_layout">
 
+            <com.mumsapp.android.ui.views.CardSwitch
+                android:id="@+id/create_lobby_category_public_switch"
+                style="@style/default_card_edit_text"
+                android:layout_marginTop="@dimen/padding_big"
+                android:text="@string/public_category"
+                android:checked="true"
+                app:layout_constraintTop_toTopOf="parent"/>
+
             <com.mumsapp.android.ui.views.BaseTextView
                 android:id="@+id/create_lobby_category_title_label"
                 style="@style/text_small_grey_light"
                 android:layout_marginTop="@dimen/padding_default"
                 android:layout_marginStart="@dimen/padding_default"
                 android:text="@string/title"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/create_lobby_category_public_switch"
                 app:layout_constraintLeft_toLeftOf="parent"/>
 
             <com.mumsapp.android.ui.views.CardEditText
@@ -56,7 +64,7 @@
                 style="@style/text_small_grey_light"
                 android:layout_marginTop="@dimen/padding_default"
                 android:layout_marginStart="@dimen/padding_default"
-                android:text="@string/photo"
+                android:text="@string/cover_photo"
                 app:layout_constraintTop_toBottomOf="@id/create_lobby_category_content_input"
                 app:layout_constraintLeft_toLeftOf="parent"/>
 
@@ -64,7 +72,8 @@
                 android:id="@+id/create_lobby_category_add_photo_button"
                 style="@style/card_squared"
                 android:layout_marginTop="@dimen/padding_default"
-                app:layout_constraintTop_toBottomOf="@id/create_lobby_category_photo_label"/>
+                app:layout_constraintTop_toBottomOf="@id/create_lobby_category_photo_label"
+                android:text="@string/add_cover_photo"/>
 
             <com.mumsapp.android.ui.views.BaseImageView
                 android:id="@+id/create_lobby_category_image"
