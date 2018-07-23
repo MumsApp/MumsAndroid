@@ -12,12 +12,9 @@ import io.reactivex.Observable
 class CreateUserChildUseCase(val repository: UserRepository,
                              @AuthorizationTransformer transformerProvider: UseCaseTransformerProvider,
                              schedulerProvider: SchedulerProvider)
-    : AuthorizedUseCase<ChildRequest, UserResponse.Child>(transformerProvider, schedulerProvider) {
+    : AuthorizedUseCase<ChildRequest, UserResponse>(transformerProvider, schedulerProvider) {
 
-    override fun createUseCaseObservable(param: ChildRequest): Observable<UserResponse.Child> {
+    override fun createUseCaseObservable(param: ChildRequest): Observable<UserResponse> {
         return repository.createChild(param.userId!!, param)
-                .map {
-                    UserResponse.Child(param.childId, param.age, param.ageUnit, param.sex)
-                }
     }
 }

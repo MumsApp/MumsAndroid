@@ -302,9 +302,9 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
         )
     }
 
-    private fun handleCreateChildSuccess(child: Child) {
-        val children: MutableCollection<Child> = currentUser.children
-        children.add(child)
+    private fun handleCreateChildSuccess(user: UserResponse) {
+        sessionManager.saveLoggedUser(user)
+        val children: MutableCollection<Child> = user.data.children
         view?.notifyChildAdded(children.toList(), children.size - 1)
     }
 

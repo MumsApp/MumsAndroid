@@ -80,11 +80,11 @@ class UserRepositoryImpl : BaseRestRepository, UserRepository {
         return requestWithErrorMapping(restApi.putUser(id, request))
     }
 
-    override fun createChild(userId: Int, request: ChildRequest): Observable<EmptyResponse> {
+    override fun createChild(userId: Int, request: ChildRequest): Observable<UserResponse> {
         return requestWithErrorMapping(restApi.postUserChild(userId, request))
     }
 
-    override fun updateChild(userId: Int, childId: Int, request: ChildRequest): Observable<EmptyResponse> {
+    override fun updateChild(userId: Int, childId: Int, request: ChildRequest): Observable<UserResponse> {
         return requestWithErrorMapping(restApi.putUserChild(userId, childId, request))
     }
 
