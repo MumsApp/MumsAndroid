@@ -11,6 +11,9 @@ import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.di.components.ActivityComponent
+import com.mumsapp.android.ui.views.BaseTextView
+import com.mumsapp.android.ui.views.CardEditText
+import com.mumsapp.android.ui.views.CardSwitch
 import com.mumsapp.android.ui.views.TopBar
 import javax.inject.Inject
 
@@ -21,6 +24,15 @@ class CreateLobbyCategoryFragment : BaseFragment(), CreateLobbyCategoryView {
 
     @BindView(R.id.create_lobby_category_top_bar)
     lateinit var topBar: TopBar
+
+    @BindView(R.id.create_lobby_category_public_switch)
+    lateinit var publicSwitch: CardSwitch
+
+    @BindView(R.id.create_lobby_category_title_input)
+    lateinit var titleInput: CardEditText
+
+    @BindView(R.id.create_lobby_category_content_input)
+    lateinit var contentInput: CardEditText
 
     override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter() = presenter as T
 

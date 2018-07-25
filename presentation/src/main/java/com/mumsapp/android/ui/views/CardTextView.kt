@@ -3,6 +3,7 @@ package com.mumsapp.android.ui.views
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.support.v7.widget.CardView
 import android.util.AttributeSet
 import android.util.TypedValue
@@ -45,6 +46,9 @@ class CardTextView : CardView {
         val textSize = array.getDimension(R.styleable.TextValues_android_textSize, resources.getDimension(R.dimen.text_size_normal))
         setTextSize(textSize)
 
+        val drawableRight = array.getDrawable(R.styleable.TextValues_android_drawableRight)
+        setDrawableRight(drawableRight)
+
         array.recycle()
     }
 
@@ -65,4 +69,8 @@ class CardTextView : CardView {
     }
 
     fun getText() = textView.text
+
+    fun setDrawableRight(drawable: Drawable) {
+        textView.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null)
+    }
 }

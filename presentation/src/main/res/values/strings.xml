@@ -219,4 +219,5 @@
     <string name="public_category">Public category</string>
     <string name="cover_photo">Cover photo</string>
     <string name="add_cover_photo">Add cover photo</string>
+    <string name="add_members">Add members</string>
 </resources>
