@@ -55,6 +55,8 @@ class CardSwitch : CardView {
         switch.isChecked = checked
     }
 
+    fun isChecked() = switch.isChecked
+
     fun setOnCheckedChangeListener(listener: CompoundButton.OnCheckedChangeListener?) {
         switch.setOnCheckedChangeListener(listener)
     }
