@@ -220,4 +220,6 @@
     <string name="cover_photo">Cover photo</string>
     <string name="add_cover_photo">Add cover photo</string>
     <string name="add_members">Add members</string>
+
+    <string name="you_need_to_fill_all_fields">You need to fill all fields</string>
 </resources>

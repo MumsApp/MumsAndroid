@@ -48,6 +48,9 @@ class CreateLobbyCategoryFragment : BaseFragment(), CreateLobbyCategoryView {
     @BindView(R.id.create_lobby_category_content_input)
     lateinit var contentInput: CardEditText
 
+    @BindView(R.id.create_lobby_category_add_photo_button)
+    lateinit var addPhotoButton: AddPhotoButton
+
     @BindView(R.id.create_lobby_category_image)
     lateinit var imageView: BaseImageView
 
@@ -76,8 +79,10 @@ class CreateLobbyCategoryFragment : BaseFragment(), CreateLobbyCategoryView {
         super.onViewCreated(view, savedInstanceState)
         presenter.attachViewWithLifecycle(this)
         topBar.setLeftButtonClickListener { presenter.onBackClick() }
-        topBar.setRightTextClickListener { presenter.onDoneClick(publicSwitch.isChecked(),
-                titleInput.getText().toString(), contentInput.getText().toString()) }
+        topBar.setRightTextClickListener {
+            presenter.onDoneClick(publicSwitch.isChecked(),
+                    titleInput.getText().toString(), contentInput.getText().toString())
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -96,7 +101,7 @@ class CreateLobbyCategoryFragment : BaseFragment(), CreateLobbyCategoryView {
         }
     }
 
-    @OnClick(R.id.create_lobby_category_add_photo_button)
+    @OnClick(R.id.create_lobby_category_add_photo_button, R.id.create_lobby_category_image)
     fun onAddPhotoClick() {
         presenter.onAddPhotoClick()
     }
@@ -115,6 +120,7 @@ class CreateLobbyCategoryFragment : BaseFragment(), CreateLobbyCategoryView {
     }
 
     override fun showCoverPhoto(uri: Uri) {
-       imagesLoader.load(uri, imageView)
+        addPhotoButton.visibility = View.INVISIBLE
+        imagesLoader.load(uri, imageView)
     }
 }

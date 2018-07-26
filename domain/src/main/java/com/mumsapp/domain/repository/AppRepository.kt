@@ -1,7 +1,9 @@
 package com.mumsapp.domain.repository
 
 import com.mumsapp.domain.model.EmptyResponse
+import com.mumsapp.domain.model.lobby.CreateLobbyRoomRequest
 import com.mumsapp.domain.model.lobby.LobbyResponse
+import com.mumsapp.domain.model.lobby.LobbyRoomResponse
 import com.mumsapp.domain.model.lobby.SearchLobbyRequest
 import io.reactivex.Observable
 
@@ -18,4 +20,6 @@ interface AppRepository {
     fun joinLobbyRoom(id: Int): Observable<EmptyResponse>
 
     fun leaveLobbyRoom(id: Int): Observable<EmptyResponse>
+
+    fun createLobbyRoom(request: CreateLobbyRoomRequest): Observable<LobbyRoomResponse>
 }

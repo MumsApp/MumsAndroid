@@ -159,4 +159,12 @@ class UseCaseModule {
                                      schedulerProvider: SchedulerProvider): LeaveLobbyRoomUseCase {
         return LeaveLobbyRoomUseCase(repository, transformerProvider, schedulerProvider)
     }
+
+    @Provides
+    @Singleton
+    fun providesCreateLobbyRoomUseCase(repository: AppRepository,
+                                      @AuthorizationTransformer transformerProvider: UseCaseTransformerProvider,
+                                      schedulerProvider: SchedulerProvider): CreateLobbyRoomUseCase {
+        return CreateLobbyRoomUseCase(repository, transformerProvider, schedulerProvider)
+    }
 }

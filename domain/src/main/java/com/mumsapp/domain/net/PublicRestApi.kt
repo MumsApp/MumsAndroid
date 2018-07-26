@@ -5,6 +5,7 @@ import com.mumsapp.domain.model.EmptyResponse
 import com.mumsapp.domain.model.identity.RefreshTokenRequest
 import com.mumsapp.domain.model.identity.Token
 import com.mumsapp.domain.model.lobby.LobbyResponse
+import com.mumsapp.domain.model.lobby.LobbyRoomResponse
 import com.mumsapp.domain.model.user.*
 import io.reactivex.Observable
 import okhttp3.MultipartBody
@@ -75,4 +76,10 @@ interface PublicRestApi {
 
     @DELETE("lobby/room/{id}/join")
     fun deleteLobbyRoomIdJoin(@Path("id") id: Int): Observable<Response<EmptyResponse>>
+
+    @Multipart
+    @POST("lobby/room")
+    fun postLobbyRoom(@Query("title") title: String,
+                      @Query("description") description: String,
+                      @Query("public") public: Boolean, @Part filePart: MultipartBody.Part) : Observable<Response<LobbyRoomResponse>>
 }
