@@ -82,5 +82,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
+    //https://github.com/JakeWharton/ThreeTenABP java.time.* on older devices
+    implementation "com.jakewharton.threetenabp:threetenabp:$threeTenABPVersion"
+
     implementation project(':domain')
 }

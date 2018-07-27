@@ -3,6 +3,7 @@ package com.mumsapp.android
 import android.content.Context
 import android.support.multidex.MultiDexApplication
 import com.crashlytics.android.Crashlytics
+import com.jakewharton.threetenabp.AndroidThreeTen
 import com.mumsapp.android.base.BaseActivity
 import com.mumsapp.android.di.components.ActivityComponent
 import com.mumsapp.android.di.components.AppComponent
@@ -25,6 +26,7 @@ class MainApplication : MultiDexApplication() {
         super.onCreate()
         setupFabric()
         setupDefaultFont()
+        initJavaTimePort()
     }
 
     companion object {
@@ -56,5 +58,9 @@ class MainApplication : MultiDexApplication() {
                 .setFontAttrId(R.attr.fontPath)
                 .build()
         )
+    }
+
+    private fun initJavaTimePort() {
+        AndroidThreeTen.init(this)
     }
 }

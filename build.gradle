@@ -28,6 +28,7 @@ buildscript {
     ext.facebookSdkVersion = '4,30'
     ext.googleAuthVersion = '15.0.0'
     ext.googleMapsVersion = '15.0.0'
+    ext.threeTenABPVersion = '1.1.0'
 
     repositories {
         google()

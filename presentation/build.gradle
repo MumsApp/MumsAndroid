@@ -147,6 +147,9 @@ dependencies {
     //https://github.com/sembozdemir/PermissionsKt Android permissions based on Kotlin
     implementation 'com.github.sembozdemir:PermissionsKt:1.0.0'
 
+    //https://github.com/JakeWharton/ThreeTenABP java.time.* on older devices
+    implementation "com.jakewharton.threetenabp:threetenabp:$threeTenABPVersion"
+
     // Testing
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'

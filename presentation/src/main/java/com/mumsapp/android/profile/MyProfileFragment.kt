@@ -152,7 +152,7 @@ class MyProfileFragment : BaseFragment(), MyProfileView {
     }
 
     override fun loadAvatar(url: String) {
-        imagesLoader.load(url, avatarView)
+        imagesLoader.loadFromApiPath(url, avatarView)
     }
 
     @OnClick(R.id.my_profile_avatar)

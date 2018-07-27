@@ -1,23 +1,29 @@
 package com.mumsapp.android.util
 
 import android.content.Context
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.squareup.picasso.Picasso
+import com.mumsapp.domain.repository.ImagesRepository
 import com.stfalcon.chatkit.commons.ImageLoader
 import javax.inject.Inject
 
 class ImagesLoader : ImageLoader {
 
     private val context: Context
+    private val imagesRepository: ImagesRepository
 
     @Inject
-    constructor(context: Context) {
+    constructor(context: Context, imagesRepository: ImagesRepository) {
         this.context = context
+        this.imagesRepository = imagesRepository
+    }
+
+    fun loadFromApiPath(path: String, imageView: ImageView) {
+        val url = imagesRepository.getApiImageUrl(path)
+        load(url, imageView)
     }
 
     fun load(url: String, imageView: ImageView) {

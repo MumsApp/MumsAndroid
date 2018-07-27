@@ -27,7 +27,6 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
     private val getUserProfileUseCase: GetUserProfileUseCase
     private val sessionManager: SessionManager
     private val resourceRepository: ResourceRepository
-    private val imagesRepository: ImagesRepository
     private val updateUserLocationUseCase: UpdateUserLocationUseCase
     private val updateUserDetailsUseCase: UpdateUserDetailsUseCase
     private val createUserChildUseCase: CreateUserChildUseCase
@@ -45,7 +44,6 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
     @Inject
     constructor(getUserProfileUseCase: GetUserProfileUseCase, sessionManager: SessionManager,
                 resourceRepository: ResourceRepository,
-                imagesRepository: ImagesRepository,
                 updateUserLocationUseCase: UpdateUserLocationUseCase,
                 updateUserDetailsUseCase: UpdateUserDetailsUseCase,
                 createUserChildUseCase: CreateUserChildUseCase,
@@ -58,7 +56,6 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
         this.getUserProfileUseCase = getUserProfileUseCase
         this.sessionManager = sessionManager
         this.resourceRepository = resourceRepository
-        this.imagesRepository = imagesRepository
         this.updateUserLocationUseCase = updateUserLocationUseCase
         this.updateUserDetailsUseCase = updateUserDetailsUseCase
         this.createUserChildUseCase = createUserChildUseCase
@@ -101,8 +98,7 @@ class MyProfilePresenter : LifecyclePresenter<MyProfileView> {
         view?.showProfileInfo(name, user.description)
 
         if (user.photo.src != null) {
-            val url = imagesRepository.getApiImageUrl(user.photo.src!!)
-            view?.loadAvatar(url)
+            view?.loadAvatar(user.photo.src!!)
         }
 
         if(user.location.enabled != null && user.location.enabled!!) {

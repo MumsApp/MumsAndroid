@@ -10,12 +10,14 @@ import com.mumsapp.android.BuildConfig
 import com.mumsapp.android.MainApplication
 import com.mumsapp.android.di.qualifiers.ApplicationId
 import com.mumsapp.android.util.KeyboardHelper
+import com.mumsapp.data.net.GsonProviderImpl
 import com.mumsapp.data.net.PublicRestApiProviderImpl
 import com.mumsapp.data.repository.AppRepositoryImpl
 import com.mumsapp.data.repository.ImagesRepositoryImpl
 import com.mumsapp.data.repository.ResourceRepositoryImpl
 import com.mumsapp.data.repository.UserRepositoryImpl
 import com.mumsapp.data.utils.*
+import com.mumsapp.domain.net.GsonProvider
 import com.mumsapp.domain.net.PublicRestApiProvider
 import com.mumsapp.domain.repository.AppRepository
 import com.mumsapp.domain.repository.ImagesRepository
@@ -71,7 +73,7 @@ class AppModule(private val context: MainApplication) {
 
     @Provides
     @Singleton
-    fun providesGson() = Gson()
+    fun providesGson(provider: GsonProvider) = provider.provideGson()
 
     @Provides
     @Singleton
@@ -141,6 +143,18 @@ class AppModule(private val context: MainApplication) {
     @Provides
     @Singleton
     fun providesAppRepository(impl: AppRepositoryImpl): AppRepository {
+        return impl
+    }
+
+    @Provides
+    @Singleton
+    fun providesDateManager(impl: DateManagerImpl): DateManager {
+        return impl
+    }
+
+    @Provides
+    @Singleton
+    fun providesGsonProvider(impl: GsonProviderImpl): GsonProvider {
         return impl
     }
 }

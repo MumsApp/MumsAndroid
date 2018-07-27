@@ -9,13 +9,14 @@ import com.mumsapp.android.base.BaseViewHolder
 import com.mumsapp.android.ui.views.BaseTextView
 import com.mumsapp.android.ui.views.CircleImageView
 import com.mumsapp.android.util.ImagesLoader
-import com.mumsapp.domain.model.lobby.LobbyPost
 import com.mumsapp.domain.model.lobby.LobbyRoomTopic
+import com.mumsapp.domain.utils.DateManager
 import java.lang.ref.WeakReference
 
 class LobbyPostViewHolder : BaseViewHolder<LobbyRoomTopic> {
 
     private val imagesLoader: ImagesLoader
+    private val dateManager: DateManager
 
     @BindView(R.id.cell_lobby_post_avatar)
     lateinit var avatarView: CircleImageView
@@ -37,18 +38,23 @@ class LobbyPostViewHolder : BaseViewHolder<LobbyRoomTopic> {
 
     private var item: LobbyRoomTopic? = null
 
-    constructor(imagesLoader: ImagesLoader, itemView: View) : super(itemView) {
+    constructor(imagesLoader: ImagesLoader, itemView: View, dateManager: DateManager) : super(itemView) {
         this.imagesLoader = imagesLoader
         ButterKnife.bind(this, itemView)
+        this.dateManager = dateManager
     }
 
     override fun init(item: LobbyRoomTopic) {
         this.item = item
 
         userNameView.text = item.creator.name
-        dateView.text = "today" //TODO: add interceptor for zoned date time and add extension method toReadableForm
+        dateView.text = dateManager.getRelativeTimeSpanString(item.creationDate)
         titleView.text = item.title
         contentView.text = item.description
+
+        if(item.img != null) {
+            imagesLoader.load(item.img!!, avatarView)
+        }
     }
 
     fun setReplyListener(listener: ((item: LobbyRoomTopic) -> Unit)?) {

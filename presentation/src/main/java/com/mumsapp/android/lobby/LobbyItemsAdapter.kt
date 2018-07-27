@@ -12,19 +12,17 @@ import javax.inject.Inject
 class LobbyItemsAdapter : BaseRecyclerViewAdapter<LobbyRoom, LobbyViewHolder> {
 
     private val imagesLoader: ImagesLoader
-    private val imagesRepository: ImagesRepository
 
     var switchChangeListener: ((item: LobbyRoom, value: Boolean) -> Unit)? = null
 
     @Inject
-    constructor(imagesLoader: ImagesLoader, imagesRepository: ImagesRepository) {
+    constructor(imagesLoader: ImagesLoader) {
         this.imagesLoader = imagesLoader
-        this.imagesRepository = imagesRepository
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LobbyViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.cell_lobby, parent, false)
-        return LobbyViewHolder(imagesLoader, itemView, imagesRepository)
+        return LobbyViewHolder(imagesLoader, itemView)
     }
 
     override fun onBindViewHolder(holder: LobbyViewHolder, position: Int) {
