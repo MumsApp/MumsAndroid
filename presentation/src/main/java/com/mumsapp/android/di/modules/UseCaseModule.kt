@@ -175,4 +175,12 @@ class UseCaseModule {
                                        schedulerProvider: SchedulerProvider): DeleteLobbyRoomUseCase {
         return DeleteLobbyRoomUseCase(repository, transformerProvider, schedulerProvider)
     }
+
+    @Provides
+    @Singleton
+    fun providesGetLobbyRoomTopicsUseCase(repository: AppRepository,
+                                       @AuthorizationTransformer transformerProvider: UseCaseTransformerProvider,
+                                       schedulerProvider: SchedulerProvider): GetLobbyRoomTopicsUseCase {
+        return GetLobbyRoomTopicsUseCase(repository, transformerProvider, schedulerProvider)
+    }
 }
