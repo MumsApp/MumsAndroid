@@ -213,6 +213,7 @@
     <string name="from_your_children_list_question_mark">%s from your children list?</string>
 
     <string name="from_your_lobby_rooms_list_question_mark">%s from your lobby rooms list?</string>
+    <string name="from_our_server_question_mark">%s from your our server?</string>
 
     <string name="create_category">Create Category</string>
 

@@ -60,7 +60,6 @@ class LobbyFragment : BaseFragment(), LobbyView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         lifecyclePresenter.attachViewWithLifecycle(this)
-        topBar.setRightButtonClickListener { lifecyclePresenter.onFiltersButtonClick() }
         topBar.setSearchListener(lifecyclePresenter::onSearch)
     }
 

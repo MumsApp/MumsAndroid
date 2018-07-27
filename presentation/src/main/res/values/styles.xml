@@ -319,6 +319,12 @@
         <item name="topBarRightIcon">@drawable/ic_write</item>
     </style>
 
+    <style name="top_bar_search" parent="top_bar_default">
+        <item name="topBarLeftButtonVisible">false</item>
+        <item name="topBarRightButtonVisible">false</item>
+        <item name="searchVisible">true</item>
+    </style>
+
 
     <!--Forms -->
     <style name="default_form_theme">

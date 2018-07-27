@@ -1,10 +1,7 @@
 package com.mumsapp.data.repository
 
 import com.mumsapp.domain.model.EmptyResponse
-import com.mumsapp.domain.model.lobby.CreateLobbyRoomRequest
-import com.mumsapp.domain.model.lobby.LobbyResponse
-import com.mumsapp.domain.model.lobby.LobbyRoomResponse
-import com.mumsapp.domain.model.lobby.SearchLobbyRequest
+import com.mumsapp.domain.model.lobby.*
 import com.mumsapp.domain.net.PublicRestApi
 import com.mumsapp.domain.repository.AppRepository
 import com.mumsapp.domain.repository.ResourceRepository
@@ -59,5 +56,9 @@ class AppRepositoryImpl : BaseRestRepository, AppRepository {
                 filePart)
 
         return requestWithErrorMapping(apiRequest)
+    }
+
+    override fun deleteLobbyRoom(id: Int): Observable<EmptyResponse> {
+        return requestWithErrorMapping(restApi.deleteLobbyRoomId(id))
     }
 }

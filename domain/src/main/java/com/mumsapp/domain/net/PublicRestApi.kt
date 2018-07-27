@@ -82,4 +82,7 @@ interface PublicRestApi {
     fun postLobbyRoom(@Query("title") title: String,
                       @Query("description") description: String,
                       @Query("public") public: Boolean, @Part filePart: MultipartBody.Part) : Observable<Response<LobbyRoomResponse>>
+
+    @DELETE("lobby/room/{id}")
+    fun deleteLobbyRoomId(@Path("id") id: Int): Observable<Response<EmptyResponse>>
 }

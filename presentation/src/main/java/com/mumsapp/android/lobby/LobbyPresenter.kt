@@ -21,6 +21,7 @@ class LobbyPresenter : LifecyclePresenter<LobbyView> {
     private val removeLobbyFromFavouriteUseCase: RemoveLobbyFromFavouriteUseCase
     private val leaveLobbyRoomUseCase: LeaveLobbyRoomUseCase
     private val resourceRepository: ResourceRepository
+    private val deleteLobbyRoomUseCase: DeleteLobbyRoomUseCase
 
     @Inject
     constructor(getLobbyItemsUseCace: GetLobbyRoomsUseCase,
@@ -29,7 +30,8 @@ class LobbyPresenter : LifecyclePresenter<LobbyView> {
                 addLobbyToFavouriteUseCase: AddLobbyToFavouriteUseCase,
                 removeLobbyFromFavouriteUseCase: RemoveLobbyFromFavouriteUseCase,
                 leaveLobbyRoomUseCase: LeaveLobbyRoomUseCase,
-                resourceRepository: ResourceRepository) {
+                resourceRepository: ResourceRepository,
+                deleteLobbyRoomUseCase: DeleteLobbyRoomUseCase) {
         this.getLobbyItemsUseCase = getLobbyItemsUseCace
         this.fragmentsNavigationService = fragmentsNavigationService
         this.searchLobbyRoomsUseCase = searchLobbyRoomsUseCase
@@ -37,10 +39,7 @@ class LobbyPresenter : LifecyclePresenter<LobbyView> {
         this.removeLobbyFromFavouriteUseCase = removeLobbyFromFavouriteUseCase
         this.leaveLobbyRoomUseCase = leaveLobbyRoomUseCase
         this.resourceRepository = resourceRepository
-    }
-
-    fun onFiltersButtonClick() {
-
+        this.deleteLobbyRoomUseCase = deleteLobbyRoomUseCase
     }
 
     fun onSearch(value: String) {
@@ -111,12 +110,32 @@ class LobbyPresenter : LifecyclePresenter<LobbyView> {
     }
 
     private fun onLeaveLobbyRoomClick(item: LobbyRoom) {
+        if(item.isOwner) {
+            val description = resourceRepository.getString(R.string.from_our_server_question_mark, item.title)
+            showDeleteConfirmationDialog(item, description, {deleteLobbyRoom(item)})
+        } else if(item.isJoined) {
+            val description = resourceRepository.getString(R.string.from_your_lobby_rooms_list_question_mark, item.title)
+            showDeleteConfirmationDialog(item, description, {leaveLobbyRoom(item)})
+        }
+    }
+
+    private fun showDeleteConfirmationDialog(item: LobbyRoom, description: String, confirmButtonListener: () -> Unit) {
         val title = resourceRepository.getString(R.string.are_you_sure_you_want_to_remove)
-        val readableChild = item.title
-        val description = resourceRepository.getString(R.string.from_your_lobby_rooms_list_question_mark, readableChild)
         val buttonText = resourceRepository.getString(R.string.yes_coma_remove)
 
-        view?.showConfirmationDialog(title, description, buttonText, {leaveLobbyRoom(item)})
+        view?.showConfirmationDialog(title, description, buttonText, confirmButtonListener)
+    }
+
+    private fun deleteLobbyRoom(item: LobbyRoom) {
+        val request = LobbyFavouriteRequest(item)
+        addDisposable(
+                deleteLobbyRoomUseCase.execute(request)
+                        .subscribe(this::handleDeleteLobbyRoomSuccess, this::handleApiError)
+        )
+    }
+
+    private fun handleDeleteLobbyRoomSuccess(item: LobbyRoom) {
+        loadItems()
     }
 
     private fun leaveLobbyRoom(item: LobbyRoom) {
