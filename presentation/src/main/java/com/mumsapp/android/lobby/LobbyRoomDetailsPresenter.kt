@@ -2,26 +2,33 @@ package com.mumsapp.android.lobby
 
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.navigation.FragmentsNavigationService
+import com.mumsapp.domain.interactor.lobby.GetLobbyRoomTopicsUseCase
+import com.mumsapp.domain.model.lobby.GetLobbyRoomTopicsRequest
+import com.mumsapp.domain.model.lobby.LobbyRoom
 import com.mumsapp.domain.model.lobby.LobbyRoomTopic
+import com.mumsapp.domain.model.lobby.LobbyRoomTopicsResponse
 import javax.inject.Inject
 
 class LobbyRoomDetailsPresenter : LifecyclePresenter<LobbyRoomDetailsView> {
 
     private val fragmentsNavigationService: FragmentsNavigationService
+    private val getLobbyRoomTopicsUseCase: GetLobbyRoomTopicsUseCase
 
-    private var categoryId: Int = 0
+    lateinit var lobbyRoom: LobbyRoom
 
     @Inject
-    constructor(fragmentsNavigationService: FragmentsNavigationService) {
+    constructor(fragmentsNavigationService: FragmentsNavigationService, getLobbyRoomTopicsUseCase: GetLobbyRoomTopicsUseCase) {
         this.fragmentsNavigationService = fragmentsNavigationService
+        this.getLobbyRoomTopicsUseCase = getLobbyRoomTopicsUseCase
     }
 
-    fun setArguments(categoryId: Int) {
-        this.categoryId = categoryId
+    fun setArguments(lobbyRoom: LobbyRoom) {
+        this.lobbyRoom = lobbyRoom
     }
 
     override fun start() {
-        showMockedData()
+        view?.setTitle(lobbyRoom.title)
+        loadTopics(1, 10)
     }
 
     fun onBackClick() {
@@ -29,11 +36,7 @@ class LobbyRoomDetailsPresenter : LifecyclePresenter<LobbyRoomDetailsView> {
     }
 
     fun onCreatePostClick() {
-        fragmentsNavigationService.openCreatePostFragment(categoryId!!, true)
-    }
-
-    private fun showMockedData() {
-
+        fragmentsNavigationService.openCreatePostFragment(lobbyRoom!!.id, true)
     }
 
     private fun onReplyClick(post: LobbyRoomTopic) {
@@ -42,5 +45,18 @@ class LobbyRoomDetailsPresenter : LifecyclePresenter<LobbyRoomDetailsView> {
 
     private fun onUserClick(post: LobbyRoomTopic) {
         fragmentsNavigationService.openUserProfileFragment(true)
+    }
+
+    private fun loadTopics(page: Int, perPage: Int) {
+        val request = GetLobbyRoomTopicsRequest(lobbyRoom.id, page, perPage)
+        addDisposable(
+                getLobbyRoomTopicsUseCase.execute(request)
+                        .compose(applyOverlaysToObservable())
+                        .subscribe(this::handleLoadTopicsSuccess, this::handleApiError)
+        )
+    }
+
+    private fun handleLoadTopicsSuccess(response: LobbyRoomTopicsResponse) {
+        view?.showTopics(response.data.posts, this::onReplyClick, this::onUserClick)
     }
 }

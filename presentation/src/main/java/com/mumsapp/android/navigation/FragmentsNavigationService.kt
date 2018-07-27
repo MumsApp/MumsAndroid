@@ -30,6 +30,7 @@ import com.mumsapp.android.profile.UserProfileFragment
 import com.mumsapp.android.shop.ShopFilterFragment
 import com.mumsapp.android.shop.ShopFragment
 import com.mumsapp.domain.model.chat.TemplateChatThread
+import com.mumsapp.domain.model.lobby.LobbyRoom
 import javax.inject.Inject
 
 class FragmentsNavigationService {
@@ -193,12 +194,12 @@ class FragmentsNavigationService {
 
     fun createMumsAppOfferDetailsFragment(offerId: Int) = MumsAppOfferDetailsFragment.getInstance(offerId)
 
-    fun openLobbyCategoryDetailsFragment(lobbyCategoryId: Int, addToBackStack: Boolean) {
-        val fragment = createLobbyCategoryDetailsFragment(lobbyCategoryId)
+    fun openLobbyCategoryDetailsFragment(lobbyRoom: LobbyRoom, addToBackStack: Boolean) {
+        val fragment = createLobbyCategoryDetailsFragment(lobbyRoom)
         openFragment(fragment, addToBackStack)
     }
 
-    fun createLobbyCategoryDetailsFragment(lobbyCategoryId: Int) = LobbyRoomDetailsFragment.getInstance(lobbyCategoryId)
+    fun createLobbyCategoryDetailsFragment(lobbyRoom: LobbyRoom) = LobbyRoomDetailsFragment.getInstance(lobbyRoom)
 
     fun openCreatePostFragment(lobbyCategoryId: Int, addToBackStack: Boolean) {
         val fragment = createCreatePostFragment(lobbyCategoryId)

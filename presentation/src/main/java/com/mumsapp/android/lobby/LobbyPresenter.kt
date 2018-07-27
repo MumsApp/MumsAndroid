@@ -51,7 +51,7 @@ class LobbyPresenter : LifecyclePresenter<LobbyView> {
     }
 
     fun onLobbyItemClick(item: LobbyRoom) {
-        fragmentsNavigationService.openLobbyCategoryDetailsFragment(item.id, true)
+        fragmentsNavigationService.openLobbyCategoryDetailsFragment(item, true)
     }
 
     override fun start() {
@@ -130,6 +130,7 @@ class LobbyPresenter : LifecyclePresenter<LobbyView> {
         val request = LobbyFavouriteRequest(item)
         addDisposable(
                 deleteLobbyRoomUseCase.execute(request)
+                        .compose(applyOverlaysToObservable())
                         .subscribe(this::handleDeleteLobbyRoomSuccess, this::handleApiError)
         )
     }
@@ -142,6 +143,7 @@ class LobbyPresenter : LifecyclePresenter<LobbyView> {
         val request = LobbyFavouriteRequest(item)
         addDisposable(
                 leaveLobbyRoomUseCase.execute(request)
+                        .compose(applyOverlaysToObservable())
                         .subscribe(this::handleLeaveLobbyRoomSuccess, this::handleApiError)
         )
     }

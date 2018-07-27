@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
-import com.google.android.gms.location.places.ui.PlaceAutocomplete
 import com.mumsapp.android.R
 import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.base.LifecyclePresenter
@@ -59,7 +58,7 @@ class CreatePostFragment : BaseFragment(), CreatePostView {
 
         fun createArgumentsBundle(lobbyCategoryId: Int): Bundle {
             val args = Bundle()
-            args.putInt(LOBBY_CATEGORY_ID_KEY, lobbyCategoryId)
+            args.putInt(LOBBY_ROOM_KEY, lobbyCategoryId)
 
             return args
         }
@@ -85,7 +84,7 @@ class CreatePostFragment : BaseFragment(), CreatePostView {
     }
 
     private fun passArgumentsToPresenter() {
-        val lobbyCategoryId = arguments!!.getInt(LOBBY_CATEGORY_ID_KEY)
+        val lobbyCategoryId = arguments!!.getInt(LOBBY_ROOM_KEY)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
