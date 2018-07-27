@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import com.mumsapp.domain.model.BaseResponse
 import com.mumsapp.domain.model.user.UserMinimalResponse
 
-class LobbyRoomTopicsResponse(@SerializedName("data") var data: List<LobbyRoomTopic>) : BaseResponse()
+data class LobbyRoomTopicsResponse(@SerializedName("data") var data: List<LobbyRoomTopic>) : BaseResponse()
 
 data class LobbyRoomTopic(@SerializedName("title") var title: String,
                           @SerializedName("description") var description: String,

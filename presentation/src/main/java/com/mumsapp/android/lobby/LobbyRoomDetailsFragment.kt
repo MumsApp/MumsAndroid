@@ -15,15 +15,16 @@ import com.mumsapp.android.ui.views.CardsRecyclerView
 import com.mumsapp.android.ui.views.TopBar
 import com.mumsapp.android.util.LOBBY_CATEGORY_ID_KEY
 import com.mumsapp.domain.model.lobby.LobbyPost
+import com.mumsapp.domain.model.lobby.LobbyRoomTopic
 import javax.inject.Inject
 
-class LobbyCategoryDetailsFragment : BaseFragment(), LobbyCategoryDetailsView {
+class LobbyRoomDetailsFragment : BaseFragment(), LobbyRoomDetailsView {
 
     @Inject
-    lateinit var presenter: LobbyCategoryDetailsPresenter
+    lateinit var presenter: LobbyRoomDetailsPresenter
 
     @Inject
-    lateinit var adapter: LobbyPostAdapter
+    lateinit var adapter: LobbyRoomTopicsAdapter
 
     @BindView(R.id.lobby_category_details_top_bar)
     lateinit var topBar: TopBar
@@ -34,8 +35,8 @@ class LobbyCategoryDetailsFragment : BaseFragment(), LobbyCategoryDetailsView {
     override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter() = presenter as T
 
     companion object {
-        fun getInstance(lobbyCategoryId: Int): LobbyCategoryDetailsFragment {
-            val fragment = LobbyCategoryDetailsFragment()
+        fun getInstance(lobbyCategoryId: Int): LobbyRoomDetailsFragment {
+            val fragment = LobbyRoomDetailsFragment()
             fragment.arguments = createArgBundle(lobbyCategoryId)
 
             return fragment
@@ -55,7 +56,7 @@ class LobbyCategoryDetailsFragment : BaseFragment(), LobbyCategoryDetailsView {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val v = inflater.inflate(R.layout.fragment_lobby_category_details, container, false)
+        val v = inflater.inflate(R.layout.fragment_lobby_room_details, container, false)
         setUnbinder(ButterKnife.bind(this, v))
         return v
     }
@@ -73,9 +74,9 @@ class LobbyCategoryDetailsFragment : BaseFragment(), LobbyCategoryDetailsView {
         presenter.setArguments(lobbyCategoryId)
     }
 
-    override fun showPosts(posts: List<LobbyPost>, replyClickListener: (item: LobbyPost) -> Unit,
-                           userClickListener: (item: LobbyPost) -> Unit) {
-        adapter.items = posts
+    override fun showTopics(topics: List<LobbyRoomTopic>, replyClickListener: (item: LobbyRoomTopic) -> Unit,
+                            userClickListener: (item: LobbyRoomTopic) -> Unit) {
+        adapter.items = topics
         adapter.notifyDataSetChanged()
 
         if(recyclerView.adapter == null) {

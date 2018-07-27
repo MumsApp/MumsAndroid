@@ -10,9 +10,10 @@ import com.mumsapp.android.ui.views.BaseTextView
 import com.mumsapp.android.ui.views.CircleImageView
 import com.mumsapp.android.util.ImagesLoader
 import com.mumsapp.domain.model.lobby.LobbyPost
+import com.mumsapp.domain.model.lobby.LobbyRoomTopic
 import java.lang.ref.WeakReference
 
-class LobbyPostViewHolder : BaseViewHolder<LobbyPost> {
+class LobbyPostViewHolder : BaseViewHolder<LobbyRoomTopic> {
 
     private val imagesLoader: ImagesLoader
 
@@ -31,26 +32,26 @@ class LobbyPostViewHolder : BaseViewHolder<LobbyPost> {
     @BindView(R.id.cell_lobby_post_content)
     lateinit var contentView: BaseTextView
 
-    private var replyListener: WeakReference<((item: LobbyPost) -> Unit)>? = null
-    private var avatarClickListener: WeakReference<((item: LobbyPost) -> Unit)>? = null
+    private var replyListener: WeakReference<((item: LobbyRoomTopic) -> Unit)>? = null
+    private var avatarClickListener: WeakReference<((item: LobbyRoomTopic) -> Unit)>? = null
 
-    private var item: LobbyPost? = null
+    private var item: LobbyRoomTopic? = null
 
     constructor(imagesLoader: ImagesLoader, itemView: View) : super(itemView) {
         this.imagesLoader = imagesLoader
         ButterKnife.bind(this, itemView)
     }
 
-    override fun init(item: LobbyPost) {
+    override fun init(item: LobbyRoomTopic) {
         this.item = item
 
-        userNameView.text = item.userName
-        dateView.text = item.date
+        userNameView.text = item.creator.name
+        dateView.text = "today" //TODO: add interceptor for zoned date time and add extension method toReadableForm
         titleView.text = item.title
-        contentView.text = item.content
+        contentView.text = item.description
     }
 
-    fun setReplyListener(listener: ((item: LobbyPost) -> Unit)?) {
+    fun setReplyListener(listener: ((item: LobbyRoomTopic) -> Unit)?) {
         if(listener == null) {
             return
         }
@@ -58,7 +59,7 @@ class LobbyPostViewHolder : BaseViewHolder<LobbyPost> {
         replyListener = WeakReference(listener)
     }
 
-    fun setUserClickistener(listener: ((item: LobbyPost) -> Unit)?) {
+    fun setUserClickistener(listener: ((item: LobbyRoomTopic) -> Unit)?) {
         if(listener == null) {
             return
         }

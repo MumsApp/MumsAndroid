@@ -6,14 +6,15 @@ import com.mumsapp.android.R
 import com.mumsapp.android.base.BaseRecyclerViewAdapter
 import com.mumsapp.android.util.ImagesLoader
 import com.mumsapp.domain.model.lobby.LobbyPost
+import com.mumsapp.domain.model.lobby.LobbyRoomTopic
 import javax.inject.Inject
 
-class LobbyPostAdapter : BaseRecyclerViewAdapter<LobbyPost, LobbyPostViewHolder> {
+class LobbyRoomTopicsAdapter : BaseRecyclerViewAdapter<LobbyRoomTopic, LobbyPostViewHolder> {
 
     private val imagesLoader: ImagesLoader
 
-    var replyClickListener: ((item: LobbyPost) -> Unit)? = null
-    var userClickListener: ((item: LobbyPost) -> Unit)? = null
+    var replyClickListener: ((item: LobbyRoomTopic) -> Unit)? = null
+    var userClickListener: ((item: LobbyRoomTopic) -> Unit)? = null
 
     @Inject
     constructor(imagesLoader: ImagesLoader) {

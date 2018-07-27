@@ -11,7 +11,7 @@ import com.mumsapp.android.di.modules.ActivityModule
 import com.mumsapp.android.di.scopes.ActivityScope
 import com.mumsapp.android.lobby.CreateLobbyCategoryFragment
 import com.mumsapp.android.lobby.CreatePostFragment
-import com.mumsapp.android.lobby.LobbyCategoryDetailsFragment
+import com.mumsapp.android.lobby.LobbyRoomDetailsFragment
 import com.mumsapp.android.lobby.LobbyFragment
 import com.mumsapp.android.main.MainActivity
 import com.mumsapp.android.mums_app_offers.MumsAppOfferDetailsFragment
@@ -90,7 +90,7 @@ interface ActivityComponent {
 
     fun inject(dialog: ConfirmationDialog)
 
-    fun inject(fragment: LobbyCategoryDetailsFragment)
+    fun inject(fragment: LobbyRoomDetailsFragment)
 
     fun inject(fragment: CreatePostFragment)
 
