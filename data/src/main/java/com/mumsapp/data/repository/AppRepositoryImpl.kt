@@ -61,4 +61,8 @@ class AppRepositoryImpl : BaseRestRepository, AppRepository {
     override fun deleteLobbyRoom(id: Int): Observable<EmptyResponse> {
         return requestWithErrorMapping(restApi.deleteLobbyRoomId(id))
     }
+
+    override fun getLobbyRoomTopics(lobbyRoomId: Int, page: Int, perPage: Int): Observable<LobbyRoomTopicsResponse> {
+        return requestWithErrorMapping(restApi.getLobbyRoomIdTopics(lobbyRoomId, page, perPage))
+    }
 }

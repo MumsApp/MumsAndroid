@@ -6,6 +6,7 @@ import com.mumsapp.domain.model.identity.RefreshTokenRequest
 import com.mumsapp.domain.model.identity.Token
 import com.mumsapp.domain.model.lobby.LobbyResponse
 import com.mumsapp.domain.model.lobby.LobbyRoomResponse
+import com.mumsapp.domain.model.lobby.LobbyRoomTopicsResponse
 import com.mumsapp.domain.model.user.*
 import io.reactivex.Observable
 import okhttp3.MultipartBody
@@ -85,4 +86,8 @@ interface PublicRestApi {
 
     @DELETE("lobby/room/{id}")
     fun deleteLobbyRoomId(@Path("id") id: Int): Observable<Response<EmptyResponse>>
+
+    @GET("lobby/room/{roomId}/topic/page/{page}/{perPage}")
+    fun getLobbyRoomIdTopics(@Path("roomId") lobbyRoomId: Int, @Path("page") page: Int,
+                             @Path("perPage") perPage: Int): Observable<Response<LobbyRoomTopicsResponse>>
 }
