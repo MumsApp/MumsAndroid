@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/widget_layout"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp"
+    android:paddingStart="0dp"
+    android:paddingEnd="0dp">
+
+    <com.mumsapp.android.ui.views.BaseImageButton
+        android:id="@+id/pagination_first_page"
+        style="@style/default_image_button"
+        android:padding="@dimen/padding_default"
+        android:src="@drawable/ic_arrow_left_double"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <com.mumsapp.android.ui.views.BaseImageButton
+        android:id="@+id/pagination_previous_page"
+        style="@style/default_image_button"
+        android:padding="@dimen/padding_default"
+        android:src="@drawable/ic_arrow_left"
+        app:layout_constraintLeft_toRightOf="@id/pagination_first_page"/>
+
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/pagination_page_indicator"
+        style="@style/text_normal"
+        tools:text="Page 1/1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <com.mumsapp.android.ui.views.BaseImageButton
+        android:id="@+id/pagination_next_page"
+        style="@style/default_image_button"
+        android:padding="@dimen/padding_default"
+        android:src="@drawable/ic_arrow_right"
+        app:layout_constraintRight_toLeftOf="@id/pagination_last_page"/>
+
+    <com.mumsapp.android.ui.views.BaseImageButton
+        android:id="@+id/pagination_last_page"
+        style="@style/default_image_button"
+        android:padding="@dimen/padding_default"
+        android:src="@drawable/ic_arrow_right_double"
+        app:layout_constraintRight_toRightOf="parent"/>
+</android.support.constraint.ConstraintLayout>
