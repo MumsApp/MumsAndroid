@@ -27,3 +27,6 @@ const val AGE_UNIT_YEAR = 3
 const val SEX_MALE = 1
 const val SEX_FEMALE = 2
 const val SEX_TO_COME = 3
+
+//Pagination
+const val DEFAULT_PAGE_SIZE = 20

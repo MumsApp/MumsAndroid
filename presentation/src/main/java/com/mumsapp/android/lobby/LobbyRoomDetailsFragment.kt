@@ -13,6 +13,7 @@ import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.di.components.ActivityComponent
 import com.mumsapp.android.ui.views.CardsRecyclerView
 import com.mumsapp.android.ui.views.TopBar
+import com.mumsapp.android.ui.widgets.PaginationWidget
 import com.mumsapp.android.util.LOBBY_ROOM_KEY
 import com.mumsapp.domain.model.lobby.LobbyRoom
 import com.mumsapp.domain.model.lobby.LobbyRoomTopic
@@ -31,6 +32,9 @@ class LobbyRoomDetailsFragment : BaseFragment(), LobbyRoomDetailsView {
 
     @BindView(R.id.lobby_category_details_recycler_view)
     lateinit var recyclerView: CardsRecyclerView
+
+    @BindView(R.id.lobby_category_details_pagination)
+    lateinit var paginationWidget: PaginationWidget
 
     override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter() = presenter as T
 
@@ -89,5 +93,10 @@ class LobbyRoomDetailsFragment : BaseFragment(), LobbyRoomDetailsView {
 
             recyclerView.adapter = adapter
         }
+    }
+
+    override fun setupPagination(lastPage: Int, pageChangeListener: ((page: Int) -> Unit)?) {
+        paginationWidget.setLastPage(lastPage)
+        paginationWidget.pageChangeListener = pageChangeListener
     }
 }

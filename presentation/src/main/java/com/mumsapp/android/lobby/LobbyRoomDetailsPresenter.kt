@@ -2,6 +2,7 @@ package com.mumsapp.android.lobby
 
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.navigation.FragmentsNavigationService
+import com.mumsapp.android.util.DEFAULT_PAGE_SIZE
 import com.mumsapp.domain.interactor.lobby.GetLobbyRoomTopicsUseCase
 import com.mumsapp.domain.model.lobby.GetLobbyRoomTopicsRequest
 import com.mumsapp.domain.model.lobby.LobbyRoom
@@ -28,7 +29,7 @@ class LobbyRoomDetailsPresenter : LifecyclePresenter<LobbyRoomDetailsView> {
 
     override fun start() {
         view?.setTitle(lobbyRoom.title)
-        loadTopics(1, 10)
+        loadTopics(1, DEFAULT_PAGE_SIZE)
     }
 
     fun onBackClick() {
@@ -57,6 +58,11 @@ class LobbyRoomDetailsPresenter : LifecyclePresenter<LobbyRoomDetailsView> {
     }
 
     private fun handleLoadTopicsSuccess(response: LobbyRoomTopicsResponse) {
+        view?.setupPagination(response.data.pages, this::handlePageChange)
         view?.showTopics(response.data.posts, this::onReplyClick, this::onUserClick)
+    }
+
+    private fun handlePageChange(page: Int) {
+        loadTopics(page, DEFAULT_PAGE_SIZE)
     }
 }
