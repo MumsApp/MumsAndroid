@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <com.mumsapp.android.ui.views.TopBar
-        android:id="@+id/create_post_top_bar"
+        android:id="@+id/create_lobby_topic_top_bar"
         style="@style/top_bar_back_right_text"
         app:layout_constraintTop_toTopOf="parent"
         app:topBarTitle="@string/create_post"
@@ -19,7 +19,7 @@
             style="@style/default_layout">
 
             <com.mumsapp.android.ui.views.BaseTextView
-                android:id="@+id/create_post_title_label"
+                android:id="@+id/create_lobby_topic_title_label"
                 style="@style/text_small_grey_light"
                 android:layout_marginTop="@dimen/padding_default"
                 android:layout_marginStart="@dimen/padding_default"
@@ -28,55 +28,55 @@
                 app:layout_constraintLeft_toLeftOf="parent"/>
 
             <com.mumsapp.android.ui.views.CardEditText
-                android:id="@+id/create_post_title_input"
+                android:id="@+id/create_lobby_topic_title_input"
                 style="@style/default_card_edit_text"
                 android:layout_marginTop="@dimen/padding_medium"
                 android:hint="@string/insert_title"
-                app:layout_constraintTop_toBottomOf="@id/create_post_title_label"/>
+                app:layout_constraintTop_toBottomOf="@id/create_lobby_topic_title_label"/>
 
             <com.mumsapp.android.ui.views.BaseTextView
-                android:id="@+id/create_post_content_label"
+                android:id="@+id/create_lobby_topic_content_label"
                 style="@style/text_small_grey_light"
                 android:layout_marginTop="@dimen/padding_default"
                 android:layout_marginStart="@dimen/padding_default"
                 android:text="@string/title"
-                app:layout_constraintTop_toBottomOf="@id/create_post_title_input"
+                app:layout_constraintTop_toBottomOf="@id/create_lobby_topic_title_input"
                 app:layout_constraintLeft_toLeftOf="parent"/>
 
             <com.mumsapp.android.ui.views.CardEditText
-                android:id="@+id/create_post_content_input"
+                android:id="@+id/create_lobby_topic_content_input"
                 style="@style/default_card_edit_text"
                 android:layout_height="@dimen/product_big_image_height"
                 android:layout_marginTop="@dimen/padding_medium"
                 android:hint="@string/type_something"
-                app:layout_constraintTop_toBottomOf="@id/create_post_content_label" />
+                app:layout_constraintTop_toBottomOf="@id/create_lobby_topic_content_label" />
 
             <com.mumsapp.android.ui.views.BaseTextView
-                android:id="@+id/create_post_photo_label"
+                android:id="@+id/create_lobby_topic_photo_label"
                 style="@style/text_small_grey_light"
                 android:layout_marginTop="@dimen/padding_default"
                 android:layout_marginStart="@dimen/padding_default"
                 android:text="@string/photo"
-                app:layout_constraintTop_toBottomOf="@id/create_post_content_input"
+                app:layout_constraintTop_toBottomOf="@id/create_lobby_topic_content_input"
                 app:layout_constraintLeft_toLeftOf="parent"/>
 
             <com.mumsapp.android.ui.views.AddPhotoButton
-                android:id="@+id/create_post_add_photo_button"
+                android:id="@+id/create_lobby_topic_add_photo_button"
                 style="@style/card_squared"
                 android:layout_marginTop="@dimen/padding_default"
-                app:layout_constraintTop_toBottomOf="@id/create_post_photo_label"/>
+                app:layout_constraintTop_toBottomOf="@id/create_lobby_topic_photo_label"/>
 
             <com.mumsapp.android.ui.views.BaseImageView
-                android:id="@+id/create_post_image"
+                android:id="@+id/create_lobby_topic_image"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                app:layout_constraintTop_toTopOf="@id/create_post_add_photo_button"
-                app:layout_constraintBottom_toBottomOf="@id/create_post_add_photo_button"/>
+                app:layout_constraintTop_toTopOf="@id/create_lobby_topic_add_photo_button"
+                app:layout_constraintBottom_toBottomOf="@id/create_lobby_topic_add_photo_button"/>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/padding_scroll_view_bottom"
-                app:layout_constraintTop_toBottomOf="@id/create_post_image"/>
+                app:layout_constraintTop_toBottomOf="@id/create_lobby_topic_image"/>
         </android.support.constraint.ConstraintLayout>
     </android.support.v4.widget.NestedScrollView>
 </LinearLayout>

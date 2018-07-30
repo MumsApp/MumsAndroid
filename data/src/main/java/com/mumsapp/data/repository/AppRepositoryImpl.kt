@@ -11,6 +11,7 @@ import io.reactivex.Observable
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import retrofit2.Response
 import javax.inject.Inject
 
 class AppRepositoryImpl : BaseRestRepository, AppRepository {
@@ -64,5 +65,20 @@ class AppRepositoryImpl : BaseRestRepository, AppRepository {
 
     override fun getLobbyRoomTopics(lobbyRoomId: Int, page: Int, perPage: Int): Observable<LobbyRoomTopicsResponse> {
         return requestWithErrorMapping(restApi.getLobbyRoomIdTopics(lobbyRoomId, page, perPage))
+    }
+
+    override fun createLobbyRoomTopic(request: CreateLobbyRoomTopicRequest): Observable<EmptyResponse> {
+        var apiRequest: Observable<Response<EmptyResponse>>? = null
+        apiRequest = if (request.file == null) {
+            restApi.postLobbyRoomTopic(request.roomId, request.title,
+                    request.description)
+        } else {
+            val filePart = MultipartBody.Part.createFormData("file", request.file!!.name,
+                    RequestBody.create(MediaType.parse("image/*"), request.file!!))
+            restApi.postLobbyRoomTopicMultipart(request.roomId, request.title,
+                    request.description, filePart)
+        }
+
+        return requestWithErrorMapping(apiRequest)
     }
 }

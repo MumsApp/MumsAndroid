@@ -23,4 +23,6 @@ interface AppRepository {
     fun deleteLobbyRoom(id: Int): Observable<EmptyResponse>
 
     fun getLobbyRoomTopics(lobbyRoomId: Int, page: Int, perPage: Int): Observable<LobbyRoomTopicsResponse>
+
+    fun createLobbyRoomTopic(request: CreateLobbyRoomTopicRequest): Observable<EmptyResponse>
 }

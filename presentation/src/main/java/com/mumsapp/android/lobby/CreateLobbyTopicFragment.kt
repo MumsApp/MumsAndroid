@@ -19,8 +19,10 @@ import com.mumsapp.android.navigation.DialogsProvider
 import com.mumsapp.android.product.SelectImageSourceDialog
 import com.mumsapp.android.ui.views.AddPhotoButton
 import com.mumsapp.android.ui.views.BaseImageView
+import com.mumsapp.android.ui.views.CardEditText
 import com.mumsapp.android.ui.views.TopBar
 import com.mumsapp.android.util.*
+import com.mumsapp.domain.model.lobby.LobbyRoom
 import javax.inject.Inject
 
 class CreateLobbyTopicFragment : BaseFragment(), CreateLobbyTopicView {
@@ -34,13 +36,19 @@ class CreateLobbyTopicFragment : BaseFragment(), CreateLobbyTopicView {
     @Inject
     lateinit var imagesLoader: ImagesLoader
 
-    @BindView(R.id.create_post_top_bar)
+    @BindView(R.id.create_lobby_topic_top_bar)
     lateinit var topBar: TopBar
+    
+    @BindView(R.id.create_lobby_topic_title_input)
+    lateinit var titleInput: CardEditText
 
-    @BindView(R.id.create_post_add_photo_button)
+    @BindView(R.id.create_lobby_topic_content_input)
+    lateinit var contentInput: CardEditText
+
+    @BindView(R.id.create_lobby_topic_add_photo_button)
     lateinit var addPhotoButton: AddPhotoButton
 
-    @BindView(R.id.create_post_image)
+    @BindView(R.id.create_lobby_topic_image)
     lateinit var imageView: BaseImageView
 
     private var selectImageSourceDialog: SelectImageSourceDialog? = null
@@ -48,17 +56,17 @@ class CreateLobbyTopicFragment : BaseFragment(), CreateLobbyTopicView {
     override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter() = presenter as T
 
     companion object {
-        fun getInstance(lobbyCategoryId: Int): CreateLobbyTopicFragment {
-            val args = createArgumentsBundle(lobbyCategoryId)
+        fun getInstance(lobbyRoom: LobbyRoom): CreateLobbyTopicFragment {
+            val args = createArgumentsBundle(lobbyRoom)
             val fragment = CreateLobbyTopicFragment()
             fragment.arguments = args
 
             return fragment
         }
 
-        fun createArgumentsBundle(lobbyCategoryId: Int): Bundle {
+        fun createArgumentsBundle(lobbyRoom: LobbyRoom): Bundle {
             val args = Bundle()
-            args.putInt(LOBBY_ROOM_KEY, lobbyCategoryId)
+            args.putSerializable(LOBBY_ROOM_KEY, lobbyRoom)
 
             return args
         }
@@ -70,7 +78,7 @@ class CreateLobbyTopicFragment : BaseFragment(), CreateLobbyTopicView {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val v = inflater.inflate(R.layout.fragment_create_post, container, false)
+        val v = inflater.inflate(R.layout.fragment_create_lobby_topic, container, false)
         setUnbinder(ButterKnife.bind(this, v))
         return v
     }
@@ -80,11 +88,13 @@ class CreateLobbyTopicFragment : BaseFragment(), CreateLobbyTopicView {
         passArgumentsToPresenter()
         presenter.attachViewWithLifecycle(this)
         topBar.setLeftButtonClickListener { presenter.onBackClick() }
-        topBar.setRightTextClickListener { presenter.onDoneClick() }
+        topBar.setRightTextClickListener { presenter.onDoneClick(titleInput.getText().toString(),
+                contentInput.getText().toString()) }
     }
 
     private fun passArgumentsToPresenter() {
-        val lobbyCategoryId = arguments!!.getInt(LOBBY_ROOM_KEY)
+        val lobbyRoom = arguments!!.getSerializable(LOBBY_ROOM_KEY) as LobbyRoom
+        presenter.setArguments(lobbyRoom)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -103,17 +113,17 @@ class CreateLobbyTopicFragment : BaseFragment(), CreateLobbyTopicView {
         }
     }
 
-    @OnClick(R.id.create_post_add_photo_button, R.id.create_post_image)
+    @OnClick(R.id.create_lobby_topic_add_photo_button, R.id.create_lobby_topic_image)
     fun onAddPhotoClick() {
         presenter.onAddPhotoClick()
     }
 
-    override fun showSelectImageSourceDialog() {
+    override fun showSelectImageSourceDialog(galleryClickListener: () -> Unit, cameraClickListener: () -> Unit) {
         if (selectImageSourceDialog == null) {
             selectImageSourceDialog = dialogsProvider.createSelectImageSourceDialog()
         }
 
-        selectImageSourceDialog?.show(presenter::onGalleryClick, presenter::onCameraClick)
+        selectImageSourceDialog?.show(galleryClickListener, cameraClickListener)
     }
 
     override fun showImage(uri: Uri) {

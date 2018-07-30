@@ -6,6 +6,7 @@ import com.mumsapp.domain.model.identity.RefreshTokenRequest
 import com.mumsapp.domain.model.identity.Token
 import com.mumsapp.domain.model.lobby.LobbyResponse
 import com.mumsapp.domain.model.lobby.LobbyRoomResponse
+import com.mumsapp.domain.model.lobby.LobbyRoomTopic
 import com.mumsapp.domain.model.lobby.LobbyRoomTopicsResponse
 import com.mumsapp.domain.model.user.*
 import io.reactivex.Observable
@@ -90,4 +91,14 @@ interface PublicRestApi {
     @GET("lobby/room/{roomId}/topic/page/{page}/{perPage}")
     fun getLobbyRoomIdTopics(@Path("roomId") lobbyRoomId: Int, @Path("page") page: Int,
                              @Path("perPage") perPage: Int): Observable<Response<LobbyRoomTopicsResponse>>
+
+    @Multipart
+    @POST("lobby/room/{roomId}/topic")
+    fun postLobbyRoomTopicMultipart(@Path("roomId") lobbyRoomId: Int, @Part("title") title: String,
+                           @Part("description") description: String, @Part filePart: MultipartBody.Part?) : Observable<Response<EmptyResponse>>
+
+    @Multipart
+    @POST("lobby/room/{roomId}/topic")
+    fun postLobbyRoomTopic(@Path("roomId") lobbyRoomId: Int, @Part("title") title: String,
+                           @Part("description") description: String) : Observable<Response<EmptyResponse>>
 }

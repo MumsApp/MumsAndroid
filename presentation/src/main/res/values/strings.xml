@@ -225,4 +225,6 @@
     <string name="you_need_to_fill_all_fields">You need to fill all fields</string>
 
     <string name="pagination_widget_indication_pattern">%d/%d</string>
+
+    <string name="create_topic">Create topic</string>
 </resources>
