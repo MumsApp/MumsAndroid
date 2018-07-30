@@ -23,10 +23,10 @@ import com.mumsapp.android.ui.views.TopBar
 import com.mumsapp.android.util.*
 import javax.inject.Inject
 
-class CreatePostFragment : BaseFragment(), CreatePostView {
+class CreateLobbyTopicFragment : BaseFragment(), CreateLobbyTopicView {
 
     @Inject
-    lateinit var presenter: CreatePostPresenter
+    lateinit var presenter: CreateLobbyTopicPresenter
 
     @Inject
     lateinit var dialogsProvider: DialogsProvider
@@ -48,9 +48,9 @@ class CreatePostFragment : BaseFragment(), CreatePostView {
     override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter() = presenter as T
 
     companion object {
-        fun getInstance(lobbyCategoryId: Int): CreatePostFragment {
+        fun getInstance(lobbyCategoryId: Int): CreateLobbyTopicFragment {
             val args = createArgumentsBundle(lobbyCategoryId)
-            val fragment = CreatePostFragment()
+            val fragment = CreateLobbyTopicFragment()
             fragment.arguments = args
 
             return fragment

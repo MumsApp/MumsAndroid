@@ -15,7 +15,7 @@ import com.mumsapp.android.chat.FriendsChatFragment
 import com.mumsapp.android.chat.ChatThreadFragment
 import com.mumsapp.android.di.qualifiers.FragmentContainerId
 import com.mumsapp.android.lobby.CreateLobbyCategoryFragment
-import com.mumsapp.android.lobby.CreatePostFragment
+import com.mumsapp.android.lobby.CreateLobbyTopicFragment
 import com.mumsapp.android.lobby.LobbyRoomDetailsFragment
 import com.mumsapp.android.lobby.LobbyFragment
 import com.mumsapp.android.mums_app_offers.MumsAppOfferDetailsFragment
@@ -201,12 +201,12 @@ class FragmentsNavigationService {
 
     fun createLobbyCategoryDetailsFragment(lobbyRoom: LobbyRoom) = LobbyRoomDetailsFragment.getInstance(lobbyRoom)
 
-    fun openCreatePostFragment(lobbyCategoryId: Int, addToBackStack: Boolean) {
-        val fragment = createCreatePostFragment(lobbyCategoryId)
+    fun openCreateLobbyTopicFragment(lobbyCategoryId: Int, addToBackStack: Boolean) {
+        val fragment = createCreateLobbyTopicFragment(lobbyCategoryId)
         openFragment(fragment, addToBackStack)
     }
 
-    fun createCreatePostFragment(lobbyCategoryId: Int) = CreatePostFragment.getInstance(lobbyCategoryId)
+    fun createCreateLobbyTopicFragment(lobbyCategoryId: Int) = CreateLobbyTopicFragment.getInstance(lobbyCategoryId)
 
     fun openUserProfileFragment(addToBackStack: Boolean) {
         val fragment = createUserProfileFragment()

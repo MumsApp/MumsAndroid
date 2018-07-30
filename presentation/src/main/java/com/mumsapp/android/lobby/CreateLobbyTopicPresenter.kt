@@ -12,7 +12,7 @@ import com.mumsapp.domain.utils.FilesHelper
 import java.io.File
 import javax.inject.Inject
 
-class CreatePostPresenter : LifecyclePresenter<CreatePostView> {
+class CreateLobbyTopicPresenter : LifecyclePresenter<CreateLobbyTopicView> {
 
     private val fragmentsNavigationService: FragmentsNavigationService
     private val filesHelper: FilesHelper
