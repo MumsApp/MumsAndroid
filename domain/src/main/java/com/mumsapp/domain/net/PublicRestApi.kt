@@ -4,10 +4,7 @@ import com.mumsapp.domain.model.BaseResponse
 import com.mumsapp.domain.model.EmptyResponse
 import com.mumsapp.domain.model.identity.RefreshTokenRequest
 import com.mumsapp.domain.model.identity.Token
-import com.mumsapp.domain.model.lobby.LobbyResponse
-import com.mumsapp.domain.model.lobby.LobbyRoomResponse
-import com.mumsapp.domain.model.lobby.LobbyRoomTopic
-import com.mumsapp.domain.model.lobby.LobbyRoomTopicsResponse
+import com.mumsapp.domain.model.lobby.*
 import com.mumsapp.domain.model.user.*
 import io.reactivex.Observable
 import okhttp3.MultipartBody
@@ -104,5 +101,5 @@ interface PublicRestApi {
 
     @GET("lobby/room/{roomId}/topic/{topicId}/post/page/{page}/{perPage}")
     fun getLobbyRoomIdTopicIdPost(@Path("roomId") lobbyRoomId: Int, @Path("topicId") topicId: Int,
-                                  @Path("page") page: Int, @Path("perPage") perPage: Int) : Observable<Response<LobbyRoomTopicsResponse>>
+                                  @Path("page") page: Int, @Path("perPage") perPage: Int) : Observable<Response<LobbyRoomTopicPostsResponse>>
 }

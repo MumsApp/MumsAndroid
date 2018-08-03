@@ -1,42 +1,42 @@
 package com.mumsapp.android.lobby
 
+import android.support.constraint.ConstraintLayout
 import android.view.View
 import butterknife.BindView
 import butterknife.ButterKnife
-import butterknife.OnClick
 import com.mumsapp.android.R
 import com.mumsapp.android.base.BaseViewHolder
 import com.mumsapp.android.ui.views.BaseTextView
-import com.mumsapp.android.ui.views.CircleImageView
 import com.mumsapp.android.util.ImagesLoader
 import com.mumsapp.domain.model.lobby.LobbyRoomTopic
+import com.mumsapp.domain.model.lobby.LobbyRoomTopicPost
 import com.mumsapp.domain.utils.DateManager
+import de.hdodenhof.circleimageview.CircleImageView
 import java.lang.ref.WeakReference
 
-class LobbyTopicViewHolder : BaseViewHolder<LobbyRoomTopic> {
+class LobbyRoomTopicPostViewHolder : BaseViewHolder<LobbyRoomTopicPost> {
 
     private val imagesLoader: ImagesLoader
     private val dateManager: DateManager
 
-    @BindView(R.id.cell_lobby_topic_avatar)
+    @BindView(R.id.cell_lobby_post_root_View)
+    lateinit var rootView: ConstraintLayout
+
+    @BindView(R.id.cell_lobby_post_avatar)
     lateinit var avatarView: CircleImageView
 
-    @BindView(R.id.cell_lobby_topic_user_name)
+    @BindView(R.id.cell_lobby_post_user_name)
     lateinit var userNameView: BaseTextView
 
-    @BindView(R.id.cell_lobby_topic_date)
+    @BindView(R.id.cell_lobby_post_date)
     lateinit var dateView: BaseTextView
 
-    @BindView(R.id.cell_lobby_topic_title)
-    lateinit var titleView: BaseTextView
-
-    @BindView(R.id.cell_lobby_topic_content)
+    @BindView(R.id.cell_lobby_post_content)
     lateinit var contentView: BaseTextView
 
-    private var replyListener: WeakReference<((item: LobbyRoomTopic) -> Unit)>? = null
     private var avatarClickListener: WeakReference<((item: LobbyRoomTopic) -> Unit)>? = null
 
-    private var item: LobbyRoomTopic? = null
+    private var item: LobbyRoomTopicPost? = null
 
     constructor(imagesLoader: ImagesLoader, itemView: View, dateManager: DateManager) : super(itemView) {
         this.imagesLoader = imagesLoader
@@ -44,12 +44,11 @@ class LobbyTopicViewHolder : BaseViewHolder<LobbyRoomTopic> {
         this.dateManager = dateManager
     }
 
-    override fun init(item: LobbyRoomTopic) {
+    override fun init(item: LobbyRoomTopicPost) {
         this.item = item
 
-        userNameView.text = item.creator.name
+        userNameView.text = item.author.name
         dateView.text = dateManager.getRelativeTimeSpanString(item.creationDate)
-        titleView.text = item.title
         contentView.text = item.description
 
         if(item.img != null) {
@@ -57,29 +56,15 @@ class LobbyTopicViewHolder : BaseViewHolder<LobbyRoomTopic> {
         }
     }
 
-    fun setReplyListener(listener: ((item: LobbyRoomTopic) -> Unit)?) {
-        if(listener == null) {
-            return
-        }
-
-        replyListener = WeakReference(listener)
+    fun setRootBackground(color: Int) {
+        rootView.setBackgroundColor(color)
     }
 
-    fun setUserClickistener(listener: ((item: LobbyRoomTopic) -> Unit)?) {
+    fun setUserClickListener(listener: ((item: LobbyRoomTopic) -> Unit)?) {
         if(listener == null) {
             return
         }
 
         avatarClickListener = WeakReference(listener)
-    }
-
-    @OnClick(R.id.cell_lobby_topic_reply)
-    fun onReplyClick() {
-        replyListener?.get()?.invoke(item!!)
-    }
-
-    @OnClick(R.id.cell_lobby_topic_avatar, R.id.cell_lobby_topic_user_name)
-    fun onAvatarClick() {
-        avatarClickListener?.get()?.invoke(item!!)
     }
 }

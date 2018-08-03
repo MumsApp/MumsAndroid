@@ -11,11 +11,14 @@ import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.di.components.ActivityComponent
+import com.mumsapp.android.ui.views.BaseRecyclerView
 import com.mumsapp.android.ui.views.TopBar
+import com.mumsapp.android.ui.widgets.PaginationWidget
 import com.mumsapp.android.util.LOBBY_ROOM_KEY
 import com.mumsapp.android.util.LOBBY_ROOM_TOPIC_KEY
 import com.mumsapp.domain.model.lobby.LobbyRoom
 import com.mumsapp.domain.model.lobby.LobbyRoomTopic
+import com.mumsapp.domain.model.lobby.LobbyRoomTopicPost
 import javax.inject.Inject
 
 class LobbyTopicDetailsFragment : BaseFragment(), LobbyTopicDetailsView {
@@ -23,8 +26,17 @@ class LobbyTopicDetailsFragment : BaseFragment(), LobbyTopicDetailsView {
     @Inject
     lateinit var presenter: LobbyTopicDetailsPresenter
 
+    @Inject
+    lateinit var adapter: LobbyRoomTopicPostsAdapter
+
     @BindView(R.id.lobby_topic_details_top_bar)
     lateinit var topBar: TopBar
+
+    @BindView(R.id.lobby_topic_details_recycler_view)
+    lateinit var recyclerView: BaseRecyclerView
+
+    @BindView(R.id.lobby_topic_details_pagination)
+    lateinit var paginationWidget: PaginationWidget
 
     override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter() = presenter as T
 
@@ -72,5 +84,21 @@ class LobbyTopicDetailsFragment : BaseFragment(), LobbyTopicDetailsView {
 
     override fun setTitle(title: String) {
         topBar.setTitleText(title)
+    }
+
+    override fun showPosts(topics: List<LobbyRoomTopicPost>, userClickListener: (item: LobbyRoomTopic) -> Unit) {
+        adapter.items = topics
+        adapter.notifyDataSetChanged()
+
+        if(recyclerView.adapter == null) {
+            adapter.userClickListener = userClickListener
+
+            recyclerView.adapter = adapter
+        }
+    }
+
+    override fun setupPagination(lastPage: Int, pageChangeListener: ((page: Int) -> Unit)?) {
+        paginationWidget.setLastPage(lastPage)
+        paginationWidget.pageChangeListener = pageChangeListener
     }
 }

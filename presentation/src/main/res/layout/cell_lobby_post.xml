@@ -2,8 +2,10 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cell_lobby_post_root_View"
     style="@style/widget_layout"
-    android:paddingBottom="@dimen/padding_12dp"
+    android:layout_height="wrap_content"
+    android:paddingBottom="0dp"
     android:paddingEnd="0dp"
     android:paddingStart="0dp">
 

@@ -18,7 +18,7 @@
             style="@style/default_scroll_layout"
             android:orientation="vertical">
 
-            <com.mumsapp.android.ui.views.CardsRecyclerView
+            <com.mumsapp.android.ui.views.BaseRecyclerView
                 android:id="@+id/lobby_topic_details_recycler_view"
                 style="@style/recycler_default"
                 android:layout_width="match_parent"

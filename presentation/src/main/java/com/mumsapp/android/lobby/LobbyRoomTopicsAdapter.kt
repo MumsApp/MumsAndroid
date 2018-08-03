@@ -1,6 +1,5 @@
 package com.mumsapp.android.lobby
 
-import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.mumsapp.android.R
 import com.mumsapp.android.base.BaseRecyclerViewAdapter
@@ -9,7 +8,7 @@ import com.mumsapp.domain.model.lobby.LobbyRoomTopic
 import com.mumsapp.domain.utils.DateManager
 import javax.inject.Inject
 
-class LobbyRoomTopicsAdapter : BaseRecyclerViewAdapter<LobbyRoomTopic, LobbyTopicViewHolder> {
+class LobbyRoomTopicsAdapter : BaseRecyclerViewAdapter<LobbyRoomTopic, LobbyRoomTopicViewHolder> {
 
     private val imagesLoader: ImagesLoader
     private val dateManager: DateManager
@@ -23,15 +22,15 @@ class LobbyRoomTopicsAdapter : BaseRecyclerViewAdapter<LobbyRoomTopic, LobbyTopi
         this.dateManager = dateManager
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LobbyTopicViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.cell_lobby_topic, parent, false)
-        return LobbyTopicViewHolder(imagesLoader, itemView, dateManager)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LobbyRoomTopicViewHolder {
+        val itemView = inflate(parent, R.layout.cell_lobby_topic)
+        return LobbyRoomTopicViewHolder(imagesLoader, itemView, dateManager)
     }
 
-    override fun onBindViewHolder(holder: LobbyTopicViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: LobbyRoomTopicViewHolder, position: Int) {
         super.onBindViewHolder(holder, position)
 
         holder.setReplyListener(replyClickListener)
-        holder.setUserClickistener(userClickListener)
+        holder.setUserClickListener(userClickListener)
     }
 }
