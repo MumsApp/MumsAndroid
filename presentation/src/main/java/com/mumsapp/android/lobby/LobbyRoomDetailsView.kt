@@ -7,7 +7,8 @@ interface LobbyRoomDetailsView : LifecycleView {
 
     fun setTitle(title: String)
 
-    fun showTopics(topics: List<LobbyRoomTopic>, replyClickListener: (item: LobbyRoomTopic) -> Unit,
+    fun showTopics(topics: List<LobbyRoomTopic>, onTopicClick: (item: LobbyRoomTopic) -> Unit,
+                   replyClickListener: (item: LobbyRoomTopic) -> Unit,
                    userClickListener: (item: LobbyRoomTopic) -> Unit)
 
     fun setupPagination(lastPage: Int, pageChangeListener: ((page: Int) -> Unit)?)

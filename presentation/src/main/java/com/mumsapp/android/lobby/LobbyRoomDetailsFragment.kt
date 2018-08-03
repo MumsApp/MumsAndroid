@@ -82,7 +82,8 @@ class LobbyRoomDetailsFragment : BaseFragment(), LobbyRoomDetailsView {
         topBar.setTitleText(title)
     }
 
-    override fun showTopics(topics: List<LobbyRoomTopic>, replyClickListener: (item: LobbyRoomTopic) -> Unit,
+    override fun showTopics(topics: List<LobbyRoomTopic>, onTopicClick: (item: LobbyRoomTopic) -> Unit,
+                            replyClickListener: (item: LobbyRoomTopic) -> Unit,
                             userClickListener: (item: LobbyRoomTopic) -> Unit) {
         adapter.items = topics
         adapter.notifyDataSetChanged()
@@ -90,6 +91,7 @@ class LobbyRoomDetailsFragment : BaseFragment(), LobbyRoomDetailsView {
         if(recyclerView.adapter == null) {
             adapter.replyClickListener = replyClickListener
             adapter.userClickListener = userClickListener
+            adapter.setItemsClickListener(onTopicClick)
 
             recyclerView.adapter = adapter
         }

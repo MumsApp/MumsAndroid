@@ -40,6 +40,10 @@ class LobbyRoomDetailsPresenter : LifecyclePresenter<LobbyRoomDetailsView> {
         fragmentsNavigationService.openCreateLobbyTopicFragment(lobbyRoom, true)
     }
 
+    private fun onTopicClick(topic: LobbyRoomTopic) {
+        fragmentsNavigationService.openLobbyTopicDetailsFragment(topic, true)
+    }
+
     private fun onReplyClick(post: LobbyRoomTopic) {
 
     }
@@ -59,7 +63,7 @@ class LobbyRoomDetailsPresenter : LifecyclePresenter<LobbyRoomDetailsView> {
 
     private fun handleLoadTopicsSuccess(response: LobbyRoomTopicsResponse) {
         view?.setupPagination(response.data.pages, this::handlePageChange)
-        view?.showTopics(response.data.posts, this::onReplyClick, this::onUserClick)
+        view?.showTopics(response.data.posts, this::onTopicClick, this::onReplyClick, this::onUserClick)
     }
 
     private fun handlePageChange(page: Int) {

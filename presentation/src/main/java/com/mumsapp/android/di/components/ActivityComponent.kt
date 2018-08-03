@@ -9,10 +9,7 @@ import com.mumsapp.android.common.dialogs.ConfirmationDialog
 import com.mumsapp.android.common.dialogs.ConfirmationWithAvatarDialog
 import com.mumsapp.android.di.modules.ActivityModule
 import com.mumsapp.android.di.scopes.ActivityScope
-import com.mumsapp.android.lobby.CreateLobbyCategoryFragment
-import com.mumsapp.android.lobby.CreateLobbyTopicFragment
-import com.mumsapp.android.lobby.LobbyRoomDetailsFragment
-import com.mumsapp.android.lobby.LobbyFragment
+import com.mumsapp.android.lobby.*
 import com.mumsapp.android.main.MainActivity
 import com.mumsapp.android.mums_app_offers.MumsAppOfferDetailsFragment
 import com.mumsapp.android.mums_app_offers.MumsAppOffersFragment
@@ -105,4 +102,6 @@ interface ActivityComponent {
     fun inject(dialog: AddChildDialog)
 
     fun inject(fragment: CreateLobbyCategoryFragment)
+
+    fun inject(fragment: LobbyTopicDetailsFragment)
 }

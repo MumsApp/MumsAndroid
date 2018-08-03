@@ -5,29 +5,28 @@
     style="@style/default_layout">
 
     <com.mumsapp.android.ui.views.TopBar
-        android:id="@+id/lobby_category_details_top_bar"
+        android:id="@+id/lobby_topic_details_top_bar"
         style="@style/top_bar_back_edit"
-        app:layout_constraintTop_toTopOf="parent"
-        app:topBarTitle="@string/lobby" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.v4.widget.NestedScrollView
         style="@style/scroll_with_recycler"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lobby_category_details_top_bar">
+        app:layout_constraintTop_toBottomOf="@id/lobby_topic_details_top_bar">
 
         <LinearLayout
             style="@style/default_scroll_layout"
             android:orientation="vertical">
 
             <com.mumsapp.android.ui.views.CardsRecyclerView
-                android:id="@+id/lobby_category_details_recycler_view"
+                android:id="@+id/lobby_topic_details_recycler_view"
                 style="@style/recycler_default"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:listitem="@layout/cell_lobby_post"/>
 
             <com.mumsapp.android.ui.widgets.PaginationWidget
-                android:id="@+id/lobby_category_details_pagination"
+                android:id="@+id/lobby_topic_details_pagination"
                 style="@style/default_widget"
                 android:layout_marginTop="@dimen/padding_medium" />
 

@@ -14,10 +14,7 @@ import com.mumsapp.android.chat.ChatFragment
 import com.mumsapp.android.chat.FriendsChatFragment
 import com.mumsapp.android.chat.ChatThreadFragment
 import com.mumsapp.android.di.qualifiers.FragmentContainerId
-import com.mumsapp.android.lobby.CreateLobbyCategoryFragment
-import com.mumsapp.android.lobby.CreateLobbyTopicFragment
-import com.mumsapp.android.lobby.LobbyRoomDetailsFragment
-import com.mumsapp.android.lobby.LobbyFragment
+import com.mumsapp.android.lobby.*
 import com.mumsapp.android.mums_app_offers.MumsAppOfferDetailsFragment
 import com.mumsapp.android.mums_app_offers.MumsAppOffersFragment
 import com.mumsapp.android.organisation.OrganisationDetailsFragment
@@ -31,6 +28,7 @@ import com.mumsapp.android.shop.ShopFilterFragment
 import com.mumsapp.android.shop.ShopFragment
 import com.mumsapp.domain.model.chat.TemplateChatThread
 import com.mumsapp.domain.model.lobby.LobbyRoom
+import com.mumsapp.domain.model.lobby.LobbyRoomTopic
 import javax.inject.Inject
 
 class FragmentsNavigationService {
@@ -221,6 +219,13 @@ class FragmentsNavigationService {
     }
 
     fun createCreateLobbyCategoryFragment() = CreateLobbyCategoryFragment.getInstance()
+
+    fun openLobbyTopicDetailsFragment(lobbyRoomTopic: LobbyRoomTopic, addToBackStack: Boolean) {
+        val fragment = createLobbyTopicDetailsFragment(lobbyRoomTopic)
+        openFragment(fragment, addToBackStack)
+    }
+
+    fun createLobbyTopicDetailsFragment(lobbyTopic: LobbyRoomTopic) = LobbyTopicDetailsFragment.getInstance(lobbyTopic)
 
     fun popFragment() {
         fragmentManager.popBackStack()
