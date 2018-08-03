@@ -9,7 +9,7 @@ import com.mumsapp.domain.model.lobby.LobbyRoomTopic
 import com.mumsapp.domain.utils.DateManager
 import javax.inject.Inject
 
-class LobbyRoomTopicsAdapter : BaseRecyclerViewAdapter<LobbyRoomTopic, LobbyPostViewHolder> {
+class LobbyRoomTopicsAdapter : BaseRecyclerViewAdapter<LobbyRoomTopic, LobbyTopicViewHolder> {
 
     private val imagesLoader: ImagesLoader
     private val dateManager: DateManager
@@ -23,12 +23,12 @@ class LobbyRoomTopicsAdapter : BaseRecyclerViewAdapter<LobbyRoomTopic, LobbyPost
         this.dateManager = dateManager
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LobbyPostViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LobbyTopicViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.cell_lobby_topic, parent, false)
-        return LobbyPostViewHolder(imagesLoader, itemView, dateManager)
+        return LobbyTopicViewHolder(imagesLoader, itemView, dateManager)
     }
 
-    override fun onBindViewHolder(holder: LobbyPostViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: LobbyTopicViewHolder, position: Int) {
         super.onBindViewHolder(holder, position)
 
         holder.setReplyListener(replyClickListener)

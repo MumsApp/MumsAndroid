@@ -10,7 +10,8 @@ data class LobbyRoomTopicsResponse(@SerializedName("data") var data: LobbyRoomTo
 data class LobbyRoomTopicData(@SerializedName("pages") var pages: Int,
                               @SerializedName("posts") var posts: List<LobbyRoomTopic>) : BaseResponse()
 
-data class LobbyRoomTopic(@SerializedName("title") var title: String,
+data class LobbyRoomTopic(@SerializedName("id") var id: Int,
+                          @SerializedName("title") var title: String,
                           @SerializedName("description") var description: String,
                           @SerializedName("creationDate") var creationDate: ZonedDateTime,
                           @SerializedName("creator") var creator: UserMinimalResponse,

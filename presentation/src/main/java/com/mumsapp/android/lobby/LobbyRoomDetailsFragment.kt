@@ -70,7 +70,7 @@ class LobbyRoomDetailsFragment : BaseFragment(), LobbyRoomDetailsView {
         passArgumentsToPresenter()
         presenter.attachViewWithLifecycle(this)
         topBar.setLeftButtonClickListener { presenter.onBackClick() }
-        topBar.setRightButtonClickListener { presenter.onCreatePostClick() }
+        topBar.setRightButtonClickListener { presenter.onCreateTopicClick() }
     }
 
     private fun passArgumentsToPresenter() {

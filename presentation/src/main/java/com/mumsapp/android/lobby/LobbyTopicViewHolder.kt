@@ -13,24 +13,24 @@ import com.mumsapp.domain.model.lobby.LobbyRoomTopic
 import com.mumsapp.domain.utils.DateManager
 import java.lang.ref.WeakReference
 
-class LobbyPostViewHolder : BaseViewHolder<LobbyRoomTopic> {
+class LobbyTopicViewHolder : BaseViewHolder<LobbyRoomTopic> {
 
     private val imagesLoader: ImagesLoader
     private val dateManager: DateManager
 
-    @BindView(R.id.cell_lobby_post_avatar)
+    @BindView(R.id.cell_lobby_topic_avatar)
     lateinit var avatarView: CircleImageView
 
-    @BindView(R.id.cell_lobby_post_user_name)
+    @BindView(R.id.cell_lobby_topic_user_name)
     lateinit var userNameView: BaseTextView
 
-    @BindView(R.id.cell_lobby_post_date)
+    @BindView(R.id.cell_lobby_topic_date)
     lateinit var dateView: BaseTextView
 
-    @BindView(R.id.cell_lobby_post_title)
+    @BindView(R.id.cell_lobby_topic_title)
     lateinit var titleView: BaseTextView
 
-    @BindView(R.id.cell_lobby_post_content)
+    @BindView(R.id.cell_lobby_topic_content)
     lateinit var contentView: BaseTextView
 
     private var replyListener: WeakReference<((item: LobbyRoomTopic) -> Unit)>? = null
@@ -73,12 +73,12 @@ class LobbyPostViewHolder : BaseViewHolder<LobbyRoomTopic> {
         avatarClickListener = WeakReference(listener)
     }
 
-    @OnClick(R.id.cell_lobby_post_reply)
+    @OnClick(R.id.cell_lobby_topic_reply)
     fun onReplyClick() {
         replyListener?.get()?.invoke(item!!)
     }
 
-    @OnClick(R.id.cell_lobby_post_avatar, R.id.cell_lobby_post_user_name)
+    @OnClick(R.id.cell_lobby_topic_avatar, R.id.cell_lobby_topic_user_name)
     fun onAvatarClick() {
         avatarClickListener?.get()?.invoke(item!!)
     }

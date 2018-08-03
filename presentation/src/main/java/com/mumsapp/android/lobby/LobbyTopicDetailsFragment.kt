@@ -12,6 +12,7 @@ import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.di.components.ActivityComponent
 import com.mumsapp.android.ui.views.TopBar
+import com.mumsapp.android.util.LOBBY_ROOM_KEY
 import com.mumsapp.android.util.LOBBY_ROOM_TOPIC_KEY
 import com.mumsapp.domain.model.lobby.LobbyRoom
 import com.mumsapp.domain.model.lobby.LobbyRoomTopic
@@ -28,15 +29,16 @@ class LobbyTopicDetailsFragment : BaseFragment(), LobbyTopicDetailsView {
     override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter() = presenter as T
 
     companion object {
-        fun getInstance(lobbyRoomTopic: LobbyRoomTopic): LobbyTopicDetailsFragment {
+        fun getInstance(lobbyRoom: LobbyRoom, lobbyRoomTopic: LobbyRoomTopic): LobbyTopicDetailsFragment {
             val fragment = LobbyTopicDetailsFragment()
-            fragment.arguments = createArgBundle(lobbyRoomTopic)
+            fragment.arguments = createArgBundle(lobbyRoom, lobbyRoomTopic)
 
             return fragment
         }
 
-        private fun createArgBundle(lobbyRoomTopic: LobbyRoomTopic): Bundle {
+        private fun createArgBundle(lobbyRoom: LobbyRoom, lobbyRoomTopic: LobbyRoomTopic): Bundle {
             val args = Bundle()
+            args.putSerializable(LOBBY_ROOM_KEY, lobbyRoom)
             args.putSerializable(LOBBY_ROOM_TOPIC_KEY, lobbyRoomTopic)
 
             return args
@@ -63,8 +65,9 @@ class LobbyTopicDetailsFragment : BaseFragment(), LobbyTopicDetailsView {
     }
 
     private fun passArgumentsToPresenter() {
+        val lobbyRoom = arguments!!.getSerializable(LOBBY_ROOM_KEY) as LobbyRoom
         val lobbyRoomTopic = arguments!!.getSerializable(LOBBY_ROOM_TOPIC_KEY) as LobbyRoomTopic
-        presenter.setArguments(lobbyRoomTopic)
+        presenter.setArguments(lobbyRoom, lobbyRoomTopic)
     }
 
     override fun setTitle(title: String) {
