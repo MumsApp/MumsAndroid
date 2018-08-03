@@ -101,4 +101,8 @@ interface PublicRestApi {
     @POST("lobby/room/{roomId}/topic")
     fun postLobbyRoomTopic(@Path("roomId") lobbyRoomId: Int, @Part("title") title: String,
                            @Part("description") description: String) : Observable<Response<EmptyResponse>>
+
+    @GET("lobby/room/{roomId}/topic/{topicId}/post/page/{page}/{perPage}")
+    fun getLobbyRoomIdTopicIdPost(@Path("roomId") lobbyRoomId: Int, @Path("topicId") topicId: Int,
+                                  @Path("page") page: Int, @Path("perPage") perPage: Int) : Observable<Response<LobbyRoomTopicsResponse>>
 }

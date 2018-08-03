@@ -24,7 +24,7 @@
                 style="@style/recycler_default"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:listitem="@layout/cell_lobby_post"/>
+                tools:listitem="@layout/cell_lobby_topic"/>
 
             <com.mumsapp.android.ui.widgets.PaginationWidget
                 android:id="@+id/lobby_category_details_pagination"

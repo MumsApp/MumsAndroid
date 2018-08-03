@@ -24,7 +24,7 @@ class LobbyRoomTopicsAdapter : BaseRecyclerViewAdapter<LobbyRoomTopic, LobbyPost
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LobbyPostViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.cell_lobby_post, parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.cell_lobby_topic, parent, false)
         return LobbyPostViewHolder(imagesLoader, itemView, dateManager)
     }
 
