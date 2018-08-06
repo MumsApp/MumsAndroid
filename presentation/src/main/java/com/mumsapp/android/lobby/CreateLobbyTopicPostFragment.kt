@@ -11,6 +11,7 @@ import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.di.components.ActivityComponent
+import com.mumsapp.android.ui.views.CardEditText
 import com.mumsapp.android.ui.views.TopBar
 import com.mumsapp.android.util.LOBBY_ROOM_KEY
 import com.mumsapp.android.util.LOBBY_ROOM_TOPIC_KEY
@@ -25,6 +26,9 @@ class CreateLobbyTopicPostFragment : BaseFragment(), CreateLobbyTopicPostView {
 
     @BindView(R.id.create_lobby_topic_post_top_bar)
     lateinit var topBar: TopBar
+
+    @BindView(R.id.create_lobby_topic_post_content_input)
+    lateinit var contentInput: CardEditText
 
     override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter() = presenter as T
 
@@ -61,7 +65,7 @@ class CreateLobbyTopicPostFragment : BaseFragment(), CreateLobbyTopicPostView {
         passArgumentsToPresenter()
         presenter.attachViewWithLifecycle(this)
         topBar.setLeftButtonClickListener { presenter.onBackClick() }
-        topBar.setRightTextClickListener { /*presenter.onDoneClick(contentInput.getText().toString())*/ }
+        topBar.setRightTextClickListener { presenter.onDoneClick(contentInput.getText().toString()) }
     }
 
     private fun passArgumentsToPresenter() {
