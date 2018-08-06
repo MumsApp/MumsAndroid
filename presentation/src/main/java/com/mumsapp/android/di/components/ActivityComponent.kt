@@ -104,4 +104,6 @@ interface ActivityComponent {
     fun inject(fragment: CreateLobbyCategoryFragment)
 
     fun inject(fragment: LobbyTopicDetailsFragment)
+
+    fun inject(fragment: CreateLobbyTopicPostFragment)
 }

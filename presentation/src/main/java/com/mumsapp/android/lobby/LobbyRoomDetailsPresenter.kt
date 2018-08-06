@@ -44,8 +44,8 @@ class LobbyRoomDetailsPresenter : LifecyclePresenter<LobbyRoomDetailsView> {
         fragmentsNavigationService.openLobbyTopicDetailsFragment(lobbyRoom, topic, true)
     }
 
-    private fun onReplyClick(post: LobbyRoomTopic) {
-
+    private fun onReplyClick(topic: LobbyRoomTopic) {
+        fragmentsNavigationService.openCreateLobbyTopicPostFragment(lobbyRoom, topic, true)
     }
 
     private fun onUserClick(post: LobbyRoomTopic) {

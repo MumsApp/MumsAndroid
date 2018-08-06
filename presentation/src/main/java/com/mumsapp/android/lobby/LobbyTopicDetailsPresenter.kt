@@ -40,7 +40,7 @@ class LobbyTopicDetailsPresenter : LifecyclePresenter<LobbyTopicDetailsView> {
     }
 
     fun onCreatePostClick() {
-
+        fragmentsNavigationService.openCreateLobbyTopicPostFragment(lobbyRoom, lobbyRoomTopic, true)
     }
 
     private fun onUserClick(post: LobbyRoomTopic) {

@@ -227,6 +227,13 @@ class FragmentsNavigationService {
 
     fun createLobbyTopicDetailsFragment(lobbyRoom: LobbyRoom, lobbyTopic: LobbyRoomTopic) = LobbyTopicDetailsFragment.getInstance(lobbyRoom, lobbyTopic)
 
+    fun openCreateLobbyTopicPostFragment(lobbyRoom: LobbyRoom, lobbyTopic: LobbyRoomTopic, addToBackStack: Boolean) {
+        val fragment = createCreateLobbyTopicPostFragment(lobbyRoom, lobbyTopic)
+        openFragment(fragment, addToBackStack)
+    }
+
+    fun createCreateLobbyTopicPostFragment(lobbyRoom: LobbyRoom, lobbyTopic: LobbyRoomTopic) = CreateLobbyTopicPostFragment.getInstance(lobbyRoom, lobbyTopic)
+
     fun popFragment() {
         fragmentManager.popBackStack()
     }
