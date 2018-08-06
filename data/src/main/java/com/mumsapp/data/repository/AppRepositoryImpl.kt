@@ -86,4 +86,9 @@ class AppRepositoryImpl : BaseRestRepository, AppRepository {
         return requestWithErrorMapping(restApi.getLobbyRoomIdTopicIdPost(lobbyRoomId, lobbyRoomTopicId,
                 page, perPage))
     }
+
+    override fun createLobbyTopicPost(request: CreateLobbyTopicPostRequest): Observable<EmptyResponse> {
+        return requestWithErrorMapping(restApi.postLobbyRoomTopicPost(request.roomId, request.topicId,
+                request))
+    }
 }

@@ -199,4 +199,12 @@ class UseCaseModule {
                                               schedulerProvider: SchedulerProvider): GetLobbyRoomTopicPostsUseCase {
         return GetLobbyRoomTopicPostsUseCase(repository, transformerProvider, schedulerProvider)
     }
+
+    @Provides
+    @Singleton
+    fun providesCreateLobbyTopicPostUseCase(repository: AppRepository,
+                                            @AuthorizationTransformer transformerProvider: UseCaseTransformerProvider,
+                                            schedulerProvider: SchedulerProvider): CreateLobbyTopicPostUseCase {
+        return CreateLobbyTopicPostUseCase(repository, transformerProvider, schedulerProvider)
+    }
 }

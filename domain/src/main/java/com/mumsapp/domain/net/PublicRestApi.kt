@@ -1,6 +1,5 @@
 package com.mumsapp.domain.net
 
-import com.mumsapp.domain.model.BaseResponse
 import com.mumsapp.domain.model.EmptyResponse
 import com.mumsapp.domain.model.identity.RefreshTokenRequest
 import com.mumsapp.domain.model.identity.Token
@@ -80,7 +79,7 @@ interface PublicRestApi {
     @POST("lobby/room")
     fun postLobbyRoom(@Query("title") title: String,
                       @Query("description") description: String,
-                      @Query("public") public: Boolean, @Part filePart: MultipartBody.Part) : Observable<Response<LobbyRoomResponse>>
+                      @Query("public") public: Boolean, @Part filePart: MultipartBody.Part): Observable<Response<LobbyRoomResponse>>
 
     @DELETE("lobby/room/{id}")
     fun deleteLobbyRoomId(@Path("id") id: Int): Observable<Response<EmptyResponse>>
@@ -92,14 +91,18 @@ interface PublicRestApi {
     @Multipart
     @POST("lobby/room/{roomId}/topic")
     fun postLobbyRoomTopicMultipart(@Path("roomId") lobbyRoomId: Int, @Part("title") title: String,
-                           @Part("description") description: String, @Part filePart: MultipartBody.Part?) : Observable<Response<EmptyResponse>>
+                                    @Part("description") description: String, @Part filePart: MultipartBody.Part?): Observable<Response<EmptyResponse>>
 
     @Multipart
     @POST("lobby/room/{roomId}/topic")
     fun postLobbyRoomTopic(@Path("roomId") lobbyRoomId: Int, @Part("title") title: String,
-                           @Part("description") description: String) : Observable<Response<EmptyResponse>>
+                           @Part("description") description: String): Observable<Response<EmptyResponse>>
 
     @GET("lobby/room/{roomId}/topic/{topicId}/post/page/{page}/{perPage}")
     fun getLobbyRoomIdTopicIdPost(@Path("roomId") lobbyRoomId: Int, @Path("topicId") topicId: Int,
-                                  @Path("page") page: Int, @Path("perPage") perPage: Int) : Observable<Response<LobbyRoomTopicPostsResponse>>
+                                  @Path("page") page: Int, @Path("perPage") perPage: Int): Observable<Response<LobbyRoomTopicPostsResponse>>
+
+    @POST("lobby/room/{roomId}/topic/{topicId}/post")
+    fun postLobbyRoomTopicPost(@Path("roomId") lobbyRoomId: Int, @Path("topicId") topicId: Int,
+                               @Body request: CreateLobbyTopicPostRequest): Observable<Response<EmptyResponse>>
 }
