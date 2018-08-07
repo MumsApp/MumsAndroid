@@ -51,8 +51,8 @@ class LobbyRoomTopicPostViewHolder : BaseViewHolder<LobbyRoomTopicPost> {
         dateView.text = dateManager.getRelativeTimeSpanString(item.creationDate)
         contentView.text = item.description
 
-        if(item.img != null) {
-            imagesLoader.load(item.img!!, avatarView)
+        if(item.author.imgPath != null) {
+            imagesLoader.loadFromApiPath(item.author.imgPath!!, avatarView)
         }
     }
 

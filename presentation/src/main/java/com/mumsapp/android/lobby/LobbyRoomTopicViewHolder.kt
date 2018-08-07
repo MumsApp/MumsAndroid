@@ -52,8 +52,8 @@ class LobbyRoomTopicViewHolder : BaseViewHolder<LobbyRoomTopic> {
         titleView.text = item.title
         contentView.text = item.description
 
-        if(item.img != null) {
-            imagesLoader.load(item.img!!, avatarView)
+        if(item.creator.imgPath != null) {
+            imagesLoader.loadFromApiPath(item.creator.imgPath!!, avatarView)
         }
     }
 
