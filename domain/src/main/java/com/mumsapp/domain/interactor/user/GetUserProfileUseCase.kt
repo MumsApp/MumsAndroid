@@ -21,7 +21,10 @@ class GetUserProfileUseCase(val userRepository: UserRepository, val sessionManag
     override fun createUseCaseObservable(param: Params): Observable<UserResponse> {
         return userRepository.getUserData(param.id, param.level)
                 .map {
-                    sessionManager.saveLoggedUser(it)
+                    val user = sessionManager.loadLoggedUser()
+                    if(user?.data?.id == it.data.id) {
+                        sessionManager.saveLoggedUser(it)
+                    }
                     it
                 }
     }

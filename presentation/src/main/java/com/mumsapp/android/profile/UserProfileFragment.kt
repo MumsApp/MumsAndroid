@@ -50,6 +50,12 @@ class UserProfileFragment : BaseFragment(), UserProfileView {
     @BindView(R.id.user_profile_kids_value)
     lateinit var kidsView: CardTextView
 
+    @BindView(R.id.user_profile_add_contact)
+    lateinit var addContactButton: BaseTextView
+
+    @BindView(R.id.user_profile_remove_contact)
+    lateinit var removeContactButton: BaseTextView
+
     @BindView(R.id.user_profile_location_widget)
     lateinit var locationWidget: LocationWidget
 
@@ -62,7 +68,7 @@ class UserProfileFragment : BaseFragment(), UserProfileView {
             val fragment = UserProfileFragment()
             fragment.arguments = createArgBundle(userId)
 
-            return UserProfileFragment()
+            return fragment
         }
 
         private fun createArgBundle(userId: Int): Bundle {
@@ -86,8 +92,14 @@ class UserProfileFragment : BaseFragment(), UserProfileView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        passArgumentsToPresenter()
         presenter.attachViewWithLifecycle(this)
         topBar.setLeftButtonClickListener { presenter.onBackClick() }
+    }
+
+    @OnClick(R.id.user_profile_add_contact)
+    fun onAddContactClick() {
+        presenter.onAddContactClick()
     }
 
     @OnClick(R.id.user_profile_remove_contact)
@@ -95,13 +107,13 @@ class UserProfileFragment : BaseFragment(), UserProfileView {
         presenter.onRemoveContactClick()
     }
 
-    override fun showProfileInfo(name: String, description: String) {
+    override fun showProfileInfo(name: String, description: String?) {
         nameView.text = name
         descriptionView.text = description
     }
 
     override fun loadAvatar(url: String) {
-        imagesLoader.load(url, avatarView)
+        imagesLoader.loadFromApiPath(url, avatarView)
     }
 
     override fun showNumberOfKids(text: String) {
@@ -111,6 +123,14 @@ class UserProfileFragment : BaseFragment(), UserProfileView {
     override fun showLocation(latitude: String, longitude: String, name: String) {
         locationWidget.setMapCoordinates(latitude, longitude)
         locationWidget.setLocationName(name)
+    }
+
+    override fun setAddContactVisibility(visible: Boolean) {
+        setVisibilistyFromBoolean(visible, addContactButton)
+    }
+
+    override fun setRemoveContactVisibility(visible: Boolean) {
+        setVisibilistyFromBoolean(visible, removeContactButton)
     }
 
     override fun showRemoveUserDialog(avatarUri: Uri?, name: String, title: String, description: String,

@@ -227,4 +227,7 @@
     <string name="pagination_widget_indication_pattern">%d/%d</string>
 
     <string name="create_topic">Create topic</string>
+
+    <string name="add_to_chat_contacts">Add to chat contacts</string>
+    <string name="any_kids">Any kids</string>
 </resources>

@@ -128,4 +128,14 @@ abstract class BaseFragment : Fragment(), LifecycleView {
         }
         return retainedChildFragmentManager!!
     }
+
+    protected fun setVisibilistyFromBoolean(visible: Boolean, view: View) {
+        val visiblity = if(visible) {
+            View.VISIBLE
+        } else {
+            View.GONE
+        }
+
+        view.visibility = visiblity
+    }
 }

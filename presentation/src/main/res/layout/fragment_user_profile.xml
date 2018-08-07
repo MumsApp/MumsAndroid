@@ -47,6 +47,15 @@
                 tools:text="Mother of one 1 year old." />
 
             <com.mumsapp.android.ui.views.BaseTextView
+                android:id="@+id/user_profile_add_contact"
+                style="@style/text_normal_green_light"
+                android:layout_marginTop="@dimen/padding_big"
+                android:text="@string/add_to_chat_contacts"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/user_profile_kids_value" />
+
+            <com.mumsapp.android.ui.views.BaseTextView
                 android:id="@+id/user_profile_remove_contact"
                 style="@style/text_normal_grey_light"
                 android:layout_marginTop="@dimen/padding_big"
@@ -55,11 +64,18 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/user_profile_kids_value" />
 
+            <android.support.constraint.Barrier
+                android:id="@+id/user_profile_contact_buttons_barrier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="user_profile_add_contact,user_profile_remove_contact"/>
+
             <com.mumsapp.android.ui.widgets.LocationWidget
                 android:id="@+id/user_profile_location_widget"
                 style="@style/location_widget_without_buttons"
                 android:layout_marginTop="@dimen/padding_big"
-                app:layout_constraintTop_toBottomOf="@id/user_profile_remove_contact" />
+                app:layout_constraintTop_toBottomOf="@id/user_profile_contact_buttons_barrier" />
 
             <View
                 style="@style/empty_view_below_card"
