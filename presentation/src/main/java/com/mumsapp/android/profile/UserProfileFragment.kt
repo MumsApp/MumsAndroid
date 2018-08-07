@@ -21,6 +21,7 @@ import com.mumsapp.android.ui.views.CircleImageView
 import com.mumsapp.android.ui.views.TopBar
 import com.mumsapp.android.ui.widgets.LocationWidget
 import com.mumsapp.android.util.ImagesLoader
+import com.mumsapp.android.util.USER_ID_KEY
 import javax.inject.Inject
 
 class UserProfileFragment : BaseFragment(), UserProfileView {
@@ -57,8 +58,18 @@ class UserProfileFragment : BaseFragment(), UserProfileView {
     override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter() = presenter as T
 
     companion object {
-        fun getInstance(): UserProfileFragment {
+        fun getInstance(userId: Int): UserProfileFragment {
+            val fragment = UserProfileFragment()
+            fragment.arguments = createArgBundle(userId)
+
             return UserProfileFragment()
+        }
+
+        private fun createArgBundle(userId: Int): Bundle {
+            val args = Bundle()
+            args.putInt(USER_ID_KEY, userId)
+
+            return args
         }
     }
 
@@ -111,5 +122,10 @@ class UserProfileFragment : BaseFragment(), UserProfileView {
 
         confirmationDialog?.show(avatarUri, name, title, description, confirmButtonText,
                 cancelButtonText, confirmationListener, cancelListener)
+    }
+
+    private fun passArgumentsToPresenter() {
+        val userId = arguments!!.getInt(USER_ID_KEY)
+        presenter.setArguments(userId)
     }
 }

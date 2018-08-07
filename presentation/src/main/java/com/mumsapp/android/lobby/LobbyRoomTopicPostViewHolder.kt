@@ -4,6 +4,7 @@ import android.support.constraint.ConstraintLayout
 import android.view.View
 import butterknife.BindView
 import butterknife.ButterKnife
+import butterknife.OnClick
 import com.mumsapp.android.R
 import com.mumsapp.android.base.BaseViewHolder
 import com.mumsapp.android.ui.views.BaseTextView
@@ -34,7 +35,7 @@ class LobbyRoomTopicPostViewHolder : BaseViewHolder<LobbyRoomTopicPost> {
     @BindView(R.id.cell_lobby_post_content)
     lateinit var contentView: BaseTextView
 
-    private var avatarClickListener: WeakReference<((item: LobbyRoomTopic) -> Unit)>? = null
+    private var avatarClickListener: WeakReference<((item: LobbyRoomTopicPost) -> Unit)>? = null
 
     private var item: LobbyRoomTopicPost? = null
 
@@ -60,11 +61,16 @@ class LobbyRoomTopicPostViewHolder : BaseViewHolder<LobbyRoomTopicPost> {
         rootView.setBackgroundColor(color)
     }
 
-    fun setUserClickListener(listener: ((item: LobbyRoomTopic) -> Unit)?) {
+    fun setUserClickListener(listener: ((item: LobbyRoomTopicPost) -> Unit)?) {
         if(listener == null) {
             return
         }
 
         avatarClickListener = WeakReference(listener)
+    }
+
+    @OnClick(R.id.cell_lobby_post_avatar, R.id.cell_lobby_post_user_name)
+    fun onAvatarClick() {
+        avatarClickListener?.get()?.invoke(item!!)
     }
 }

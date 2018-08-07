@@ -4,10 +4,7 @@ import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.navigation.FragmentsNavigationService
 import com.mumsapp.android.util.DEFAULT_PAGE_SIZE
 import com.mumsapp.domain.interactor.lobby.GetLobbyRoomTopicPostsUseCase
-import com.mumsapp.domain.model.lobby.GetLobbyRoomTopicPostsRequest
-import com.mumsapp.domain.model.lobby.LobbyRoom
-import com.mumsapp.domain.model.lobby.LobbyRoomTopic
-import com.mumsapp.domain.model.lobby.LobbyRoomTopicPostsResponse
+import com.mumsapp.domain.model.lobby.*
 import javax.inject.Inject
 
 class LobbyTopicDetailsPresenter : LifecyclePresenter<LobbyTopicDetailsView> {
@@ -43,8 +40,8 @@ class LobbyTopicDetailsPresenter : LifecyclePresenter<LobbyTopicDetailsView> {
         fragmentsNavigationService.openCreateLobbyTopicPostFragment(lobbyRoom, lobbyRoomTopic, true)
     }
 
-    private fun onUserClick(post: LobbyRoomTopic) {
-        fragmentsNavigationService.openUserProfileFragment(true)
+    private fun onUserClick(post: LobbyRoomTopicPost) {
+        fragmentsNavigationService.openUserProfileFragment(post.author.id, true)
     }
 
     private fun loadPosts(page: Int, pageSize: Int) {

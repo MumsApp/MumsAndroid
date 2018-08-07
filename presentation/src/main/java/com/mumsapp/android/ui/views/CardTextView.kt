@@ -70,7 +70,7 @@ class CardTextView : CardView {
 
     fun getText() = textView.text
 
-    fun setDrawableRight(drawable: Drawable) {
+    fun setDrawableRight(drawable: Drawable?) {
         textView.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null)
     }
 }

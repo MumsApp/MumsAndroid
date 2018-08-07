@@ -16,7 +16,7 @@ class LobbyRoomTopicPostsAdapter : BaseRecyclerViewAdapter<LobbyRoomTopicPost, L
     private val dateManager: DateManager
     private val resourceRepository: ResourceRepository
 
-    var userClickListener: ((item: LobbyRoomTopic) -> Unit)? = null
+    var userClickListener: ((item: LobbyRoomTopicPost) -> Unit)? = null
 
     @Inject
     constructor(imagesLoader: ImagesLoader, dateManager: DateManager,

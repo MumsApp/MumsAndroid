@@ -86,7 +86,7 @@ class LobbyTopicDetailsFragment : BaseFragment(), LobbyTopicDetailsView {
         topBar.setTitleText(title)
     }
 
-    override fun showPosts(topics: List<LobbyRoomTopicPost>, userClickListener: (item: LobbyRoomTopic) -> Unit) {
+    override fun showPosts(topics: List<LobbyRoomTopicPost>, userClickListener: (item: LobbyRoomTopicPost) -> Unit) {
         adapter.items = topics
         adapter.notifyDataSetChanged()
 

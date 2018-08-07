@@ -11,10 +11,16 @@ class UserProfilePresenter : LifecyclePresenter<UserProfileView> {
     private val fragmentsNavigationService: FragmentsNavigationService
     private val resourceRepository: ResourceRepository
 
+    private var userId: Int = 0
+
     @Inject
     constructor(fragmentsNavigationService: FragmentsNavigationService, resourceRepository: ResourceRepository) {
         this.fragmentsNavigationService = fragmentsNavigationService
         this.resourceRepository = resourceRepository
+    }
+
+    fun setArguments(userId: Int) {
+        this.userId = userId
     }
 
     fun onBackClick() {

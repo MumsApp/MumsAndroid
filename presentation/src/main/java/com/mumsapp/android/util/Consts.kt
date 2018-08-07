@@ -12,6 +12,7 @@ const val PRODUCT_ID_KEY = "PRODUCT_ID"
 const val MUMS_APP_OFFER_ID_KEY = "MUMS_APP_OFFER_ID"
 const val LOBBY_ROOM_KEY = "LOBBY_ROOM"
 const val LOBBY_ROOM_TOPIC_KEY = "LOBBY_ROOM_TOPIC"
+const val USER_ID_KEY = "USER_ID"
 
 //Members Widget
 const val MAX_VISIBLE_MEMBERS = 9

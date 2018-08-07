@@ -49,7 +49,7 @@ class LobbyRoomDetailsPresenter : LifecyclePresenter<LobbyRoomDetailsView> {
     }
 
     private fun onUserClick(post: LobbyRoomTopic) {
-        fragmentsNavigationService.openUserProfileFragment(true)
+        fragmentsNavigationService.openUserProfileFragment(post.creator.id, true)
     }
 
     private fun loadTopics(page: Int, perPage: Int) {

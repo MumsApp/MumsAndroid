@@ -206,12 +206,12 @@ class FragmentsNavigationService {
 
     fun createCreateLobbyTopicFragment(lobbyRoom: LobbyRoom) = CreateLobbyTopicFragment.getInstance(lobbyRoom)
 
-    fun openUserProfileFragment(addToBackStack: Boolean) {
-        val fragment = createUserProfileFragment()
+    fun openUserProfileFragment(userId: Int, addToBackStack: Boolean) {
+        val fragment = createUserProfileFragment(userId)
         openFragment(fragment, addToBackStack)
     }
 
-    fun createUserProfileFragment() = UserProfileFragment.getInstance()
+    fun createUserProfileFragment(userId: Int) = UserProfileFragment.getInstance(userId)
 
     fun openCreateLobbyCategoryFragment(addToBackStack: Boolean) {
         val fragment = createCreateLobbyCategoryFragment()
