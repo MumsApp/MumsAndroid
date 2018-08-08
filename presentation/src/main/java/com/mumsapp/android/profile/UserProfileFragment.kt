@@ -1,6 +1,5 @@
 package com.mumsapp.android.profile
 
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -133,14 +132,14 @@ class UserProfileFragment : BaseFragment(), UserProfileView {
         setVisibilistyFromBoolean(visible, removeContactButton)
     }
 
-    override fun showRemoveUserDialog(avatarUri: Uri?, name: String, title: String, description: String,
+    override fun showRemoveUserDialog(avatarPath: String?, name: String, title: String, description: String,
                                       confirmButtonText: String, cancelButtonText: String,
                                       confirmationListener: () -> Unit, cancelListener: () -> Unit) {
         if(confirmationDialog == null) {
             confirmationDialog = dialogsProvider.createConfirmationWithAvatarDialog()
         }
 
-        confirmationDialog?.show(avatarUri, name, title, description, confirmButtonText,
+        confirmationDialog?.show(avatarPath, name, title, description, confirmButtonText,
                 cancelButtonText, confirmationListener, cancelListener)
     }
 

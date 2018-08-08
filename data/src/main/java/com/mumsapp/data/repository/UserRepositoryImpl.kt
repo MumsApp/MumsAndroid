@@ -96,4 +96,12 @@ class UserRepositoryImpl : BaseRestRepository, UserRepository {
         val filePart = MultipartBody.Part.createFormData("file", file.name, RequestBody.create(MediaType.parse("image/*"), file))
         return requestWithErrorMapping(restApi.postUserPhoto(userId, filePart))
     }
+
+    override fun addUserFriend(friendId: Int): Observable<EmptyResponse> {
+        return requestWithErrorMapping(restApi.postUserFriend(friendId))
+    }
+
+    override fun removeUserFriend(friendId: Int): Observable<EmptyResponse> {
+        return requestWithErrorMapping(restApi.deleteUserFriend(friendId))
+    }
 }

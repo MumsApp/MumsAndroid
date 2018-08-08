@@ -163,12 +163,12 @@ class AddProductFragment : BaseFragment(), AddProductView {
         photosAdapter.notifyItemRemoved(changedItemPosition)
     }
 
-    override fun showConfirmationDialog(avatarUri: Uri?, avatarTitle: String, title: String, description: String?, confirmButtonText: String, cancelButtonText: String) {
+    override fun showConfirmationDialog(avatarPath: String?, avatarTitle: String, title: String, description: String?, confirmButtonText: String, cancelButtonText: String) {
         if (confirmationWithAvatarDialog == null) {
             confirmationWithAvatarDialog = dialogsProvider.createConfirmationWithAvatarDialog()
         }
 
-        confirmationWithAvatarDialog!!.show(avatarUri, avatarTitle, title, description,
+        confirmationWithAvatarDialog!!.show(avatarPath, avatarTitle, title, description,
                 confirmButtonText, cancelButtonText, presenter::onConfirmDialogButtonClick,
                 presenter::onCancelDialogButtonClick)
     }

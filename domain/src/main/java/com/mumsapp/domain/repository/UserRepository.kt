@@ -37,4 +37,8 @@ interface UserRepository {
     fun deleteChild(userId: Int, childId: Int): Observable<EmptyResponse>
 
     fun updateAvatar(userId: Int, file: File): Observable<EmptyResponse>
+
+    fun addUserFriend(friendId: Int): Observable<EmptyResponse>
+
+    fun removeUserFriend(friendId: Int): Observable<EmptyResponse>
 }

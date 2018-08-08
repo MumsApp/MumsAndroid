@@ -113,6 +113,20 @@ class UseCaseModule {
 
     @Provides
     @Singleton
+    fun providesAddUserFriendUseCase(userRepository: UserRepository,
+                                       @AuthorizationTransformer transformerProvider: UseCaseTransformerProvider,
+                                       schedulerProvider: SchedulerProvider)
+            = AddUserFriendUseCase(userRepository, transformerProvider, schedulerProvider)
+
+    @Provides
+    @Singleton
+    fun providesRemoveUserFriendUseCase(userRepository: UserRepository,
+                                     @AuthorizationTransformer transformerProvider: UseCaseTransformerProvider,
+                                     schedulerProvider: SchedulerProvider)
+            = RemoveUserFriendUseCase(userRepository, transformerProvider, schedulerProvider)
+
+    @Provides
+    @Singleton
     fun providesGetLobbyroomsUseCase(repository: AppRepository,
                                      @AuthorizationTransformer transformerProvider: UseCaseTransformerProvider,
                                      schedulerProvider: SchedulerProvider): GetLobbyRoomsUseCase {

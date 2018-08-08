@@ -68,7 +68,7 @@ class ConfirmationWithAvatarDialog(context: Context) : BaseDialog(context), Conf
         presenter.attachView(this)
     }
 
-    fun show(avatarUri: Uri?, avatarTitle: String, title: String, description: String?,
+    fun show(avatarPath: String?, avatarTitle: String, title: String, description: String?,
              confirmButtonText: String, cancelButtonText: String, confirmationListener: () -> Unit,
              cancelListener: () -> Unit) {
         super.show()
@@ -76,7 +76,7 @@ class ConfirmationWithAvatarDialog(context: Context) : BaseDialog(context), Conf
         this.confirmationListener = confirmationListener
         this.cancelListener = cancelListener
 
-        presenter.setArguments(avatarUri, avatarTitle, title, description, confirmButtonText, cancelButtonText)
+        presenter.setArguments(avatarPath, avatarTitle, title, description, confirmButtonText, cancelButtonText)
         presenter.start()
     }
 
@@ -90,8 +90,8 @@ class ConfirmationWithAvatarDialog(context: Context) : BaseDialog(context), Conf
         presenter.onCancelButtonClick()
     }
 
-    override fun showAvatar(avatarUri: Uri) {
-        imagesLoader.load(avatarUri, avatarView)
+    override fun showAvatar(avatarPath: String) {
+        imagesLoader.loadFromApiPath(avatarPath, avatarView)
     }
 
     override fun setContent(avatarTitle: String, title: String, description: String?, confirmButtonText: String, cancelButtonText: String) {

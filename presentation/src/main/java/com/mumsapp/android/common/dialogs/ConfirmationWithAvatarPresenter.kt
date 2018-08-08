@@ -1,12 +1,11 @@
 package com.mumsapp.android.common.dialogs
 
-import android.net.Uri
 import com.mumsapp.android.base.BasePresenter
 import javax.inject.Inject
 
 class ConfirmationWithAvatarPresenter : BasePresenter<ConfirmationWithAvatarView> {
 
-    var avatarUri: Uri? = null
+    var avatarPath: String? = null
     lateinit var avatarTitle: String
     lateinit var title: String
     var description: String? = null
@@ -16,9 +15,9 @@ class ConfirmationWithAvatarPresenter : BasePresenter<ConfirmationWithAvatarView
     @Inject
     constructor()
 
-    fun setArguments(avatarUri: Uri?, avatarTitle: String, title: String, description: String?,
+    fun setArguments(avatarPath: String?, avatarTitle: String, title: String, description: String?,
                      confirmButtonText: String, cancelButtonText: String) {
-        this.avatarUri = avatarUri
+        this.avatarPath = avatarPath
         this.avatarTitle = avatarTitle
         this.title = title
         this.description = description
@@ -27,8 +26,8 @@ class ConfirmationWithAvatarPresenter : BasePresenter<ConfirmationWithAvatarView
     }
 
     override fun start() {
-        if(avatarUri != null) {
-            view?.showAvatar(avatarUri!!)
+        if(avatarPath != null) {
+            view?.showAvatar(avatarPath!!)
         }
 
         view?.setContent(avatarTitle, title, description, confirmButtonText, cancelButtonText)

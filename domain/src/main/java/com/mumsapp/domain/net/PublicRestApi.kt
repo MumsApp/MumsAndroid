@@ -55,6 +55,12 @@ interface PublicRestApi {
     @POST("user/{user_id}/photo")
     fun postUserPhoto(@Path("user_id") userId: Int, @Part filePart: MultipartBody.Part): Observable<Response<EmptyResponse>>
 
+    @POST("user/friend/{friendId}")
+    fun postUserFriend(@Path("friendId") friendId: Int): Observable<Response<EmptyResponse>>
+
+    @DELETE("user/friend/{friendId}")
+    fun deleteUserFriend(@Path("friendId") friendId: Int): Observable<Response<EmptyResponse>>
+
     @GET("lobby/room/page/{page}/{perPage}")
     fun getLobbyRoomPage(@Path("page") page: Int, @Path("perPage") perPage: Int): Observable<Response<LobbyResponse>>
 

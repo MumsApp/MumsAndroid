@@ -1,6 +1,5 @@
 package com.mumsapp.android.profile
 
-import android.net.Uri
 import com.mumsapp.android.base.LifecycleView
 
 interface UserProfileView : LifecycleView {
@@ -17,7 +16,7 @@ interface UserProfileView : LifecycleView {
 
     fun setRemoveContactVisibility(visible: Boolean)
 
-    fun showRemoveUserDialog(avatarUri: Uri?, name: String, title: String, description: String,
+    fun showRemoveUserDialog(avatarPath: String?, name: String, title: String, description: String,
                              confirmButtonText: String, cancelButtonText: String,
                              confirmationListener: () -> Unit, cancelListener: () -> Unit)
 }
