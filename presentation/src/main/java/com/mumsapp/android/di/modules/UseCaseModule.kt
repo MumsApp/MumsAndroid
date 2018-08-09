@@ -2,6 +2,7 @@ package com.mumsapp.android.di.modules
 
 import com.mumsapp.domain.interactor.chat.GetChatThreadsUseCase
 import com.mumsapp.domain.interactor.lobby.*
+import com.mumsapp.domain.interactor.shop.GetProductCategoriesUseCase
 import com.mumsapp.domain.interactor.shop.GetShopItemsUseCase
 import com.mumsapp.domain.interactor.transformers.qualifiers.AuthorizationTransformer
 import com.mumsapp.domain.interactor.transformers.AuthorizationTransformerProvider
@@ -220,5 +221,13 @@ class UseCaseModule {
                                             @AuthorizationTransformer transformerProvider: UseCaseTransformerProvider,
                                             schedulerProvider: SchedulerProvider): CreateLobbyTopicPostUseCase {
         return CreateLobbyTopicPostUseCase(repository, transformerProvider, schedulerProvider)
+    }
+
+    @Provides
+    @Singleton
+    fun providesGetProductCategoriesUseCase(repository: AppRepository,
+                                            @AuthorizationTransformer transformerProvider: UseCaseTransformerProvider,
+                                            schedulerProvider: SchedulerProvider): GetProductCategoriesUseCase {
+        return GetProductCategoriesUseCase(repository, transformerProvider, schedulerProvider)
     }
 }

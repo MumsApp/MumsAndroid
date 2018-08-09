@@ -2,6 +2,7 @@ package com.mumsapp.domain.repository
 
 import com.mumsapp.domain.model.EmptyResponse
 import com.mumsapp.domain.model.lobby.*
+import com.mumsapp.domain.model.product.ProductCategoriesResponse
 import io.reactivex.Observable
 
 interface AppRepository {
@@ -29,4 +30,6 @@ interface AppRepository {
     fun getLobbyRoomTopicPosts(lobbyRoomId: Int, lobbyRoomTopicId: Int, page: Int, perPage: Int): Observable<LobbyRoomTopicPostsResponse>
 
     fun createLobbyTopicPost(request: CreateLobbyTopicPostRequest): Observable<EmptyResponse>
+
+    fun getProductCategories(): Observable<ProductCategoriesResponse>
 }

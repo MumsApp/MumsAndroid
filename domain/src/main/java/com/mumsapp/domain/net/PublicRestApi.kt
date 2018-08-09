@@ -4,6 +4,7 @@ import com.mumsapp.domain.model.EmptyResponse
 import com.mumsapp.domain.model.identity.RefreshTokenRequest
 import com.mumsapp.domain.model.identity.Token
 import com.mumsapp.domain.model.lobby.*
+import com.mumsapp.domain.model.product.ProductCategoriesResponse
 import com.mumsapp.domain.model.user.*
 import io.reactivex.Observable
 import okhttp3.MultipartBody
@@ -111,4 +112,7 @@ interface PublicRestApi {
     @POST("lobby/room/{roomId}/topic/{topicId}/post")
     fun postLobbyRoomTopicPost(@Path("roomId") lobbyRoomId: Int, @Path("topicId") topicId: Int,
                                @Body request: CreateLobbyTopicPostRequest): Observable<Response<EmptyResponse>>
+
+    @GET("shop/category")
+    fun getShopCategory(): Observable<Response<ProductCategoriesResponse>>
 }

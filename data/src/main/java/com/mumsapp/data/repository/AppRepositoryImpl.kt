@@ -2,6 +2,7 @@ package com.mumsapp.data.repository
 
 import com.mumsapp.domain.model.EmptyResponse
 import com.mumsapp.domain.model.lobby.*
+import com.mumsapp.domain.model.product.ProductCategoriesResponse
 import com.mumsapp.domain.net.PublicRestApi
 import com.mumsapp.domain.repository.AppRepository
 import com.mumsapp.domain.repository.ResourceRepository
@@ -90,5 +91,9 @@ class AppRepositoryImpl : BaseRestRepository, AppRepository {
     override fun createLobbyTopicPost(request: CreateLobbyTopicPostRequest): Observable<EmptyResponse> {
         return requestWithErrorMapping(restApi.postLobbyRoomTopicPost(request.roomId, request.topicId,
                 request))
+    }
+
+    override fun getProductCategories(): Observable<ProductCategoriesResponse> {
+        return requestWithErrorMapping(restApi.getShopCategory())
     }
 }

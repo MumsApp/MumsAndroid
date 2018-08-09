@@ -150,6 +150,9 @@ dependencies {
     //https://github.com/JakeWharton/ThreeTenABP java.time.* on older devices
     implementation "com.jakewharton.threetenabp:threetenabp:$threeTenABPVersion"
 
+    //https://github.com/bgogetap/StickyHeaders Easily add Sticky Headers to your RecyclerView
+    compile 'com.brandongogetap:stickyheaders:0.5.1'
+
     // Testing
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
