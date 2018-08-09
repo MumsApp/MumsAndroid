@@ -4,20 +4,16 @@ import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.navigation.FragmentsNavigationService
 import javax.inject.Inject
 
-class ShopFilterPresenter : LifecyclePresenter<ShopFilterView> {
+class SelectProductCategoryPresenter : LifecyclePresenter<SelectProductCategoryView> {
 
     private val fragmentsNavigationService: FragmentsNavigationService
 
     @Inject
-    constructor(fragmentsNavigationService: FragmentsNavigationService) {
+    constructor(fragmentsNavigationService: FragmentsNavigationService) : super() {
         this.fragmentsNavigationService = fragmentsNavigationService
     }
 
     fun onBackClick() {
-        fragmentsNavigationService.popFragment()
-    }
 
-    fun onSelectCategoryClick() {
-        fragmentsNavigationService.openSelectCategoryFragment(true)
     }
 }

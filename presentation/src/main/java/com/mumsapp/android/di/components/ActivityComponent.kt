@@ -16,6 +16,7 @@ import com.mumsapp.android.mums_app_offers.MumsAppOffersFragment
 import com.mumsapp.android.organisation.OrganisationDetailsFragment
 import com.mumsapp.android.product.*
 import com.mumsapp.android.profile.*
+import com.mumsapp.android.shop.SelectProductCategoryFragment
 import com.mumsapp.android.shop.ShopFilterFragment
 import com.mumsapp.android.shop.ShopFragment
 import com.mumsapp.android.shop.ShopMenuDialog
@@ -106,4 +107,6 @@ interface ActivityComponent {
     fun inject(fragment: LobbyTopicDetailsFragment)
 
     fun inject(fragment: CreateLobbyTopicPostFragment)
+
+    fun inject(fragment: SelectProductCategoryFragment)
 }

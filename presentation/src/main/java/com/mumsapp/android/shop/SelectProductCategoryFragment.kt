@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import butterknife.BindView
 import butterknife.ButterKnife
-import butterknife.OnClick
 import com.mumsapp.android.R
 import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.base.LifecyclePresenter
@@ -15,10 +14,10 @@ import com.mumsapp.android.di.components.ActivityComponent
 import com.mumsapp.android.ui.views.TopBar
 import javax.inject.Inject
 
-class ShopFilterFragment : BaseFragment(), ShopFilterView {
+class SelectProductCategoryFragment : BaseFragment(), SelectProductCategoryView {
 
     @Inject
-    lateinit var presenter: ShopFilterPresenter
+    lateinit var presenter: SelectProductCategoryPresenter
 
     @BindView(R.id.select_product_category_top_bar)
     lateinit var topBar: TopBar
@@ -26,8 +25,8 @@ class ShopFilterFragment : BaseFragment(), ShopFilterView {
     override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter() = presenter as T
 
     companion object {
-        fun getInstance(): ShopFilterFragment {
-            return ShopFilterFragment()
+        fun getInstance(): SelectProductCategoryFragment {
+            return SelectProductCategoryFragment()
         }
     }
 
@@ -37,7 +36,7 @@ class ShopFilterFragment : BaseFragment(), ShopFilterView {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val v = inflater.inflate(R.layout.fragment_shop_filter, container, false)
+        val v = inflater.inflate(R.layout.fragment_select_product_category, container, false)
         setUnbinder(ButterKnife.bind(this, v))
         return v
     }
@@ -46,10 +45,5 @@ class ShopFilterFragment : BaseFragment(), ShopFilterView {
         super.onViewCreated(view, savedInstanceState)
         presenter.attachViewWithLifecycle(this)
         topBar.setLeftButtonClickListener { presenter.onBackClick() }
-    }
-
-    @OnClick(R.id.shop_filter_select_category)
-    fun onSelectCategoryClick() {
-        presenter.onSelectCategoryClick()
     }
 }
