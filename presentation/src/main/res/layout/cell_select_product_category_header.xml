@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/cell_layout"
+    android:layout_height="wrap_content"
+    android:background="@color/blue_extra_light"
+    android:padding="@dimen/padding_default">
+
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/cell_select_product_category_header_text"
+        style="@style/text_big"
+        android:layout_marginLeft="@dimen/padding_default"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:text="Hobbies"/>
+</android.support.constraint.ConstraintLayout>

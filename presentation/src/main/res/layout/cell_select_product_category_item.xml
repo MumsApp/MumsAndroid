@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/cell_layout"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/padding_default"
+    android:paddingStart="@dimen/padding_default"
+    android:paddingEnd="@dimen/padding_default">
+
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/cell_select_product_category_item_text"
+        style="@style/text_normal"
+        android:layout_marginLeft="@dimen/padding_default"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:text="Kid clothes"/>
+
+    <View
+        android:id="@+id/cell_select_product_category_item_divider"
+        style="@style/divider_horizontal"
+        android:layout_marginTop="@dimen/padding_default"
+        app:layout_constraintTop_toBottomOf="@id/cell_select_product_category_item_text"/>
+</android.support.constraint.ConstraintLayout>

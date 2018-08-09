@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     style="@style/default_layout">
 
     <com.mumsapp.android.ui.views.TopBar
@@ -9,4 +10,23 @@
         app:layout_constraintTop_toTopOf="parent"
         app:topBarTitle="@string/categories" />
 
+    <android.support.v4.widget.NestedScrollView
+        style="@style/scroll_with_recycler"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/select_product_category_top_bar">
+
+        <LinearLayout
+            style="@style/default_scroll_layout"
+            android:orientation="vertical">
+
+            <com.mumsapp.android.ui.views.BaseRecyclerView
+                android:id="@+id/select_product_category_recycler"
+                style="@style/recycler_default"
+                tools:listItem="@layout/cell_select_product_category_item" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_scroll_view_bottom" />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 </android.support.constraint.ConstraintLayout>
