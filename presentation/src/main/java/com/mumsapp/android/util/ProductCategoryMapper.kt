@@ -1,5 +1,6 @@
 package com.mumsapp.android.util
 
+import com.mumsapp.android.shop.SelectProductCategoryHeader
 import com.mumsapp.android.shop.SelectProductCategoryItem
 import com.mumsapp.android.shop.VIEW_TYPE_HEADER
 import com.mumsapp.android.shop.VIEW_TYPE_ITEM
@@ -17,7 +18,7 @@ class ProductCategoryMapper {
         val items = ArrayList<SelectProductCategoryItem>()
 
         for(category: ProductCategory in response.data) {
-            items.add(SelectProductCategoryItem(category.id, category.name, VIEW_TYPE_HEADER))
+            items.add(SelectProductCategoryHeader(category.id, category.name, VIEW_TYPE_HEADER))
 
             for(subcategory: ProductSubcategory in category.subcategories) {
                 items.add(SelectProductCategoryItem(subcategory.id, subcategory.name, VIEW_TYPE_ITEM))

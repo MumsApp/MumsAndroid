@@ -1,12 +1,14 @@
 package com.mumsapp.android.shop
 
+import android.view.View
 import android.view.ViewGroup
+import com.brandongogetap.stickyheaders.exposed.StickyHeaderHandler
 import com.mumsapp.android.R
 import com.mumsapp.android.base.BaseRecyclerViewAdapter
 import com.mumsapp.android.base.BaseViewHolder
 import javax.inject.Inject
 
-class SelectProductCategoryAdapter : BaseRecyclerViewAdapter<SelectProductCategoryItem, BaseViewHolder<SelectProductCategoryItem>> {
+class SelectProductCategoryAdapter : BaseRecyclerViewAdapter<SelectProductCategoryItem, BaseViewHolder<SelectProductCategoryItem>>, StickyHeaderHandler {
 
     @Inject
     constructor()
@@ -30,7 +32,23 @@ class SelectProductCategoryAdapter : BaseRecyclerViewAdapter<SelectProductCatego
         }
     }
 
+    override fun onBindViewHolder(holder: BaseViewHolder<SelectProductCategoryItem>, position: Int) {
+        super.onBindViewHolder(holder, position)
+
+        if(holder is SelectProductCategoryItemViewHolder) {
+            if(position + 1 < items.size) {
+                if(getItemViewType(position + 1) == VIEW_TYPE_HEADER) {
+                    holder.setBottomDividerVisibility(View.INVISIBLE)
+                }
+            } else if(position + 1 == items.size) {
+                holder.setBottomDividerVisibility(View.INVISIBLE)
+            }
+        }
+    }
+
     override fun getItemViewType(position: Int): Int {
         return items[position].viewType
     }
+
+    override fun getAdapterData(): MutableList<*> = items.toMutableList()
 }

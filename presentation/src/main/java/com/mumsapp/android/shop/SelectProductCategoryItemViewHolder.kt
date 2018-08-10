@@ -13,6 +13,9 @@ class SelectProductCategoryItemViewHolder : BaseViewHolder<SelectProductCategory
     @BindView(R.id.cell_select_product_category_item_text)
     lateinit var textView: BaseTextView
 
+    @BindView(R.id.cell_select_product_category_item_divider)
+    lateinit var divider: View
+
     @Inject
     constructor(view: View) : super(view) {
         ButterKnife.bind(this, view)
@@ -20,5 +23,10 @@ class SelectProductCategoryItemViewHolder : BaseViewHolder<SelectProductCategory
 
     override fun init(item: SelectProductCategoryItem) {
         textView.text = item.text
+        setBottomDividerVisibility(View.VISIBLE)
+    }
+
+    fun setBottomDividerVisibility(visibility: Int) {
+        divider.visibility = visibility
     }
 }

@@ -5,4 +5,4 @@ import com.mumsapp.domain.model.BaseResponse
 const val VIEW_TYPE_HEADER = 1
 const val VIEW_TYPE_ITEM = 2
 
-data class SelectProductCategoryItem(var id: Int, var text: String, var viewType: Int): BaseResponse()
+open class SelectProductCategoryItem(var id: Int, var text: String, var viewType: Int): BaseResponse()

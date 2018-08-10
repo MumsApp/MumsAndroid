@@ -1,11 +1,16 @@
 package com.mumsapp.android.shop
 
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import butterknife.BindView
 import butterknife.ButterKnife
+import com.brandongogetap.stickyheaders.StickyLayoutManager
+import com.brandongogetap.stickyheaders.exposed.StickyHeaderListener
 import com.mumsapp.android.R
 import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.base.LifecyclePresenter
@@ -52,6 +57,7 @@ class SelectProductCategoryFragment : BaseFragment(), SelectProductCategoryView 
         super.onViewCreated(view, savedInstanceState)
         presenter.attachViewWithLifecycle(this)
         topBar.setLeftButtonClickListener { presenter.onBackClick() }
+        recyclerView.layoutManager = StickyLayoutManager(activity, adapter)
     }
 
     override fun showCategories(list: List<SelectProductCategoryItem>,
