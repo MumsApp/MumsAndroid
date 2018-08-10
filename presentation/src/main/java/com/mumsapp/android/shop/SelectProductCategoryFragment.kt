@@ -11,6 +11,7 @@ import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.di.components.ActivityComponent
+import com.mumsapp.android.ui.views.BaseRecyclerView
 import com.mumsapp.android.ui.views.TopBar
 import javax.inject.Inject
 
@@ -19,8 +20,14 @@ class SelectProductCategoryFragment : BaseFragment(), SelectProductCategoryView 
     @Inject
     lateinit var presenter: SelectProductCategoryPresenter
 
+    @Inject
+    lateinit var adapter: SelectProductCategoryAdapter
+
     @BindView(R.id.select_product_category_top_bar)
     lateinit var topBar: TopBar
+
+    @BindView(R.id.select_product_category_recycler)
+    lateinit var recyclerView: BaseRecyclerView
 
     override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter() = presenter as T
 
@@ -45,5 +52,16 @@ class SelectProductCategoryFragment : BaseFragment(), SelectProductCategoryView 
         super.onViewCreated(view, savedInstanceState)
         presenter.attachViewWithLifecycle(this)
         topBar.setLeftButtonClickListener { presenter.onBackClick() }
+    }
+
+    override fun showCategories(list: List<SelectProductCategoryItem>,
+                                itemsClickListener: (item: SelectProductCategoryItem) -> Unit) {
+        adapter.items = list
+        adapter.notifyDataSetChanged()
+
+        if(recyclerView.adapter == null) {
+            recyclerView.adapter = adapter
+            adapter.setItemsClickListener(itemsClickListener)
+        }
     }
 }
