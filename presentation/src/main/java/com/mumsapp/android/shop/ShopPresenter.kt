@@ -6,18 +6,26 @@ import com.mumsapp.domain.interactor.shop.GetShopItemsUseCase
 import com.mumsapp.domain.model.EmptyRequest
 import com.mumsapp.domain.model.product.ProductItem
 import com.mumsapp.domain.model.product.TemplateProductResponse
+import com.mumsapp.domain.utils.ShopFiltersManager
 import javax.inject.Inject
 
 class ShopPresenter : LifecyclePresenter<ShopView> {
 
     private val fragmentsNavigationService: FragmentsNavigationService
     private val getShopItemsUseCase: GetShopItemsUseCase
+    private val shopFiltersManager: ShopFiltersManager
 
     @Inject
     constructor(fragmentsNavigationService: FragmentsNavigationService,
-                getShopItemsUseCase: GetShopItemsUseCase) {
+                getShopItemsUseCase: GetShopItemsUseCase,
+                shopFiltersManager: ShopFiltersManager) {
         this.fragmentsNavigationService = fragmentsNavigationService
         this.getShopItemsUseCase = getShopItemsUseCase
+        this.shopFiltersManager = shopFiltersManager
+    }
+
+    override fun create() {
+        shopFiltersManager.clear()
     }
 
     override fun start() {

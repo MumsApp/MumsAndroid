@@ -12,6 +12,7 @@ import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.di.components.ActivityComponent
+import com.mumsapp.android.ui.views.BaseButton
 import com.mumsapp.android.ui.views.TopBar
 import javax.inject.Inject
 
@@ -22,6 +23,9 @@ class ShopFilterFragment : BaseFragment(), ShopFilterView {
 
     @BindView(R.id.select_product_category_top_bar)
     lateinit var topBar: TopBar
+
+    @BindView(R.id.shop_filter_select_category)
+    lateinit var selectCategoryButton: BaseButton
 
     override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter() = presenter as T
 
@@ -51,5 +55,9 @@ class ShopFilterFragment : BaseFragment(), ShopFilterView {
     @OnClick(R.id.shop_filter_select_category)
     fun onSelectCategoryClick() {
         presenter.onSelectCategoryClick()
+    }
+
+    override fun setCategoryName(categoryName: String?) {
+        selectCategoryButton.text = categoryName
     }
 }

@@ -10,11 +10,13 @@ import com.mumsapp.android.profile.AccountSettingsDialog
 import com.mumsapp.data.facebook.FacebookLoginObservable
 import com.mumsapp.data.repository.FacebookRepositoryImpl
 import com.mumsapp.data.repository.GoogleRepositoryImpl
+import com.mumsapp.data.utils.ShopFiltersManagerImpl
 import com.mumsapp.domain.interactor.user.*
 import com.mumsapp.domain.repository.FacebookRepository
 import com.mumsapp.domain.repository.GoogleRepository
 import com.mumsapp.domain.repository.UserRepository
 import com.mumsapp.domain.utils.SchedulerProvider
+import com.mumsapp.domain.utils.ShopFiltersManager
 import com.mumsapp.domain.utils.TokenPersistenceService
 import dagger.Module
 import dagger.Provides
@@ -95,5 +97,11 @@ class ActivityModule(private val activity: BaseActivity) {
     fun providesGoogleSignUpUseCase(googleRepository: GoogleRepository, userRepository: UserRepository,
                                       tokenPersistenceService: TokenPersistenceService, getUserProfileUseCase: GetUserProfileUseCase, schedulerProvider: SchedulerProvider): GoogleSignUpUseCase {
         return GoogleSignUpUseCase(googleRepository, userRepository, tokenPersistenceService, getUserProfileUseCase, schedulerProvider)
+    }
+
+    @Provides
+    @ActivityScope
+    fun providesShopFiltersManager(impl: ShopFiltersManagerImpl): ShopFiltersManager {
+        return impl
     }
 }
