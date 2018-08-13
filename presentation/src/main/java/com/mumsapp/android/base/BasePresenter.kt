@@ -30,7 +30,7 @@ abstract class BasePresenter<View: BaseView> {
         compositeDisposable = CompositeDisposable()
     }
 
-    fun onGoingBack(): Boolean {
+    open fun onGoingBack(): Boolean {
         if(view == null) {
             return true
         }

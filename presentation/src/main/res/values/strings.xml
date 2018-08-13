@@ -232,4 +232,6 @@
     <string name="any_kids">Any kids</string>
 
     <string name="categories">Categories</string>
+
+    <string name="selected_location_pattern">Selected location: %s</string>
 </resources>

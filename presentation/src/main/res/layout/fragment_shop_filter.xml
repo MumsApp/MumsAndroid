@@ -52,7 +52,9 @@
                 android:id="@+id/shop_filter_price_range_widget"
                 style="@style/default_widget"
                 android:layout_marginTop="@dimen/padding_default"
-                app:layout_constraintTop_toBottomOf="@id/shop_filter_price_range_label" />
+                app:layout_constraintTop_toBottomOf="@id/shop_filter_price_range_label"
+                app:minValue="0"
+                app:maxValue="300"/>
 
             <com.mumsapp.android.ui.views.BaseTextView
                 android:id="@+id/shop_filter_distance_range_label"
@@ -67,7 +69,9 @@
                 android:id="@+id/shop_filter_distance_range_widget"
                 style="@style/default_widget"
                 android:layout_marginTop="@dimen/padding_default"
-                app:layout_constraintTop_toBottomOf="@id/shop_filter_distance_range_label" />
+                app:layout_constraintTop_toBottomOf="@id/shop_filter_distance_range_label"
+                app:minValue="0"
+                app:maxValue="50" />
 
             <View
                 style="@style/empty_view_below_card"

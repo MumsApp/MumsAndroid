@@ -1,5 +1,6 @@
 package com.mumsapp.data.utils
 
+import com.google.android.gms.location.places.Place
 import com.mumsapp.domain.utils.ShopFiltersManager
 import javax.inject.Inject
 
@@ -8,8 +9,9 @@ class ShopFiltersManagerImpl : ShopFiltersManager {
     private var subcategoryId: Int? = null
     private var subcategoryName: String? = null
     private var giveItForFree: Boolean? = null
-    private var minPrice: Float? = null
-    private var maxPrice: Float? = null
+    private var minPrice: Int? = null
+    private var maxPrice: Int? = null
+    private var place: Place? = null
     private var minDistance: Int? = null
     private var maxDistance: Int? = null
 
@@ -34,17 +36,23 @@ class ShopFiltersManagerImpl : ShopFiltersManager {
 
     override fun getGiveItForFree() = giveItForFree
 
-    override fun setMinPrice(price: Float?) {
+    override fun setMinPrice(price: Int?) {
         minPrice = price
     }
 
     override fun getMinPrice() = minPrice
 
-    override fun setMaxPrice(price: Float?) {
+    override fun setMaxPrice(price: Int?) {
         maxPrice = price
     }
 
     override fun getMaxPrice() = maxPrice
+
+    override fun setPlace(place: Place?) {
+        this.place = place
+    }
+
+    override fun getPlace() = place
 
     override fun setMinDistance(distance: Int?) {
         minDistance = distance

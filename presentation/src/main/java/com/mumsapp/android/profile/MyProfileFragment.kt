@@ -113,16 +113,6 @@ class MyProfileFragment : BaseFragment(), MyProfileView {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == GOOGLE_PLACES_REQUEST_CODE) {
-            if (resultCode == Activity.RESULT_OK) {
-                val place = PlaceAutocomplete.getPlace(context, data)
-                presenter.onLocationSelected(place)
-            } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
-                val status = PlaceAutocomplete.getStatus(context, data)
-                presenter.onLocationError(status)
-            }
-        }
-
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
                 GALLERY_REQUEST_CODE -> {

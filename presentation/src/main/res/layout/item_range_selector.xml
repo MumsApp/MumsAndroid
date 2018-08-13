@@ -41,4 +41,19 @@
         app:layout_constraintTop_toTopOf="@id/range_selector_seek_bar"
         app:layout_constraintBottom_toBottomOf="@id/range_selector_seek_bar"
         tools:text="$300"/>
+
+    <android.support.constraint.Barrier
+        android:id="@+id/range_selector_bottom_barrier"
+        style="@style/barrier_bottom"
+        app:constraint_referenced_ids="range_selector_left_value,range_selector_seek_bar,range_selector_right_value"/>
+
+    <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/range_selector_second_label"
+        style="@style/text_small_grey_light"
+        android:layout_marginTop="@dimen/padding_default"
+        app:layout_constraintTop_toBottomOf="@id/range_selector_bottom_barrier"
+        app:layout_constraintLeft_toLeftOf="@id/range_selector_label"
+        tools:text="@string/how_much_would_you_want_to_pay_question_mark"
+        android:visibility="gone"
+        tools:visibility="visible"/>
 </android.support.constraint.ConstraintLayout>

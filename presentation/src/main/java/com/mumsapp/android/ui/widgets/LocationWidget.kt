@@ -24,9 +24,9 @@ import com.mumsapp.android.ui.views.BaseSwitch
 import com.mumsapp.android.ui.views.BaseTextView
 import javax.inject.Inject
 
-class LocationWidget : CardView {
+const val MAP_FRAGMENT_TAG = "mapFragment"
 
-    private val MAP_FRAGMENT_TAG = "mapFragment";
+class LocationWidget : CardView {
 
     @Inject
     lateinit var fragmentsNavigationService: FragmentsNavigationService

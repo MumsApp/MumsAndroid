@@ -34,14 +34,38 @@ class PriceRangeWidget : CardView {
     private fun setup(context: Context, attrs: AttributeSet?) {
         val view = View.inflate(context, R.layout.widget_price_range, this)
         ButterKnife.bind(view)
+        setupAttributes(context, attrs)
     }
 
-    fun getSelectedMin() = rangeSelector.getMinValue()
+    private fun setupAttributes(context: Context, attrs: AttributeSet?) {
+        val array = context.obtainStyledAttributes(attrs, R.styleable.RangeSelector)
 
-    fun getSelectedMax() = rangeSelector.getMaxValue()
+        val minValue = array.getFloat(R.styleable.RangeSelector_minValue, 0f)
+        rangeSelector.setMinValue(minValue)
+
+        val maxValue = array.getFloat(R.styleable.RangeSelector_maxValue, 10f)
+        rangeSelector.setMaxValue(maxValue)
+
+        array.recycle()
+    }
+
+    fun getSelectedMin() = rangeSelector.getSelectedMinValue()
+
+    fun setSelectedMin(value: Int) {
+        rangeSelector.setSelectedMinValue(value)
+    }
+
+    fun getSelectedMax() = rangeSelector.getSelectedMaxValue()
+
+    fun setSelectedMax(value: Int) {
+        rangeSelector.setSelectedMaxValue(value)
+    }
 
     fun getSwitchValue() = freeSwitch.isChecked
 
+    fun setSwitchValue(value: Boolean) {
+        freeSwitch.isChecked = value
+    }
     fun setSwitchChangeListener(listener: (value: Boolean) -> Unit) {
         freeSwitch.setOnCheckedChangeListener { _: CompoundButton, value: Boolean ->
             listener.invoke(value)

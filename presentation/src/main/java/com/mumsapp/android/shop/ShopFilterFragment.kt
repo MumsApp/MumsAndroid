@@ -1,5 +1,7 @@
 package com.mumsapp.android.shop
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,21 +9,60 @@ import android.view.ViewGroup
 import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
+import com.google.android.gms.location.places.ui.PlaceAutocomplete
 import com.mumsapp.android.R
 import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.di.components.ActivityComponent
+import com.mumsapp.android.navigation.ActivitiesNavigationService
 import com.mumsapp.android.ui.views.BaseButton
 import com.mumsapp.android.ui.views.TopBar
 import com.mumsapp.android.ui.widgets.DistanceRangeWidget
 import com.mumsapp.android.ui.widgets.PriceRangeWidget
+import com.mumsapp.android.util.GOOGLE_PLACES_REQUEST_CODE
 import javax.inject.Inject
 
 class ShopFilterFragment : BaseFragment(), ShopFilterView {
+    override fun setGiveItForFree(value: Boolean) {
+        priceRangeWidget.setSwitchValue(value)
+    }
+
+    override fun getGiveItForFree(): Boolean {
+        return priceRangeWidget.getSwitchValue()
+    }
+
+    override fun setPrice(min: Int, max: Int) {
+        priceRangeWidget.setSelectedMin(min)
+        priceRangeWidget.setSelectedMax(max)
+    }
+
+    override fun getMinPrice(): Int {
+        return priceRangeWidget.getSelectedMin()
+    }
+
+    override fun getMaxPrice(): Int {
+        return priceRangeWidget.getSelectedMax()
+    }
+
+    override fun setDistance(min: Int, max: Int) {
+        distanceRangeWidget.setSelectedMin(min)
+        distanceRangeWidget.setSelectedMax(max)
+    }
+
+    override fun getMinDistance(): Int {
+        return distanceRangeWidget.getSelectedMin()
+    }
+
+    override fun getMaxDistance(): Int {
+        return distanceRangeWidget.getSelectedMax()
+    }
 
     @Inject
     lateinit var presenter: ShopFilterPresenter
+
+    @Inject
+    lateinit var activitiesNavigationService: ActivitiesNavigationService
 
     @BindView(R.id.select_product_category_top_bar)
     lateinit var topBar: TopBar
@@ -59,6 +100,24 @@ class ShopFilterFragment : BaseFragment(), ShopFilterView {
         presenter.attachViewWithLifecycle(this)
         topBar.setLeftButtonClickListener { presenter.onBackClick() }
         priceRangeWidget.setSwitchChangeListener(presenter::onGiveItToFreeCheckedChanged)
+        distanceRangeWidget.setOnSetLocationClickListener(presenter::onSetLocationClick)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            when (requestCode) {
+                GOOGLE_PLACES_REQUEST_CODE -> {
+                    val place = PlaceAutocomplete.getPlace(context, data)
+                    presenter.onLocationSelected(place)
+                }
+            }
+        } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
+            if (resultCode == GOOGLE_PLACES_REQUEST_CODE) {
+                val status = PlaceAutocomplete.getStatus(context, data)
+                presenter.onLocationError(status)
+            }
+        }
     }
 
     @OnClick(R.id.shop_filter_select_category)
@@ -76,5 +135,13 @@ class ShopFilterFragment : BaseFragment(), ShopFilterView {
 
     override fun disablePriceSelection() {
         priceRangeWidget.setSelectionEnabled(false)
+    }
+
+    override fun showEditLocationScreen() {
+        activitiesNavigationService.openGooglePlacesOverlayActivity(this, GOOGLE_PLACES_REQUEST_CODE)
+    }
+
+    override fun showLocationName(name: String) {
+        distanceRangeWidget.setSecondLineText(name)
     }
 }

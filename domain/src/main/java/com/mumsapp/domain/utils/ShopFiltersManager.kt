@@ -1,6 +1,6 @@
 package com.mumsapp.domain.utils
 
-import com.mumsapp.domain.model.product.ProductSubcategory
+import com.google.android.gms.location.places.Place
 
 interface ShopFiltersManager {
 
@@ -16,13 +16,17 @@ interface ShopFiltersManager {
 
     fun getGiveItForFree(): Boolean?
 
-    fun setMinPrice(price: Float?)
+    fun setMinPrice(price: Int?)
 
-    fun getMinPrice(): Float?
+    fun getMinPrice(): Int?
 
-    fun setMaxPrice(price: Float?)
+    fun setMaxPrice(price: Int?)
 
-    fun getMaxPrice(): Float?
+    fun getMaxPrice(): Int?
+
+    fun setPlace(place: Place?)
+
+    fun getPlace(): Place?
 
     fun setMinDistance(distance: Int?)
 

@@ -53,7 +53,8 @@ abstract class BaseFragment : Fragment(), LifecycleView {
 
     override fun showError(error: String) = (activity as BaseActivity).showError(error)
 
-    fun goingBack(): Boolean = getLifecyclePresenter<LifecyclePresenter<LifecycleView>>() != null || getLifecyclePresenter<LifecyclePresenter<LifecycleView>>().onGoingBack()
+    fun goingBack(): Boolean = getLifecyclePresenter<LifecyclePresenter<LifecycleView>>() != null &&
+            getLifecyclePresenter<LifecyclePresenter<LifecycleView>>().onGoingBack()
 
     override fun showLoading() {
         if(activity is HasOverlays) {

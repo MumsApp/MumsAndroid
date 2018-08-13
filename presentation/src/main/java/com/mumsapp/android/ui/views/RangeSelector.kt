@@ -13,6 +13,9 @@ class RangeSelector : ConstraintLayout {
     @BindView(R.id.range_selector_label)
     lateinit var labelView: BaseTextView
 
+    @BindView(R.id.range_selector_second_label)
+    lateinit var secondLabelView: BaseTextView
+
     @BindView(R.id.range_selector_left_value)
     lateinit var leftValueView: BaseTextView
 
@@ -42,10 +45,10 @@ class RangeSelector : ConstraintLayout {
     }
 
     private fun configureViews() {
-        seekBar.setOnRangeSeekbarChangeListener({ minValue, maxValue ->
+        seekBar.setOnRangeSeekbarChangeListener { minValue, maxValue ->
             leftValueView.text = minValue.toString()
             rightValueView.text = maxValue.toString()
-        })
+        }
     }
 
     private fun setupAttributes(context: Context, attrs: AttributeSet?) {
@@ -67,17 +70,34 @@ class RangeSelector : ConstraintLayout {
         labelView.text = label
     }
 
-    fun setMinValue(minValue: Float) {
-        seekBar.setMinValue(minValue)
+    fun showBottomLabel(label: String?) {
+        secondLabelView.text = label
+        secondLabelView.visibility = View.VISIBLE
     }
 
-    fun getMinValue() = seekBar.left
-
-    fun setMaxValue(maxValue: Float) {
-        seekBar.setMaxValue(maxValue)
+    fun hideBottomLabel() {
+        secondLabelView.visibility = View.GONE
     }
 
-    fun getMaxValue() = seekBar.right
+    fun setMinValue(value: Float) {
+        seekBar.setMinValue(value)
+    }
+
+    fun setMaxValue(value: Float) {
+        seekBar.setMaxValue(value)
+    }
+
+    fun setSelectedMinValue(minValue: Int) {
+        seekBar.left = minValue
+    }
+
+    fun getSelectedMinValue() = seekBar.left
+
+    fun setSelectedMaxValue(maxValue: Int) {
+        seekBar.right = maxValue
+    }
+
+    fun getSelectedMaxValue() = seekBar.right
 
     fun setSelectionEnabld(enabled: Boolean) {
         seekBar.isEnabled = enabled
