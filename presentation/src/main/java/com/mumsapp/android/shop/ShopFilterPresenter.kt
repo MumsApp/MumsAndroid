@@ -33,6 +33,14 @@ class ShopFilterPresenter : LifecyclePresenter<ShopFilterView> {
         fragmentsNavigationService.openSelectCategoryFragment(true)
     }
 
+    fun onGiveItToFreeCheckedChanged(value: Boolean) {
+        if(value) {
+            view?.disablePriceSelection()
+        } else {
+            view?.enablePriceSelection()
+        }
+    }
+
     private fun setFilterValues() {
         if(shopFiltersManager.getSubcategoryName() == null) {
             val hint = resourceRepository.getString(R.string.select_product_category)

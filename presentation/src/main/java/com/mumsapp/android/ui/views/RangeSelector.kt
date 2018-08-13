@@ -79,4 +79,7 @@ class RangeSelector : ConstraintLayout {
 
     fun getMaxValue() = seekBar.right
 
+    fun setSelectionEnabld(enabled: Boolean) {
+        seekBar.isEnabled = enabled
+    }
 }

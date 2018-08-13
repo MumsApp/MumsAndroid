@@ -4,6 +4,7 @@ import android.content.Context
 import android.support.v7.widget.CardView
 import android.util.AttributeSet
 import android.view.View
+import android.widget.CompoundButton
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.mumsapp.android.R
@@ -40,4 +41,14 @@ class PriceRangeWidget : CardView {
     fun getSelectedMax() = rangeSelector.getMaxValue()
 
     fun getSwitchValue() = freeSwitch.isChecked
+
+    fun setSwitchChangeListener(listener: (value: Boolean) -> Unit) {
+        freeSwitch.setOnCheckedChangeListener { _: CompoundButton, value: Boolean ->
+            listener.invoke(value)
+        }
+    }
+
+    fun setSelectionEnabled(enabled: Boolean) {
+        rangeSelector.setSelectionEnabld(enabled)
+    }
 }

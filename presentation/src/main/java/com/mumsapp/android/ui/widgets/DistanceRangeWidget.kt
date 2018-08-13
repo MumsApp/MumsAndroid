@@ -34,4 +34,8 @@ class DistanceRangeWidget : CardView {
     fun getSelectedMin() = rangeSelector.getMinValue()
 
     fun getSelectedMax() = rangeSelector.getMaxValue()
+
+    fun setSelectionEnabled(enabled: Boolean) {
+        rangeSelector.setSelectionEnabld(enabled)
+    }
 }

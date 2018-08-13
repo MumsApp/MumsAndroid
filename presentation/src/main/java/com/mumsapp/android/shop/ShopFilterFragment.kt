@@ -14,6 +14,8 @@ import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.di.components.ActivityComponent
 import com.mumsapp.android.ui.views.BaseButton
 import com.mumsapp.android.ui.views.TopBar
+import com.mumsapp.android.ui.widgets.DistanceRangeWidget
+import com.mumsapp.android.ui.widgets.PriceRangeWidget
 import javax.inject.Inject
 
 class ShopFilterFragment : BaseFragment(), ShopFilterView {
@@ -26,6 +28,12 @@ class ShopFilterFragment : BaseFragment(), ShopFilterView {
 
     @BindView(R.id.shop_filter_select_category)
     lateinit var selectCategoryButton: BaseButton
+
+    @BindView(R.id.shop_filter_price_range_widget)
+    lateinit var priceRangeWidget: PriceRangeWidget
+
+    @BindView(R.id.shop_filter_distance_range_widget)
+    lateinit var distanceRangeWidget: DistanceRangeWidget
 
     override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter() = presenter as T
 
@@ -50,6 +58,7 @@ class ShopFilterFragment : BaseFragment(), ShopFilterView {
         super.onViewCreated(view, savedInstanceState)
         presenter.attachViewWithLifecycle(this)
         topBar.setLeftButtonClickListener { presenter.onBackClick() }
+        priceRangeWidget.setSwitchChangeListener(presenter::onGiveItToFreeCheckedChanged)
     }
 
     @OnClick(R.id.shop_filter_select_category)
@@ -59,5 +68,13 @@ class ShopFilterFragment : BaseFragment(), ShopFilterView {
 
     override fun setCategoryName(categoryName: String?) {
         selectCategoryButton.text = categoryName
+    }
+
+    override fun enablePriceSelection() {
+        priceRangeWidget.setSelectionEnabled(true)
+    }
+
+    override fun disablePriceSelection() {
+        priceRangeWidget.setSelectionEnabled(false)
     }
 }

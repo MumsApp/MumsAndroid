@@ -530,11 +530,11 @@
 
     <style name="green_seek_bar" parent="default_seek_bar">
         <item name="bar_color">@color/grey_light</item>
-        <item name="bar_highlight_color">@color/green_light</item>
-        <item name="left_thumb_color">@color/green_light</item>
-        <item name="right_thumb_color">@color/green_light</item>
-        <item name="left_thumb_color_pressed">@color/green_light</item>
-        <item name="right_thumb_color_pressed">@color/green_light</item>
+        <item name="bar_highlight_color">@color/seek_bar_background_green</item>
+        <item name="left_thumb_color">@color/seek_bar_background_green</item>
+        <item name="right_thumb_color">@color/seek_bar_background_green</item>
+        <item name="left_thumb_color_pressed">@color/seek_bar_background_green</item>
+        <item name="right_thumb_color_pressed">@color/seek_bar_background_green</item>
     </style>
 
 
