@@ -30,7 +30,8 @@ android {
             buildConfigField 'String', 'GOOGLE_SIGN_IN_KEY', '\"158500825071-3mcog1848m2j4pn1k53ckmml6an0fq7j.apps.googleusercontent.com\"'
             resValue 'string', 'google_maps_key', '\"AIzaSyAHhieydz0ZK8YnP-1qeVJfhRtgm880CEw\"'
 
-            ext.betaDistributionEmails="duarte.lucena@gmail.com, mumsapp@gmail.com, paweldedio@gmail.com"
+            ext.betaDistributionEmails="duarte.lucena@gmail.com, mumsapp@gmail.com, paweldedio@gmail.com, mattuniversel@gmail.com"
+            ext.betaDistributionApkFilePath="presentation/build/outputs/apk/debug/presentation-debug.apk"
 
             signingConfig signingConfigs.debug
         }
