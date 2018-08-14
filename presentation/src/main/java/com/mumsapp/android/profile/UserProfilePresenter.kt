@@ -139,9 +139,13 @@ class UserProfilePresenter : LifecyclePresenter<UserProfileView> {
             return
         }
 
-        //TODO: Waiting for api
-        view?.setAddContactVisibility(true)
-        view?.setRemoveContactVisibility(false)
+        if(user.isFriend) {
+            view?.setAddContactVisibility(false)
+            view?.setRemoveContactVisibility(true)
+        } else {
+            view?.setAddContactVisibility(true)
+            view?.setRemoveContactVisibility(false)
+        }
     }
 
     private fun confirmRemoveContact() {
