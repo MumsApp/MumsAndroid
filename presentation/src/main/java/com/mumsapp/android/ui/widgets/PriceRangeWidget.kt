@@ -42,9 +42,11 @@ class PriceRangeWidget : CardView {
 
         val minValue = array.getFloat(R.styleable.RangeSelector_minValue, 0f)
         rangeSelector.setMinValue(minValue)
+        rangeSelector.setSelectedMinValue(minValue.toInt())
 
         val maxValue = array.getFloat(R.styleable.RangeSelector_maxValue, 10f)
         rangeSelector.setMaxValue(maxValue)
+        rangeSelector.setSelectedMaxValue(maxValue.toInt())
 
         array.recycle()
     }

@@ -120,6 +120,5 @@ class ShopFilterPresenter : LifecyclePresenter<ShopFilterView> {
             shopFiltersManager.setMinDistance(minDistance)
             shopFiltersManager.setMaxDistance(maxDistance)
         }
-
     }
 }

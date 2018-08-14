@@ -89,12 +89,14 @@ class RangeSelector : ConstraintLayout {
 
     fun setSelectedMinValue(minValue: Int) {
         seekBar.left = minValue
+        leftValueView.text = minValue.toString()
     }
 
     fun getSelectedMinValue() = seekBar.left
 
     fun setSelectedMaxValue(maxValue: Int) {
         seekBar.right = maxValue
+        rightValueView.text = maxValue.toString()
     }
 
     fun getSelectedMaxValue() = seekBar.right

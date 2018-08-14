@@ -24,39 +24,6 @@ import com.mumsapp.android.util.GOOGLE_PLACES_REQUEST_CODE
 import javax.inject.Inject
 
 class ShopFilterFragment : BaseFragment(), ShopFilterView {
-    override fun setGiveItForFree(value: Boolean) {
-        priceRangeWidget.setSwitchValue(value)
-    }
-
-    override fun getGiveItForFree(): Boolean {
-        return priceRangeWidget.getSwitchValue()
-    }
-
-    override fun setPrice(min: Int, max: Int) {
-        priceRangeWidget.setSelectedMin(min)
-        priceRangeWidget.setSelectedMax(max)
-    }
-
-    override fun getMinPrice(): Int {
-        return priceRangeWidget.getSelectedMin()
-    }
-
-    override fun getMaxPrice(): Int {
-        return priceRangeWidget.getSelectedMax()
-    }
-
-    override fun setDistance(min: Int, max: Int) {
-        distanceRangeWidget.setSelectedMin(min)
-        distanceRangeWidget.setSelectedMax(max)
-    }
-
-    override fun getMinDistance(): Int {
-        return distanceRangeWidget.getSelectedMin()
-    }
-
-    override fun getMaxDistance(): Int {
-        return distanceRangeWidget.getSelectedMax()
-    }
 
     @Inject
     lateinit var presenter: ShopFilterPresenter
@@ -143,5 +110,39 @@ class ShopFilterFragment : BaseFragment(), ShopFilterView {
 
     override fun showLocationName(name: String) {
         distanceRangeWidget.setSecondLineText(name)
+    }
+
+    override fun setGiveItForFree(value: Boolean) {
+        priceRangeWidget.setSwitchValue(value)
+    }
+
+    override fun getGiveItForFree(): Boolean {
+        return priceRangeWidget.getSwitchValue()
+    }
+
+    override fun setPrice(min: Int, max: Int) {
+        priceRangeWidget.setSelectedMin(min)
+        priceRangeWidget.setSelectedMax(max)
+    }
+
+    override fun getMinPrice(): Int {
+        return priceRangeWidget.getSelectedMin()
+    }
+
+    override fun getMaxPrice(): Int {
+        return priceRangeWidget.getSelectedMax()
+    }
+
+    override fun setDistance(min: Int, max: Int) {
+        distanceRangeWidget.setSelectedMin(min)
+        distanceRangeWidget.setSelectedMax(max)
+    }
+
+    override fun getMinDistance(): Int {
+        return distanceRangeWidget.getSelectedMin()
+    }
+
+    override fun getMaxDistance(): Int {
+        return distanceRangeWidget.getSelectedMax()
     }
 }
