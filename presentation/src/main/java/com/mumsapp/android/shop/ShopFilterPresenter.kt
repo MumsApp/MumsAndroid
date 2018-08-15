@@ -36,6 +36,7 @@ class ShopFilterPresenter : LifecyclePresenter<ShopFilterView> {
     }
 
     fun onBackClick() {
+        saveDetails()
         fragmentsNavigationService.popFragment()
     }
 

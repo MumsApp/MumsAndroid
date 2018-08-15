@@ -75,6 +75,6 @@ class PriceRangeWidget : CardView {
     }
 
     fun setSelectionEnabled(enabled: Boolean) {
-        rangeSelector.setSelectionEnabld(enabled)
+        rangeSelector.setSelectionEnabled(enabled)
     }
 }

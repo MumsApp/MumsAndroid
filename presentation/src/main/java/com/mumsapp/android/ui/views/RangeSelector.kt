@@ -81,27 +81,35 @@ class RangeSelector : ConstraintLayout {
 
     fun setMinValue(value: Float) {
         seekBar.setMinValue(value)
+        seekBar.apply()
     }
 
     fun setMaxValue(value: Float) {
         seekBar.setMaxValue(value)
+        seekBar.apply()
     }
 
     fun setSelectedMinValue(minValue: Int) {
-        seekBar.left = minValue
+        seekBar.setMinStartValue(minValue.toFloat())
+        seekBar.apply()
         leftValueView.text = minValue.toString()
     }
 
-    fun getSelectedMinValue() = seekBar.left
+    fun getSelectedMinValue(): Int {
+        return seekBar.selectedMinValue.toInt()
+    }
 
     fun setSelectedMaxValue(maxValue: Int) {
-        seekBar.right = maxValue
+        seekBar.setMaxStartValue(maxValue.toFloat())
+        seekBar.apply()
         rightValueView.text = maxValue.toString()
     }
 
-    fun getSelectedMaxValue() = seekBar.right
+    fun getSelectedMaxValue(): Int {
+        return seekBar.selectedMaxValue.toInt()
+    }
 
-    fun setSelectionEnabld(enabled: Boolean) {
+    fun setSelectionEnabled(enabled: Boolean) {
         seekBar.isEnabled = enabled
     }
 }

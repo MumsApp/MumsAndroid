@@ -63,7 +63,7 @@ class DistanceRangeWidget : CardView {
     }
 
     fun setSelectionEnabled(enabled: Boolean) {
-        rangeSelector.setSelectionEnabld(enabled)
+        rangeSelector.setSelectionEnabled(enabled)
     }
 
     fun setOnSetLocationClickListener(listener: () -> Unit) {
