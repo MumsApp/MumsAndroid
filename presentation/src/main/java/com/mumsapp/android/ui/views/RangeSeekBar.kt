@@ -2,9 +2,10 @@ package com.mumsapp.android.ui.views
 
 import android.content.Context
 import android.util.AttributeSet
-import com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar
+import android.view.View
+import com.innovattic.rangeseekbar.RangeSeekBar
 
-class RangeSeekBar : CrystalRangeSeekbar {
+class RangeSeekBar : View {
 
     constructor(context: Context) : super(context)
 

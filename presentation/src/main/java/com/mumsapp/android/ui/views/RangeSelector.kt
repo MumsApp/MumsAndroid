@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import android.view.View
 import butterknife.BindView
 import butterknife.ButterKnife
+import com.innovattic.rangeseekbar.RangeSeekBar
 import com.mumsapp.android.R
 
 class RangeSelector : ConstraintLayout {
@@ -45,9 +46,18 @@ class RangeSelector : ConstraintLayout {
     }
 
     private fun configureViews() {
-        seekBar.setOnRangeSeekbarChangeListener { minValue, maxValue ->
-            leftValueView.text = minValue.toString()
-            rightValueView.text = maxValue.toString()
+        seekBar.seekBarChangeListener = object : RangeSeekBar.SeekBarChangeListener {
+
+            override fun onStartedSeeking() {
+            }
+
+            override fun onStoppedSeeking() {
+            }
+
+            override fun onValueChanged(minThumbValue: Int, maxThumbValue: Int) {
+                leftValueView.text = minThumbValue.toString()
+                rightValueView.text = maxThumbValue.toString()
+            }
         }
     }
 
@@ -80,33 +90,29 @@ class RangeSelector : ConstraintLayout {
     }
 
     fun setMinValue(value: Float) {
-        seekBar.setMinValue(value)
-        seekBar.apply()
+        seekBar.minRange = value.toInt()
     }
 
     fun setMaxValue(value: Float) {
-        seekBar.setMaxValue(value)
-        seekBar.apply()
+        seekBar.max = value.toInt()
     }
 
     fun setSelectedMinValue(minValue: Int) {
-        seekBar.setMinStartValue(minValue.toFloat())
-        seekBar.apply()
+        seekBar.setMinThumbValue(minValue)
         leftValueView.text = minValue.toString()
     }
 
     fun getSelectedMinValue(): Int {
-        return seekBar.selectedMinValue.toInt()
+        return seekBar.getMinThumbValue()
     }
 
     fun setSelectedMaxValue(maxValue: Int) {
-        seekBar.setMaxStartValue(maxValue.toFloat())
-        seekBar.apply()
+        seekBar.setMaxThumbValue(maxValue)
         rightValueView.text = maxValue.toString()
     }
 
     fun getSelectedMaxValue(): Int {
-        return seekBar.selectedMaxValue.toInt()
+        return seekBar.getMaxThumbValue()
     }
 
     fun setSelectionEnabled(enabled: Boolean) {

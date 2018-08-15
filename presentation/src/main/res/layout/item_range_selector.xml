@@ -22,7 +22,7 @@
         app:layout_constraintBottom_toBottomOf="@id/range_selector_seek_bar"
         tools:text="$145"/>
 
-    <com.mumsapp.android.ui.views.RangeSeekBar
+    <com.innovattic.rangeseekbar.RangeSeekBar
         android:id="@+id/range_selector_seek_bar"
         style="@style/green_seek_bar"
         android:layout_width="0dp"
