@@ -1,6 +1,9 @@
 package com.mumsapp.android.ui.views
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.support.annotation.PluralsRes
+import android.support.annotation.StringRes
 import android.support.constraint.ConstraintLayout
 import android.util.AttributeSet
 import android.view.View
@@ -25,6 +28,10 @@ class RangeSelector : ConstraintLayout {
 
     @BindView(R.id.range_selector_seek_bar)
     lateinit var seekBar: RangeSeekBar
+
+    private var preffix: String = ""
+    private var suffix: String? = ""
+    private var suffixPluralId: Int? = null
 
     constructor(context: Context) : super(context) {
         setup(context, null)
@@ -55,8 +62,8 @@ class RangeSelector : ConstraintLayout {
             }
 
             override fun onValueChanged(minThumbValue: Int, maxThumbValue: Int) {
-                leftValueView.text = minThumbValue.toString()
-                rightValueView.text = maxThumbValue.toString()
+                updateLeftValue(minThumbValue)
+                updateRightValue(maxThumbValue)
             }
         }
     }
@@ -99,7 +106,7 @@ class RangeSelector : ConstraintLayout {
 
     fun setSelectedMinValue(minValue: Int) {
         seekBar.setMinThumbValue(minValue)
-        leftValueView.text = minValue.toString()
+        updateLeftValue(minValue)
     }
 
     fun getSelectedMinValue(): Int {
@@ -108,7 +115,7 @@ class RangeSelector : ConstraintLayout {
 
     fun setSelectedMaxValue(maxValue: Int) {
         seekBar.setMaxThumbValue(maxValue)
-        rightValueView.text = maxValue.toString()
+        updateRightValue(maxValue)
     }
 
     fun getSelectedMaxValue(): Int {
@@ -117,5 +124,37 @@ class RangeSelector : ConstraintLayout {
 
     fun setSelectionEnabled(enabled: Boolean) {
         seekBar.isEnabled = enabled
+    }
+
+    fun setPrefixValue(@StringRes value: Int) {
+         preffix = context.getString(value) + " "
+    }
+
+    fun setSuffixValue(@StringRes value: Int) {
+        suffix = " " + context.getString(value)
+    }
+
+    fun setSuffixPlural(@PluralsRes value: Int) {
+        suffixPluralId = value
+    }
+
+    private fun updateLeftValue(value: Int) {
+        val text = formatValue(value)
+
+        leftValueView.text = text
+    }
+
+    private fun updateRightValue(value: Int) {
+        val text = formatValue(value)
+
+        rightValueView.text = text
+    }
+
+    private fun formatValue(value: Int): String {
+        var plural = ""
+        if(suffixPluralId != null) {
+            plural = " " + context.resources.getQuantityString(suffixPluralId!!, value)
+        }
+        return "$preffix$value$suffix$plural"
     }
 }

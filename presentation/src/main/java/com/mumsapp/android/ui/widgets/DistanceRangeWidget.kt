@@ -39,6 +39,8 @@ class DistanceRangeWidget : CardView {
     private fun setupAttributes(context: Context, attrs: AttributeSet?) {
         val array = context.obtainStyledAttributes(attrs, R.styleable.RangeSelector)
 
+        rangeSelector.setSuffixPlural(R.plurals.mile_plural)
+
         val minValue = array.getFloat(R.styleable.RangeSelector_minValue, 0f)
         rangeSelector.setMinValue(minValue)
         rangeSelector.setSelectedMinValue(minValue.toInt())

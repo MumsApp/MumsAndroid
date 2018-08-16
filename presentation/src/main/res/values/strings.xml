@@ -234,4 +234,11 @@
     <string name="categories">Categories</string>
 
     <string name="selected_location_pattern">Selected location: %s</string>
+
+    <plurals name="mile_plural">
+        <item quantity="one">mile</item>
+        <item quantity="other">miles</item>
+    </plurals>
+
+    <string name="pound_symbol">£</string>
 </resources>
