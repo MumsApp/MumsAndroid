@@ -32,3 +32,9 @@ const val SEX_TO_COME = 3
 
 //Pagination
 const val DEFAULT_PAGE_SIZE = 20
+
+//Shop filters
+const val DEFAULT_MIN_PRICE = 0
+const val DEFAULT_MAX_PRICE = 300
+const val DEFAULT_MIN_DISTANCE = 1
+const val DEFAULT_MAX_DISTANCE = 50

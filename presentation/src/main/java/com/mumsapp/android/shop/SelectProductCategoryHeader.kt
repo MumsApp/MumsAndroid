@@ -1,6 +1,7 @@
 package com.mumsapp.android.shop
 
 import com.brandongogetap.stickyheaders.exposed.StickyHeader
+import com.mumsapp.domain.model.product.ProductSubcategory
 
-class SelectProductCategoryHeader(id: Int, text: String, viewType: Int) :
-        SelectProductCategoryItem(id, text, viewType), StickyHeader
+class SelectProductCategoryHeader(subcategory: ProductSubcategory?, text: String, viewType: Int) :
+        SelectProductCategoryItem(subcategory, text, viewType), StickyHeader

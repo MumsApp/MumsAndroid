@@ -300,13 +300,26 @@
         <item name="searchVisible">true</item>
     </style>
 
+    <style name="top_bar_add" parent="top_bar_back">
+        <item name="topBarLeftIcon">@drawable/ic_plus</item>
+    </style>
+
     <style name="top_bar_hamburger" parent="top_bar_default">
         <item name="topBarLeftButtonVisible">false</item>
         <item name="topBarRightButtonVisible">true</item>
         <item name="topBarRightIcon">@drawable/ic_hamburger</item>
     </style>
 
+    <style name="top_bar_add_hamburger" parent="top_bar_hamburger">
+        <item name="topBarLeftButtonVisible">true</item>
+        <item name="topBarLeftIcon">@drawable/ic_plus</item>
+    </style>
+
     <style name="top_bar_hamburger_search" parent="top_bar_hamburger">
+        <item name="searchVisible">true</item>
+    </style>
+
+    <style name="top_bar_add_hamburger_search" parent="top_bar_add_hamburger">
         <item name="searchVisible">true</item>
     </style>
     

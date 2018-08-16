@@ -13,6 +13,7 @@ import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.di.components.ActivityComponent
 import com.mumsapp.android.navigation.DialogsProvider
+import com.mumsapp.android.ui.views.BaseTextView
 import com.mumsapp.android.ui.views.CardsRecyclerView
 import com.mumsapp.android.ui.views.TopBar
 import com.mumsapp.domain.model.product.ProductItem
@@ -31,6 +32,15 @@ class ShopFragment : BaseFragment(), ShopView {
 
     @BindView(R.id.shop_top_bar)
     lateinit var topBar: TopBar
+
+    @BindView(R.id.shop_filter_category)
+    lateinit var categoryView: BaseTextView
+
+    @BindView(R.id.shop_filter_price)
+    lateinit var priceView: BaseTextView
+
+    @BindView(R.id.shop_filter_distance)
+    lateinit var distanceView: BaseTextView
 
     @BindView(R.id.shop_recycler_view)
     lateinit var recyclerView: CardsRecyclerView
@@ -59,6 +69,7 @@ class ShopFragment : BaseFragment(), ShopView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter.attachViewWithLifecycle(this)
+        topBar.setLeftButtonClickListener { presenter.onAddClick() }
         topBar.setRightButtonClickListener { presenter.onMenuButtonClick() }
         topBar.setSearchListener(presenter::onSearch)
     }
@@ -83,6 +94,12 @@ class ShopFragment : BaseFragment(), ShopView {
 
     override fun startSearching() {
         topBar.requestSearchFocus()
+    }
+
+    override fun showFilterValues(category: String, price: String, distance: String) {
+        categoryView.text = category
+        priceView.text = price
+        distanceView.text = distance
     }
 
     override fun showItems(items: List<ProductItem>, checkboxChangeListener: (item: ProductItem, value: Boolean) -> Unit) {

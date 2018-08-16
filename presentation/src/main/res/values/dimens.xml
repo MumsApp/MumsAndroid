@@ -28,7 +28,7 @@
     <dimen name="text_container_small_width">30dp</dimen>
     <dimen name="text_container_small_height">24dp</dimen>
 
-    <dimen name="text_filter_max_width">60dp</dimen>
+    <dimen name="text_filter_max_width">70dp</dimen>
 
 
     <!-- Buttons -->

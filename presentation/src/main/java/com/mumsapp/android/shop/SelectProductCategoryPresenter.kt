@@ -27,8 +27,7 @@ class SelectProductCategoryPresenter : LifecyclePresenter<SelectProductCategoryV
     }
 
     override fun create() {
-        shopFiltersManager.setSubcategoryName(null)
-        shopFiltersManager.setSubcategoryId(null)
+        shopFiltersManager.setSubcategory(null)
     }
 
     override fun start() {
@@ -54,8 +53,7 @@ class SelectProductCategoryPresenter : LifecyclePresenter<SelectProductCategoryV
 
     private fun onCategoryClick(item: SelectProductCategoryItem) {
         if(item.viewType == VIEW_TYPE_ITEM) {
-            shopFiltersManager.setSubcategoryId(item.id)
-            shopFiltersManager.setSubcategoryName(item.text)
+            shopFiltersManager.setSubcategory(item.subcategory)
             fragmentsNavigationService.popFragment()
         }
     }

@@ -1,16 +1,13 @@
 package com.mumsapp.domain.utils
 
 import com.google.android.gms.location.places.Place
+import com.mumsapp.domain.model.product.ProductSubcategory
 
 interface ShopFiltersManager {
 
-    fun setSubcategoryId(id: Int?)
+    fun setSubcategory(name: ProductSubcategory?)
 
-    fun getSubcategoryId(): Int?
-
-    fun setSubcategoryName(name: String?)
-
-    fun getSubcategoryName(): String?
+    fun getSubcategory(): ProductSubcategory?
 
     fun setGiveItForFree(value: Boolean?)
 

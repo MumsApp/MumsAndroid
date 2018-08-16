@@ -11,5 +11,7 @@ interface ShopView : LifecycleView {
 
     fun startSearching()
 
+    fun showFilterValues(category: String, price: String, distance: String)
+
     fun showItems(items: List<ProductItem>, checkboxChangeListener: (item: ProductItem, value: Boolean) -> Unit)
 }

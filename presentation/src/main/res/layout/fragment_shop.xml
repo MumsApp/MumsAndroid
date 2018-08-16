@@ -6,7 +6,7 @@
 
     <com.mumsapp.android.ui.views.TopBar
         android:id="@+id/shop_top_bar"
-        style="@style/top_bar_hamburger_search"
+        style="@style/top_bar_add_hamburger_search"
         app:layout_constraintTop_toTopOf="parent"
         app:topBarTitle="@string/shop" />
 
@@ -30,7 +30,7 @@
                     style="@style/text_filter"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toLeftOf="@id/shop_filter_category_divider"
-                    android:text="Baby clothing" />
+                    tools:text="Baby clothing" />
 
                 <View
                     android:id="@+id/shop_filter_category_divider"
@@ -46,7 +46,7 @@
                     android:gravity="center"
                     app:layout_constraintLeft_toRightOf="@id/shop_filter_category_divider"
                     app:layout_constraintRight_toLeftOf="@id/shop_filter_price_divider"
-                    android:text="Price 45-150" />
+                    tools:text="Price 45-150" />
 
                 <View
                     android:id="@+id/shop_filter_price_divider"
@@ -62,7 +62,7 @@
                     android:gravity="end"
                     app:layout_constraintLeft_toRightOf="@id/shop_filter_price_divider"
                     app:layout_constraintRight_toRightOf="parent"
-                    android:text="1-30\n Miles" />
+                    tools:text="1-30\n Miles" />
             </android.support.constraint.ConstraintLayout>
 
             <com.mumsapp.android.ui.views.BaseButton

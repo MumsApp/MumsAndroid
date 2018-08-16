@@ -70,11 +70,11 @@ class ShopFilterPresenter : LifecyclePresenter<ShopFilterView> {
     }
 
     private fun setFilterValues() {
-        if(shopFiltersManager.getSubcategoryName() == null) {
+        if(shopFiltersManager.getSubcategory() == null) {
             val hint = resourceRepository.getString(R.string.select_product_category)
             view?.setCategoryName(hint)
         } else {
-            view?.setCategoryName(shopFiltersManager.getSubcategoryName())
+            view?.setCategoryName(shopFiltersManager.getSubcategory()!!.name)
         }
 
         if(shopFiltersManager.getGiveItForFree() != null) {

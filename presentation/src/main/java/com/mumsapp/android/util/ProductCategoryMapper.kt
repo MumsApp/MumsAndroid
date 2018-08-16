@@ -18,10 +18,10 @@ class ProductCategoryMapper {
         val items = ArrayList<SelectProductCategoryItem>()
 
         for(category: ProductCategory in response.data) {
-            items.add(SelectProductCategoryHeader(category.id, category.name, VIEW_TYPE_HEADER))
+            items.add(SelectProductCategoryHeader(null, category.name, VIEW_TYPE_HEADER))
 
             for(subcategory: ProductSubcategory in category.subcategories) {
-                items.add(SelectProductCategoryItem(subcategory.id, subcategory.name, VIEW_TYPE_ITEM))
+                items.add(SelectProductCategoryItem(subcategory, subcategory.name, VIEW_TYPE_ITEM))
             }
         }
 

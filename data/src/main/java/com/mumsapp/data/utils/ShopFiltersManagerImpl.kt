@@ -1,13 +1,13 @@
 package com.mumsapp.data.utils
 
 import com.google.android.gms.location.places.Place
+import com.mumsapp.domain.model.product.ProductSubcategory
 import com.mumsapp.domain.utils.ShopFiltersManager
 import javax.inject.Inject
 
 class ShopFiltersManagerImpl : ShopFiltersManager {
 
-    private var subcategoryId: Int? = null
-    private var subcategoryName: String? = null
+    private var subcategory: ProductSubcategory? = null
     private var giveItForFree: Boolean? = null
     private var minPrice: Int? = null
     private var maxPrice: Int? = null
@@ -18,17 +18,11 @@ class ShopFiltersManagerImpl : ShopFiltersManager {
     @Inject
     constructor()
 
-    override fun setSubcategoryId(id: Int?) {
-        subcategoryId = id
+    override fun setSubcategory(subcategory: ProductSubcategory?) {
+        this.subcategory = subcategory
     }
 
-    override fun getSubcategoryId() = subcategoryId
-
-    override fun setSubcategoryName(name: String?) {
-        subcategoryName = name
-    }
-
-    override fun getSubcategoryName() = subcategoryName
+    override fun getSubcategory() = subcategory
 
     override fun setGiveItForFree(value: Boolean?) {
         giveItForFree = value
@@ -67,8 +61,7 @@ class ShopFiltersManagerImpl : ShopFiltersManager {
     override fun getMaxDistance() = maxDistance
 
     override fun clear() {
-        subcategoryId = null
-        subcategoryName = null
+        subcategory = null
         giveItForFree = null
         minPrice = null
         maxPrice = null

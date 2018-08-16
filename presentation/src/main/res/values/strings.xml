@@ -241,4 +241,9 @@
     </plurals>
 
     <string name="pound_symbol">£</string>
+    
+    <string name="all_categories">All\ncategories</string>
+
+    <string name="shop_filter_price_pattern">Price\n£%d-%d</string>
+    <string name="shop_filter_distance_pattern">%d-%d\nMiles</string>
 </resources>
