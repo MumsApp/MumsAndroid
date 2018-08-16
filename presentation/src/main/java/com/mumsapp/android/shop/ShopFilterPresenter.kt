@@ -30,12 +30,17 @@ class ShopFilterPresenter : LifecyclePresenter<ShopFilterView> {
     }
 
     override fun onGoingBack(): Boolean {
-        saveDetails()
+        clearFilters()
 
         return super.onGoingBack()
     }
 
     fun onBackClick() {
+        clearFilters()
+        fragmentsNavigationService.popFragment()
+    }
+
+    fun onDoneClick() {
         saveDetails()
         fragmentsNavigationService.popFragment()
     }
@@ -121,5 +126,9 @@ class ShopFilterPresenter : LifecyclePresenter<ShopFilterView> {
             shopFiltersManager.setMinDistance(minDistance)
             shopFiltersManager.setMaxDistance(maxDistance)
         }
+    }
+
+    fun clearFilters() {
+        shopFiltersManager.clear()
     }
 }

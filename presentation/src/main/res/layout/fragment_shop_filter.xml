@@ -5,9 +5,10 @@
 
     <com.mumsapp.android.ui.views.TopBar
         android:id="@+id/select_product_category_top_bar"
-        style="@style/top_bar_back"
+        style="@style/top_bar_back_right_text"
         app:layout_constraintTop_toTopOf="parent"
-        app:topBarTitle="@string/filter" />
+        app:topBarTitle="@string/filter"
+        app:topBarRightText="@string/done"/>
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"

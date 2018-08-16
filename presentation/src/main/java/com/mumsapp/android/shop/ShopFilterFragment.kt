@@ -66,6 +66,7 @@ class ShopFilterFragment : BaseFragment(), ShopFilterView {
         super.onViewCreated(view, savedInstanceState)
         presenter.attachViewWithLifecycle(this)
         topBar.setLeftButtonClickListener { presenter.onBackClick() }
+        topBar.setRightTextClickListener { presenter.onDoneClick() }
         priceRangeWidget.setSwitchChangeListener(presenter::onGiveItToFreeCheckedChanged)
         distanceRangeWidget.setOnSetLocationClickListener(presenter::onSetLocationClick)
     }
