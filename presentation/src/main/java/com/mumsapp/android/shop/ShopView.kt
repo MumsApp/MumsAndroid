@@ -1,7 +1,7 @@
 package com.mumsapp.android.shop
 
 import com.mumsapp.android.base.LifecycleView
-import com.mumsapp.domain.model.product.Product
+import com.mumsapp.domain.model.shop.Product
 
 interface ShopView : LifecycleView {
 

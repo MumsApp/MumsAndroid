@@ -1,7 +1,7 @@
 package com.mumsapp.android.mums_app_offers
 
 import com.mumsapp.android.base.LifecycleView
-import com.mumsapp.domain.model.product.Product
+import com.mumsapp.domain.model.shop.Product
 import ss.com.bannerslider.banners.Banner
 
 interface MumsAppOfferDetailsView : LifecycleView {

@@ -20,7 +20,7 @@ import com.mumsapp.android.ui.views.TopBar
 import com.mumsapp.android.ui.widgets.MumsAppOfferDetailsWidget
 import com.mumsapp.android.util.MUMS_APP_OFFER_ID_KEY
 import com.mumsapp.android.util.PRODUCT_ID_KEY
-import com.mumsapp.domain.model.product.Product
+import com.mumsapp.domain.model.shop.Product
 import ss.com.bannerslider.banners.Banner
 import javax.inject.Inject
 

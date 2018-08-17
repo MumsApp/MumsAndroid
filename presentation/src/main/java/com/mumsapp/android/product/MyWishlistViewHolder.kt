@@ -10,7 +10,7 @@ import com.mumsapp.android.ui.views.BaseImageView
 import com.mumsapp.android.ui.views.BaseTextView
 import com.mumsapp.android.ui.views.CircleImageView
 import com.mumsapp.android.util.ImagesLoader
-import com.mumsapp.domain.model.product.Product
+import com.mumsapp.domain.model.shop.Product
 import com.mumsapp.domain.repository.ResourceRepository
 import java.lang.ref.WeakReference
 

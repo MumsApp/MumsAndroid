@@ -8,10 +8,12 @@ import com.mumsapp.android.util.DEFAULT_MAX_PRICE
 import com.mumsapp.android.util.DEFAULT_MIN_DISTANCE
 import com.mumsapp.android.util.DEFAULT_MIN_PRICE
 import com.mumsapp.domain.interactor.shop.GetShopItemsUseCase
+import com.mumsapp.domain.interactor.shop.SearchShopProductsUseCase
 import com.mumsapp.domain.model.EmptyRequest
-import com.mumsapp.domain.model.product.Product
-import com.mumsapp.domain.model.product.ProductSubcategory
-import com.mumsapp.domain.model.product.ProductResponse
+import com.mumsapp.domain.model.shop.Product
+import com.mumsapp.domain.model.shop.ProductSubcategory
+import com.mumsapp.domain.model.shop.ProductResponse
+import com.mumsapp.domain.model.shop.SearchShopRequest
 import com.mumsapp.domain.repository.ResourceRepository
 import com.mumsapp.domain.utils.ShopFiltersManager
 import javax.inject.Inject
@@ -19,19 +21,19 @@ import javax.inject.Inject
 class ShopPresenter : LifecyclePresenter<ShopView> {
 
     private val fragmentsNavigationService: FragmentsNavigationService
-    private val getShopItemsUseCase: GetShopItemsUseCase
     private val shopFiltersManager: ShopFiltersManager
     private val resourceRepository: ResourceRepository
+    private val searchShopProductsUseCase: SearchShopProductsUseCase
 
     @Inject
     constructor(fragmentsNavigationService: FragmentsNavigationService,
-                getShopItemsUseCase: GetShopItemsUseCase,
                 shopFiltersManager: ShopFiltersManager,
-                resourceRepository: ResourceRepository) {
+                resourceRepository: ResourceRepository,
+                searchShopProductsUseCase: SearchShopProductsUseCase) {
         this.fragmentsNavigationService = fragmentsNavigationService
-        this.getShopItemsUseCase = getShopItemsUseCase
         this.shopFiltersManager = shopFiltersManager
         this.resourceRepository = resourceRepository
+        this.searchShopProductsUseCase = searchShopProductsUseCase
     }
 
     override fun create() {
@@ -94,8 +96,9 @@ class ShopPresenter : LifecyclePresenter<ShopView> {
 
         setFilterValues(shopFiltersManager.getSubcategory(), minPrice!!, maxPrice!!, minDistance!!, maxDistance!!)
 
+        val request = SearchShopRequest()
         addDisposable(
-                getShopItemsUseCase.execute(EmptyRequest())
+                searchShopProductsUseCase.execute(request)
                         .compose(applyOverlaysToObservable())
                         .subscribe(this::handleLoadProductsSuccess)
         )

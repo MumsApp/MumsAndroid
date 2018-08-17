@@ -6,7 +6,7 @@ import com.mumsapp.android.navigation.DialogsProvider
 import com.mumsapp.android.navigation.FragmentsNavigationService
 import com.mumsapp.domain.interactor.shop.GetShopItemsUseCase
 import com.mumsapp.domain.model.EmptyRequest
-import com.mumsapp.domain.model.product.ProductResponse
+import com.mumsapp.domain.model.shop.ProductResponse
 import ss.com.bannerslider.banners.Banner
 import ss.com.bannerslider.banners.DrawableBanner
 import javax.inject.Inject

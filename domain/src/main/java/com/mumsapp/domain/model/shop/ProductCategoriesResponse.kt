@@ -1,4 +1,4 @@
-package com.mumsapp.domain.model.product
+package com.mumsapp.domain.model.shop
 
 import com.google.gson.annotations.SerializedName
 import com.mumsapp.domain.model.BaseResponse

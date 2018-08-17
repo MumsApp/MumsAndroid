@@ -16,7 +16,7 @@ import com.mumsapp.android.navigation.DialogsProvider
 import com.mumsapp.android.ui.views.BaseTextView
 import com.mumsapp.android.ui.views.CardsRecyclerView
 import com.mumsapp.android.ui.views.TopBar
-import com.mumsapp.domain.model.product.Product
+import com.mumsapp.domain.model.shop.Product
 import javax.inject.Inject
 
 class ShopFragment : BaseFragment(), ShopView {

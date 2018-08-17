@@ -4,7 +4,8 @@ import com.mumsapp.domain.model.EmptyResponse
 import com.mumsapp.domain.model.identity.RefreshTokenRequest
 import com.mumsapp.domain.model.identity.Token
 import com.mumsapp.domain.model.lobby.*
-import com.mumsapp.domain.model.product.ProductCategoriesResponse
+import com.mumsapp.domain.model.shop.ProductCategoriesResponse
+import com.mumsapp.domain.model.shop.ProductResponse
 import com.mumsapp.domain.model.user.*
 import io.reactivex.Observable
 import okhttp3.MultipartBody
@@ -115,4 +116,15 @@ interface PublicRestApi {
 
     @GET("shop/category")
     fun getShopCategory(): Observable<Response<ProductCategoriesResponse>>
+
+    @GET("shop/product/search/{page}/{perPage}")
+    fun getShopProductSearch(@Path("page") page: Int, @Path("perPage") perPage: Int,
+                             @Query("searchTerm") searchTerm: String?,
+                             @Query("category") category: Int?,
+                             @Query("priceFrom") priceFrom: Float?,
+                             @Query("priceTo") priceTo: Float?,
+                             @Query("userLat") userLat: Double?,
+                             @Query("userLon") userLon: Double?,
+                             @Query("distanceFrom") distanceFrom: Int?,
+                             @Query("distanceTo") distanceTo: Int?): Observable<Response<ProductResponse>>
 }

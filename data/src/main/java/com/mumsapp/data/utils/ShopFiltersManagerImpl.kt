@@ -1,7 +1,7 @@
 package com.mumsapp.data.utils
 
 import com.google.android.gms.location.places.Place
-import com.mumsapp.domain.model.product.ProductSubcategory
+import com.mumsapp.domain.model.shop.ProductSubcategory
 import com.mumsapp.domain.utils.ShopFiltersManager
 import javax.inject.Inject
 

@@ -4,9 +4,9 @@ import com.mumsapp.android.shop.SelectProductCategoryHeader
 import com.mumsapp.android.shop.SelectProductCategoryItem
 import com.mumsapp.android.shop.VIEW_TYPE_HEADER
 import com.mumsapp.android.shop.VIEW_TYPE_ITEM
-import com.mumsapp.domain.model.product.ProductCategoriesResponse
-import com.mumsapp.domain.model.product.ProductCategory
-import com.mumsapp.domain.model.product.ProductSubcategory
+import com.mumsapp.domain.model.shop.ProductCategoriesResponse
+import com.mumsapp.domain.model.shop.ProductCategory
+import com.mumsapp.domain.model.shop.ProductSubcategory
 import javax.inject.Inject
 
 class ProductCategoryMapper {

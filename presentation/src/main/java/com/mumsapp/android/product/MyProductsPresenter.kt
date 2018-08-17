@@ -4,8 +4,8 @@ import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.navigation.FragmentsNavigationService
 import com.mumsapp.domain.interactor.shop.GetShopItemsUseCase
 import com.mumsapp.domain.model.EmptyRequest
-import com.mumsapp.domain.model.product.Product
-import com.mumsapp.domain.model.product.ProductResponse
+import com.mumsapp.domain.model.shop.Product
+import com.mumsapp.domain.model.shop.ProductResponse
 import javax.inject.Inject
 
 class MyProductsPresenter : LifecyclePresenter<MyProductsView> {

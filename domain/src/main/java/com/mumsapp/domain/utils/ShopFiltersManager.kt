@@ -1,7 +1,7 @@
 package com.mumsapp.domain.utils
 
 import com.google.android.gms.location.places.Place
-import com.mumsapp.domain.model.product.ProductSubcategory
+import com.mumsapp.domain.model.shop.ProductSubcategory
 
 interface ShopFiltersManager {
 

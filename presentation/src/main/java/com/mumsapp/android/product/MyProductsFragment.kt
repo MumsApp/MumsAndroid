@@ -14,7 +14,7 @@ import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.di.components.ActivityComponent
 import com.mumsapp.android.ui.views.GridRecyclerView
 import com.mumsapp.android.ui.views.TopBar
-import com.mumsapp.domain.model.product.Product
+import com.mumsapp.domain.model.shop.Product
 import javax.inject.Inject
 
 class MyProductsFragment : BaseFragment(), MyProductsView {

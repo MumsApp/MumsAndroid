@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import com.mumsapp.android.R
 import com.mumsapp.android.base.BaseRecyclerViewAdapter
 import com.mumsapp.android.util.ImagesLoader
-import com.mumsapp.domain.model.product.Product
+import com.mumsapp.domain.model.shop.Product
 import com.mumsapp.domain.repository.ResourceRepository
 import javax.inject.Inject
 

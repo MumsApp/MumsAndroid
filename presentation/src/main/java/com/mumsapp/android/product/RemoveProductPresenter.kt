@@ -1,7 +1,7 @@
 package com.mumsapp.android.product
 
 import com.mumsapp.android.base.BasePresenter
-import com.mumsapp.domain.model.product.Product
+import com.mumsapp.domain.model.shop.Product
 import javax.inject.Inject
 
 class RemoveProductPresenter : BasePresenter<RemoveProductView> {

@@ -2,7 +2,9 @@ package com.mumsapp.data.repository
 
 import com.mumsapp.domain.model.EmptyResponse
 import com.mumsapp.domain.model.lobby.*
-import com.mumsapp.domain.model.product.ProductCategoriesResponse
+import com.mumsapp.domain.model.shop.ProductCategoriesResponse
+import com.mumsapp.domain.model.shop.ProductResponse
+import com.mumsapp.domain.model.shop.SearchShopRequest
 import com.mumsapp.domain.net.PublicRestApi
 import com.mumsapp.domain.repository.AppRepository
 import com.mumsapp.domain.repository.ResourceRepository
@@ -95,5 +97,13 @@ class AppRepositoryImpl : BaseRestRepository, AppRepository {
 
     override fun getProductCategories(): Observable<ProductCategoriesResponse> {
         return requestWithErrorMapping(restApi.getShopCategory())
+    }
+
+    override fun searchShopProducts(request: SearchShopRequest, page: Int, perPage: Int): Observable<ProductResponse> {
+        val apiRequest = restApi.getShopProductSearch(page, perPage, request.searchTerm,
+                request.categoryId, request.priceFrom, request.priceTo, request.userLat,
+                request.userLon, request.distanceFrom, request.distanceTo)
+
+        return requestWithErrorMapping(apiRequest)
     }
 }

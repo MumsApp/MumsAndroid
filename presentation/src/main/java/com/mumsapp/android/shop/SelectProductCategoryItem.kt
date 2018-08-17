@@ -1,7 +1,7 @@
 package com.mumsapp.android.shop
 
 import com.mumsapp.domain.model.BaseResponse
-import com.mumsapp.domain.model.product.ProductSubcategory
+import com.mumsapp.domain.model.shop.ProductSubcategory
 
 const val VIEW_TYPE_HEADER = 1
 const val VIEW_TYPE_ITEM = 2
