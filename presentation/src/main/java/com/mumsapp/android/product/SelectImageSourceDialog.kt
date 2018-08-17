@@ -11,7 +11,6 @@ import com.mumsapp.android.base.BasePresenter
 import com.mumsapp.android.base.BaseView
 import com.mumsapp.android.di.components.ActivityComponent
 import com.mumsapp.android.ui.views.TopBar
-import com.mumsapp.domain.model.product.ProductItem
 import javax.inject.Inject
 
 class SelectImageSourceDialog(context: Context) : BaseDialog(context), SelectImageSourceView {

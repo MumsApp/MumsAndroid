@@ -14,7 +14,7 @@ import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.di.components.ActivityComponent
 import com.mumsapp.android.ui.views.GridRecyclerView
 import com.mumsapp.android.ui.views.TopBar
-import com.mumsapp.domain.model.product.ProductItem
+import com.mumsapp.domain.model.product.Product
 import javax.inject.Inject
 
 class MyProductsFragment : BaseFragment(), MyProductsView {
@@ -59,7 +59,7 @@ class MyProductsFragment : BaseFragment(), MyProductsView {
         presenter.onUploadProductClick()
     }
 
-    override fun showItems(items: List<ProductItem>, editClickListener: (item: ProductItem) -> Unit) {
+    override fun showItems(items: List<Product>, editClickListener: (item: Product) -> Unit) {
         adapter.items = items
         adapter.notifyDataSetChanged()
 

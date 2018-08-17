@@ -1,7 +1,7 @@
 package com.mumsapp.android.shop
 
 import com.mumsapp.android.base.LifecycleView
-import com.mumsapp.domain.model.product.ProductItem
+import com.mumsapp.domain.model.product.Product
 
 interface ShopView : LifecycleView {
 
@@ -13,5 +13,5 @@ interface ShopView : LifecycleView {
 
     fun showFilterValues(category: String, price: String, distance: String)
 
-    fun showItems(items: List<ProductItem>, checkboxChangeListener: (item: ProductItem, value: Boolean) -> Unit)
+    fun showItems(items: List<Product>, checkboxChangeListener: (item: Product, value: Boolean) -> Unit)
 }

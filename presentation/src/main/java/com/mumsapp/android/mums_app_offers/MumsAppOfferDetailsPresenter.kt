@@ -6,7 +6,7 @@ import com.mumsapp.android.navigation.DialogsProvider
 import com.mumsapp.android.navigation.FragmentsNavigationService
 import com.mumsapp.domain.interactor.shop.GetShopItemsUseCase
 import com.mumsapp.domain.model.EmptyRequest
-import com.mumsapp.domain.model.product.TemplateProductResponse
+import com.mumsapp.domain.model.product.ProductResponse
 import ss.com.bannerslider.banners.Banner
 import ss.com.bannerslider.banners.DrawableBanner
 import javax.inject.Inject
@@ -73,7 +73,7 @@ class MumsAppOfferDetailsPresenter : LifecyclePresenter<MumsAppOfferDetailsView>
         )
     }
 
-    private fun handleLoadProductsSuccess(response: TemplateProductResponse) {
+    private fun handleLoadProductsSuccess(response: ProductResponse) {
         view?.showOtherItems(response.items)
     }
 }

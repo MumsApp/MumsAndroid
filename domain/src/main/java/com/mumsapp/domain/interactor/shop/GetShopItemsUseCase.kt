@@ -2,25 +2,25 @@ package com.mumsapp.domain.interactor.shop
 
 import com.mumsapp.domain.interactor.BaseUseCase
 import com.mumsapp.domain.model.EmptyRequest
-import com.mumsapp.domain.model.product.ProductItem
-import com.mumsapp.domain.model.product.TemplateProductResponse
+import com.mumsapp.domain.model.product.Product
+import com.mumsapp.domain.model.product.ProductResponse
 import com.mumsapp.domain.utils.SchedulerProvider
 import io.reactivex.Observable
 
-class GetShopItemsUseCase(schedulerProvider: SchedulerProvider) : BaseUseCase<EmptyRequest, TemplateProductResponse>(schedulerProvider) {
+class GetShopItemsUseCase(schedulerProvider: SchedulerProvider) : BaseUseCase<EmptyRequest, ProductResponse>(schedulerProvider) {
 
-    override fun createUseCaseObservable(param: EmptyRequest): Observable<TemplateProductResponse> {
-        val response = TemplateProductResponse(mockedList().toList())
+    override fun createUseCaseObservable(param: EmptyRequest): Observable<ProductResponse> {
+        val response = ProductResponse(mockedList().toList())
         return Observable.defer { Observable.just(response) }
     }
 
-    private fun mockedList() : Array<ProductItem> = this[createMock(), createMock(), createMock(),
+    private fun mockedList() : Array<Product> = this[createMock(), createMock(), createMock(),
             createMock(), createMock(), createMock(), createMock(), createMock(), createMock(), createMock(),
-            createMock(), createMock(), createMock(), createMock(), createMock(), createMock(), createMock()] as Array<ProductItem>
+            createMock(), createMock(), createMock(), createMock(), createMock(), createMock(), createMock()] as Array<Product>
 
-    private fun createMock() : ProductItem {
-        return ProductItem(1, "Sample product", "Sample category", 55.toDouble(), "5 miles", "John N.")
+    private fun createMock() : Product {
+        return Product(1, "Sample product", "Sample category", 55.toDouble(), "5 miles", "John N.")
     }
 
-    operator fun get(vararg  array: ProductItem) = array
+    operator fun get(vararg  array: Product) = array
 }

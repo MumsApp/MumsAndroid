@@ -9,11 +9,11 @@ import com.mumsapp.android.base.BaseViewHolder
 import com.mumsapp.android.ui.views.BaseImageView
 import com.mumsapp.android.ui.views.BaseTextView
 import com.mumsapp.android.util.ImagesLoader
-import com.mumsapp.domain.model.product.ProductItem
+import com.mumsapp.domain.model.product.Product
 import com.mumsapp.domain.repository.ResourceRepository
 import java.lang.ref.WeakReference
 
-class MyProductsViewHolder : BaseViewHolder<ProductItem> {
+class MyProductsViewHolder : BaseViewHolder<Product> {
 
     private val imagesLoader: ImagesLoader
 
@@ -31,9 +31,9 @@ class MyProductsViewHolder : BaseViewHolder<ProductItem> {
     @BindView(R.id.my_products_cell_price)
     lateinit var priceView: BaseTextView
 
-    private var listener: WeakReference<((item: ProductItem) -> Unit)>? = null
+    private var listener: WeakReference<((item: Product) -> Unit)>? = null
 
-    private var item: ProductItem? = null
+    private var item: Product? = null
 
     constructor(imagesLoader: ImagesLoader, resourceRepository: ResourceRepository, itemView: View) : super(itemView) {
         this.imagesLoader = imagesLoader
@@ -41,7 +41,7 @@ class MyProductsViewHolder : BaseViewHolder<ProductItem> {
         ButterKnife.bind(this, itemView)
     }
 
-    override fun init(item: ProductItem) {
+    override fun init(item: Product) {
         this.item = item
 
         nameView.text = item.name
@@ -51,7 +51,7 @@ class MyProductsViewHolder : BaseViewHolder<ProductItem> {
         priceView.text = price
     }
 
-    fun setEditButtonClickListener(listener: (item: ProductItem) -> Unit) {
+    fun setEditButtonClickListener(listener: (item: Product) -> Unit) {
         this.listener = WeakReference(listener)
     }
 

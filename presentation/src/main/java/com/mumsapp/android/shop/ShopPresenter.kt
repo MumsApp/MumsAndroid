@@ -9,9 +9,9 @@ import com.mumsapp.android.util.DEFAULT_MIN_DISTANCE
 import com.mumsapp.android.util.DEFAULT_MIN_PRICE
 import com.mumsapp.domain.interactor.shop.GetShopItemsUseCase
 import com.mumsapp.domain.model.EmptyRequest
-import com.mumsapp.domain.model.product.ProductItem
+import com.mumsapp.domain.model.product.Product
 import com.mumsapp.domain.model.product.ProductSubcategory
-import com.mumsapp.domain.model.product.TemplateProductResponse
+import com.mumsapp.domain.model.product.ProductResponse
 import com.mumsapp.domain.repository.ResourceRepository
 import com.mumsapp.domain.utils.ShopFiltersManager
 import javax.inject.Inject
@@ -63,7 +63,7 @@ class ShopPresenter : LifecyclePresenter<ShopView> {
 
     }
 
-    fun onProductClick(product: ProductItem) {
+    fun onProductClick(product: Product) {
         fragmentsNavigationService.openProductFragment(product.id, true)
     }
 
@@ -113,11 +113,11 @@ class ShopPresenter : LifecyclePresenter<ShopView> {
         view?.showFilterValues(readableCategory, readablePrice, readableDistance)
     }
 
-    private fun handleLoadProductsSuccess(response: TemplateProductResponse) {
+    private fun handleLoadProductsSuccess(response: ProductResponse) {
         view?.showItems(response.items, this::onFavouriteCheckboxChanged)
     }
 
-    private fun onFavouriteCheckboxChanged(item: ProductItem, value: Boolean) {
+    private fun onFavouriteCheckboxChanged(item: Product, value: Boolean) {
 
     }
 }

@@ -14,7 +14,7 @@ import com.mumsapp.android.di.components.ActivityComponent
 import com.mumsapp.android.navigation.DialogsProvider
 import com.mumsapp.android.ui.views.GridRecyclerView
 import com.mumsapp.android.ui.views.TopBar
-import com.mumsapp.domain.model.product.ProductItem
+import com.mumsapp.domain.model.product.Product
 import javax.inject.Inject
 
 class MyWishlistFragment : BaseFragment(), MyWishlistView {
@@ -59,7 +59,7 @@ class MyWishlistFragment : BaseFragment(), MyWishlistView {
         topBar.setLeftButtonClickListener { presenter.onBackClick() }
     }
 
-    override fun showItems(items: List<ProductItem>, checkboxChangeListener: (item: ProductItem, value: Boolean) -> Unit) {
+    override fun showItems(items: List<Product>, checkboxChangeListener: (item: Product, value: Boolean) -> Unit) {
         adapter.items = items
         adapter.notifyDataSetChanged()
 
@@ -69,7 +69,7 @@ class MyWishlistFragment : BaseFragment(), MyWishlistView {
         }
     }
 
-    override fun openRemoveProductDialog(item: ProductItem, bottomText: String, listener: () -> Unit) {
+    override fun openRemoveProductDialog(item: Product, bottomText: String, listener: () -> Unit) {
         if(removeProductDialog == null) {
             removeProductDialog = dialogsProvider.createRemoveProductDialog()
         }

@@ -10,11 +10,11 @@ import com.mumsapp.android.ui.views.BaseImageView
 import com.mumsapp.android.ui.views.BaseTextView
 import com.mumsapp.android.ui.views.CircleImageView
 import com.mumsapp.android.util.ImagesLoader
-import com.mumsapp.domain.model.product.ProductItem
+import com.mumsapp.domain.model.product.Product
 import com.mumsapp.domain.repository.ResourceRepository
 import java.lang.ref.WeakReference
 
-class MyWishlistViewHolder : BaseViewHolder<ProductItem> {
+class MyWishlistViewHolder : BaseViewHolder<Product> {
 
     private val imagesLoader: ImagesLoader
     private val resourceRepository: ResourceRepository
@@ -40,9 +40,9 @@ class MyWishlistViewHolder : BaseViewHolder<ProductItem> {
     @BindView(R.id.my_wishlist_cell_user_name)
     lateinit var userNameView: BaseTextView
 
-    private var listener: WeakReference<((item: ProductItem, value: Boolean) -> Unit)>? = null
+    private var listener: WeakReference<((item: Product, value: Boolean) -> Unit)>? = null
 
-    private var item: ProductItem? = null
+    private var item: Product? = null
 
     constructor(imagesLoader: ImagesLoader, resourceRepository: ResourceRepository, itemView: View) : super(itemView) {
         this.imagesLoader = imagesLoader
@@ -50,7 +50,7 @@ class MyWishlistViewHolder : BaseViewHolder<ProductItem> {
         ButterKnife.bind(this, itemView)
     }
 
-    override fun init(item: ProductItem) {
+    override fun init(item: Product) {
         this.item = item
 
         distanceView.text = item.distance
@@ -62,7 +62,7 @@ class MyWishlistViewHolder : BaseViewHolder<ProductItem> {
         priceView.text = price
     }
 
-    fun setCheckedListener(listener: (item: ProductItem, value: Boolean) -> Unit) {
+    fun setCheckedListener(listener: (item: Product, value: Boolean) -> Unit) {
         this.listener = WeakReference(listener)
     }
 

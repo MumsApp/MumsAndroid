@@ -20,7 +20,7 @@ import com.mumsapp.android.ui.views.TopBar
 import com.mumsapp.android.ui.widgets.MumsAppOfferDetailsWidget
 import com.mumsapp.android.util.MUMS_APP_OFFER_ID_KEY
 import com.mumsapp.android.util.PRODUCT_ID_KEY
-import com.mumsapp.domain.model.product.ProductItem
+import com.mumsapp.domain.model.product.Product
 import ss.com.bannerslider.banners.Banner
 import javax.inject.Inject
 
@@ -101,7 +101,7 @@ class MumsAppOfferDetailsFragment : BaseFragment(), MumsAppOfferDetailsView {
         detailsWidget.setFollowButtonClickListener(presenter::onFollowClick)
     }
 
-    override fun showOtherItems(items: List<ProductItem>) {
+    override fun showOtherItems(items: List<Product>) {
         adapter.items = items
         adapter.notifyDataSetChanged()
 

@@ -5,8 +5,8 @@ import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.navigation.FragmentsNavigationService
 import com.mumsapp.domain.interactor.shop.GetShopItemsUseCase
 import com.mumsapp.domain.model.EmptyRequest
-import com.mumsapp.domain.model.product.ProductItem
-import com.mumsapp.domain.model.product.TemplateProductResponse
+import com.mumsapp.domain.model.product.Product
+import com.mumsapp.domain.model.product.ProductResponse
 import com.mumsapp.domain.repository.ResourceRepository
 import javax.inject.Inject
 
@@ -41,11 +41,11 @@ class MyWishlistPresenter : LifecyclePresenter<MyWishlistView> {
         )
     }
 
-    private fun handleLoadProductsSuccess(response: TemplateProductResponse) {
+    private fun handleLoadProductsSuccess(response: ProductResponse) {
         view?.showItems(response.items, this::onWishlistCheckboxChanged)
     }
 
-    private fun onWishlistCheckboxChanged(item: ProductItem, value: Boolean) {
+    private fun onWishlistCheckboxChanged(item: Product, value: Boolean) {
         if(!value) {
             val bottomText = resourceRepository.getString(R.string.from_your_wishlist_question_mark)
             view?.openRemoveProductDialog(item, bottomText, {

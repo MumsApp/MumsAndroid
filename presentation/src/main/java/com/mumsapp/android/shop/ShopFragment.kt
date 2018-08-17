@@ -16,7 +16,7 @@ import com.mumsapp.android.navigation.DialogsProvider
 import com.mumsapp.android.ui.views.BaseTextView
 import com.mumsapp.android.ui.views.CardsRecyclerView
 import com.mumsapp.android.ui.views.TopBar
-import com.mumsapp.domain.model.product.ProductItem
+import com.mumsapp.domain.model.product.Product
 import javax.inject.Inject
 
 class ShopFragment : BaseFragment(), ShopView {
@@ -102,7 +102,7 @@ class ShopFragment : BaseFragment(), ShopView {
         distanceView.text = distance
     }
 
-    override fun showItems(items: List<ProductItem>, checkboxChangeListener: (item: ProductItem, value: Boolean) -> Unit) {
+    override fun showItems(items: List<Product>, checkboxChangeListener: (item: Product, value: Boolean) -> Unit) {
         adapter.items = items
         adapter.notifyDataSetChanged()
 

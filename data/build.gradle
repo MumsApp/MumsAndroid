@@ -77,6 +77,9 @@ dependencies {
     //https://developers.google.com/identity/sign-in/android/sign-in Google sign in
     implementation "com.google.android.gms:play-services-auth:$googleAuthVersion"
 
+    //Google maps
+    implementation "com.google.android.gms:play-services-maps:$googleMapsVersion"
+
     implementation 'com.android.support:appcompat-v7:27.0.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'

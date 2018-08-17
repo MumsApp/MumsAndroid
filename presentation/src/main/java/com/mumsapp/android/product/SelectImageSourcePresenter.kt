@@ -1,12 +1,12 @@
 package com.mumsapp.android.product
 
 import com.mumsapp.android.base.BasePresenter
-import com.mumsapp.domain.model.product.ProductItem
+import com.mumsapp.domain.model.product.Product
 import javax.inject.Inject
 
 class SelectImageSourcePresenter : BasePresenter<SelectImageSourceView> {
 
-    lateinit var productItem: ProductItem
+    lateinit var productItem: Product
     lateinit var bottomText: String
 
     @Inject

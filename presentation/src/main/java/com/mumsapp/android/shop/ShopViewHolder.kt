@@ -13,12 +13,12 @@ import com.mumsapp.android.ui.views.BaseTextView
 import com.mumsapp.android.ui.views.CircleImageView
 import com.mumsapp.android.ui.views.RoundedCornersImageView
 import com.mumsapp.android.util.ImagesLoader
-import com.mumsapp.domain.model.product.ProductItem
+import com.mumsapp.domain.model.product.Product
 import com.mumsapp.domain.repository.ResourceRepository
 import java.lang.ref.WeakReference
 import java.util.*
 
-class ShopViewHolder : BaseViewHolder<ProductItem> {
+class ShopViewHolder : BaseViewHolder<Product> {
 
     private val imagesLoader: ImagesLoader
 
@@ -54,9 +54,9 @@ class ShopViewHolder : BaseViewHolder<ProductItem> {
     @BindView(R.id.shop_cell_user_name)
     lateinit var userNameView: BaseTextView
 
-    private var listener: WeakReference<((item: ProductItem, value: Boolean) -> Unit)>? = null
+    private var listener: WeakReference<((item: Product, value: Boolean) -> Unit)>? = null
 
-    private var item: ProductItem? = null
+    private var item: Product? = null
 
 
     constructor(imagesLoader: ImagesLoader, resourceRepository: ResourceRepository, itemView: View) : super(itemView) {
@@ -65,7 +65,7 @@ class ShopViewHolder : BaseViewHolder<ProductItem> {
         ButterKnife.bind(this, itemView)
     }
 
-    override fun init(item: ProductItem) {
+    override fun init(item: Product) {
         this.item = item
 
         nameView.text = item.name
@@ -79,7 +79,7 @@ class ShopViewHolder : BaseViewHolder<ProductItem> {
         showAdIndicator(promotion)
     }
 
-    fun setCheckedListener(listener: (item: ProductItem, value: Boolean) -> Unit) {
+    fun setCheckedListener(listener: (item: Product, value: Boolean) -> Unit) {
         this.listener = WeakReference(listener)
     }
 

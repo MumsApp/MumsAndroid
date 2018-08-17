@@ -1,12 +1,12 @@
 package com.mumsapp.android.product
 
 import com.mumsapp.android.base.BasePresenter
-import com.mumsapp.domain.model.product.ProductItem
+import com.mumsapp.domain.model.product.Product
 import javax.inject.Inject
 
 class RemoveProductPresenter : BasePresenter<RemoveProductView> {
 
-    lateinit var productItem: ProductItem
+    lateinit var productItem: Product
     lateinit var bottomText: String
 
     @Inject
@@ -21,7 +21,7 @@ class RemoveProductPresenter : BasePresenter<RemoveProductView> {
         view?.dismissView()
     }
 
-    fun setArguments(productItem: ProductItem, bottomText: String) {
+    fun setArguments(productItem: Product, bottomText: String) {
         this.productItem = productItem
         this.bottomText = bottomText
     }
