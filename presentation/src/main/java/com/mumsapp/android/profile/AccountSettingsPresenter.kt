@@ -2,7 +2,7 @@ package com.mumsapp.android.profile
 
 import com.mumsapp.android.base.BasePresenter
 import com.mumsapp.android.navigation.ActivitiesNavigationService
-import com.mumsapp.android.util.EMERGENCY_BUTTON_VALUE_KEY
+import com.mumsapp.domain.utils.EMERGENCY_BUTTON_VALUE_KEY
 import com.mumsapp.domain.interactor.user.SignOutUserUseCase
 import com.mumsapp.domain.model.EmptyRequest
 import com.mumsapp.domain.model.EmptyResponse

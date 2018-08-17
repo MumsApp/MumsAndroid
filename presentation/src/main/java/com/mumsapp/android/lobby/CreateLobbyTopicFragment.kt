@@ -23,6 +23,9 @@ import com.mumsapp.android.ui.views.CardEditText
 import com.mumsapp.android.ui.views.TopBar
 import com.mumsapp.android.util.*
 import com.mumsapp.domain.model.lobby.LobbyRoom
+import com.mumsapp.domain.utils.CAMERA_REQUEST_CODE
+import com.mumsapp.domain.utils.GALLERY_REQUEST_CODE
+import com.mumsapp.domain.utils.LOBBY_ROOM_KEY
 import javax.inject.Inject
 
 class CreateLobbyTopicFragment : BaseFragment(), CreateLobbyTopicView {

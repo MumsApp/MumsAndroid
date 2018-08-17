@@ -20,7 +20,7 @@ import com.mumsapp.android.ui.views.BaseButton
 import com.mumsapp.android.ui.views.TopBar
 import com.mumsapp.android.ui.widgets.DistanceRangeWidget
 import com.mumsapp.android.ui.widgets.PriceRangeWidget
-import com.mumsapp.android.util.GOOGLE_PLACES_REQUEST_CODE
+import com.mumsapp.domain.utils.GOOGLE_PLACES_REQUEST_CODE
 import javax.inject.Inject
 
 class ShopFilterFragment : BaseFragment(), ShopFilterView {

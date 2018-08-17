@@ -2,7 +2,7 @@ package com.mumsapp.android.lobby
 
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.navigation.FragmentsNavigationService
-import com.mumsapp.android.util.DEFAULT_PAGE_SIZE
+import com.mumsapp.domain.utils.DEFAULT_PAGE_SIZE
 import com.mumsapp.domain.interactor.lobby.GetLobbyRoomTopicPostsUseCase
 import com.mumsapp.domain.model.lobby.*
 import javax.inject.Inject

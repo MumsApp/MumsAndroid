@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import com.mumsapp.android.R
 import com.mumsapp.android.base.BaseRecyclerViewAdapter
 import com.mumsapp.android.util.ImagesLoader
-import com.mumsapp.android.util.MAX_VISIBLE_MEMBERS
+import com.mumsapp.domain.utils.MAX_VISIBLE_MEMBERS
 import com.mumsapp.domain.model.chat.TemplateChatRecipient
 import com.mumsapp.domain.repository.ResourceRepository
 import javax.inject.Inject

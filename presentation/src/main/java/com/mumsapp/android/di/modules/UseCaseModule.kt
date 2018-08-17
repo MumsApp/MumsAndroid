@@ -3,7 +3,6 @@ package com.mumsapp.android.di.modules
 import com.mumsapp.domain.interactor.chat.GetChatThreadsUseCase
 import com.mumsapp.domain.interactor.lobby.*
 import com.mumsapp.domain.interactor.shop.GetProductCategoriesUseCase
-import com.mumsapp.domain.interactor.shop.GetShopItemsUseCase
 import com.mumsapp.domain.interactor.shop.SearchShopProductsUseCase
 import com.mumsapp.domain.interactor.transformers.qualifiers.AuthorizationTransformer
 import com.mumsapp.domain.interactor.transformers.AuthorizationTransformerProvider
@@ -73,12 +72,6 @@ class UseCaseModule {
     @AuthorizationTransformer
     fun provideAuthorizationTransformer(userRepository: UserRepository, tokenPersistenceService: TokenPersistenceService): UseCaseTransformerProvider {
         return AuthorizationTransformerProvider(userRepository, tokenPersistenceService)
-    }
-
-    @Provides
-    @Singleton
-    fun providesGetShopItemsUseCase(schedulerProvider: SchedulerProvider): GetShopItemsUseCase {
-        return GetShopItemsUseCase(schedulerProvider)
     }
 
     @Provides

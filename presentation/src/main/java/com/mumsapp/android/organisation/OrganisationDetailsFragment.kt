@@ -15,7 +15,7 @@ import com.mumsapp.android.product.ImageSliderItem
 import com.mumsapp.android.ui.views.*
 import com.mumsapp.android.ui.widgets.LocationWidget
 import com.mumsapp.android.ui.widgets.members.MembersWidget
-import com.mumsapp.android.util.ORGANISATION_ID_KEY
+import com.mumsapp.domain.utils.ORGANISATION_ID_KEY
 import com.mumsapp.domain.model.chat.TemplateChatRecipient
 import com.mumsapp.domain.model.organisation.FeedResponse
 import javax.inject.Inject

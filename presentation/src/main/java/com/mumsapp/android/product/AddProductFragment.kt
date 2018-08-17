@@ -24,9 +24,9 @@ import com.mumsapp.android.ui.views.BaseTextView
 import com.mumsapp.android.ui.views.HorizontalRecyclerView
 import com.mumsapp.android.ui.views.TopBar
 import com.mumsapp.android.ui.widgets.LocationWidget
-import com.mumsapp.android.util.CAMERA_REQUEST_CODE
-import com.mumsapp.android.util.GALLERY_REQUEST_CODE
-import com.mumsapp.android.util.GOOGLE_PLACES_REQUEST_CODE
+import com.mumsapp.domain.utils.CAMERA_REQUEST_CODE
+import com.mumsapp.domain.utils.GALLERY_REQUEST_CODE
+import com.mumsapp.domain.utils.GOOGLE_PLACES_REQUEST_CODE
 import com.mumsapp.android.util.ImagesLoader
 import javax.inject.Inject
 

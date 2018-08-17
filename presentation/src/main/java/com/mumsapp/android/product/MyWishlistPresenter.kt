@@ -3,8 +3,6 @@ package com.mumsapp.android.product
 import com.mumsapp.android.R
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.navigation.FragmentsNavigationService
-import com.mumsapp.domain.interactor.shop.GetShopItemsUseCase
-import com.mumsapp.domain.model.EmptyRequest
 import com.mumsapp.domain.model.shop.Product
 import com.mumsapp.domain.model.shop.ProductResponse
 import com.mumsapp.domain.repository.ResourceRepository
@@ -13,15 +11,12 @@ import javax.inject.Inject
 class MyWishlistPresenter : LifecyclePresenter<MyWishlistView> {
 
     private val fragmentsNavigationService: FragmentsNavigationService
-    private val getShopItemsUseCase: GetShopItemsUseCase
     private val resourceRepository: ResourceRepository
 
     @Inject
     constructor(fragmentsNavigationService: FragmentsNavigationService,
-                getShopItemsUseCase: GetShopItemsUseCase,
                 resourceRepository: ResourceRepository) {
         this.fragmentsNavigationService = fragmentsNavigationService
-        this.getShopItemsUseCase = getShopItemsUseCase
         this.resourceRepository = resourceRepository
     }
 
@@ -34,15 +29,15 @@ class MyWishlistPresenter : LifecyclePresenter<MyWishlistView> {
     }
 
     private fun loadItems() {
-        addDisposable(
-                getShopItemsUseCase.execute(EmptyRequest())
-                        .compose(applyOverlaysToObservable())
-                        .subscribe(this::handleLoadProductsSuccess)
-        )
+//        addDisposable(
+//                getShopItemsUseCase.execute(EmptyRequest())
+//                        .compose(applyOverlaysToObservable())
+//                        .subscribe(this::handleLoadProductsSuccess)
+//        )
     }
 
     private fun handleLoadProductsSuccess(response: ProductResponse) {
-        view?.showItems(response.items, this::onWishlistCheckboxChanged)
+//        view?.showItems(response.items, this::onWishlistCheckboxChanged)
     }
 
     private fun onWishlistCheckboxChanged(item: Product, value: Boolean) {

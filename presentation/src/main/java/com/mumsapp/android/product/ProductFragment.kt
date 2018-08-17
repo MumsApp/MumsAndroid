@@ -15,9 +15,8 @@ import com.mumsapp.android.ui.views.ImagesSlider
 import com.mumsapp.android.ui.views.TopBar
 import com.mumsapp.android.ui.widgets.LocationWidget
 import com.mumsapp.android.ui.widgets.ProductDetailsWidget
-import com.mumsapp.android.util.PRODUCT_ID_KEY
+import com.mumsapp.domain.utils.PRODUCT_ID_KEY
 import ss.com.bannerslider.banners.Banner
-import ss.com.bannerslider.banners.DrawableBanner
 import javax.inject.Inject
 
 class ProductFragment : BaseFragment(), ProductView {

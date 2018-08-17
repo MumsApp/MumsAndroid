@@ -1,9 +1,16 @@
-package com.mumsapp.android.util
+package com.mumsapp.domain.utils
 
 //Request codes
 const val GALLERY_REQUEST_CODE = 1
 const val CAMERA_REQUEST_CODE = 2
 const val GOOGLE_PLACES_REQUEST_CODE = 3
+
+//Map
+const val DEFAULT_MAP_ZOOM = 16f
+
+//Units
+const val MILES_IN_METER = 0.000621371192
+const val METERS_IN_MILE = 1609.344
 
 //Bundle keys
 const val CHAT_THREAD_KEY = "CHAT_THREAD"

@@ -3,7 +3,7 @@ package com.mumsapp.android.main
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.navigation.ActivitiesNavigationService
 import com.mumsapp.android.navigation.FragmentsNavigationService
-import com.mumsapp.android.util.EMERGENCY_BUTTON_VALUE_KEY
+import com.mumsapp.domain.utils.EMERGENCY_BUTTON_VALUE_KEY
 import com.mumsapp.domain.utils.SessionManager
 import com.mumsapp.domain.utils.SharedPreferencesManager
 import javax.inject.Inject

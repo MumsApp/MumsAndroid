@@ -20,7 +20,7 @@ import com.mumsapp.android.ui.views.CircleImageView
 import com.mumsapp.android.ui.views.TopBar
 import com.mumsapp.android.ui.widgets.LocationWidget
 import com.mumsapp.android.util.ImagesLoader
-import com.mumsapp.android.util.USER_ID_KEY
+import com.mumsapp.domain.utils.USER_ID_KEY
 import javax.inject.Inject
 
 class UserProfileFragment : BaseFragment(), UserProfileView {

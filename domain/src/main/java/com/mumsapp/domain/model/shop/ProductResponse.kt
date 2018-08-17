@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import com.mumsapp.domain.model.BaseResponse
 import org.threeten.bp.ZonedDateTime
 
-data class ProductResponse(var items: List<Product>) : BaseResponse()
+data class ProductResponse(@SerializedName("data") var data: ProductResponseData) : BaseResponse()
 
 data class ProductResponseData(@SerializedName("pages") var pages: Int,
                                @SerializedName("products") var products: List<Product>) : BaseResponse()

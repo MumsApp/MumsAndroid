@@ -1,7 +1,6 @@
 package com.mumsapp.android.ui.widgets
 
 import android.content.Context
-import android.support.v4.app.FragmentManager
 import android.support.v7.widget.CardView
 import android.util.AttributeSet
 import android.view.View
@@ -22,6 +21,7 @@ import com.mumsapp.android.di.components.ActivityComponent
 import com.mumsapp.android.navigation.FragmentsNavigationService
 import com.mumsapp.android.ui.views.BaseSwitch
 import com.mumsapp.android.ui.views.BaseTextView
+import com.mumsapp.domain.utils.DEFAULT_MAP_ZOOM
 import javax.inject.Inject
 
 const val MAP_FRAGMENT_TAG = "mapFragment"
@@ -172,7 +172,7 @@ class LocationWidget : CardView {
     private fun safeMoveCamera() {
         if(currentMapLatitude != null && currentMapLongitude != null && map != null) {
             val position = LatLng(currentMapLatitude!!, currentMapLongitude!!)
-            val update = CameraUpdateFactory.newLatLngZoom(position, 15f)
+            val update = CameraUpdateFactory.newLatLngZoom(position, DEFAULT_MAP_ZOOM)
             map?.moveCamera(update)
 
             val marker = MarkerOptions()

@@ -45,7 +45,7 @@ class MyProductsViewHolder : BaseViewHolder<Product> {
         this.item = item
 
         nameView.text = item.name
-        categoryView.text = item.category
+//        categoryView.text = item.category
 
         val price = resourceRepository.getString(R.string.pounds_price_format, item.price)
         priceView.text = price

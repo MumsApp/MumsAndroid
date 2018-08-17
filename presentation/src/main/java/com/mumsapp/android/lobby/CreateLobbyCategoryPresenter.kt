@@ -5,8 +5,8 @@ import android.net.Uri
 import com.mumsapp.android.R
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.navigation.FragmentsNavigationService
-import com.mumsapp.android.util.CAMERA_REQUEST_CODE
-import com.mumsapp.android.util.GALLERY_REQUEST_CODE
+import com.mumsapp.domain.utils.CAMERA_REQUEST_CODE
+import com.mumsapp.domain.utils.GALLERY_REQUEST_CODE
 import com.mumsapp.domain.interactor.lobby.CreateLobbyRoomUseCase
 import com.mumsapp.domain.model.lobby.CreateLobbyRoomRequest
 import com.mumsapp.domain.model.lobby.LobbyRoomResponse

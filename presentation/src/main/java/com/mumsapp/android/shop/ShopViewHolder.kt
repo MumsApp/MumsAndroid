@@ -8,10 +8,7 @@ import butterknife.ButterKnife
 import butterknife.OnCheckedChanged
 import com.mumsapp.android.R
 import com.mumsapp.android.base.BaseViewHolder
-import com.mumsapp.android.ui.views.BaseImageView
-import com.mumsapp.android.ui.views.BaseTextView
-import com.mumsapp.android.ui.views.CircleImageView
-import com.mumsapp.android.ui.views.RoundedCornersImageView
+import com.mumsapp.android.ui.views.*
 import com.mumsapp.android.util.ImagesLoader
 import com.mumsapp.domain.model.shop.Product
 import com.mumsapp.domain.repository.ResourceRepository
@@ -32,6 +29,9 @@ class ShopViewHolder : BaseViewHolder<Product> {
 
     @BindView(R.id.shop_cell_ad_icon)
     lateinit var adIcon: BaseImageView
+
+    @BindView(R.id.shop_cell_favourite_checkbox)
+    lateinit var favouriteCheckbox: BaseCheckbox
 
     @BindView(R.id.shop_cell_name)
     lateinit var nameView: BaseTextView
@@ -69,14 +69,17 @@ class ShopViewHolder : BaseViewHolder<Product> {
         this.item = item
 
         nameView.text = item.name
-        categoryView.text = item.category
+        categoryView.text = item.categoryName
         priceView.text = resourceRepository.getString(R.string.pounds_price_format, item.price)
-        distanceView.text = item.distance
-        userNameView.text = item.userName
+        distanceView.text = "5 miles"
+        userNameView.text = item.creatorName
+        favouriteCheckbox.isChecked = item.isUserFavourite
 
-        val random = Random()
-        val promotion = random.nextBoolean()
-        showAdIndicator(promotion)
+        if(item.creatorPhotoPath != null) {
+            imagesLoader.loadFromApiPath(item.creatorPhotoPath!!, avatarView)
+        }
+
+        showAdIndicator(false) //TODO: Waiting for api
     }
 
     fun setCheckedListener(listener: (item: Product, value: Boolean) -> Unit) {

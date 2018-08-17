@@ -12,7 +12,7 @@ import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.di.components.ActivityComponent
 import com.mumsapp.android.ui.views.TopBar
-import com.mumsapp.android.util.CHAT_THREAD_KEY
+import com.mumsapp.domain.utils.CHAT_THREAD_KEY
 import com.mumsapp.android.util.ImagesLoader
 import com.mumsapp.domain.model.chat.TemplateChatMessage
 import com.mumsapp.domain.model.chat.TemplateChatThread

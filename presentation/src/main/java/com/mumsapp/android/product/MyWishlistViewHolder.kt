@@ -53,10 +53,10 @@ class MyWishlistViewHolder : BaseViewHolder<Product> {
     override fun init(item: Product) {
         this.item = item
 
-        distanceView.text = item.distance
-        productNameView.text = item.name
-        categoryView.text = item.category
-        userNameView.text = item.userName
+//        distanceView.text = item.distance
+//        productNameView.text = item.name
+//        categoryView.text = item.category
+//        userNameView.text = item.userName
 
         val price = resourceRepository.getString(R.string.pounds_price_format, item.price)
         priceView.text = price

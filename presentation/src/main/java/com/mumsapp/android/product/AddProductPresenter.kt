@@ -6,8 +6,8 @@ import com.google.android.gms.location.places.Place
 import com.mumsapp.android.R
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.navigation.FragmentsNavigationService
-import com.mumsapp.android.util.CAMERA_REQUEST_CODE
-import com.mumsapp.android.util.GALLERY_REQUEST_CODE
+import com.mumsapp.domain.utils.CAMERA_REQUEST_CODE
+import com.mumsapp.domain.utils.GALLERY_REQUEST_CODE
 import com.mumsapp.domain.repository.ResourceRepository
 import com.mumsapp.domain.utils.FilesHelper
 import java.io.File

@@ -4,8 +4,6 @@ import com.mumsapp.android.R
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.navigation.DialogsProvider
 import com.mumsapp.android.navigation.FragmentsNavigationService
-import com.mumsapp.domain.interactor.shop.GetShopItemsUseCase
-import com.mumsapp.domain.model.EmptyRequest
 import com.mumsapp.domain.model.shop.ProductResponse
 import ss.com.bannerslider.banners.Banner
 import ss.com.bannerslider.banners.DrawableBanner
@@ -15,17 +13,14 @@ class MumsAppOfferDetailsPresenter : LifecyclePresenter<MumsAppOfferDetailsView>
 
     private val fragmentsNavigationService: FragmentsNavigationService
     private val dialogsProvider: DialogsProvider
-    private val getShopItemsUseCase: GetShopItemsUseCase
 
     private var productId: Int? = null
 
     @Inject
     constructor(fragmentsNavigationService: FragmentsNavigationService,
-                dialogsProvider: DialogsProvider,
-                getShopItemsUseCase: GetShopItemsUseCase) {
+                dialogsProvider: DialogsProvider) {
         this.fragmentsNavigationService = fragmentsNavigationService
         this.dialogsProvider = dialogsProvider
-        this.getShopItemsUseCase = getShopItemsUseCase
     }
 
     fun setArguments(productId: Int?) {
@@ -66,14 +61,14 @@ class MumsAppOfferDetailsPresenter : LifecyclePresenter<MumsAppOfferDetailsView>
     }
 
     private fun loadShopItems() {
-        addDisposable(
-                getShopItemsUseCase.execute(EmptyRequest())
-                        .compose(applyOverlaysToObservable())
-                        .subscribe(this::handleLoadProductsSuccess)
-        )
+//        addDisposable(
+//                getShopItemsUseCase.execute(EmptyRequest())
+//                        .compose(applyOverlaysToObservable())
+//                        .subscribe(this::handleLoadProductsSuccess)
+//        )
     }
 
     private fun handleLoadProductsSuccess(response: ProductResponse) {
-        view?.showOtherItems(response.items)
+//        view?.showOtherItems(response.items)
     }
 }

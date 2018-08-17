@@ -14,8 +14,8 @@ import com.mumsapp.android.di.components.ActivityComponent
 import com.mumsapp.android.ui.views.BaseRecyclerView
 import com.mumsapp.android.ui.views.TopBar
 import com.mumsapp.android.ui.widgets.PaginationWidget
-import com.mumsapp.android.util.LOBBY_ROOM_KEY
-import com.mumsapp.android.util.LOBBY_ROOM_TOPIC_KEY
+import com.mumsapp.domain.utils.LOBBY_ROOM_KEY
+import com.mumsapp.domain.utils.LOBBY_ROOM_TOPIC_KEY
 import com.mumsapp.domain.model.lobby.LobbyRoom
 import com.mumsapp.domain.model.lobby.LobbyRoomTopic
 import com.mumsapp.domain.model.lobby.LobbyRoomTopicPost

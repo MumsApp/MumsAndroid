@@ -27,9 +27,9 @@ import com.mumsapp.android.ui.views.TopBar
 import com.mumsapp.android.ui.widgets.children_selection.ChildrenSelectionWidget
 import com.mumsapp.android.ui.widgets.members.MembersWidget
 import com.mumsapp.android.ui.widgets.mums_app_offers.MumsAppOffersWidget
-import com.mumsapp.android.util.CAMERA_REQUEST_CODE
-import com.mumsapp.android.util.GALLERY_REQUEST_CODE
-import com.mumsapp.android.util.GOOGLE_PLACES_REQUEST_CODE
+import com.mumsapp.domain.utils.CAMERA_REQUEST_CODE
+import com.mumsapp.domain.utils.GALLERY_REQUEST_CODE
+import com.mumsapp.domain.utils.GOOGLE_PLACES_REQUEST_CODE
 import com.mumsapp.android.util.ImagesLoader
 import com.mumsapp.domain.model.chat.TemplateChatRecipient
 import com.mumsapp.domain.model.mums_app_offers.TemplateMumsAppOffer

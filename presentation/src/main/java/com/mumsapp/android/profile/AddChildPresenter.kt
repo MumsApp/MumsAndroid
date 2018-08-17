@@ -3,9 +3,9 @@ package com.mumsapp.android.profile
 import android.graphics.drawable.Drawable
 import com.mumsapp.android.R
 import com.mumsapp.android.base.BasePresenter
-import com.mumsapp.android.util.*
 import com.mumsapp.domain.model.user.UserResponse.Child
 import com.mumsapp.domain.repository.ResourceRepository
+import com.mumsapp.domain.utils.*
 import javax.inject.Inject
 
 class AddChildPresenter : BasePresenter<AddChildView> {

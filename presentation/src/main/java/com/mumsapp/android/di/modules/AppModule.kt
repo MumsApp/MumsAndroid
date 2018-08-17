@@ -2,6 +2,7 @@ package com.mumsapp.android.di.modules
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.location.Location
 import android.preference.PreferenceManager
 import android.view.inputmethod.InputMethodManager
 import com.facebook.CallbackManager
@@ -155,6 +156,12 @@ class AppModule(private val context: MainApplication) {
     @Provides
     @Singleton
     fun providesGsonProvider(impl: GsonProviderImpl): GsonProvider {
+        return impl
+    }
+
+    @Provides
+    @Singleton
+    fun providesLocationHelper(impl: LocationHelperImpl): LocationHelper {
         return impl
     }
 }

@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
-import com.google.android.gms.location.places.ui.PlaceAutocomplete
 import com.mumsapp.android.R
 import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.base.LifecyclePresenter
@@ -19,9 +18,8 @@ import com.mumsapp.android.di.components.ActivityComponent
 import com.mumsapp.android.navigation.DialogsProvider
 import com.mumsapp.android.product.SelectImageSourceDialog
 import com.mumsapp.android.ui.views.*
-import com.mumsapp.android.util.CAMERA_REQUEST_CODE
-import com.mumsapp.android.util.GALLERY_REQUEST_CODE
-import com.mumsapp.android.util.GOOGLE_PLACES_REQUEST_CODE
+import com.mumsapp.domain.utils.CAMERA_REQUEST_CODE
+import com.mumsapp.domain.utils.GALLERY_REQUEST_CODE
 import com.mumsapp.android.util.ImagesLoader
 import javax.inject.Inject
 
