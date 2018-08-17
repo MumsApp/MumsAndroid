@@ -9,12 +9,12 @@ import com.mumsapp.domain.model.shop.Product
 import com.mumsapp.domain.repository.ResourceRepository
 import javax.inject.Inject
 
-class ShopItemsAdapter : BaseRecyclerViewAdapter<Product, ShopViewHolder> {
+class ShopItemsAdapter : BaseRecyclerViewAdapter<ReadableShopProduct, ShopViewHolder> {
 
     private val imagesLoader: ImagesLoader
     private val resourceRepository: ResourceRepository
 
-    var checkboxChangeListener: ((item: Product, value: Boolean) -> Unit)? = null
+    var checkboxChangeListener: ((item: ReadableShopProduct, value: Boolean) -> Unit)? = null
 
     @Inject
     constructor(imagesLoader: ImagesLoader, resourceRepository: ResourceRepository) {

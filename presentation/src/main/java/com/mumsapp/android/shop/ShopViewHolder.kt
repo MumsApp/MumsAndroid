@@ -15,7 +15,7 @@ import com.mumsapp.domain.repository.ResourceRepository
 import java.lang.ref.WeakReference
 import java.util.*
 
-class ShopViewHolder : BaseViewHolder<Product> {
+class ShopViewHolder : BaseViewHolder<ReadableShopProduct> {
 
     private val imagesLoader: ImagesLoader
 
@@ -54,9 +54,9 @@ class ShopViewHolder : BaseViewHolder<Product> {
     @BindView(R.id.shop_cell_user_name)
     lateinit var userNameView: BaseTextView
 
-    private var listener: WeakReference<((item: Product, value: Boolean) -> Unit)>? = null
+    private var listener: WeakReference<((item: ReadableShopProduct, value: Boolean) -> Unit)>? = null
 
-    private var item: Product? = null
+    private var item: ReadableShopProduct? = null
 
 
     constructor(imagesLoader: ImagesLoader, resourceRepository: ResourceRepository, itemView: View) : super(itemView) {
@@ -65,24 +65,28 @@ class ShopViewHolder : BaseViewHolder<Product> {
         ButterKnife.bind(this, itemView)
     }
 
-    override fun init(item: Product) {
+    override fun init(item: ReadableShopProduct) {
         this.item = item
 
         nameView.text = item.name
         categoryView.text = item.categoryName
-        priceView.text = resourceRepository.getString(R.string.pounds_price_format, item.price)
-        distanceView.text = "5 miles"
-        userNameView.text = item.creatorName
-        favouriteCheckbox.isChecked = item.isUserFavourite
+        priceView.text = item.price
+        distanceView.text = item.distance
+        userNameView.text = item.authorName
+        favouriteCheckbox.isChecked = item.isFavourite
 
-        if(item.creatorPhotoPath != null) {
-            imagesLoader.loadFromApiPath(item.creatorPhotoPath!!, avatarView)
+        if(item.authorAvatarPath != null) {
+            imagesLoader.loadFromApiPath(item.authorAvatarPath!!, avatarView)
+        }
+
+        if(item.thumbnailPath != null) {
+            imagesLoader.loadFromApiPath(item.thumbnailPath!!, imageView)
         }
 
         showAdIndicator(false) //TODO: Waiting for api
     }
 
-    fun setCheckedListener(listener: (item: Product, value: Boolean) -> Unit) {
+    fun setCheckedListener(listener: (item: ReadableShopProduct, value: Boolean) -> Unit) {
         this.listener = WeakReference(listener)
     }
 

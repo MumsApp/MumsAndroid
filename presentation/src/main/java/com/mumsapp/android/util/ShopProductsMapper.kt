@@ -6,6 +6,8 @@ import com.mumsapp.domain.model.shop.Product
 import com.mumsapp.domain.repository.ResourceRepository
 import com.mumsapp.domain.utils.LocationHelper
 import javax.inject.Inject
+import kotlin.math.absoluteValue
+import kotlin.math.roundToInt
 
 class ShopProductsMapper {
 
@@ -18,20 +20,18 @@ class ShopProductsMapper {
         this.locationHelper = locationHelper
     }
 
-    fun map(products: List<Product>, selectedLat: Double, selectedLon: Double): List<ReadableShopProduct> {
+    fun map(products: List<Product>, selectedLat: Double?, selectedLon: Double?): List<ReadableShopProduct> {
 
         val readableProducts = ArrayList<ReadableShopProduct>()
 
         products.forEach {
             val price = resourceRepository.getString(R.string.pounds_price_format, it.price)
-            val distance = locationHelper.calculateDistanceInMiles(selectedLat, selectedLon,
-                    it.lat, it.lon)
-            val formattedMile = resourceRepository.getQuantityString(R.plurals.mile_plural, distance.toInt())
-            val readableDistance = "$distance $formattedMile"
+
+            val readableDistance = calculateDistance(it, selectedLat, selectedLon)
             val thumbnailPath = getThumbnail(it)
 
-            val readableProduct = ReadableShopProduct(it, it.name, it.categoryName, price, readableDistance,
-                    it.creatorName, it.creatorPhotoPath, thumbnailPath)
+            val readableProduct = ReadableShopProduct(it, it.id, it.name, it.categoryName, price, readableDistance,
+                    it.creatorName, it.isUserFavourite, it.creatorPhotoPath, thumbnailPath)
 
             readableProducts += readableProduct
         }
@@ -47,5 +47,17 @@ class ShopProductsMapper {
         }
 
         return null
+    }
+
+    private fun calculateDistance(product: Product, selectedLat: Double?, selectedLon: Double?): String {
+        return if(selectedLat == null || selectedLon == null) {
+            ""
+        } else {
+            val distance = locationHelper.calculateDistanceInMiles(selectedLat, selectedLon,
+                    product.lat, product.lon).roundToInt()
+            val formattedMile = resourceRepository.getQuantityString(R.plurals.mile_plural, distance.toInt())
+
+            "$distance $formattedMile"
+        }
     }
 }

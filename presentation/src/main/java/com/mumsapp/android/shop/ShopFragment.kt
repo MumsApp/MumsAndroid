@@ -102,13 +102,14 @@ class ShopFragment : BaseFragment(), ShopView {
         distanceView.text = distance
     }
 
-    override fun showItems(items: List<Product>, checkboxChangeListener: (item: Product, value: Boolean) -> Unit) {
+    override fun showItems(items: List<ReadableShopProduct>, clickListener: (product: ReadableShopProduct) -> Unit,
+                           checkboxChangeListener: (item: ReadableShopProduct, value: Boolean) -> Unit) {
         adapter.items = items
         adapter.notifyDataSetChanged()
 
         if(recyclerView.adapter == null) {
             adapter.checkboxChangeListener = checkboxChangeListener
-            adapter.setItemsClickListener(presenter::onProductClick)
+            adapter.setItemsClickListener(clickListener)
             recyclerView.adapter = adapter
         }
     }
