@@ -127,4 +127,10 @@ interface PublicRestApi {
                              @Query("userLon") userLon: Double?,
                              @Query("distanceFrom") distanceFrom: Int?,
                              @Query("distanceTo") distanceTo: Int?): Observable<Response<ProductResponse>>
+
+    @POST("shop/product/{id}/favourite")
+    fun postShopProductIdFavourite(@Path("id") productId: Int): Observable<Response<EmptyResponse>>
+
+    @DELETE("shop/product/{id}/favourite")
+    fun deleteShopProductIdFavourite(@Path("id") productId: Int): Observable<Response<EmptyResponse>>
 }

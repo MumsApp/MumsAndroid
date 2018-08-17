@@ -106,4 +106,12 @@ class AppRepositoryImpl : BaseRestRepository, AppRepository {
 
         return requestWithErrorMapping(apiRequest)
     }
+
+    override fun addProductToFavourite(id: Int): Observable<EmptyResponse> {
+        return requestWithErrorMapping(restApi.postShopProductIdFavourite(id))
+    }
+
+    override fun removeProductFromFavourite(id: Int): Observable<EmptyResponse> {
+        return requestWithErrorMapping(restApi.deleteShopProductIdFavourite(id))
+    }
 }

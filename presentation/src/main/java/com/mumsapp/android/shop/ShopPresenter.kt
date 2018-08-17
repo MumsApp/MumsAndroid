@@ -5,8 +5,11 @@ import com.mumsapp.android.R
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.navigation.FragmentsNavigationService
 import com.mumsapp.android.util.ShopProductsMapper
+import com.mumsapp.domain.interactor.shop.AddProductToFavouriteUseCase
+import com.mumsapp.domain.interactor.shop.RemoveProductFromFavouriteUseCase
 import com.mumsapp.domain.interactor.shop.SearchShopProductsUseCase
-import com.mumsapp.domain.model.shop.Product
+import com.mumsapp.domain.interactor.shop.ShopFavouriteRequest
+import com.mumsapp.domain.model.EmptyResponse
 import com.mumsapp.domain.model.shop.ProductSubcategory
 import com.mumsapp.domain.model.shop.ProductResponse
 import com.mumsapp.domain.model.shop.SearchShopRequest
@@ -22,6 +25,8 @@ class ShopPresenter : LifecyclePresenter<ShopView> {
     private val searchShopProductsUseCase: SearchShopProductsUseCase
     private val sessionManager: SessionManager
     private val shopProductsMapper: ShopProductsMapper
+    private val addProductToFavouriteUseCase: AddProductToFavouriteUseCase
+    private val removeProductFromFavouriteUseCase: RemoveProductFromFavouriteUseCase
 
     private var searchTerm: String? = null
 
@@ -31,13 +36,17 @@ class ShopPresenter : LifecyclePresenter<ShopView> {
                 resourceRepository: ResourceRepository,
                 searchShopProductsUseCase: SearchShopProductsUseCase,
                 sessionManager: SessionManager,
-                shopProductsMapper: ShopProductsMapper) {
+                shopProductsMapper: ShopProductsMapper,
+                addProductToFavouriteUseCase: AddProductToFavouriteUseCase,
+                removeProductFromFavouriteUseCase: RemoveProductFromFavouriteUseCase) {
         this.fragmentsNavigationService = fragmentsNavigationService
         this.shopFiltersManager = shopFiltersManager
         this.resourceRepository = resourceRepository
         this.searchShopProductsUseCase = searchShopProductsUseCase
         this.sessionManager = sessionManager
         this.shopProductsMapper = shopProductsMapper
+        this.addProductToFavouriteUseCase = addProductToFavouriteUseCase
+        this.removeProductFromFavouriteUseCase = removeProductFromFavouriteUseCase
     }
 
     override fun create() {
@@ -145,6 +154,29 @@ class ShopPresenter : LifecyclePresenter<ShopView> {
     }
 
     private fun onFavouriteCheckboxChanged(item: ReadableShopProduct, value: Boolean) {
+        val request = ShopFavouriteRequest(item.id)
+        if(value) {
+            addProductToFavourite(request)
+        } else {
+            removeProductFromFavourite(request)
+        }
+    }
 
+    private fun addProductToFavourite(request: ShopFavouriteRequest) {
+        addDisposable(
+                addProductToFavouriteUseCase.execute(request)
+                        .subscribe(this::handleProductFavouriteSuccess, this::handleApiError)
+        )
+    }
+
+    private fun removeProductFromFavourite(request: ShopFavouriteRequest) {
+        addDisposable(
+                removeProductFromFavouriteUseCase.execute(request)
+                        .subscribe(this::handleProductFavouriteSuccess, this::handleApiError)
+        )
+    }
+
+    private fun handleProductFavouriteSuccess(response: EmptyResponse) {
+        //ignored
     }
 }

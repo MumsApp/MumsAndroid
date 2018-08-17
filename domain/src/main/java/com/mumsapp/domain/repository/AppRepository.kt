@@ -36,4 +36,8 @@ interface AppRepository {
     fun getProductCategories(): Observable<ProductCategoriesResponse>
 
     fun searchShopProducts(request: SearchShopRequest, page: Int, perPage: Int): Observable<ProductResponse>
+
+    fun addProductToFavourite(id: Int): Observable<EmptyResponse>
+
+    fun removeProductFromFavourite(id: Int): Observable<EmptyResponse>
 }
