@@ -4,6 +4,7 @@ import com.mumsapp.domain.model.EmptyResponse
 import com.mumsapp.domain.model.lobby.*
 import com.mumsapp.domain.model.shop.ProductCategoriesResponse
 import com.mumsapp.domain.model.shop.ProductResponse
+import com.mumsapp.domain.model.shop.ProductsResponse
 import com.mumsapp.domain.model.shop.SearchShopRequest
 import com.mumsapp.domain.net.PublicRestApi
 import com.mumsapp.domain.repository.AppRepository
@@ -99,7 +100,7 @@ class AppRepositoryImpl : BaseRestRepository, AppRepository {
         return requestWithErrorMapping(restApi.getShopCategory())
     }
 
-    override fun searchShopProducts(request: SearchShopRequest, page: Int, perPage: Int): Observable<ProductResponse> {
+    override fun searchShopProducts(request: SearchShopRequest, page: Int, perPage: Int): Observable<ProductsResponse> {
         val apiRequest = restApi.getShopProductSearch(page, perPage, request.searchTerm,
                 request.categoryId, request.priceFrom, request.priceTo, request.userLat,
                 request.userLon, request.distanceFrom, request.distanceTo)
@@ -113,5 +114,9 @@ class AppRepositoryImpl : BaseRestRepository, AppRepository {
 
     override fun removeProductFromFavourite(id: Int): Observable<EmptyResponse> {
         return requestWithErrorMapping(restApi.deleteShopProductIdFavourite(id))
+    }
+
+    override fun getProductDetails(id: Int): Observable<ProductResponse> {
+        return requestWithErrorMapping(restApi.getShopProductId(id))
     }
 }

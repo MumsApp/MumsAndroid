@@ -2,9 +2,8 @@ package com.mumsapp.android.product
 
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.navigation.FragmentsNavigationService
-import com.mumsapp.domain.model.EmptyRequest
 import com.mumsapp.domain.model.shop.Product
-import com.mumsapp.domain.model.shop.ProductResponse
+import com.mumsapp.domain.model.shop.ProductsResponse
 import javax.inject.Inject
 
 class MyProductsPresenter : LifecyclePresenter<MyProductsView> {
@@ -36,7 +35,7 @@ class MyProductsPresenter : LifecyclePresenter<MyProductsView> {
 //        )
     }
 
-    private fun handleLoadProductsSuccess(response: ProductResponse) {
+    private fun handleLoadProductsSuccess(response: ProductsResponse) {
 //        view?.showItems(response.items, this::handleOnEditClick)
     }
 

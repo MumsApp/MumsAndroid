@@ -4,7 +4,7 @@ import com.mumsapp.android.R
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.navigation.DialogsProvider
 import com.mumsapp.android.navigation.FragmentsNavigationService
-import com.mumsapp.domain.model.shop.ProductResponse
+import com.mumsapp.domain.model.shop.ProductsResponse
 import ss.com.bannerslider.banners.Banner
 import ss.com.bannerslider.banners.DrawableBanner
 import javax.inject.Inject
@@ -68,7 +68,7 @@ class MumsAppOfferDetailsPresenter : LifecyclePresenter<MumsAppOfferDetailsView>
 //        )
     }
 
-    private fun handleLoadProductsSuccess(response: ProductResponse) {
+    private fun handleLoadProductsSuccess(response: ProductsResponse) {
 //        view?.showOtherItems(response.items)
     }
 }

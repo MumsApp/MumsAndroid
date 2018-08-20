@@ -8,10 +8,10 @@ import com.mumsapp.android.util.ShopProductsMapper
 import com.mumsapp.domain.interactor.shop.AddProductToFavouriteUseCase
 import com.mumsapp.domain.interactor.shop.RemoveProductFromFavouriteUseCase
 import com.mumsapp.domain.interactor.shop.SearchShopProductsUseCase
-import com.mumsapp.domain.interactor.shop.ShopFavouriteRequest
+import com.mumsapp.domain.model.shop.ShopProductIdRequest
 import com.mumsapp.domain.model.EmptyResponse
 import com.mumsapp.domain.model.shop.ProductSubcategory
-import com.mumsapp.domain.model.shop.ProductResponse
+import com.mumsapp.domain.model.shop.ProductsResponse
 import com.mumsapp.domain.model.shop.SearchShopRequest
 import com.mumsapp.domain.repository.ResourceRepository
 import com.mumsapp.domain.utils.*
@@ -144,7 +144,7 @@ class ShopPresenter : LifecyclePresenter<ShopView> {
         )
     }
 
-    private fun handleLoadProductsSuccess(response: ProductResponse, userLat: Double?, userLon: Double?) {
+    private fun handleLoadProductsSuccess(response: ProductsResponse, userLat: Double?, userLon: Double?) {
         val products = shopProductsMapper.map(response.data.products, userLat, userLon)
         view?.showItems(products, this::onProductClick, this::onFavouriteCheckboxChanged)
     }
@@ -154,7 +154,7 @@ class ShopPresenter : LifecyclePresenter<ShopView> {
     }
 
     private fun onFavouriteCheckboxChanged(item: ReadableShopProduct, value: Boolean) {
-        val request = ShopFavouriteRequest(item.id)
+        val request = ShopProductIdRequest(item.id)
         if(value) {
             addProductToFavourite(request)
         } else {
@@ -162,14 +162,14 @@ class ShopPresenter : LifecyclePresenter<ShopView> {
         }
     }
 
-    private fun addProductToFavourite(request: ShopFavouriteRequest) {
+    private fun addProductToFavourite(request: ShopProductIdRequest) {
         addDisposable(
                 addProductToFavouriteUseCase.execute(request)
                         .subscribe(this::handleProductFavouriteSuccess, this::handleApiError)
         )
     }
 
-    private fun removeProductFromFavourite(request: ShopFavouriteRequest) {
+    private fun removeProductFromFavourite(request: ShopProductIdRequest) {
         addDisposable(
                 removeProductFromFavouriteUseCase.execute(request)
                         .subscribe(this::handleProductFavouriteSuccess, this::handleApiError)

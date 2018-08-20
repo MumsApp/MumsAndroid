@@ -2,10 +2,7 @@ package com.mumsapp.android.di.modules
 
 import com.mumsapp.domain.interactor.chat.GetChatThreadsUseCase
 import com.mumsapp.domain.interactor.lobby.*
-import com.mumsapp.domain.interactor.shop.AddProductToFavouriteUseCase
-import com.mumsapp.domain.interactor.shop.GetProductCategoriesUseCase
-import com.mumsapp.domain.interactor.shop.RemoveProductFromFavouriteUseCase
-import com.mumsapp.domain.interactor.shop.SearchShopProductsUseCase
+import com.mumsapp.domain.interactor.shop.*
 import com.mumsapp.domain.interactor.transformers.qualifiers.AuthorizationTransformer
 import com.mumsapp.domain.interactor.transformers.AuthorizationTransformerProvider
 import com.mumsapp.domain.interactor.transformers.UseCaseTransformerProvider
@@ -249,5 +246,13 @@ class UseCaseModule {
                                           @AuthorizationTransformer transformerProvider: UseCaseTransformerProvider,
                                           schedulerProvider: SchedulerProvider): RemoveProductFromFavouriteUseCase {
         return RemoveProductFromFavouriteUseCase(repository, transformerProvider, schedulerProvider)
+    }
+
+    @Provides
+    @Singleton
+    fun providesGetShopProductUseCase(repository: AppRepository,
+                                                  @AuthorizationTransformer transformerProvider: UseCaseTransformerProvider,
+                                                  schedulerProvider: SchedulerProvider): GetShopProductUseCase {
+        return GetShopProductUseCase(repository, transformerProvider, schedulerProvider)
     }
 }

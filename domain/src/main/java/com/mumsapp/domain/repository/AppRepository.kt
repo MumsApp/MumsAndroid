@@ -4,6 +4,7 @@ import com.mumsapp.domain.model.EmptyResponse
 import com.mumsapp.domain.model.lobby.*
 import com.mumsapp.domain.model.shop.ProductCategoriesResponse
 import com.mumsapp.domain.model.shop.ProductResponse
+import com.mumsapp.domain.model.shop.ProductsResponse
 import com.mumsapp.domain.model.shop.SearchShopRequest
 import io.reactivex.Observable
 
@@ -35,9 +36,11 @@ interface AppRepository {
 
     fun getProductCategories(): Observable<ProductCategoriesResponse>
 
-    fun searchShopProducts(request: SearchShopRequest, page: Int, perPage: Int): Observable<ProductResponse>
+    fun searchShopProducts(request: SearchShopRequest, page: Int, perPage: Int): Observable<ProductsResponse>
 
     fun addProductToFavourite(id: Int): Observable<EmptyResponse>
 
     fun removeProductFromFavourite(id: Int): Observable<EmptyResponse>
+
+    fun getProductDetails(id: Int): Observable<ProductResponse>
 }

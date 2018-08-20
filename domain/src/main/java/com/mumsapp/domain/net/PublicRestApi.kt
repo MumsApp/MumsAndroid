@@ -6,6 +6,7 @@ import com.mumsapp.domain.model.identity.Token
 import com.mumsapp.domain.model.lobby.*
 import com.mumsapp.domain.model.shop.ProductCategoriesResponse
 import com.mumsapp.domain.model.shop.ProductResponse
+import com.mumsapp.domain.model.shop.ProductsResponse
 import com.mumsapp.domain.model.user.*
 import io.reactivex.Observable
 import okhttp3.MultipartBody
@@ -126,11 +127,14 @@ interface PublicRestApi {
                              @Query("userLat") userLat: Double?,
                              @Query("userLon") userLon: Double?,
                              @Query("distanceFrom") distanceFrom: Int?,
-                             @Query("distanceTo") distanceTo: Int?): Observable<Response<ProductResponse>>
+                             @Query("distanceTo") distanceTo: Int?): Observable<Response<ProductsResponse>>
 
     @POST("shop/product/{id}/favourite")
     fun postShopProductIdFavourite(@Path("id") productId: Int): Observable<Response<EmptyResponse>>
 
     @DELETE("shop/product/{id}/favourite")
     fun deleteShopProductIdFavourite(@Path("id") productId: Int): Observable<Response<EmptyResponse>>
+
+    @GET("shop/product/{id}")
+    fun getShopProductId(@Path("id") productId: Int): Observable<Response<ProductResponse>>
 }
