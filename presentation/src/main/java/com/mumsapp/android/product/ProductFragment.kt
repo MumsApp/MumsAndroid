@@ -74,23 +74,25 @@ class ProductFragment : BaseFragment(), ProductView {
 
     private fun passArgumentsToPresenter() {
         val productId = arguments?.getInt(PRODUCT_ID_KEY)
-        presenter.setArguments(productId)
+        presenter.setArguments(productId!!)
     }
 
     override fun setProductDetails(images: List<Banner>, productName: String, category: String,
-                                   avatarUrl: String, userName: String, price: String,
-                                   distance: String, description: String) {
+                                   avatarUrl: String?, userName: String, price: String,
+                                   distance: String?, description: String) {
         imagesSlider.setBanners(images)
         productDetailsWidget.setProductName(productName)
         productDetailsWidget.setCategory(category)
+        productDetailsWidget.setAvatar(avatarUrl)
         productDetailsWidget.setUserName(userName)
         productDetailsWidget.setPrice(price)
         productDetailsWidget.setDistance(distance)
         productDetailsWidget.setDescription(description)
         productDetailsWidget.setContactButtonListener { presenter.onContactClick() }
+        productDetailsWidget.setUserClickListener { presenter.onUserClick() }
     }
 
-    override fun setLocationDetails(locationName: String, latitude: Double, longitude: Double) {
+    override fun setLocationDetails(locationName: String?, latitude: Double, longitude: Double) {
         locationWidget.setLocationName(locationName)
         locationWidget.setMapCoordinates(latitude, longitude)
     }

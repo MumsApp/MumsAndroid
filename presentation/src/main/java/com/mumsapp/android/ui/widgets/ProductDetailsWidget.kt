@@ -8,11 +8,18 @@ import android.view.View
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.mumsapp.android.R
+import com.mumsapp.android.common.features.HasComponent
+import com.mumsapp.android.di.components.ActivityComponent
 import com.mumsapp.android.ui.views.BaseButton
 import com.mumsapp.android.ui.views.BaseTextView
 import com.mumsapp.android.ui.views.CircleImageView
+import com.mumsapp.android.util.ImagesLoader
+import javax.inject.Inject
 
 class ProductDetailsWidget : CardView {
+
+    @Inject
+    lateinit var imagesLoader: ImagesLoader
 
     @BindView(R.id.product_details_name)
     lateinit var productNameView: BaseTextView
@@ -53,6 +60,10 @@ class ProductDetailsWidget : CardView {
     private fun setup(context: Context, attrs: AttributeSet?) {
         val view = View.inflate(context, R.layout.widget_product_details, this)
         ButterKnife.bind(view)
+
+        if(context is HasComponent<*>) {
+            (context as HasComponent<ActivityComponent>).getComponent().inject(this)
+        }
     }
 
     fun setProductName(productName: String) {
@@ -63,8 +74,10 @@ class ProductDetailsWidget : CardView {
         categoryView.text = category
     }
 
-    fun setAvatar(avatar: Drawable) {
-        avatarView.setImageDrawable(avatar)
+    fun setAvatar(avatarUrl: String?) {
+        if(avatarUrl != null) {
+            imagesLoader.loadFromApiPath(avatarUrl, avatarView)
+        }
     }
 
     fun setUserName(userName: String) {
@@ -75,12 +88,17 @@ class ProductDetailsWidget : CardView {
         priceView.text = price
     }
 
-    fun setDistance(distance: String) {
+    fun setDistance(distance: String?) {
         distanceView.text = distance
     }
 
     fun setDescription(description: String) {
         descriptionView.text = description
+    }
+
+    fun setUserClickListener(listener: (v: View) -> Unit) {
+        userNameView.setOnClickListener(listener)
+        avatarView.setOnClickListener(listener)
     }
 
     fun setContactButtonListener(listener: (v: View) -> Unit) {

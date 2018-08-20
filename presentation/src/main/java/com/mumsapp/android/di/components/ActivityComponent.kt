@@ -21,6 +21,7 @@ import com.mumsapp.android.shop.ShopFilterFragment
 import com.mumsapp.android.shop.ShopFragment
 import com.mumsapp.android.shop.ShopMenuDialog
 import com.mumsapp.android.ui.widgets.LocationWidget
+import com.mumsapp.android.ui.widgets.ProductDetailsWidget
 import com.mumsapp.android.ui.widgets.children_selection.ChildrenSelectionWidget
 import com.mumsapp.android.ui.widgets.members.MembersWidget
 import com.mumsapp.android.ui.widgets.mums_app_offers.MumsAppOffersWidget
@@ -109,4 +110,6 @@ interface ActivityComponent {
     fun inject(fragment: CreateLobbyTopicPostFragment)
 
     fun inject(fragment: SelectProductCategoryFragment)
+
+    fun inject(widget: ProductDetailsWidget)
 }

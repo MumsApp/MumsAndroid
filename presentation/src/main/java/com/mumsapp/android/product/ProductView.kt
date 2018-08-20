@@ -5,8 +5,8 @@ import ss.com.bannerslider.banners.Banner
 
 interface ProductView : LifecycleView {
 
-    fun setProductDetails(images: List<Banner>, productName: String, category: String, avatarUrl: String, userName: String,
-                          price: String, distance: String, description: String)
+    fun setProductDetails(images: List<Banner>, productName: String, category: String, avatarUrl: String?, userName: String,
+                          price: String, distance: String?, description: String)
 
-    fun setLocationDetails(locationName: String, latitude: Double, longitude: Double)
+    fun setLocationDetails(locationName: String?, latitude: Double, longitude: Double)
 }
