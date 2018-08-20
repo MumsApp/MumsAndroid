@@ -30,6 +30,10 @@ class ValidationHelperImpl : ValidationHelper {
         return reference != null && !reference.isEmpty()
     }
 
+    override fun checkIsNotEmpty(obj: Any?): Boolean {
+        return obj != null
+    }
+
     override fun checkEmailValid(email: String?): Boolean {
 
         return checkIsNotEmpty(email) && EMAIL_ADDRESS_PATTERN.matcher(email).matches()
@@ -64,5 +68,13 @@ class ValidationHelperImpl : ValidationHelper {
         }
 
         return first.equals(second)
+    }
+
+    override fun checkIsCorrectPrice(price: String?): Boolean {
+        return checkIsCorrectPrice(price?.toFloat())
+    }
+
+    override fun checkIsCorrectPrice(price: Float?): Boolean {
+        return checkIsNotEmpty(price) && price!! > 0
     }
 }

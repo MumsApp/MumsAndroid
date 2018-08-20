@@ -23,7 +23,9 @@ import com.mumsapp.android.ui.views.BaseImageView
 import com.mumsapp.android.ui.views.BaseTextView
 import com.mumsapp.android.ui.views.HorizontalRecyclerView
 import com.mumsapp.android.ui.views.TopBar
+import com.mumsapp.android.ui.widgets.EditProductDetailsWidget
 import com.mumsapp.android.ui.widgets.LocationWidget
+import com.mumsapp.android.ui.widgets.ProductDetailsWidget
 import com.mumsapp.domain.utils.CAMERA_REQUEST_CODE
 import com.mumsapp.domain.utils.GALLERY_REQUEST_CODE
 import com.mumsapp.domain.utils.GOOGLE_PLACES_REQUEST_CODE
@@ -59,6 +61,9 @@ class AddProductFragment : BaseFragment(), AddProductView {
     @BindView(R.id.add_product_photos_recycler)
     lateinit var photosRecyclerView: HorizontalRecyclerView
 
+    @BindView(R.id.add_product_product_details_widget)
+    lateinit var editProductDetailsWidget: EditProductDetailsWidget
+
     @BindView(R.id.add_product_location_widget)
     lateinit var locationWidget: LocationWidget
 
@@ -87,6 +92,8 @@ class AddProductFragment : BaseFragment(), AddProductView {
         super.onViewCreated(view, savedInstanceState)
         presenter.attachViewWithLifecycle(this)
         topBar.setLeftButtonClickListener { presenter.onBackClick() }
+        editProductDetailsWidget.setOnAddCategoryClickListener { presenter.onAddCategoryClick() }
+        editProductDetailsWidget.setOnAskForCategoryClickListener { presenter.onAskForNewCategoryClick() }
         locationWidget.setWidgetButtonListener { presenter.onEditLocationClick() }
     }
 
@@ -119,7 +126,12 @@ class AddProductFragment : BaseFragment(), AddProductView {
 
     @OnClick(R.id.add_product_upload_button)
     fun onUploadButtonClick() {
-        presenter.onUploadButtonClick()
+        presenter.onUploadButtonClick(editProductDetailsWidget.getTitle(),
+                editProductDetailsWidget.getPrice(), editProductDetailsWidget.getDescription().toString())
+    }
+
+    override fun showProductCategory(name: String) {
+        editProductDetailsWidget.setCategory(name)
     }
 
     override fun showSelectImageSourceDialog(galleryClickListener: () -> Unit, cameraClickListener: () -> Unit) {

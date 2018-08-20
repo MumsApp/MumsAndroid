@@ -246,4 +246,8 @@
 
     <string name="shop_filter_price_pattern">Price\n£%d-%d</string>
     <string name="shop_filter_distance_pattern">%d-%d\nMiles</string>
+
+    <string name="you_need_to_select_photo">You need to select photo</string>
+    <string name="you_need_to_select_location">You need to select location</string>
+    <string name="please_put_correct_price">Please put correct price</string>
 </resources>

@@ -1,12 +1,12 @@
 package com.mumsapp.domain.utils
 
-import io.reactivex.annotations.Nullable
-
 interface ValidationHelper {
 
     fun checkIsNotEmpty(reference: String?): Boolean
 
     fun checkIsNotEmpty(reference: Collection<*>?): Boolean
+
+    fun checkIsNotEmpty(obj: Any?): Boolean
 
     fun checkEmailValid(email: String?): Boolean
 
@@ -15,4 +15,8 @@ interface ValidationHelper {
     fun checkNameValid(name: String?): Boolean
 
     fun areFieldsTheSame(first: String?, second: String?): Boolean
+
+    fun checkIsCorrectPrice(price: String?): Boolean
+
+    fun checkIsCorrectPrice(price: Float?): Boolean
 }

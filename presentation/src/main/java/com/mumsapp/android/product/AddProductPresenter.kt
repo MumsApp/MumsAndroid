@@ -6,10 +6,12 @@ import com.google.android.gms.location.places.Place
 import com.mumsapp.android.R
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.navigation.FragmentsNavigationService
-import com.mumsapp.domain.utils.CAMERA_REQUEST_CODE
-import com.mumsapp.domain.utils.GALLERY_REQUEST_CODE
+import com.mumsapp.domain.interactor.shop.CreateShopProductUseCase
+import com.mumsapp.domain.model.shop.CreateShopProductRequest
+import com.mumsapp.domain.model.shop.ProductResponse
+import com.mumsapp.domain.model.shop.ProductSubcategory
 import com.mumsapp.domain.repository.ResourceRepository
-import com.mumsapp.domain.utils.FilesHelper
+import com.mumsapp.domain.utils.*
 import java.io.File
 import javax.inject.Inject
 
@@ -18,6 +20,9 @@ class AddProductPresenter : LifecyclePresenter<AddProductView> {
     private val fragmentsNavigationService: FragmentsNavigationService
     private val filesHelper: FilesHelper
     private val resourceRepository: ResourceRepository
+    private val createShopProductsUseCase: CreateShopProductUseCase
+    private val shopFiltersManager: ShopFiltersManager
+    private val validationHelper: ValidationHelper
 
     private var tmpCameraFile: File? = null
     private var chosenPhotos: MutableList<ImageSliderItem> = ArrayList()
@@ -26,10 +31,24 @@ class AddProductPresenter : LifecyclePresenter<AddProductView> {
 
     @Inject
     constructor(fragmentsNavigationService: FragmentsNavigationService, filesHelper: FilesHelper,
-                resourceRepository: ResourceRepository) {
+                resourceRepository: ResourceRepository,
+                createShopProductsUseCase: CreateShopProductUseCase,
+                shopFiltersManager: ShopFiltersManager,
+                validationHelper: ValidationHelper) {
         this.fragmentsNavigationService = fragmentsNavigationService
         this.filesHelper = filesHelper
         this.resourceRepository = resourceRepository
+        this.createShopProductsUseCase = createShopProductsUseCase
+        this.shopFiltersManager = shopFiltersManager
+        this.validationHelper = validationHelper
+    }
+
+    override fun create() {
+        shopFiltersManager.clear()
+    }
+
+    override fun start() {
+        showCorrectCategory()
     }
 
     fun onBackClick() {
@@ -61,6 +80,15 @@ class AddProductPresenter : LifecyclePresenter<AddProductView> {
         }
     }
 
+    fun onAddCategoryClick() {
+        shopFiltersManager.clear()
+        fragmentsNavigationService.openSelectCategoryFragment(true)
+    }
+
+    fun onAskForNewCategoryClick() {
+
+    }
+
     fun onEditLocationClick() {
         view?.showEditLocationScreen()
     }
@@ -71,22 +99,31 @@ class AddProductPresenter : LifecyclePresenter<AddProductView> {
         view?.showNewLocation(place.latLng.latitude, place.latLng.longitude, place.address.toString())
     }
 
-    fun onUploadButtonClick() {
-        val title = resourceRepository.getString(R.string.congratulations_your_product_has_been_uploaded)
-        val confirmButtonText = resourceRepository.getString(R.string.back_to_search)
-        val cancelButtonText = resourceRepository.getString(R.string.to_my_product_list)
-
-        view?.showConfirmationDialog(null, "", title, null,
-                confirmButtonText, cancelButtonText)
+    fun onUploadButtonClick(title: String?, price: String?, description: String?) {
+        if(validateAndShowErrors(chosenPhotos, title, shopFiltersManager.getSubcategory(), price,
+                        description, selectedLocation)) {
+            saveProduct(chosenPhotos, title!!, shopFiltersManager.getSubcategory()!!, price!!,
+                    description!!, selectedLocation!!)
+        }
     }
 
     fun onConfirmDialogButtonClick() {
-        fragmentsNavigationService.popFragment()
-        fragmentsNavigationService.popFragment()
+        fragmentsNavigationService.popFragmentsToRoot()
     }
 
     fun onCancelDialogButtonClick() {
-        fragmentsNavigationService.popFragment()
+        fragmentsNavigationService.popFragmentsToRoot()
+        fragmentsNavigationService.openMyProductsFragment(true)
+    }
+
+    private fun showCorrectCategory() {
+        val category = if(shopFiltersManager.getSubcategory() == null) {
+            resourceRepository.getString(R.string.add_category)
+        } else {
+            shopFiltersManager.getSubcategory()!!.name
+        }
+
+        view?.showProductCategory(category)
     }
 
     private fun onGalleryClick() {
@@ -130,5 +167,88 @@ class AddProductPresenter : LifecyclePresenter<AddProductView> {
     private fun onPhotoRemoved(position: Int) {
         chosenPhotos.removeAt(position)
         view?.removeImageSliderItem(chosenPhotos, position)
+    }
+
+    private fun validateAndShowErrors(photos: MutableList<ImageSliderItem>?, title: String?,
+                                      category: ProductSubcategory?, price: String?,
+                                      description: String?, location: Place?): Boolean {
+        var isValid = true
+        var error: String? = null
+
+        if(!validationHelper.checkIsNotEmpty(photos)) {
+            isValid = false
+            error = resourceRepository.getString(R.string.you_need_to_select_photo)
+        }
+
+        if(!validationHelper.checkIsNotEmpty(title)) {
+            isValid = false
+            error = resourceRepository.getString(R.string.you_need_to_fill_all_fields)
+        }
+
+        if(!validationHelper.checkIsNotEmpty(category)) {
+            isValid = false
+            error = resourceRepository.getString(R.string.you_need_to_fill_all_fields)
+        }
+
+        if(!validationHelper.checkIsCorrectPrice(price)) {
+            isValid = false
+            error = resourceRepository.getString(R.string.please_put_correct_price)
+        }
+
+        if(!validationHelper.checkIsNotEmpty(description)) {
+            isValid = false
+            error = resourceRepository.getString(R.string.you_need_to_fill_all_fields)
+        }
+
+        if(!validationHelper.checkIsNotEmpty(location)) {
+            isValid = false
+            error = resourceRepository.getString(R.string.you_need_to_fill_all_fields)
+        }
+
+        if(error != null) {
+            view?.showToast(error)
+        }
+
+        return isValid
+    }
+
+    private fun saveProduct(photos: MutableList<ImageSliderItem>, title: String,
+                            category: ProductSubcategory, price: String,
+                            description: String, location: Place) {
+        val photoFiles = getPhotoFilesWithCorrectOrder(photos)
+
+        val request = CreateShopProductRequest(title, description, price.toFloat(), category.id,
+                location.latLng.latitude, location.latLng.longitude, location.name.toString(),
+                photoFiles)
+
+        addDisposable(
+                createShopProductsUseCase.execute(request)
+                        .compose(applyOverlaysToObservable())
+                        .subscribe(this::handleSaveProductSuccess, this::handleApiError)
+        )
+    }
+
+    private fun getPhotoFilesWithCorrectOrder(photos: MutableList<ImageSliderItem>): List<File> {
+        val list = ArrayList<File>()
+        list.add(filesHelper.getFileFromGalleryUri(currentHeader!!.uri.toString()))
+
+        photos.remove(currentHeader!!)
+
+        photos.forEach {
+            list.add(filesHelper.getFileFromGalleryUri(it.uri.toString()))
+        }
+
+        return list
+    }
+
+    private fun handleSaveProductSuccess(response: ProductResponse) {
+        val product = response.product
+
+        val title = resourceRepository.getString(R.string.congratulations_your_product_has_been_uploaded)
+        val confirmButtonText = resourceRepository.getString(R.string.back_to_search)
+        val cancelButtonText = resourceRepository.getString(R.string.to_my_product_list)
+
+        view?.showConfirmationDialog(product.photos.get(0).photoPath, "", title, null,
+                confirmButtonText, cancelButtonText)
     }
 }
