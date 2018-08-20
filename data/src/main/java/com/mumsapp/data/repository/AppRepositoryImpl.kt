@@ -2,10 +2,7 @@ package com.mumsapp.data.repository
 
 import com.mumsapp.domain.model.EmptyResponse
 import com.mumsapp.domain.model.lobby.*
-import com.mumsapp.domain.model.shop.ProductCategoriesResponse
-import com.mumsapp.domain.model.shop.ProductResponse
-import com.mumsapp.domain.model.shop.ProductsResponse
-import com.mumsapp.domain.model.shop.SearchShopRequest
+import com.mumsapp.domain.model.shop.*
 import com.mumsapp.domain.net.PublicRestApi
 import com.mumsapp.domain.repository.AppRepository
 import com.mumsapp.domain.repository.ResourceRepository
@@ -118,5 +115,20 @@ class AppRepositoryImpl : BaseRestRepository, AppRepository {
 
     override fun getProductDetails(id: Int): Observable<ProductResponse> {
         return requestWithErrorMapping(restApi.getShopProductId(id))
+    }
+
+    override fun createShopProduct(request: CreateShopProductRequest): Observable<ProductResponse> {
+        val files = ArrayList<MultipartBody.Part>()
+
+        request.photos.forEach {
+            val filePart = MultipartBody.Part.createFormData("file", it.name,
+                    RequestBody.create(MediaType.parse("image/*"), it))
+            files.add(filePart)
+        }
+
+        val apiRequest = restApi.postShopProduct(request.name, request.description, request.price,
+                request.categoryId, request.latitude, request.longitude, request.locationName, files)
+
+        return requestWithErrorMapping(apiRequest)
     }
 }

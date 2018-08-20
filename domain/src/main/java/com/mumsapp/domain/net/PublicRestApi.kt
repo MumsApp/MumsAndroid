@@ -137,4 +137,11 @@ interface PublicRestApi {
 
     @GET("shop/product/{id}")
     fun getShopProductId(@Path("id") productId: Int): Observable<Response<ProductResponse>>
+
+    @Multipart
+    @POST("api/shop/product")
+    fun postShopProduct(@Part("name") name: String, @Part("description") description: String,
+                        @Part("price") price: Float, @Part("category") categoryId: Int,
+                        @Part("lat") latitude: Double, @Part("longitude") longitude: Double,
+                        @Part("pointName") pointName: String, @Part filePart: List<MultipartBody.Part>): Observable<Response<ProductResponse>>
 }

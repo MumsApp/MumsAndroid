@@ -255,4 +255,12 @@ class UseCaseModule {
                                                   schedulerProvider: SchedulerProvider): GetShopProductUseCase {
         return GetShopProductUseCase(repository, transformerProvider, schedulerProvider)
     }
+
+    @Provides
+    @Singleton
+    fun providesCreateShopProductUseCase(repository: AppRepository,
+                                      @AuthorizationTransformer transformerProvider: UseCaseTransformerProvider,
+                                      schedulerProvider: SchedulerProvider): CreateShopProductUseCase {
+        return CreateShopProductUseCase(repository, transformerProvider, schedulerProvider)
+    }
 }
