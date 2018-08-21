@@ -77,4 +77,6 @@ class EditProductDetailsWidget : CardView {
     fun setOnAskForCategoryClickListener(listener: (v: View) -> Unit) {
         askForCategoryView.setOnClickListener(listener)
     }
+
+
 }

@@ -15,10 +15,13 @@
     <com.mumsapp.android.ui.views.BaseTextView
         android:id="@+id/edit_product_details_category"
         style="@style/text_normal_grey_light"
+        android:layout_width="0dp"
+        android:gravity="left"
         android:layout_marginTop="@dimen/padding_medium"
         android:hint="@string/add_category"
         android:paddingStart="@dimen/padding_small"
         app:layout_constraintLeft_toLeftOf="@id/edit_product_details_title"
+        app:layout_constraintRight_toLeftOf="@+id/edit_product_details_ask_for_category"
         app:layout_constraintTop_toBottomOf="@id/edit_product_details_title" />
 
     <com.mumsapp.android.ui.views.BaseTextView
