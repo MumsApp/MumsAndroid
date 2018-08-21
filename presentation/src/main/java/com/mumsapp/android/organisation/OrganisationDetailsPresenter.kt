@@ -39,10 +39,10 @@ class OrganisationDetailsPresenter : LifecyclePresenter<OrganisationDetailsView>
 
     private fun showMockedPhotos() {
         val photos = ArrayList<ImageSliderItem>()
-        photos += ImageSliderItem(null, false)
-        photos += ImageSliderItem(null, false)
-        photos += ImageSliderItem(null, false)
-        photos += ImageSliderItem(null, false)
+        photos += ImageSliderItem(null, null,false)
+        photos += ImageSliderItem(null, null,false)
+        photos += ImageSliderItem(null, null,false)
+        photos += ImageSliderItem(null, null,false)
 
         view?.showImageSlider(photos)
     }

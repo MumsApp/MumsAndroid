@@ -13,7 +13,7 @@ class PublicRestApiProviderImpl(val tokenService: TokenPersistenceService, endpo
         PublicRestApiProvider {
 
     companion object {
-        private val apiTimeout: Long = 20
+        private val apiTimeout: Long = 30
     }
 
 

@@ -64,11 +64,13 @@ class AddProductPresenter : LifecyclePresenter<AddProductView> {
     }
 
     fun onGalleryImageReceived(uri: Uri) {
-        addPhotoToView(uri)
+        val file = filesHelper.getFileFromGalleryUri(uri.toString())
+        addPhotoToView(uri, file)
     }
 
     fun onCameraImageReceived() {
-        addPhotoToView(Uri.fromFile(tmpCameraFile))
+        val file = File(tmpCameraFile?.toURI())
+        addPhotoToView(Uri.fromFile(tmpCameraFile), file)
     }
 
     fun onPhotoSliderItemClick(item: ImageSliderItem) {
@@ -109,10 +111,12 @@ class AddProductPresenter : LifecyclePresenter<AddProductView> {
 
     fun onConfirmDialogButtonClick() {
         fragmentsNavigationService.popFragmentsToRoot()
+        fragmentsNavigationService.openShopFragment(true)
     }
 
     fun onCancelDialogButtonClick() {
         fragmentsNavigationService.popFragmentsToRoot()
+        fragmentsNavigationService.openShopFragment(true)
         fragmentsNavigationService.openMyProductsFragment(true)
     }
 
@@ -144,8 +148,8 @@ class AddProductPresenter : LifecyclePresenter<AddProductView> {
         return filesHelper.createTemporaryFile(name, ".jpg")
     }
 
-    private fun addPhotoToView(uri: Uri) {
-        val item = ImageSliderItem(uri, false)
+    private fun addPhotoToView(uri: Uri, file: File) {
+        val item = ImageSliderItem(uri, file, false)
         if(currentHeader == null) {
             currentHeader = item
             view?.showImageHeader(currentHeader!!.uri!!)
@@ -155,7 +159,7 @@ class AddProductPresenter : LifecyclePresenter<AddProductView> {
 
         if(chosenPhotos.size < 2) {
             if(!chosenPhotos[0].isAddPhoto) {
-                chosenPhotos.add(0, ImageSliderItem(null, true))
+                chosenPhotos.add(0, ImageSliderItem(null, null,true))
             }
 
             view?.showImageSlider(chosenPhotos, this::onPhotoRemoved)
@@ -230,12 +234,14 @@ class AddProductPresenter : LifecyclePresenter<AddProductView> {
 
     private fun getPhotoFilesWithCorrectOrder(photos: MutableList<ImageSliderItem>): List<File> {
         val list = ArrayList<File>()
-        list.add(filesHelper.getFileFromGalleryUri(currentHeader!!.uri.toString()))
+        list.add(currentHeader!!.file!!)
 
         photos.remove(currentHeader!!)
 
         photos.forEach {
-            list.add(filesHelper.getFileFromGalleryUri(it.uri.toString()))
+            if(!it.isAddPhoto) {
+                list.add(it.file!!)
+            }
         }
 
         return list
