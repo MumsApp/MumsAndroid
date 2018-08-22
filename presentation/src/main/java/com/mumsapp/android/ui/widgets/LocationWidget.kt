@@ -1,6 +1,8 @@
 package com.mumsapp.android.ui.widgets
 
 import android.content.Context
+import android.os.Parcel
+import android.os.Parcelable
 import android.support.v7.widget.CardView
 import android.util.AttributeSet
 import android.view.View
@@ -19,6 +21,7 @@ import com.mumsapp.android.R
 import com.mumsapp.android.common.features.HasComponent
 import com.mumsapp.android.di.components.ActivityComponent
 import com.mumsapp.android.navigation.FragmentsNavigationService
+import com.mumsapp.android.ui.views.BaseInput
 import com.mumsapp.android.ui.views.BaseSwitch
 import com.mumsapp.android.ui.views.BaseTextView
 import com.mumsapp.domain.utils.DEFAULT_MAP_ZOOM
@@ -65,7 +68,7 @@ class LocationWidget : CardView {
 
     private fun setup(context: Context, attrs: AttributeSet?) {
         val view = View.inflate(context, R.layout.widget_location, this)
-        if(context is HasComponent<*>) {
+        if (context is HasComponent<*>) {
             (context as HasComponent<ActivityComponent>).getComponent().inject(this)
         }
         ButterKnife.bind(view)
@@ -77,7 +80,7 @@ class LocationWidget : CardView {
         val childFragmentManager = fragmentsNavigationService.findTopFragment()!!.childFragmentManager
         var tmpMapFragment = childFragmentManager.findFragmentByTag(MAP_FRAGMENT_TAG) as SupportMapFragment?
 
-        if(tmpMapFragment == null) {
+        if (tmpMapFragment == null) {
             tmpMapFragment = SupportMapFragment()
             fragmentsNavigationService.openMapFragment(tmpMapFragment, childFragmentManager,
                     R.id.location_widget_map_layout, MAP_FRAGMENT_TAG)
@@ -135,13 +138,13 @@ class LocationWidget : CardView {
 
     fun setMapVisibility(visibility: Boolean) {
         setVisibilityFromBoolean(visibility, mapLayout)
-        if(visibility) {
+        if (visibility) {
             configureMap()
         }
     }
 
     fun setMapCoordinates(latitude: String?, longitude: String?) {
-       setMapCoordinates(latitude?.toDouble(), longitude?.toDouble())
+        setMapCoordinates(latitude?.toDouble(), longitude?.toDouble())
     }
 
     fun setMapCoordinates(latitude: Double?, longitude: Double?) {
@@ -170,7 +173,7 @@ class LocationWidget : CardView {
     }
 
     private fun safeMoveCamera() {
-        if(currentMapLatitude != null && currentMapLongitude != null && map != null) {
+        if (currentMapLatitude != null && currentMapLongitude != null && map != null) {
             val position = LatLng(currentMapLatitude!!, currentMapLongitude!!)
             val update = CameraUpdateFactory.newLatLngZoom(position, DEFAULT_MAP_ZOOM)
             map?.moveCamera(update)
@@ -188,5 +191,92 @@ class LocationWidget : CardView {
 
     fun setSwitchChangeListener(lambda: (buttonView: CompoundButton, isChecked: Boolean) -> Unit) {
         switchView.setOnCheckedChangeListener(lambda)
+    }
+
+    override fun onSaveInstanceState(): Parcelable {
+        val superState = super.onSaveInstanceState()
+        val state = State(superState)
+        state.switchValue = switchView.isChecked
+
+        if(currentMapLatitude != null) {
+            state.latitude = currentMapLatitude!!
+        }
+
+        if(currentMapLongitude != null) {
+            state.longitude = currentMapLongitude!!
+        }
+
+        state.locationName = locationNameView.text.toString()
+
+        return state
+    }
+
+    override fun onRestoreInstanceState(state: Parcelable?) {
+        if(state is State) {
+            super.onRestoreInstanceState(state.superState)
+
+            switchView.isChecked = state.switchValue
+
+            if(state.latitude != 0.toDouble() && state.longitude != 0.toDouble()) {
+                setMapCoordinates(state.latitude, state.longitude)
+            }
+
+            locationNameView.text = state.locationName
+
+            return
+        }
+
+        super.onRestoreInstanceState(state)
+    }
+
+    class State : BaseSavedState {
+
+        var switchValue: Boolean = false
+        var latitude: Double = 0.toDouble()
+        var longitude: Double = 0.toDouble()
+        var locationName: String? = null
+
+        constructor(superState: Parcelable) : super(superState)
+
+        constructor(source: Parcel) : super(source) {
+            val bolArray = BooleanArray(1) { false }
+            source.readBooleanArray(bolArray)
+            switchValue = bolArray[0]
+
+            val doubleArray = DoubleArray(2)
+            source.readDoubleArray(doubleArray)
+            if(doubleArray[0] != 0.toDouble() && doubleArray[1] != 0.toDouble()) {
+                latitude = doubleArray[0]
+                longitude = doubleArray[1]
+            }
+
+            locationName = source.readString()
+        }
+
+        override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
+            super.writeToParcel(dest, flags)
+
+            val bolArray = BooleanArray(1) { switchValue }
+            writeBooleanArray(bolArray)
+
+            val doubleArray = DoubleArray(2) {
+                when(it) {
+                    0 -> latitude
+                    1 -> longitude
+                    else -> 0.toDouble()
+                }
+            }
+            writeDoubleArray(doubleArray)
+
+            writeString(locationName.orEmpty())
+        }
+
+        companion object {
+            @JvmField
+            val CREATOR: Parcelable.Creator<State> = object : Parcelable.Creator<State> {
+                override fun createFromParcel(source: Parcel): State = State(source)
+                override fun newArray(size: Int): Array<State?> = arrayOfNulls(size)
+            }
+        }
     }
 }

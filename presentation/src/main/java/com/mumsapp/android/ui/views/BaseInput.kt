@@ -49,7 +49,7 @@ class BaseInput : FloatingEditText {
 
         override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
             super.writeToParcel(this, flags)
-            writeString(text)
+            writeString(text.orEmpty())
         }
 
         companion object {

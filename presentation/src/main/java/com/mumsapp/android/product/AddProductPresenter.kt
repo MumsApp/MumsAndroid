@@ -48,6 +48,7 @@ class AddProductPresenter : LifecyclePresenter<AddProductView> {
     }
 
     override fun start() {
+        restoreSelectedImages()
         showCorrectCategory()
     }
 
@@ -118,6 +119,16 @@ class AddProductPresenter : LifecyclePresenter<AddProductView> {
         fragmentsNavigationService.popFragmentsToRoot()
         fragmentsNavigationService.openShopFragment(true)
         fragmentsNavigationService.openMyProductsFragment(true)
+    }
+
+    private fun restoreSelectedImages() {
+        if(currentHeader != null) {
+            view?.showImageHeader(currentHeader!!.uri!!)
+        }
+
+        if(chosenPhotos.isNotEmpty()) {
+            view?.showImageSlider(chosenPhotos, this::onPhotoRemoved)
+        }
     }
 
     private fun showCorrectCategory() {
