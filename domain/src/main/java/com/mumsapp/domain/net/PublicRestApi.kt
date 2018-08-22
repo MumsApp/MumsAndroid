@@ -6,6 +6,7 @@ import com.mumsapp.domain.model.identity.Token
 import com.mumsapp.domain.model.lobby.*
 import com.mumsapp.domain.model.shop.ProductCategoriesResponse
 import com.mumsapp.domain.model.shop.ProductResponse
+import com.mumsapp.domain.model.shop.ProductsMyResponse
 import com.mumsapp.domain.model.shop.ProductsResponse
 import com.mumsapp.domain.model.user.*
 import io.reactivex.Observable
@@ -146,8 +147,8 @@ interface PublicRestApi {
                         @Query("pointName") pointName: String, @Part filePart: List<MultipartBody.Part>): Observable<Response<ProductResponse>>
 
     @GET("shop/product/my")
-    fun getShopProductMy(): Observable<Response<ProductsResponse>>
+    fun getShopProductMy(): Observable<Response<ProductsMyResponse>>
 
     @GET("shop/product/favourite")
-    fun getShopProductFavourite(): Observable<Response<ProductsResponse>>
+    fun getShopProductFavourite(): Observable<Response<ProductsMyResponse>>
 }

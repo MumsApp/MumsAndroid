@@ -6,6 +6,7 @@ import butterknife.ButterKnife
 import butterknife.OnClick
 import com.mumsapp.android.R
 import com.mumsapp.android.base.BaseViewHolder
+import com.mumsapp.android.shop.ReadableShopProduct
 import com.mumsapp.android.ui.views.BaseImageView
 import com.mumsapp.android.ui.views.BaseTextView
 import com.mumsapp.android.util.ImagesLoader
@@ -13,7 +14,7 @@ import com.mumsapp.domain.model.shop.Product
 import com.mumsapp.domain.repository.ResourceRepository
 import java.lang.ref.WeakReference
 
-class MyProductsViewHolder : BaseViewHolder<Product> {
+class MyProductsViewHolder : BaseViewHolder<ReadableShopProduct> {
 
     private val imagesLoader: ImagesLoader
 
@@ -31,9 +32,9 @@ class MyProductsViewHolder : BaseViewHolder<Product> {
     @BindView(R.id.my_products_cell_price)
     lateinit var priceView: BaseTextView
 
-    private var listener: WeakReference<((item: Product) -> Unit)>? = null
+    private var listener: WeakReference<((item: ReadableShopProduct) -> Unit)>? = null
 
-    private var item: Product? = null
+    private var item: ReadableShopProduct? = null
 
     constructor(imagesLoader: ImagesLoader, resourceRepository: ResourceRepository, itemView: View) : super(itemView) {
         this.imagesLoader = imagesLoader
@@ -41,22 +42,20 @@ class MyProductsViewHolder : BaseViewHolder<Product> {
         ButterKnife.bind(this, itemView)
     }
 
-    override fun init(item: Product) {
+    override fun init(item: ReadableShopProduct) {
         this.item = item
 
         nameView.text = item.name
-//        categoryView.text = item.category
-
-        val price = resourceRepository.getString(R.string.pounds_price_format, item.price)
-        priceView.text = price
+        categoryView.text = item.categoryName
+        priceView.text = item.price
     }
 
-    fun setEditButtonClickListener(listener: (item: Product) -> Unit) {
+    fun setEditButtonClickListener(listener: (item: ReadableShopProduct) -> Unit) {
         this.listener = WeakReference(listener)
     }
 
     @OnClick(R.id.my_products_cell_edit_button)
-    fun onEdditClick() {
+    fun onEditClick() {
         listener?.get()?.invoke(item!!)
     }
 }

@@ -132,11 +132,11 @@ class AppRepositoryImpl : BaseRestRepository, AppRepository {
         return requestWithErrorMapping(apiRequest)
     }
 
-    override fun getMyProducts(): Observable<ProductsResponse> {
+    override fun getMyProducts(): Observable<ProductsMyResponse> {
         return requestWithErrorMapping(restApi.getShopProductMy())
     }
 
-    override fun getFavouriteProducts(): Observable<ProductsResponse> {
+    override fun getFavouriteProducts(): Observable<ProductsMyResponse> {
         return requestWithErrorMapping(restApi.getShopProductFavourite())
     }
 }

@@ -12,6 +12,7 @@ import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.di.components.ActivityComponent
+import com.mumsapp.android.shop.ReadableShopProduct
 import com.mumsapp.android.ui.views.GridRecyclerView
 import com.mumsapp.android.ui.views.TopBar
 import com.mumsapp.domain.model.shop.Product
@@ -59,11 +60,14 @@ class MyProductsFragment : BaseFragment(), MyProductsView {
         presenter.onUploadProductClick()
     }
 
-    override fun showItems(items: List<Product>, editClickListener: (item: Product) -> Unit) {
+    override fun showItems(items: List<ReadableShopProduct>,
+                           productClickListener: (item: ReadableShopProduct) -> Unit,
+                           editClickListener: (item: ReadableShopProduct) -> Unit) {
         adapter.items = items
         adapter.notifyDataSetChanged()
 
         if(recyclerView.adapter == null) {
+            adapter.setItemsClickListener(productClickListener)
             adapter.edditButtonClickListener = editClickListener
             recyclerView.adapter = adapter
         }

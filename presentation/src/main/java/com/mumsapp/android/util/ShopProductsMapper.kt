@@ -20,7 +20,7 @@ class ShopProductsMapper {
         this.locationHelper = locationHelper
     }
 
-    fun map(products: List<Product>, selectedLat: Double?, selectedLon: Double?): List<ReadableShopProduct> {
+    fun map(products: List<Product>, selectedLat: Double? = null, selectedLon: Double? = null): List<ReadableShopProduct> {
 
         val readableProducts = ArrayList<ReadableShopProduct>()
 

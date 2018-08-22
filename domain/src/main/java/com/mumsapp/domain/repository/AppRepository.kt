@@ -43,7 +43,7 @@ interface AppRepository {
 
     fun createShopProduct(request: CreateShopProductRequest): Observable<ProductResponse>
 
-    fun getMyProducts(): Observable<ProductsResponse>
+    fun getMyProducts(): Observable<ProductsMyResponse>
 
-    fun getFavouriteProducts(): Observable<ProductsResponse>
+    fun getFavouriteProducts(): Observable<ProductsMyResponse>
 }

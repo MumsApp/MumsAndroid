@@ -4,17 +4,18 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.mumsapp.android.R
 import com.mumsapp.android.base.BaseRecyclerViewAdapter
+import com.mumsapp.android.shop.ReadableShopProduct
 import com.mumsapp.android.util.ImagesLoader
 import com.mumsapp.domain.model.shop.Product
 import com.mumsapp.domain.repository.ResourceRepository
 import javax.inject.Inject
 
-class MyProductsItemsAdapter : BaseRecyclerViewAdapter<Product, MyProductsViewHolder> {
+class MyProductsItemsAdapter : BaseRecyclerViewAdapter<ReadableShopProduct, MyProductsViewHolder> {
 
     private val imagesLoader: ImagesLoader
     private val resourceRepository: ResourceRepository
 
-    var edditButtonClickListener: ((item: Product) -> Unit)? = null
+    var edditButtonClickListener: ((item: ReadableShopProduct) -> Unit)? = null
 
     @Inject
     constructor(imagesLoader: ImagesLoader, resourceRepository: ResourceRepository) {
