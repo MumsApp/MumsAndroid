@@ -1,6 +1,8 @@
 package com.mumsapp.android.ui.widgets
 
 import android.content.Context
+import android.os.Parcel
+import android.os.Parcelable
 import android.support.v7.widget.CardView
 import android.util.AttributeSet
 import android.view.View
@@ -74,5 +76,57 @@ class DistanceRangeWidget : CardView {
 
     fun setSecondLineText(text: String?) {
         rangeSelector.showBottomLabel(text)
+    }
+
+    override fun onSaveInstanceState(): Parcelable {
+        val superState = super.onSaveInstanceState()
+        val state = State(superState)
+
+        state.secondLineText = rangeSelector.getBottomLabel().toString()
+        state.secondLineVisibility = rangeSelector.getBottomLabelVisibility()
+
+        return state
+    }
+
+    override fun onRestoreInstanceState(state: Parcelable?) {
+        if(state is State) {
+            super.onRestoreInstanceState(state.superState)
+
+            if(state.secondLineVisibility == View.VISIBLE) {
+                setSecondLineText(state.secondLineText)
+            }
+
+            return
+        }
+
+        super.onRestoreInstanceState(state)
+    }
+
+    class State : BaseSavedState {
+
+        var secondLineText: String? = null
+        var secondLineVisibility: Int = Int.MAX_VALUE
+
+        constructor(superState: Parcelable) : super(superState)
+
+        constructor(source: Parcel) : super(source) {
+            secondLineText = source.readString()
+            secondLineVisibility = source.readInt()
+        }
+
+        override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
+            super.writeToParcel(dest, flags)
+
+            writeString(secondLineText)
+            writeInt(secondLineVisibility)
+        }
+
+        companion object {
+            @JvmField
+            val CREATOR: Parcelable.Creator<State> = object : Parcelable.Creator<State> {
+                override fun createFromParcel(source: Parcel): State = State(source)
+                override fun newArray(size: Int): Array<State?> = arrayOfNulls(size)
+            }
+        }
     }
 }

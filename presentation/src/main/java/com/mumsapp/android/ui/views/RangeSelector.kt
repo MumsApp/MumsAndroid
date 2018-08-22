@@ -1,7 +1,8 @@
 package com.mumsapp.android.ui.views
 
-import android.annotation.SuppressLint
 import android.content.Context
+import android.os.Parcel
+import android.os.Parcelable
 import android.support.annotation.PluralsRes
 import android.support.annotation.StringRes
 import android.support.constraint.ConstraintLayout
@@ -11,6 +12,7 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import com.innovattic.rangeseekbar.RangeSeekBar
 import com.mumsapp.android.R
+import com.mumsapp.android.ui.widgets.LocationWidget
 
 class RangeSelector : ConstraintLayout {
 
@@ -30,7 +32,7 @@ class RangeSelector : ConstraintLayout {
     lateinit var seekBar: RangeSeekBar
 
     private var preffix: String = ""
-    private var suffix: String? = ""
+    private var suffix: String = ""
     private var suffixPluralId: Int? = null
 
     constructor(context: Context) : super(context) {
@@ -96,6 +98,10 @@ class RangeSelector : ConstraintLayout {
         secondLabelView.visibility = View.GONE
     }
 
+    fun getBottomLabel() = secondLabelView.text
+
+    fun getBottomLabelVisibility() = secondLabelView.visibility
+
     fun setMinValue(value: Float) {
         seekBar.minRange = value.toInt()
     }
@@ -156,5 +162,92 @@ class RangeSelector : ConstraintLayout {
             plural = " " + context.resources.getQuantityString(suffixPluralId!!, value)
         }
         return "$preffix$value$suffix$plural"
+    }
+
+    override fun onSaveInstanceState(): Parcelable {
+        val superState = super.onSaveInstanceState()
+        val state = State(superState)
+        state.leftValue = getSelectedMinValue()
+        state.rightValue = getSelectedMaxValue()
+        state.preffix = preffix
+        state.suffix = suffix
+
+        if(suffixPluralId != null) {
+            state.suffixPluralId = suffixPluralId!!
+        }
+
+        return state
+    }
+
+    override fun onRestoreInstanceState(state: Parcelable?) {
+        if(state is State) {
+            super.onRestoreInstanceState(state.superState)
+
+            setSelectedMinValue(state.leftValue)
+            setSelectedMaxValue(state.rightValue)
+            preffix = state.preffix
+            suffix = state.suffix
+
+            if(state.suffixPluralId != 0) {
+                suffixPluralId = state.suffixPluralId
+            }
+
+            return
+        }
+
+        super.onRestoreInstanceState(state)
+    }
+
+    class State : BaseSavedState {
+
+        var leftValue = 0
+        var rightValue = 0
+        var preffix: String = ""
+        var suffix: String = ""
+        var suffixPluralId: Int = 0
+
+
+        constructor(superState: Parcelable) : super(superState)
+
+        constructor(source: Parcel) : super(source) {
+            val intArray = IntArray(3)
+            source.readIntArray(intArray)
+            leftValue = intArray[0]
+            rightValue = intArray[1]
+            suffixPluralId = intArray[2]
+
+            val stringArray = Array(2) {""}
+            source.readStringArray(stringArray)
+            preffix = stringArray[0]
+            suffix = stringArray[1]
+        }
+        override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
+            super.writeToParcel(dest, flags)
+
+            val intArray = IntArray(3)
+            intArray[0] = leftValue
+            intArray[1] = rightValue
+            intArray[2] = suffixPluralId
+
+            writeIntArray(intArray)
+
+            val stringArray = Array(2){
+                when(it) {
+                    0 -> preffix
+                    1 -> suffix
+                    else -> ""
+                }
+            }
+
+            writeStringArray(stringArray)
+        }
+
+        companion object {
+            @JvmField
+            val CREATOR: Parcelable.Creator<State> = object : Parcelable.Creator<State> {
+                override fun createFromParcel(source: Parcel): State = State(source)
+                override fun newArray(size: Int): Array<State?> = arrayOfNulls(size)
+            }
+        }
     }
 }

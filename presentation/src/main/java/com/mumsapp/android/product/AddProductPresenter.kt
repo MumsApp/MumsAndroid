@@ -259,6 +259,8 @@ class AddProductPresenter : LifecyclePresenter<AddProductView> {
     }
 
     private fun handleSaveProductSuccess(response: ProductResponse) {
+        shopFiltersManager.clear()
+
         val product = response.product
 
         val title = resourceRepository.getString(R.string.congratulations_your_product_has_been_uploaded)
