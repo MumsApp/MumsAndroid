@@ -6,6 +6,7 @@ import butterknife.ButterKnife
 import butterknife.OnCheckedChanged
 import com.mumsapp.android.R
 import com.mumsapp.android.base.BaseViewHolder
+import com.mumsapp.android.shop.ReadableShopProduct
 import com.mumsapp.android.ui.views.BaseImageView
 import com.mumsapp.android.ui.views.BaseTextView
 import com.mumsapp.android.ui.views.CircleImageView
@@ -14,7 +15,7 @@ import com.mumsapp.domain.model.shop.Product
 import com.mumsapp.domain.repository.ResourceRepository
 import java.lang.ref.WeakReference
 
-class MyWishlistViewHolder : BaseViewHolder<Product> {
+class MyWishlistViewHolder : BaseViewHolder<ReadableShopProduct> {
 
     private val imagesLoader: ImagesLoader
     private val resourceRepository: ResourceRepository
@@ -40,9 +41,9 @@ class MyWishlistViewHolder : BaseViewHolder<Product> {
     @BindView(R.id.my_wishlist_cell_user_name)
     lateinit var userNameView: BaseTextView
 
-    private var listener: WeakReference<((item: Product, value: Boolean) -> Unit)>? = null
+    private var listener: WeakReference<((item: ReadableShopProduct, value: Boolean) -> Unit)>? = null
 
-    private var item: Product? = null
+    private var item: ReadableShopProduct? = null
 
     constructor(imagesLoader: ImagesLoader, resourceRepository: ResourceRepository, itemView: View) : super(itemView) {
         this.imagesLoader = imagesLoader
@@ -50,19 +51,25 @@ class MyWishlistViewHolder : BaseViewHolder<Product> {
         ButterKnife.bind(this, itemView)
     }
 
-    override fun init(item: Product) {
+    override fun init(item: ReadableShopProduct) {
         this.item = item
 
-//        distanceView.text = item.distance
-//        productNameView.text = item.name
-//        categoryView.text = item.category
-//        userNameView.text = item.userName
+        distanceView.text = item.distance
+        productNameView.text = item.name
+        categoryView.text = item.categoryName
+        userNameView.text = item.authorName
+        priceView.text = item.price
 
-        val price = resourceRepository.getString(R.string.pounds_price_format, item.price)
-        priceView.text = price
+        if(item.thumbnailPath != null) {
+            imagesLoader.loadFromApiPath(item.thumbnailPath!!, productImage)
+        }
+
+        if(item.authorAvatarPath != null) {
+            imagesLoader.loadFromApiPath(item.authorAvatarPath!!, avatarImage)
+        }
     }
 
-    fun setCheckedListener(listener: (item: Product, value: Boolean) -> Unit) {
+    fun setCheckedListener(listener: (item: ReadableShopProduct, value: Boolean) -> Unit) {
         this.listener = WeakReference(listener)
     }
 

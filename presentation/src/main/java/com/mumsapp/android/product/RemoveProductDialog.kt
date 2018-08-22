@@ -10,9 +10,11 @@ import com.mumsapp.android.base.BaseDialog
 import com.mumsapp.android.base.BasePresenter
 import com.mumsapp.android.base.BaseView
 import com.mumsapp.android.di.components.ActivityComponent
+import com.mumsapp.android.shop.ReadableShopProduct
 import com.mumsapp.android.ui.views.BaseTextView
 import com.mumsapp.android.ui.views.CircleImageView
 import com.mumsapp.android.ui.views.TopBar
+import com.mumsapp.android.util.ImagesLoader
 import com.mumsapp.domain.model.shop.Product
 import javax.inject.Inject
 
@@ -20,6 +22,9 @@ class RemoveProductDialog(context: Context) : BaseDialog(context), RemoveProduct
 
     @Inject
     lateinit var presenter: RemoveProductPresenter
+
+    @Inject
+    lateinit var imagesLoader: ImagesLoader
 
     @BindView(R.id.remove_product_top_bar)
     lateinit var topBar: TopBar
@@ -53,7 +58,7 @@ class RemoveProductDialog(context: Context) : BaseDialog(context), RemoveProduct
         presenter.attachView(this)
     }
 
-    fun show(productItem: Product, bottomText: String, confirmationListener: () -> Unit) {
+    fun show(productItem: ReadableShopProduct, bottomText: String, confirmationListener: () -> Unit) {
         super.show()
 
         this.confirmationListener = confirmationListener
@@ -71,7 +76,10 @@ class RemoveProductDialog(context: Context) : BaseDialog(context), RemoveProduct
         dismiss()
     }
 
-    override fun showProductInformation(imageUrl: String, productName: String, bottomText: String) {
+    override fun showProductInformation(imageUrl: String?, productName: String, bottomText: String) {
+        if(imageUrl != null) {
+            imagesLoader.loadFromApiPath(imageUrl, imageView)
+        }
         nameView.text = productName
         bottomTextView.text = bottomText
     }

@@ -12,6 +12,7 @@ import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.base.LifecycleView
 import com.mumsapp.android.di.components.ActivityComponent
 import com.mumsapp.android.navigation.DialogsProvider
+import com.mumsapp.android.shop.ReadableShopProduct
 import com.mumsapp.android.ui.views.GridRecyclerView
 import com.mumsapp.android.ui.views.TopBar
 import com.mumsapp.domain.model.shop.Product
@@ -59,7 +60,7 @@ class MyWishlistFragment : BaseFragment(), MyWishlistView {
         topBar.setLeftButtonClickListener { presenter.onBackClick() }
     }
 
-    override fun showItems(items: List<Product>, checkboxChangeListener: (item: Product, value: Boolean) -> Unit) {
+    override fun showItems(items: List<ReadableShopProduct>, checkboxChangeListener: (item: ReadableShopProduct, value: Boolean) -> Unit) {
         adapter.items = items
         adapter.notifyDataSetChanged()
 
@@ -69,7 +70,7 @@ class MyWishlistFragment : BaseFragment(), MyWishlistView {
         }
     }
 
-    override fun openRemoveProductDialog(item: Product, bottomText: String, listener: () -> Unit) {
+    override fun openRemoveProductDialog(item: ReadableShopProduct, bottomText: String, listener: () -> Unit) {
         if(removeProductDialog == null) {
             removeProductDialog = dialogsProvider.createRemoveProductDialog()
         }

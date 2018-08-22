@@ -6,7 +6,7 @@ interface RemoveProductView : BaseView {
 
     fun dismissView()
 
-    fun showProductInformation(imageUrl: String, productName: String, bottomText: String)
+    fun showProductInformation(imageUrl: String?, productName: String, bottomText: String)
 
     fun deliverResults()
 }

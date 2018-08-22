@@ -102,12 +102,12 @@ class MumsAppOfferDetailsFragment : BaseFragment(), MumsAppOfferDetailsView {
     }
 
     override fun showOtherItems(items: List<Product>) {
-        adapter.items = items
-        adapter.notifyDataSetChanged()
-
-        if(recyclerView.adapter == null) {
-            recyclerView.adapter = adapter
-        }
+//        adapter.items = items
+//        adapter.notifyDataSetChanged()
+//
+//        if(recyclerView.adapter == null) {
+//            recyclerView.adapter = adapter
+//        }
     }
 
     override fun showGetVoucherDialog(title: String, description: String, confirmButtonText: String) {
