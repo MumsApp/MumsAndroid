@@ -263,4 +263,20 @@ class UseCaseModule {
                                       schedulerProvider: SchedulerProvider): CreateShopProductUseCase {
         return CreateShopProductUseCase(repository, transformerProvider, schedulerProvider)
     }
+
+    @Provides
+    @Singleton
+    fun providesGetMyProductsUseCase(repository: AppRepository,
+                                         @AuthorizationTransformer transformerProvider: UseCaseTransformerProvider,
+                                         schedulerProvider: SchedulerProvider): GetMyProductsUseCase {
+        return GetMyProductsUseCase(repository, transformerProvider, schedulerProvider)
+    }
+
+    @Provides
+    @Singleton
+    fun providesGetFavouriteProductsUseCase(repository: AppRepository,
+                                     @AuthorizationTransformer transformerProvider: UseCaseTransformerProvider,
+                                     schedulerProvider: SchedulerProvider): GetFavouriteProductsUseCase {
+        return GetFavouriteProductsUseCase(repository, transformerProvider, schedulerProvider)
+    }
 }

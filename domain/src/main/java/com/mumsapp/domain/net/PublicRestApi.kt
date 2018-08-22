@@ -144,4 +144,10 @@ interface PublicRestApi {
                         @Query("price") price: Float, @Query("category") categoryId: Int,
                         @Query("lat") latitude: Double, @Query("lon") longitude: Double,
                         @Query("pointName") pointName: String, @Part filePart: List<MultipartBody.Part>): Observable<Response<ProductResponse>>
+
+    @GET("shop/product/my")
+    fun getShopProductMy(): Observable<Response<ProductsResponse>>
+
+    @GET("shop/product/favourite")
+    fun getShopProductFavourite(): Observable<Response<ProductsResponse>>
 }

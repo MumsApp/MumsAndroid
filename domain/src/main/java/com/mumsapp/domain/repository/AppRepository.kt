@@ -42,4 +42,8 @@ interface AppRepository {
     fun getProductDetails(id: Int): Observable<ProductResponse>
 
     fun createShopProduct(request: CreateShopProductRequest): Observable<ProductResponse>
+
+    fun getMyProducts(): Observable<ProductsResponse>
+
+    fun getFavouriteProducts(): Observable<ProductsResponse>
 }
