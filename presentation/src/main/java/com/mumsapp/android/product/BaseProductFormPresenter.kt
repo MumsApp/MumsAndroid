@@ -20,9 +20,9 @@ abstract class BaseProductFormPresenter<View : BaseProductFormView> : LifecycleP
     private val validationHelper: ValidationHelper
 
     private var tmpCameraFile: File? = null
-    protected var chosenPhotos: MutableList<ImageSliderItem> = ArrayList()
+    private var chosenPhotos: MutableList<ImageSliderItem> = ArrayList()
     protected var currentHeader: ImageSliderItem? = null
-    private var selectedLocation: Place? = null
+    protected var selectedLocation: Place? = null
 
     constructor(fragmentsNavigationService: FragmentsNavigationService, filesHelper: FilesHelper,
                 resourceRepository: ResourceRepository, shopFiltersManager: ShopFiltersManager,
@@ -100,16 +100,18 @@ abstract class BaseProductFormPresenter<View : BaseProductFormView> : LifecycleP
     }
 
     fun onUploadButtonClick(title: String?, price: String?, description: String?) {
-        if(validateAndShowErrors(chosenPhotos, title, shopFiltersManager.getSubcategory(), price,
-                        description, selectedLocation)) {
-            saveProduct(chosenPhotos, title!!, shopFiltersManager.getSubcategory()!!, price!!,
-                    description!!, selectedLocation!!)
+        if(validateAndShowErrors(chosenPhotos, title, getSelectedCategory(), price,
+                        description)) {
+            saveProduct(chosenPhotos, title!!, getSelectedCategory()!!, price!!,
+                    description!!)
         }
     }
 
+    protected open fun getSelectedCategory() = shopFiltersManager.getSubcategory()
+
     private fun restoreSelectedImages() {
         if(currentHeader != null) {
-            
+
             if(currentHeader!!.uri == null) {
                 view?.showImageHeader(currentHeader!!.apiUrl!!)
             } else {
@@ -181,7 +183,7 @@ abstract class BaseProductFormPresenter<View : BaseProductFormView> : LifecycleP
 
     private fun validateAndShowErrors(photos: MutableList<ImageSliderItem>?, title: String?,
                                       category: ProductSubcategory?, price: String?,
-                                      description: String?, location: Place?): Boolean {
+                                      description: String?): Boolean {
         var isValid = true
         var error: String? = null
 
@@ -210,7 +212,7 @@ abstract class BaseProductFormPresenter<View : BaseProductFormView> : LifecycleP
             error = resourceRepository.getString(R.string.you_need_to_fill_all_fields)
         }
 
-        if(!validationHelper.checkIsNotEmpty(location)) {
+        if(!validateLocation()) {
             isValid = false
             error = resourceRepository.getString(R.string.you_need_to_fill_all_fields)
         }
@@ -222,9 +224,11 @@ abstract class BaseProductFormPresenter<View : BaseProductFormView> : LifecycleP
         return isValid
     }
 
+    protected open fun validateLocation() = validationHelper.checkIsNotEmpty(selectedLocation)
+
     abstract fun saveProduct(photos: MutableList<ImageSliderItem>, title: String,
                              category: ProductSubcategory, price: String,
-                             description: String, location: Place)
+                             description: String)
 
     protected fun onBackToSearchClick() {
         fragmentsNavigationService.popFragmentsToRoot()

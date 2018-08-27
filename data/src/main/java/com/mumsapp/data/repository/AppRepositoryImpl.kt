@@ -133,7 +133,7 @@ class AppRepositoryImpl : BaseRestRepository, AppRepository {
         return requestWithErrorMapping(apiRequest)
     }
 
-    override fun updateShopProduct(request: UpdateShopProductRequest): Observable<ProductResponse> {
+    override fun updateShopProduct(request: UpdateShopProductRequest): Observable<EmptyResponse> {
         val files = ArrayList<MultipartBody.Part>()
 
         request.photos?.forEachIndexed { i: Int, file: File ->

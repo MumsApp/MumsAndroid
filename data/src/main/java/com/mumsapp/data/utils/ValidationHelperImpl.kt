@@ -71,7 +71,7 @@ class ValidationHelperImpl : ValidationHelper {
     }
 
     override fun checkIsCorrectPrice(price: String?): Boolean {
-        return checkIsCorrectPrice(price?.toFloat())
+        return checkIsCorrectPrice(price?.toFloatOrNull())
     }
 
     override fun checkIsCorrectPrice(price: Float?): Boolean {

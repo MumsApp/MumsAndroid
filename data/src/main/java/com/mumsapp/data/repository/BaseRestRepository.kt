@@ -19,20 +19,20 @@ open class BaseRestRepository(val exceptionDispatcher: ExceptionDispatcher,
 
     protected fun <T> requestWithErrorMapping(observable: Observable<Response<T>>): Observable<T> {
         return observable
-                .map({
+                .map {
                     if(it.isSuccessful) {
-                     it.body() as T
-                } else {
-                    if(exceptionDispatcher.isBadRequest(it.code())) {
-                        val responseBody: ResponseBody? = it.errorBody()
+                        it.body() as T
+                    } else {
+                        if(exceptionDispatcher.isBadRequest(it.code())) {
+                            val responseBody: ResponseBody? = it.errorBody()
 
-                        throw createBadRequestException(responseBody)
-                    } else if(exceptionDispatcher.isUnAuthorized(it.code())) {
-                        throw UnauthorizedException("unauthorized")
-                    }
+                            throw createBadRequestException(responseBody)
+                        } else if(exceptionDispatcher.isUnAuthorized(it.code())) {
+                            throw UnauthorizedException("unauthorized")
+                        }
 
-                    throw throwServerError(resourceRepository.getString(R.string.error_unexpected))
-                } })
+                        throw throwServerError(resourceRepository.getString(R.string.error_unexpected))
+                    } }
     }
 
     private fun createBadRequestException(responseBody: ResponseBody?): Exception {

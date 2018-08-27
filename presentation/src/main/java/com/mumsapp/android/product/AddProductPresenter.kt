@@ -36,7 +36,9 @@ class AddProductPresenter : BaseProductFormPresenter<AddProductView> {
 
     override fun saveProduct(photos: MutableList<ImageSliderItem>, title: String,
                             category: ProductSubcategory, price: String,
-                            description: String, location: Place) {
+                            description: String) {
+        val location = selectedLocation!!
+
         val photoFiles = getPhotoFilesWithCorrectOrder(photos)
 
         val request = CreateShopProductRequest(title, description, price.toFloat(), category.id,
