@@ -44,10 +44,13 @@ class MyProductsViewHolder : BaseViewHolder<ReadableShopProduct> {
 
     override fun init(item: ReadableShopProduct) {
         this.item = item
-
         nameView.text = item.name
         categoryView.text = item.categoryName
         priceView.text = item.price
+
+        if(item.thumbnailPath != null) {
+            imagesLoader.loadFromApiPath(item.thumbnailPath!!, imageView)
+        }
     }
 
     fun setEditButtonClickListener(listener: (item: ReadableShopProduct) -> Unit) {

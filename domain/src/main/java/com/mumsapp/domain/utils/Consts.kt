@@ -45,3 +45,6 @@ const val DEFAULT_MIN_PRICE = 0
 const val DEFAULT_MAX_PRICE = 300
 const val DEFAULT_MIN_DISTANCE = 1
 const val DEFAULT_MAX_DISTANCE = 50
+
+//Product
+const val MAXIMUM_PRODUCT_PHOTOS = 5

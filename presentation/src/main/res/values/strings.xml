@@ -250,4 +250,6 @@
     <string name="you_need_to_select_photo">You need to select photo</string>
     <string name="you_need_to_select_location">You need to select location</string>
     <string name="please_put_correct_price">Please put correct price</string>
+    
+    <string name="you_can_add_maximum_of_photos">You can add a maximum of %d photos</string>
 </resources>
