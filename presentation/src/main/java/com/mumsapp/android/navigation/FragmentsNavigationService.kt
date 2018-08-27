@@ -18,12 +18,10 @@ import com.mumsapp.android.lobby.*
 import com.mumsapp.android.mums_app_offers.MumsAppOfferDetailsFragment
 import com.mumsapp.android.mums_app_offers.MumsAppOffersFragment
 import com.mumsapp.android.organisation.OrganisationDetailsFragment
-import com.mumsapp.android.product.AddProductFragment
-import com.mumsapp.android.product.MyProductsFragment
-import com.mumsapp.android.product.MyWishlistFragment
-import com.mumsapp.android.product.ProductFragment
+import com.mumsapp.android.product.*
 import com.mumsapp.android.profile.MyProfileFragment
 import com.mumsapp.android.profile.UserProfileFragment
+import com.mumsapp.android.shop.ReadableShopProduct
 import com.mumsapp.android.shop.SelectProductCategoryFragment
 import com.mumsapp.android.shop.ShopFilterFragment
 import com.mumsapp.android.shop.ShopFragment
@@ -151,6 +149,13 @@ class FragmentsNavigationService {
     }
 
     fun createAddProductFragment() = AddProductFragment.getInstance()
+
+    fun openEditProductFragment(product: ReadableShopProduct, addToBackStack: Boolean) {
+        val fragment = createEditProductFragment(product)
+        openFragment(fragment, addToBackStack)
+    }
+
+    fun createEditProductFragment(product: ReadableShopProduct) = EditProductFragment.getInstance(product)
 
     fun openCameraActivityForResults(output: Uri, requestCode: Int) {
         val intent = createCameraIntent(output)

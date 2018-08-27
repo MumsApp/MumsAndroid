@@ -112,4 +112,6 @@ interface ActivityComponent {
     fun inject(fragment: SelectProductCategoryFragment)
 
     fun inject(widget: ProductDetailsWidget)
+
+    fun inject(fragment: EditProductFragment)
 }

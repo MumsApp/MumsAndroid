@@ -41,7 +41,7 @@ class MyProductsPresenter : LifecyclePresenter<MyProductsView> {
     }
 
     private fun onEditClick(item: ReadableShopProduct) {
-
+        fragmentsNavigationService.openEditProductFragment(item, true)
     }
 
     private fun loadItems() {

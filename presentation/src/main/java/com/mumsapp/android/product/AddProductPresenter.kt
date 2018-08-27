@@ -17,11 +17,9 @@ import javax.inject.Inject
 class AddProductPresenter : BaseProductFormPresenter<AddProductView> {
 
     private val fragmentsNavigationService: FragmentsNavigationService
-    private val filesHelper: FilesHelper
     private val resourceRepository: ResourceRepository
     private val createShopProductsUseCase: CreateShopProductUseCase
     private val shopFiltersManager: ShopFiltersManager
-    private val validationHelper: ValidationHelper
 
     @Inject
     constructor(fragmentsNavigationService: FragmentsNavigationService, filesHelper: FilesHelper,
@@ -31,11 +29,9 @@ class AddProductPresenter : BaseProductFormPresenter<AddProductView> {
                 validationHelper: ValidationHelper): super(fragmentsNavigationService, filesHelper,
             resourceRepository, shopFiltersManager, validationHelper) {
         this.fragmentsNavigationService = fragmentsNavigationService
-        this.filesHelper = filesHelper
         this.resourceRepository = resourceRepository
         this.createShopProductsUseCase = createShopProductsUseCase
         this.shopFiltersManager = shopFiltersManager
-        this.validationHelper = validationHelper
     }
 
     override fun saveProduct(photos: MutableList<ImageSliderItem>, title: String,
@@ -79,6 +75,6 @@ class AddProductPresenter : BaseProductFormPresenter<AddProductView> {
         val cancelButtonText = resourceRepository.getString(R.string.to_my_product_list)
 
         view?.showConfirmationDialog(product.photos.get(0).photoPath, "", title, null,
-                confirmButtonText, cancelButtonText)
+                confirmButtonText, this::onBackToSearchClick, cancelButtonText, this::onBackToMyProductsClick)
     }
 }

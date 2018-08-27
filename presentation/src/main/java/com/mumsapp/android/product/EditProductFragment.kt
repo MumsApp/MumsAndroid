@@ -4,32 +4,41 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import butterknife.BindView
 import butterknife.ButterKnife
 import com.mumsapp.android.R
-import com.mumsapp.android.base.BaseFragment
 import com.mumsapp.android.base.LifecyclePresenter
 import com.mumsapp.android.base.LifecycleView
-import com.mumsapp.android.common.dialogs.ConfirmationWithAvatarDialog
 import com.mumsapp.android.di.components.ActivityComponent
-import com.mumsapp.android.navigation.ActivitiesNavigationService
-import com.mumsapp.android.navigation.DialogsProvider
-import com.mumsapp.android.ui.views.BaseImageView
-import com.mumsapp.android.ui.views.BaseTextView
-import com.mumsapp.android.ui.views.HorizontalRecyclerView
-import com.mumsapp.android.ui.views.TopBar
-import com.mumsapp.android.ui.widgets.EditProductDetailsWidget
-import com.mumsapp.android.ui.widgets.LocationWidget
-import com.mumsapp.android.util.ImagesLoader
+import com.mumsapp.android.shop.ReadableShopProduct
+import com.mumsapp.domain.utils.READABLE_SHOP_PRODUCT_KEY
 import javax.inject.Inject
 
-class AddProductFragment : BaseProductFormFragment(), AddProductView {
+class EditProductFragment : BaseProductFormFragment(), EditProductView {
 
     @Inject
-    lateinit var presenter: AddProductPresenter
+    lateinit var presenter: EditProductPresenter
+
+    override fun <T : LifecyclePresenter<LifecycleView>> getLifecyclePresenter() = presenter as T
 
     companion object {
-        fun getInstance() = AddProductFragment()
+        fun getInstance(product: ReadableShopProduct) : EditProductFragment {
+            val fragment = EditProductFragment()
+            fragment.arguments = EditProductFragment.createArgBundle(product)
+
+            return fragment
+        }
+
+        private fun createArgBundle(product: ReadableShopProduct): Bundle {
+            val args = Bundle()
+            args.putSerializable(READABLE_SHOP_PRODUCT_KEY, product)
+
+            return args
+        }
+    }
+
+    private fun passArgumentsToPresenter() {
+        val product = arguments?.getSerializable(READABLE_SHOP_PRODUCT_KEY) as ReadableShopProduct
+        presenter.setArguments(product)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,11 +54,9 @@ class AddProductFragment : BaseProductFormFragment(), AddProductView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        passArgumentsToPresenter()
         presenter.attachViewWithLifecycle(this)
         topBar.setLeftButtonClickListener { presenter.onBackClick() }
-        editProductDetailsWidget.setOnAddCategoryClickListener { presenter.onAddCategoryClick() }
-        editProductDetailsWidget.setOnAskForCategoryClickListener { presenter.onAskForNewCategoryClick() }
-        locationWidget.setWidgetButtonListener { presenter.onEditLocationClick() }
     }
 
     override fun getFormPresenter(): BaseProductFormPresenter<BaseProductFormView> {

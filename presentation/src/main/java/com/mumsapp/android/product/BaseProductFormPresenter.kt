@@ -107,17 +107,6 @@ abstract class BaseProductFormPresenter<View : BaseProductFormView> : LifecycleP
         }
     }
 
-    fun onConfirmDialogButtonClick() {
-        fragmentsNavigationService.popFragmentsToRoot()
-        fragmentsNavigationService.openShopFragment(true)
-    }
-
-    fun onCancelDialogButtonClick() {
-        fragmentsNavigationService.popFragmentsToRoot()
-        fragmentsNavigationService.openShopFragment(true)
-        fragmentsNavigationService.openMyProductsFragment(true)
-    }
-
     private fun restoreSelectedImages() {
         if(currentHeader != null) {
             view?.showImageHeader(currentHeader!!.uri!!)
@@ -227,4 +216,15 @@ abstract class BaseProductFormPresenter<View : BaseProductFormView> : LifecycleP
     abstract fun saveProduct(photos: MutableList<ImageSliderItem>, title: String,
                              category: ProductSubcategory, price: String,
                              description: String, location: Place)
+
+    protected fun onBackToSearchClick() {
+        fragmentsNavigationService.popFragmentsToRoot()
+        fragmentsNavigationService.openShopFragment(true)
+    }
+
+    protected fun onBackToMyProductsClick() {
+        fragmentsNavigationService.popFragmentsToRoot()
+        fragmentsNavigationService.openShopFragment(true)
+        fragmentsNavigationService.openMyProductsFragment(true)
+    }
 }

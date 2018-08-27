@@ -19,8 +19,9 @@ interface BaseProductFormView : LifecycleView {
 
     fun removeImageSliderItem(items: List<ImageSliderItem>, changedItemPosition: Int)
 
-    fun showConfirmationDialog(avatarPath: String?, avatarTitle: String, title: String, description: String?,
-                               confirmButtonText: String, cancelButtonText: String)
+    fun showConfirmationDialog(avatarPath: String?, avatarTitle: String, title: String,
+                                        description: String?, confirmButtonText: String, confirmButtonClick: () -> Unit,
+                                        cancelButtonText: String, cancelButtonClick: () -> Unit)
 
     fun showEditLocationScreen()
 
