@@ -62,4 +62,11 @@ class EditProductFragment : BaseProductFormFragment(), EditProductView {
     override fun getFormPresenter(): BaseProductFormPresenter<BaseProductFormView> {
         return presenter as BaseProductFormPresenter<BaseProductFormView>
     }
+
+    override fun showInitialDetails(title: String?, category: String?, price: String?, description: String?) {
+        editProductDetailsWidget.setTitle(title)
+        editProductDetailsWidget.setCategory(category)
+        editProductDetailsWidget.setPrice(price)
+        editProductDetailsWidget.setDescription(description)
+    }
 }

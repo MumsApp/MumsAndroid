@@ -20,7 +20,7 @@ abstract class BaseProductFormPresenter<View : BaseProductFormView> : LifecycleP
     private val validationHelper: ValidationHelper
 
     private var tmpCameraFile: File? = null
-    private var chosenPhotos: MutableList<ImageSliderItem> = ArrayList()
+    protected var chosenPhotos: MutableList<ImageSliderItem> = ArrayList()
     protected var currentHeader: ImageSliderItem? = null
     private var selectedLocation: Place? = null
 
@@ -109,7 +109,12 @@ abstract class BaseProductFormPresenter<View : BaseProductFormView> : LifecycleP
 
     private fun restoreSelectedImages() {
         if(currentHeader != null) {
-            view?.showImageHeader(currentHeader!!.uri!!)
+            
+            if(currentHeader!!.uri == null) {
+                view?.showImageHeader(currentHeader!!.apiUrl!!)
+            } else {
+                view?.showImageHeader(currentHeader!!.uri!!)
+            }
         }
 
         if(chosenPhotos.isNotEmpty()) {
@@ -117,7 +122,7 @@ abstract class BaseProductFormPresenter<View : BaseProductFormView> : LifecycleP
         }
     }
 
-    private fun showCorrectCategory() {
+    protected open fun showCorrectCategory() {
         val category = if(shopFiltersManager.getSubcategory() == null) {
             resourceRepository.getString(R.string.add_category)
         } else {
@@ -152,6 +157,10 @@ abstract class BaseProductFormPresenter<View : BaseProductFormView> : LifecycleP
             view?.showImageHeader(currentHeader!!.uri!!)
         }
 
+        addImageSliderItem(item)
+    }
+
+    protected fun addImageSliderItem(item: ImageSliderItem) {
         chosenPhotos.add(item)
 
         if(chosenPhotos.size < 2) {

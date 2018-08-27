@@ -121,6 +121,10 @@ abstract class BaseProductFormFragment : BaseFragment(), BaseProductFormView {
         imagesLoader.load(uri, headerImageView)
     }
 
+    override fun showImageHeader(apiUrl: String) {
+        imagesLoader.loadFromApiPath(apiUrl, headerImageView)
+    }
+
     override fun showImageSlider(items: List<ImageSliderItem>, deleteButtonClickListener: ((position: Int) -> Unit)) {
         photosAdapter.items = items
         photosAdapter.deleteButtonClickListener = deleteButtonClickListener

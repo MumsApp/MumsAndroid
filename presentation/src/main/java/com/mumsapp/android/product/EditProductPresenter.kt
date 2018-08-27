@@ -1,6 +1,7 @@
 package com.mumsapp.android.product
 
 import com.google.android.gms.location.places.Place
+import com.mumsapp.android.R
 import com.mumsapp.android.navigation.FragmentsNavigationService
 import com.mumsapp.android.shop.ReadableShopProduct
 import com.mumsapp.domain.model.shop.ProductSubcategory
@@ -40,5 +41,34 @@ class EditProductPresenter : BaseProductFormPresenter<EditProductView> {
     override fun saveProduct(photos: MutableList<ImageSliderItem>, title: String,
                              category: ProductSubcategory, price: String, description: String,
                              location: Place) {
+    }
+
+    override fun create() {
+        super.create()
+
+        view?.showInitialDetails(currentProduct.name, currentProduct.categoryName,
+                currentProduct.product.price.toString(), currentProduct.product.description)
+
+        if(currentProduct.thumbnailPath != null) {
+            currentHeader = ImageSliderItem(null, null, false, currentProduct.thumbnailPath)
+            view?.showImageHeader(currentProduct.thumbnailPath!!)
+        }
+
+        view?.showNewLocation(currentProduct.product.lat, currentProduct.product.lon,
+                currentProduct.product.pointName.orEmpty())
+
+        currentProduct.product.photos.forEach {
+            addImageSliderItem(ImageSliderItem(null, null, false, it.photoPath))
+        }
+    }
+
+    override fun showCorrectCategory() {
+        val category = if(shopFiltersManager.getSubcategory() == null) {
+            currentProduct.categoryName
+        } else {
+            shopFiltersManager.getSubcategory()!!.name
+        }
+
+        view?.showProductCategory(category)
     }
 }

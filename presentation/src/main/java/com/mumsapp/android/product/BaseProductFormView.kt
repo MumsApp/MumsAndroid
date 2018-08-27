@@ -11,6 +11,8 @@ interface BaseProductFormView : LifecycleView {
 
     fun showImageHeader(uri: Uri)
 
+    fun showImageHeader(apiUrl: String)
+
     fun hideImageSlider()
 
     fun showImageSlider(items: List<ImageSliderItem>,  deleteButtonClickListener: ((position: Int) -> Unit))

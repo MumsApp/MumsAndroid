@@ -13,6 +13,7 @@ import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
+import java.io.File
 import javax.inject.Inject
 
 class AppRepositoryImpl : BaseRestRepository, AppRepository {
@@ -120,10 +121,14 @@ class AppRepositoryImpl : BaseRestRepository, AppRepository {
     override fun createShopProduct(request: CreateShopProductRequest): Observable<ProductResponse> {
         val files = ArrayList<MultipartBody.Part>()
 
-        request.photos.forEach {
-            val filePart = MultipartBody.Part.createFormData("file", it.name,
-                    RequestBody.create(MediaType.parse("image/*"), it))
+        request.photos.forEachIndexed { i: Int, file: File ->
+            val filePart = MultipartBody.Part.createFormData("file$i", file.name,
+                    RequestBody.create(MediaType.parse("image/*"), file))
             files.add(filePart)
+        }
+
+        request.photos.forEachIndexed { i: Int, file: File ->
+
         }
 
         val apiRequest = restApi.postShopProduct(request.name, request.description, request.price,

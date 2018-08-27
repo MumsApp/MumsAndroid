@@ -25,7 +25,11 @@ open class ProductImagesViewHolder : BaseViewHolder<ImageSliderItem> {
     }
 
     override fun init(item: ImageSliderItem) {
-        imagesLoader.load(item.uri!!, imageView, 0.5f)
+        if(item.uri == null) {
+            imagesLoader.loadFromApiPath(item.apiUrl!!, imageView)
+        } else {
+            imagesLoader.load(item.uri!!, imageView, 0.5f)
+        }
     }
 
     fun setDeleteButtonClickListener(listener: (position: Int) -> Unit) {

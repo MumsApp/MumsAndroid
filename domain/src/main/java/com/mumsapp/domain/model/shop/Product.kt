@@ -22,4 +22,4 @@ data class Product(@SerializedName("id") var id: Int,
 
 data class ProductPhoto(@SerializedName("id") var id: Int,
                         @SerializedName("thumbnail") var thumbnail: Boolean,
-                        @SerializedName("src") var photoPath: String)
+                        @SerializedName("src") var photoPath: String) : BaseResponse()
