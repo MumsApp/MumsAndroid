@@ -6,7 +6,8 @@ import com.mumsapp.domain.model.shop.Product
 
 interface MyWishlistView : LifecycleView {
 
-    fun showItems(items: List<ReadableShopProduct>, checkboxChangeListener: (item: ReadableShopProduct, value: Boolean) -> Unit)
+    fun showItems(items: List<ReadableShopProduct>, itemClickListener: (item: ReadableShopProduct) -> Unit,
+                  checkboxChangeListener: (item: ReadableShopProduct, value: Boolean) -> Unit)
 
     fun openRemoveProductDialog(item: ReadableShopProduct, bottomText: String, listener: () -> Unit)
 }

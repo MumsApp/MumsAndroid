@@ -60,11 +60,13 @@ class MyWishlistFragment : BaseFragment(), MyWishlistView {
         topBar.setLeftButtonClickListener { presenter.onBackClick() }
     }
 
-    override fun showItems(items: List<ReadableShopProduct>, checkboxChangeListener: (item: ReadableShopProduct, value: Boolean) -> Unit) {
+    override fun showItems(items: List<ReadableShopProduct>, itemClickListener: (item: ReadableShopProduct) -> Unit,
+                           checkboxChangeListener: (item: ReadableShopProduct, value: Boolean) -> Unit) {
         adapter.items = items
         adapter.notifyDataSetChanged()
 
         if(recyclerView.adapter == null) {
+            adapter.setItemsClickListener(itemClickListener)
             adapter.checkboxChangeListener = checkboxChangeListener
             recyclerView.adapter = adapter
         }

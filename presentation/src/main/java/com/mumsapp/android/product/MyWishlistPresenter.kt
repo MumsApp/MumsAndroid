@@ -53,7 +53,11 @@ class MyWishlistPresenter : LifecyclePresenter<MyWishlistView> {
 
     private fun handleLoadProductsSuccess(response: ProductsMyResponse) {
         val products = shopProductsMapper.map(response.products)
-        view?.showItems(products, this::onWishlistCheckboxChanged)
+        view?.showItems(products, this::onProductClick, this::onWishlistCheckboxChanged)
+    }
+
+    private fun onProductClick(item: ReadableShopProduct) {
+        fragmentsNavigationService.openProductFragment(item.id, true)
     }
 
     private fun onWishlistCheckboxChanged(item: ReadableShopProduct, value: Boolean) {
