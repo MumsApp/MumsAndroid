@@ -266,6 +266,14 @@ class UseCaseModule {
 
     @Provides
     @Singleton
+    fun providesUpdateShopProductUseCase(repository: AppRepository,
+                                         @AuthorizationTransformer transformerProvider: UseCaseTransformerProvider,
+                                         schedulerProvider: SchedulerProvider): UpdateShopProductUseCase {
+        return UpdateShopProductUseCase(repository, transformerProvider, schedulerProvider)
+    }
+
+    @Provides
+    @Singleton
     fun providesGetMyProductsUseCase(repository: AppRepository,
                                          @AuthorizationTransformer transformerProvider: UseCaseTransformerProvider,
                                          schedulerProvider: SchedulerProvider): GetMyProductsUseCase {

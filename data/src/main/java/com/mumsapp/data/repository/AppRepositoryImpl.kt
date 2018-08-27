@@ -127,11 +127,22 @@ class AppRepositoryImpl : BaseRestRepository, AppRepository {
             files.add(filePart)
         }
 
-        request.photos.forEachIndexed { i: Int, file: File ->
+        val apiRequest = restApi.postShopProduct(request.name, request.description, request.price,
+                request.categoryId, request.latitude, request.longitude, request.locationName, files)
 
+        return requestWithErrorMapping(apiRequest)
+    }
+
+    override fun updateShopProduct(request: UpdateShopProductRequest): Observable<ProductResponse> {
+        val files = ArrayList<MultipartBody.Part>()
+
+        request.photos?.forEachIndexed { i: Int, file: File ->
+            val filePart = MultipartBody.Part.createFormData("file$i", file.name,
+                    RequestBody.create(MediaType.parse("image/*"), file))
+            files.add(filePart)
         }
 
-        val apiRequest = restApi.postShopProduct(request.name, request.description, request.price,
+        val apiRequest = restApi.putShopProduct(request.id, request.name, request.description, request.price,
                 request.categoryId, request.latitude, request.longitude, request.locationName, files)
 
         return requestWithErrorMapping(apiRequest)
