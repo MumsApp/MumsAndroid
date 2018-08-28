@@ -176,7 +176,7 @@ abstract class BaseProductFormPresenter<View : BaseProductFormView> : LifecycleP
         }
     }
 
-    private fun onPhotoRemoved(position: Int) {
+    protected open fun onPhotoRemoved(position: Int) {
         chosenPhotos.removeAt(position)
         view?.removeImageSliderItem(chosenPhotos, position)
     }

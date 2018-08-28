@@ -155,4 +155,12 @@ class AppRepositoryImpl : BaseRestRepository, AppRepository {
     override fun getFavouriteProducts(): Observable<ProductsMyResponse> {
         return requestWithErrorMapping(restApi.getShopProductFavourite())
     }
+
+    override fun removeProductPhoto(productId: Int, photoId: Int): Observable<EmptyResponse> {
+        return requestWithErrorMapping(restApi.deleteShopProductIdPhotoId(productId, photoId))
+    }
+
+    override fun setPhotoAsThumbnail(productId: Int, photoId: Int): Observable<EmptyResponse> {
+        return requestWithErrorMapping(restApi.putShopProductIdPhotoIdThumbnail(productId, photoId))
+    }
 }

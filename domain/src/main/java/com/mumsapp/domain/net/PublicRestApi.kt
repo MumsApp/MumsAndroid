@@ -159,4 +159,10 @@ interface PublicRestApi {
 
     @GET("shop/product/favourite")
     fun getShopProductFavourite(): Observable<Response<ProductsMyResponse>>
+
+    @DELETE("shop/product/{productId}/photo/{photoId}")
+    fun deleteShopProductIdPhotoId(@Path("productId") productId: Int, @Path("photoId") photoId: Int): Observable<Response<EmptyResponse>>
+
+    @PUT("shop/product/{productId}/photo/{photoId}/thumbnail")
+    fun putShopProductIdPhotoIdThumbnail(@Path("productId") productId: Int, @Path("photoId") photoId: Int): Observable<Response<EmptyResponse>>
 }

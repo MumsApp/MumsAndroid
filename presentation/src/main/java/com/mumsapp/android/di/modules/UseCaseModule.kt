@@ -287,4 +287,20 @@ class UseCaseModule {
                                      schedulerProvider: SchedulerProvider): GetFavouriteProductsUseCase {
         return GetFavouriteProductsUseCase(repository, transformerProvider, schedulerProvider)
     }
+
+    @Provides
+    @Singleton
+    fun providesDeleteProductPhotoUseCase(repository: AppRepository,
+                                            @AuthorizationTransformer transformerProvider: UseCaseTransformerProvider,
+                                            schedulerProvider: SchedulerProvider): DeleteProductPhotoUseCase {
+        return DeleteProductPhotoUseCase(repository, transformerProvider, schedulerProvider)
+    }
+
+    @Provides
+    @Singleton
+    fun providesChangeProductThumbnailUseCase(repository: AppRepository,
+                                          @AuthorizationTransformer transformerProvider: UseCaseTransformerProvider,
+                                          schedulerProvider: SchedulerProvider): ChangeProductThumbnailUseCase {
+        return ChangeProductThumbnailUseCase(repository, transformerProvider, schedulerProvider)
+    }
 }

@@ -83,6 +83,10 @@ class EditProductPresenter : BaseProductFormPresenter<EditProductView> {
         }
     }
 
+    override fun onPhotoRemoved(position: Int) {
+        super.onPhotoRemoved(position)
+    }
+
     override fun validateLocation(): Boolean {
         if(selectedLocation != null) {
             return super.validateLocation()

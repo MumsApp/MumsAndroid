@@ -48,4 +48,8 @@ interface AppRepository {
     fun getMyProducts(): Observable<ProductsMyResponse>
 
     fun getFavouriteProducts(): Observable<ProductsMyResponse>
+
+    fun removeProductPhoto(productId: Int, photoId: Int): Observable<EmptyResponse>
+
+    fun setPhotoAsThumbnail(productId: Int, photoId: Int): Observable<EmptyResponse>
 }

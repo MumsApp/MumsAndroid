@@ -8,7 +8,7 @@ class ProductAddPhotoViewHolder(imagesLoader: ImagesLoader, view: View) : Produc
     override fun init(item: ImageSliderItem) {
     }
 
-    override fun bindButterknife() {
+    override fun bindButterKnife() {
 
     }
 }

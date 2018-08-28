@@ -21,7 +21,7 @@ open class ProductImagesViewHolder : BaseViewHolder<ImageSliderItem> {
 
     constructor(imagesLoader: ImagesLoader, itemView: View) : super(itemView) {
         this.imagesLoader = imagesLoader
-        bindButterknife()
+        bindButterKnife()
     }
 
     override fun init(item: ImageSliderItem) {
@@ -41,7 +41,7 @@ open class ProductImagesViewHolder : BaseViewHolder<ImageSliderItem> {
         listener?.get()?.invoke(adapterPosition)
     }
 
-    open fun bindButterknife() {
+    open fun bindButterKnife() {
         ButterKnife.bind(this, itemView)
     }
 }
