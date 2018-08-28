@@ -9,6 +9,8 @@ interface BaseProductFormView : LifecycleView {
 
     fun showSelectImageSourceDialog(galleryClickListener: () -> Unit, cameraClickListener: () -> Unit)
 
+    fun showAddPhotoHeader()
+
     fun showImageHeader(uri: Uri)
 
     fun showImageHeader(apiUrl: String)

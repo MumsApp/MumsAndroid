@@ -93,13 +93,13 @@ class ProductPresenter : LifecyclePresenter<ProductView> {
     private fun createImages(product: Product): ArrayList<Banner> {
         val list = ArrayList<Banner>()
 
-        if(product.photos.isEmpty()) {
+        if(product.photos.orEmpty().isEmpty()) {
             list.add(DrawableBanner(R.drawable.ic_image_placeholder))
 
             return list
         }
 
-        product.photos.forEach {
+        product.photos?.forEach {
             val url = imagesRepository.getApiImageUrl(it.photoPath)
             val banner = RemoteBanner(url)
 

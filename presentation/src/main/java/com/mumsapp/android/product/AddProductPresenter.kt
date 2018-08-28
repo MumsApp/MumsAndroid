@@ -76,7 +76,7 @@ class AddProductPresenter : BaseProductFormPresenter<AddProductView> {
         val confirmButtonText = resourceRepository.getString(R.string.back_to_search)
         val cancelButtonText = resourceRepository.getString(R.string.to_my_product_list)
 
-        view?.showConfirmationDialog(product.photos.get(0).photoPath, "", title, null,
+        view?.showConfirmationDialog(product.photos!![0].photoPath, "", title, null,
                 confirmButtonText, this::onBackToSearchClick, cancelButtonText, this::onBackToMyProductsClick)
     }
 }

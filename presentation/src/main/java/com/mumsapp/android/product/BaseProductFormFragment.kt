@@ -117,11 +117,17 @@ abstract class BaseProductFormFragment : BaseFragment(), BaseProductFormView {
         photosRecyclerView.adapter = null
     }
 
+    override fun showAddPhotoHeader() {
+        headerImageView.visibility = View.INVISIBLE
+    }
+
     override fun showImageHeader(uri: Uri) {
+        headerImageView.visibility = View.VISIBLE
         imagesLoader.load(uri, headerImageView)
     }
 
     override fun showImageHeader(apiUrl: String) {
+        headerImageView.visibility = View.VISIBLE
         imagesLoader.loadFromApiPath(apiUrl, headerImageView)
     }
 

@@ -18,7 +18,7 @@ data class Product(@SerializedName("id") var id: Int,
                    @SerializedName("creatorPhoto") var creatorPhotoPath: String?,
                    @SerializedName("creationDate") var creationDate: ZonedDateTime,
                    @SerializedName("isUserFavourite") var isUserFavourite: Boolean,
-                   @SerializedName("photos") var photos: List<ProductPhoto>) : BaseResponse()
+                   @SerializedName("photos") var photos: List<ProductPhoto>?) : BaseResponse()
 
 data class ProductPhoto(@SerializedName("id") var id: Int,
                         @SerializedName("thumbnail") var thumbnail: Boolean,

@@ -1,5 +1,6 @@
 package com.mumsapp.android.base
 
+import com.mumsapp.android.BuildConfig
 import com.mumsapp.domain.exceptions.InvalidRefreshTokenException
 import io.reactivex.Observable
 import io.reactivex.ObservableTransformer
@@ -95,6 +96,10 @@ abstract class BasePresenter<View: BaseView> {
     open fun create() {}
 
     protected fun handleApiError(throwable: Throwable) {
+        if(BuildConfig.DEBUG) {
+            throwable.printStackTrace()
+        }
+        
         view?.showSnackbar(throwable.localizedMessage)
     }
 }

@@ -20,7 +20,7 @@ abstract class BaseProductFormPresenter<View : BaseProductFormView> : LifecycleP
     private val validationHelper: ValidationHelper
 
     private var tmpCameraFile: File? = null
-    private var chosenPhotos: MutableList<ImageSliderItem> = ArrayList()
+    protected var chosenPhotos: MutableList<ImageSliderItem> = ArrayList()
     protected var currentHeader: ImageSliderItem? = null
     protected var selectedLocation: Place? = null
 
@@ -112,10 +112,10 @@ abstract class BaseProductFormPresenter<View : BaseProductFormView> : LifecycleP
     private fun restoreSelectedImages() {
         if(currentHeader != null) {
 
-            if(currentHeader!!.uri == null) {
-                view?.showImageHeader(currentHeader!!.apiUrl!!)
-            } else {
+            if(currentHeader!!.uri != null) {
                 view?.showImageHeader(currentHeader!!.uri!!)
+            } else if(currentHeader!!.apiUrl != null ){
+                view?.showImageHeader(currentHeader!!.apiUrl!!)
             }
         }
 
@@ -177,8 +177,26 @@ abstract class BaseProductFormPresenter<View : BaseProductFormView> : LifecycleP
     }
 
     protected open fun onPhotoRemoved(position: Int) {
+        val photoToRemove = chosenPhotos[position]
         chosenPhotos.removeAt(position)
+
+        if(photoToRemove == currentHeader) {
+            currentHeader = chosenPhotos.lastOrNull()
+
+            if(currentHeader?.file != null) {
+                view?.showImageHeader(currentHeader!!.uri!!)
+            } else if(currentHeader?.apiUrl != null) {
+                view?.showImageHeader(currentHeader!!.apiUrl!!)
+            }
+        }
+
         view?.removeImageSliderItem(chosenPhotos, position)
+
+        if(chosenPhotos.size == 1) {
+            chosenPhotos.clear()
+            view?.hideImageSlider()
+            view?.showAddPhotoHeader()
+        }
     }
 
     private fun validateAndShowErrors(photos: MutableList<ImageSliderItem>?, title: String?,

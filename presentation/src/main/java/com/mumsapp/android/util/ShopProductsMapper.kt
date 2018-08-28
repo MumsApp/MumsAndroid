@@ -40,7 +40,7 @@ class ShopProductsMapper {
     }
 
     fun getThumbnail(product: Product): String? {
-        product.photos.forEach {
+        product.photos?.forEach {
             return it.photoPath
         }
 

@@ -4,8 +4,11 @@ import com.google.android.gms.maps.model.LatLng
 import com.mumsapp.android.R
 import com.mumsapp.android.navigation.FragmentsNavigationService
 import com.mumsapp.android.shop.ReadableShopProduct
+import com.mumsapp.domain.interactor.shop.ChangeProductThumbnailUseCase
+import com.mumsapp.domain.interactor.shop.DeleteProductPhotoUseCase
 import com.mumsapp.domain.interactor.shop.UpdateShopProductUseCase
 import com.mumsapp.domain.model.EmptyResponse
+import com.mumsapp.domain.model.shop.ProductPhotoIdRequest
 import com.mumsapp.domain.model.shop.ProductSubcategory
 import com.mumsapp.domain.model.shop.UpdateShopProductRequest
 import com.mumsapp.domain.repository.ResourceRepository
@@ -23,6 +26,8 @@ class EditProductPresenter : BaseProductFormPresenter<EditProductView> {
     private val shopFiltersManager: ShopFiltersManager
     private val validationHelper: ValidationHelper
     private val updateShopProductUseCase: UpdateShopProductUseCase
+    private val deleteProductPhotoUseCase: DeleteProductPhotoUseCase
+    private val changeProductThumbnailUseCase: ChangeProductThumbnailUseCase
 
     private lateinit var currentProduct: ReadableShopProduct
 
@@ -31,7 +36,9 @@ class EditProductPresenter : BaseProductFormPresenter<EditProductView> {
                 resourceRepository: ResourceRepository,
                 shopFiltersManager: ShopFiltersManager,
                 validationHelper: ValidationHelper,
-                updateShopProductUseCase: UpdateShopProductUseCase): super(fragmentsNavigationService, filesHelper,
+                updateShopProductUseCase: UpdateShopProductUseCase,
+                deleteProductPhotoUseCase: DeleteProductPhotoUseCase,
+                changeProductThumbnailUseCase: ChangeProductThumbnailUseCase): super(fragmentsNavigationService, filesHelper,
             resourceRepository, shopFiltersManager, validationHelper) {
         this.fragmentsNavigationService = fragmentsNavigationService
         this.filesHelper = filesHelper
@@ -39,6 +46,8 @@ class EditProductPresenter : BaseProductFormPresenter<EditProductView> {
         this.shopFiltersManager = shopFiltersManager
         this.validationHelper = validationHelper
         this.updateShopProductUseCase = updateShopProductUseCase
+        this.deleteProductPhotoUseCase = deleteProductPhotoUseCase
+        this.changeProductThumbnailUseCase = changeProductThumbnailUseCase
     }
 
     fun setArguments(product: ReadableShopProduct) {
@@ -59,7 +68,7 @@ class EditProductPresenter : BaseProductFormPresenter<EditProductView> {
         view?.showNewLocation(currentProduct.product.lat, currentProduct.product.lon,
                 currentProduct.product.pointName.orEmpty())
 
-        currentProduct.product.photos.forEach {
+        currentProduct.product.photos?.forEach {
             addImageSliderItem(ImageSliderItem(null, null, false, it.photoPath))
         }
     }
@@ -84,6 +93,23 @@ class EditProductPresenter : BaseProductFormPresenter<EditProductView> {
     }
 
     override fun onPhotoRemoved(position: Int) {
+        if(chosenPhotos[position].file == null) {
+            removePhotoOnServer(currentProduct.id, currentProduct.product.photos!![position - 1].id, position)
+        } else {
+            super.onPhotoRemoved(position)
+        }
+    }
+
+    private fun removePhotoOnServer(productId: Int, photoId: Int, position: Int) {
+        val request = ProductPhotoIdRequest(productId, photoId)
+
+        addDisposable(deleteProductPhotoUseCase.execute(request)
+                .compose(applyOverlaysToObservable())
+                .subscribe {handleRemovingPhotoSuccess(position)}
+        )
+    }
+
+    private fun handleRemovingPhotoSuccess(position: Int) {
         super.onPhotoRemoved(position)
     }
 
