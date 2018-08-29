@@ -36,6 +36,7 @@
         app:layout_constraintTop_toBottomOf="@id/add_child_sex" />
 
     <com.mumsapp.android.ui.views.BaseTextView
+        android:id="@+id/add_child_age_label"
         style="@style/text_small_grey_light"
         android:layout_marginEnd="@dimen/padding_medium"
         android:text="@string/age"

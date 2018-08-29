@@ -17,6 +17,11 @@ class ChildrenMapper {
 
     fun getReadableName(child: Child) : String {
         val sex = getReadableSex(child)
+
+        if(child.sex == SEX_TO_COME) {
+            return sex
+        }
+
         val age = getReadableAge(child)
 
         return resourceRepository.getString(R.string.child_readable_pattern, sex, age)

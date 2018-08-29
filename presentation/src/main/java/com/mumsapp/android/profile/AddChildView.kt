@@ -8,6 +8,14 @@ interface AddChildView : BaseView {
 
     fun dismissView()
 
+    fun showAgeSelector()
+
+    fun hideAgeSelector()
+
+    fun showAgeUnitSelector()
+
+    fun hideAgeUnitSelector()
+
     fun setTitle(title: String)
 
     fun setSex(image: Drawable, sexName: String)

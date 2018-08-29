@@ -3,6 +3,7 @@ package com.mumsapp.android.profile
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.view.View
 import android.widget.CheckBox
 import butterknife.BindView
 import butterknife.ButterKnife
@@ -31,6 +32,9 @@ class AddChildDialog(context: Context) :
 
     @BindView(R.id.add_child_sex)
     lateinit var sexView: BaseTextView
+
+    @BindView(R.id.add_child_age_label)
+    lateinit var ageLabel: BaseTextView
 
     @BindView(R.id.add_child_age_incrementer)
     lateinit var ageIncrementerView: NumberIncrementer
@@ -95,6 +99,28 @@ class AddChildDialog(context: Context) :
 
     override fun dismissView() {
         dismiss()
+    }
+
+    override fun showAgeSelector() {
+        ageLabel.visibility = View.VISIBLE
+        ageIncrementerView.visibility = View.VISIBLE
+    }
+
+    override fun hideAgeSelector() {
+        ageLabel.visibility = View.GONE
+        ageIncrementerView.visibility = View.GONE
+    }
+
+    override fun showAgeUnitSelector() {
+        weekCheckbox.visibility = View.VISIBLE
+        monthCheckbox.visibility = View.VISIBLE
+        yearheckbox.visibility = View.VISIBLE
+    }
+
+    override fun hideAgeUnitSelector() {
+        weekCheckbox.visibility = View.GONE
+        monthCheckbox.visibility = View.GONE
+        yearheckbox.visibility = View.GONE
     }
 
     override fun setSex(image: Drawable, sexName: String) {
