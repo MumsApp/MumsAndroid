@@ -140,13 +140,22 @@ class ShopPresenter : LifecyclePresenter<ShopView> {
         addDisposable(
                 searchShopProductsUseCase.execute(request)
                         .compose(applyOverlaysToObservable())
-                        .subscribe({ handleLoadProductsSuccess(it, userLat, userLon) }, this::handleApiError)
+                        .subscribe({ handleLoadProductsSuccess(it, userLat, userLon) }, this::handleLoadProductsError)
         )
     }
 
     private fun handleLoadProductsSuccess(response: ProductsResponse, userLat: Double?, userLon: Double?) {
         val products = shopProductsMapper.map(response.data.products, userLat, userLon)
         view?.showItems(products, this::onProductClick, this::onFavouriteCheckboxChanged)
+    }
+
+    private fun handleLoadProductsError(throwable: Throwable) {
+        if(throwable is UninitializedPropertyAccessException) {
+            //ignore due to backstack issue
+            return
+        }
+
+        handleApiError(throwable)
     }
 
     private fun onProductClick(product: ReadableShopProduct) {

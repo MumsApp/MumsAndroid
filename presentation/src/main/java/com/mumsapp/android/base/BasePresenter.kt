@@ -1,5 +1,6 @@
 package com.mumsapp.android.base
 
+import android.util.Log
 import com.mumsapp.android.BuildConfig
 import com.mumsapp.domain.exceptions.InvalidRefreshTokenException
 import io.reactivex.Observable
@@ -80,7 +81,7 @@ abstract class BasePresenter<View: BaseView> {
     }
 
     protected open fun stop() {
-
+        Log.e("basepresenter", "sztop")
     }
 
     protected open fun destroy() {
@@ -99,7 +100,7 @@ abstract class BasePresenter<View: BaseView> {
         if(BuildConfig.DEBUG) {
             throwable.printStackTrace()
         }
-        
+
         view?.showSnackbar(throwable.localizedMessage)
     }
 }

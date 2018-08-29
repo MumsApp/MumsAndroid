@@ -255,13 +255,11 @@ abstract class BaseProductFormPresenter<View : BaseProductFormView> : LifecycleP
                              description: String)
 
     protected fun onBackToSearchClick() {
-        fragmentsNavigationService.popFragmentsToRoot()
-        fragmentsNavigationService.openShopFragment(true)
+        fragmentsNavigationService.popFragmentsToFirstItem()
     }
 
     protected fun onBackToMyProductsClick() {
-        fragmentsNavigationService.popFragmentsToRoot()
-        fragmentsNavigationService.openShopFragment(true)
+        fragmentsNavigationService.popFragmentsToFirstItem()
         fragmentsNavigationService.openMyProductsFragment(true)
     }
 }

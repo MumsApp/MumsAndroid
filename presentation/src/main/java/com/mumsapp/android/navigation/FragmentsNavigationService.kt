@@ -253,9 +253,19 @@ class FragmentsNavigationService {
 
     fun popFragmentsToRoot() {
         if (getBackStackCount() > 0) {
-            val entryName = fragmentManager.getBackStackEntryAt(0).name
-            fragmentManager.popBackStackImmediate(entryName, android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE)
+            popFragmentsToIndex(0)
         }
+    }
+
+    fun popFragmentsToFirstItem() {
+        if (getBackStackCount() > 1) {
+            popFragmentsToIndex(1)
+        }
+    }
+
+    fun popFragmentsToIndex(index: Int) {
+        val entryName = fragmentManager.getBackStackEntryAt(index).name
+        fragmentManager.popBackStackImmediate(entryName, android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE)
     }
 
     fun getBackStackCount(): Int {
