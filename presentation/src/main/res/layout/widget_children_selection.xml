@@ -25,7 +25,7 @@
     <com.mumsapp.android.ui.views.BaseTextView
         android:id="@+id/children_selection_widget_add_female_text"
         style="@style/text_small_grey_light"
-        android:text="@string/add_female"
+        android:text="@string/add_girl"
         app:layout_constraintTop_toBottomOf="@id/children_selection_widget_add_female_icon"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/children_selection_widget_add_female_divider"/>
@@ -52,7 +52,7 @@
     <com.mumsapp.android.ui.views.BaseTextView
         android:id="@+id/children_selection_widget_add_male_text"
         style="@style/text_small_grey_light"
-        android:text="@string/add_male"
+        android:text="@string/add_boy"
         app:layout_constraintTop_toTopOf="@id/children_selection_widget_add_female_text"
         app:layout_constraintBottom_toBottomOf="@id/children_selection_widget_add_female_text"
         app:layout_constraintLeft_toRightOf="@+id/children_selection_widget_add_female_divider"
@@ -80,7 +80,7 @@
     <com.mumsapp.android.ui.views.BaseTextView
         android:id="@+id/children_selection_widget_add_come_text"
         style="@style/text_small_grey_light"
-        android:text="@string/add_to_come"
+        android:text="@string/add_baby_on_board"
         app:layout_constraintTop_toTopOf="@id/children_selection_widget_add_female_text"
         app:layout_constraintBottom_toBottomOf="@id/children_selection_widget_add_female_text"
         app:layout_constraintLeft_toRightOf="@id/children_selection_widget_add_male_divider"

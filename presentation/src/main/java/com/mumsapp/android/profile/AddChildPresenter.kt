@@ -73,7 +73,7 @@ class AddChildPresenter : BasePresenter<AddChildView> {
             }
             SEX_TO_COME -> {
                 drawable = resourceRepository.getDrawable(R.drawable.ic_come)
-                sexName = resourceRepository.getString(R.string.to_come)
+                sexName = resourceRepository.getString(R.string.baby_on_board)
             }
             else -> throw IllegalStateException("Wrong sex")
         }

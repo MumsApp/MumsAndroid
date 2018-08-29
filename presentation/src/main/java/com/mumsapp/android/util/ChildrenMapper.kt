@@ -26,7 +26,7 @@ class ChildrenMapper {
         return when(child.sex) {
             SEX_MALE -> resourceRepository.getString(R.string.boy)
             SEX_FEMALE -> resourceRepository.getString(R.string.girl)
-            SEX_TO_COME -> resourceRepository.getString(R.string.to_come)
+            SEX_TO_COME -> resourceRepository.getString(R.string.baby_on_board)
             else -> throw IllegalStateException("Wrong sex value")
         }
     }

@@ -139,7 +139,8 @@ class SignUpPresenter: LifecyclePresenter<SignUpView> {
     }
 
     fun onSignInClick() {
-        openMainActivity()
+        fragmentsNavigationService.popFragment()
+        fragmentsNavigationService.openSignInFragment(true)
     }
 
     private fun openMainActivity() {

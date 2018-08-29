@@ -62,7 +62,7 @@
 
             <com.mumsapp.android.ui.views.BaseInput
                 android:id="@+id/sign_in_password"
-                style="@style/default_form"
+                style="@style/password_form"
                 android:hint="@string/password"
                 android:inputType="textPassword"
                 app:layout_constraintTop_toBottomOf="@id/sign_in_email" />
