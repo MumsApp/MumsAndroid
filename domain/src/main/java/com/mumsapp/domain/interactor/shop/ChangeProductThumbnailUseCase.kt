@@ -15,6 +15,6 @@ class ChangeProductThumbnailUseCase(val repository: AppRepository,
     : AuthorizedUseCase<ProductPhotoIdRequest, EmptyResponse>(transformerProvider, schedulerProvider) {
 
     override fun createUseCaseObservable(param: ProductPhotoIdRequest): Observable<EmptyResponse> {
-        return repository.removeProductPhoto(param.productId, param.photoId)
+        return repository.setPhotoAsThumbnail(param.productId, param.photoId)
     }
 }

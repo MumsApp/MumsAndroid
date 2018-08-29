@@ -40,11 +40,15 @@ class ShopProductsMapper {
     }
 
     fun getThumbnail(product: Product): String? {
+        var thumbnail: String? = null
+
         product.photos?.forEach {
-            return it.photoPath
+            if(it.thumbnail) {
+                thumbnail = it.photoPath
+            }
         }
 
-        return null
+        return thumbnail ?: product.photos?.firstOrNull()?.photoPath
     }
 
     private fun calculateDistance(product: Product, selectedLat: Double?, selectedLon: Double?): String {

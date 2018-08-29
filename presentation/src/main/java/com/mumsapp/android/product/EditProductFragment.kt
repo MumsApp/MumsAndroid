@@ -63,6 +63,10 @@ class EditProductFragment : BaseProductFormFragment(), EditProductView {
         return presenter as BaseProductFormPresenter<BaseProductFormView>
     }
 
+    override fun setScreenTitle(title: String) {
+        topBar.setTitleText(title)
+    }
+
     override fun showInitialDetails(title: String?, category: String?, price: String?, description: String?) {
         editProductDetailsWidget.setTitle(title)
         editProductDetailsWidget.setCategory(category)

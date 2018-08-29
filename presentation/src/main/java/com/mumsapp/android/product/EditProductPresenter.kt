@@ -73,6 +73,13 @@ class EditProductPresenter : BaseProductFormPresenter<EditProductView> {
         }
     }
 
+    override fun start() {
+        super.start()
+
+        val title = resourceRepository.getString(R.string.edit_product)
+        view?.setScreenTitle(title)
+    }
+
     override fun showCorrectCategory() {
         val category = if(shopFiltersManager.getSubcategory() == null) {
             currentProduct.categoryName
@@ -90,6 +97,37 @@ class EditProductPresenter : BaseProductFormPresenter<EditProductView> {
         } else {
             shopFiltersManager.getSubcategory()
         }
+    }
+
+    override fun onPhotoSliderItemClick(item: ImageSliderItem) {
+        val position = getImageSliderPosition(item)
+
+        if(position != null && item.apiUrl != null) {
+            setProductThumbnailOnServer(currentProduct.id, currentProduct.product.photos!![position - 1].id)
+        }
+
+        super.onPhotoSliderItemClick(item)
+    }
+
+    private fun getImageSliderPosition(item: ImageSliderItem): Int? {
+        chosenPhotos.forEachIndexed { index:Int, currentItem: ImageSliderItem ->
+            if(item == currentItem) {
+                return index
+            }
+        }
+
+        return null
+    }
+
+    private fun setProductThumbnailOnServer(productId: Int, photoId: Int) {
+        val request = ProductPhotoIdRequest(productId, photoId)
+        addDisposable(changeProductThumbnailUseCase.execute(request)
+                .subscribe(this::handleProductThumbnailChange, this::handleApiError)
+        )
+    }
+
+    private fun handleProductThumbnailChange(response: EmptyResponse) {
+        //Ignoring
     }
 
     override fun onPhotoRemoved(position: Int) {

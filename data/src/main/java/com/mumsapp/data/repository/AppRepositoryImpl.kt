@@ -142,8 +142,13 @@ class AppRepositoryImpl : BaseRestRepository, AppRepository {
             files.add(filePart)
         }
 
-        val apiRequest = restApi.putShopProduct(request.id, request.name, request.description, request.price,
-                request.categoryId, request.latitude, request.longitude, request.locationName, files)
+        val apiRequest = if(files.isEmpty()) {
+            restApi.putShopProduct(request.id, request.name, request.description, request.price,
+                    request.categoryId, request.latitude, request.longitude, request.locationName)
+        } else {
+            restApi.putShopProduct(request.id, request.name, request.description, request.price,
+                    request.categoryId, request.latitude, request.longitude, request.locationName, files)
+        }
 
         return requestWithErrorMapping(apiRequest)
     }

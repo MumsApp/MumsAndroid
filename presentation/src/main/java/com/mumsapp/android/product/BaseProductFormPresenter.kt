@@ -71,12 +71,17 @@ abstract class BaseProductFormPresenter<View : BaseProductFormView> : LifecycleP
         addPhotoToView(Uri.fromFile(tmpCameraFile), file)
     }
 
-    fun onPhotoSliderItemClick(item: ImageSliderItem) {
+    open fun onPhotoSliderItemClick(item: ImageSliderItem) {
         if(item.isAddPhoto) {
             onAddPhotoClick()
         } else {
             currentHeader = item
-            view?.showImageHeader(currentHeader!!.uri!!)
+
+            if(currentHeader?.uri != null) {
+                view?.showImageHeader(currentHeader!!.uri!!)
+            } else if(currentHeader?.apiUrl != null) {
+                view?.showImageHeader(currentHeader!!.apiUrl!!)
+            }
         }
     }
 
@@ -193,6 +198,7 @@ abstract class BaseProductFormPresenter<View : BaseProductFormView> : LifecycleP
         view?.removeImageSliderItem(chosenPhotos, position)
 
         if(chosenPhotos.size == 1) {
+            currentHeader = null
             chosenPhotos.clear()
             view?.hideImageSlider()
             view?.showAddPhotoHeader()
